@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="300" height="300"></canvas>
+           <script type="importmap">
+            {
+                "imports": {
+                  "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+                  "GLTFLoader" : "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js"
+                }
+            }
+           </script>
+           <script type="module">
+                import {GLTFLoader} from 'GLTFLoader';
+                import * as THREE from 'three';
+
+                //1.장면 만들기, 이 scene 위에 그림 그릴 수 있음(add)
+
+                let scene=new THREE.Scene();
+                
+                //2.브라우저에 띄우기
+                let renderer=new THREE.WebGLRenderer({
+                    //어디에 띄울지
+                    canvas: document.querySelector('#canvas'),
+                    antialias: true,//테두리 부드럽게
+
+                });
+                renderer.outputEncoding=THREE.sRGBEncoding;
+
+                //카메라, 조명, 배경 세팅
+                let camera=new THREE.PerspectiveCamera(30,1);
+                camera.position.set(0,0,5)
+                scene.background=new THREE.Color('white');
+                let light=new THREE.DirectionalLight( 0xffffff, 0.8 ); //(color, intensity)
+                scene.add(light);
+
+                let loader= new GLTFLoader();
+                loader.load('dog/scene.gltf', function(gltf){
+                    //load 된 후 실행될 콜백함수
+                    scene.add(gltf.scene);
+                    
+                    //애니메이션 적용
+                    function animate(){
+                        requestAnimationFrame(animate)
+                        gltf.scene.rotation.y+=0.01;
+                        renderer.render(scene, camera);
+                    }
+                    animate();
+                })
+                
+           </script>
+    </body>
+</html>
