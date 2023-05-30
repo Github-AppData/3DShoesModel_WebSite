@@ -13,8 +13,11 @@
 	<button type="button" id="serchAddress" onclick="postCodeSerch()">우편번호 찾기</button><br>
 	<input type="text" id="roadAddress" name="address" placeholder="도로명주소" style="width:250px"readonly><br>
 	<input type="text" name="detailAddress" placeholder="상세주소">
-<div id="map" style="width:300px;height:300px;margin-top:10px;"></div>
-
+	<button type="button" id="confirmButton" onclick="getText()">확인</button><br>
+	<div id="map" style="width:300px;height:300px;margin-top:10px;"></div><br>
+	<input type="text" id="getPostCode" name="getpostcode" readonly><br>
+	<input type="text" id="getRoadAddress" name="getroadaddress" readonly><br>
+	<input type="text" id="getDetailAddress" name="getdetailaddress" readonly><br>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=93aff3fc1238b1fe4e7f8f66d1492dfa&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -35,54 +38,7 @@
         position: new daum.maps.LatLng(37.487313, 126.820575),
         map: map
     });
-	/*
-	$('#serchBtn').click(function(){
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch($('#roadAddress').val(), function(result, status) {
-	
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === kakao.maps.services.Status.OK) {
-	
-	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new kakao.maps.Marker({
-	            map: map,
-	            position: coords
-	        });
-	
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">배송지</div>'
-	        });
-	        infowindow.open(map, marker);
-	
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    }
-	});  
-  });
-  
-  window.onload = function(){
-    document.getElementById("serchAddress").addEventListener("click", function(){ //우편번호 검색을 클릭하면
-        //카카오 지도 발생
-        new daum.Postcode({
-            oncomplete: function(data) { //선택시 입력값 세팅
-            	// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('postCode').value = data.zonecode;
-                document.getElementById("roadAddress").value = roadAddr;
-                
-                //document.querySelector("input[name=detailAddress]").focus(); //상세입력 포커싱
-            }
-        }).open();
-    });
-}*/
     function postCodeSerch() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -112,6 +68,18 @@
             }
         }).open();
     }
+
+    function getText(){
+		var PostCode = document.getElementById('postCode').value;
+		var RoadAddress = document.getElementById('roadAddress').value;
+		var DetailAddress = document.getElementById('detailAddress').value;
+		
+		document.getElementById("getPostCode").value = PostCode;
+		document.getElementById("getRoadAddress").value = RoadAddress;
+		document.getElementById("getDetailAddress").value = DetailAddress;
+	}
+
+    
 </script>
 </body>
 
