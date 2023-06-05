@@ -10,9 +10,9 @@
 </head>
 <body>
 	<input type="text" id="postCode" placeholder="우편번호" readonly>
-	<button type="button" id="serchAddress" onclick="postCodeSerch()">우편번호 찾기</button><br>
+	<button type="button" id="searchAddress" onclick="postCodeSearch()">우편번호 찾기</button><br>
 	<input type="text" id="roadAddress" name="address" placeholder="도로명주소" style="width:250px"readonly><br>
-	<input type="text" name="detailAddress" placeholder="상세주소">
+	<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
 	<button type="button" id="confirmButton" onclick="getText()">확인</button><br>
 	<div id="map" style="width:300px;height:300px;margin-top:10px;"></div><br>
 	<input type="text" id="getPostCode" name="getpostcode" readonly><br>
@@ -39,7 +39,7 @@
         map: map
     });
 
-    function postCodeSerch() {
+    function postCodeSearch() {
         new daum.Postcode({
             oncomplete: function(data) {
                 var roadAddr = data.roadAddress; // 도로명 주소 변수

@@ -7,17 +7,23 @@
 
     <!-- Insert this script -->
     <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
-    
+    <style>
+		iframe{
+			align-content: center;
+		}
+	</style>
 </head>
 
 <body>
     <!-- Insert an empty iframe with attributes -->
-    <iframe src="" id="api-frame" width="400" height="300" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
+    
+    <p align="middle">
+    <iframe src="" id="api-frame" width="200" height="100" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+	</p>
     <!-- Initialize the viewer -->
     <script type="text/javascript">
     var iframe = document.getElementById( 'api-frame' );
-    var uid = '17f21b0a2515455f96ad194ad5be9142';
+    var uid = 'faef9fe5ace445e7b2989d1c1ece361c';
 
     // By default, the latest version of the viewer API will be used.
     var client = new Sketchfab( iframe );
@@ -41,7 +47,7 @@
         }
     } );
     </script>
-    <iframe src="" id="api-frame2" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <iframe src="" id="api-frame2" width="400" height="300" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
     <!-- Initialize the viewer -->
     <script type="text/javascript">
@@ -62,13 +68,14 @@
                 // API is ready to use
                 // Insert your code here
                 console.log( 'Viewer is ready' );
-
+				
             } );
         },
         error: function onError() {
             console.log( 'Viewer error' );
         }
     } );
+    
     </script>
 </body>
 </html>
