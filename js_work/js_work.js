@@ -597,4 +597,685 @@ let result = userList.reduce((prev, cur) => {
 }, []);
 
 console.log(result);
+
+-구조 분해 할당-
+배열이나 객체의 속성을 분해해서 그 값을 변수에 담을 수 있게 하는 표현식
+
+배열구조분해
+let [x, y] = [1, 2]
+console.log(x); //1
+console.log(y); //2
+
+
+let users = ['Mike', 'Tom', 'Jane'];
+let [user1, user2, user3] = users;
+
+let user1 = users[0];
+let user2 = users[1];
+let user3 = users[2];
+
+console.log(user1);
+console.log(user2);
+console.log(user3);
+
+let [a=3, b=4, c=5] = [1, 2];   //기본값이 없으면 c에 undefined가 들어가기 때문에 기본값을 줘서 미연에 방지
+
+let [user1, , user2] = ['Mike', 'Tom', 'Jane', 'Tony'];
+빈칸으로 비워두면 반환받지 않고 넘어갈 수 있음
+
+let a = 1;
+let b = 2;
+일반적으로 두 변수의 값을 바꾸려면 변수를 하나 더 할당해서 바꿔야 하지만 구조분해로 바꿔치기 가능
+[a, b] = [b, a];
+
+객체도 구조분해가 가능
+let user = {name : 'Mike', age : 30};
+let {name, age} = user; //이 코드는 let name = user.name; let age = user.age; 와 같음
+                          한가지 다른점은 순서를 상관하지 않아도 된다는 점임
+console.log(name);  //'Mike'
+console.log(age);   //30
+
+새로운 변수 이름으로 할당 가능
+let {name : userName, age : userAge} = user;
+
+객체 분해에도 기본값 지정 가능
+
+-나머지 매개변수, 전개 구문-
+... 점 3개로 사용
+
+자바스크립트에서 함수에 인수에는 개수 제한이 없음
+function showName(name){
+    console.log(name);
+}
+showName('Mike');   //'Mike'
+showName('Mike','Tom'); //?
+
+arguments
+함수로 넘어온 모든 인수에 접근 가능
+함수 내에서 이용 가능한 지역 변수
+length / index 가 있음
+Array 형태의 객체
+배열의 내장 메서드 없음
+
+function showName(name){
+    console.log(arguments.length);
+    console.log(arguments[0]);
+    console.log(arguments[1]);
+}
+showName('Mike', 'Tom');
+//2
+//'Mike'
+//'Tom'
+
+나머지 매개변수
+function showName(...names){
+    console.log(names);
+}
+showName(); //[]
+showName('Mike');   //['Mike']
+showName('Mike', 'Tom');    //['Mike', 'Tom']
+나머지 매개변수는 정해지지 않은 인수의 갯수를 배열로 나타내줌
+
+function add(...numbers){
+    let result = numbers.reduce((prev, cur) => prev + cur);
+    console.log(result);
+}
+add(1, 2, 3);
+add(1, 2, 3, 4, 5, 6, 7 ,8 ,9, 10);
+
+//나머지 매개변수는 항상 마지막에 위치해야함
+function User(name, age, ...skills){
+    this.name = name;
+    this.age = age;
+    this.skills = skills
+}
+
+const user1 = new User('Mike', 30, 'html', 'css');
+const user2 = new User('Tom', 30, 'html', 'css');
+const user3 = new User('Jane', 30, 'css');
+
+console.log(user1);
+console.log(user2);
+console.log(user3);
+
+전개구문
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
+
+let result = [0, ...arr1, ...arr2, 7, 8, 9];
+console.log(result);    //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+let arr = [1, 2, 3];
+let arr2 = [...arr];    //[1, 2, 3]
+
+let user = {name : 'Mike', age : 30};
+let user2 = {...user};
+
+user2.name = 'Tom';
+
+console.log(user.name);     //'Mike'
+console.log(user2.name);    //'Tom'
+
+
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
+
+// arr2.reverse().forEach(num => {
+//     arr1.unshift(num)
+// })
+
+arr1 = [...arr2, ...arr1];
+
+console.log(arr1);
+
+let user = {name : 'Mike'};
+let info = {age : 30};
+let fe = ['JS', 'React'];
+let lang = ['Korean', 'English'];
+
+// user = Object.assign({}, user, info, {
+//     skills : [],
+// });
+
+// fe.forEach(item =>{
+//     user.skills.push(item);
+// })
+// lang.forEach(item =>{
+//     user.skills.push(item);
+// })
+
+user = {
+    ...user,
+    ...info,
+    skills : [...fe, ...lang],
+};
+
+console.log(user);
+
+-클로저-
+자바스크립트는 어휘적 환경을 가짐
+함수는 변수와 다르게 바로 초기화 됨
+전역 Lexical환경과 함수에서 만들어진 내부 Lexical환경 존재
+
+function makeAdder(x){  //makeAdder Lexical환경 생성       참조 2
+    return function(y){ //익명함수 LExical환경 생성         참조 1
+        return x + y;
+    }
+}
+
+const add3 = makeAdder(3);  //add3은 전역 Lexical환경에 들어감  참조 3
+console.log(add3(2));
+클로저는 함수와 렉시컬 환경의 조합
+함수가 생성될 당시의 외부 변수를 기억
+생성 이후에도 계속 접근 가능
+
+function makeCounter(){
+    let num = 0;
+
+    return function(){
+        return num++;
+    }
+}
+
+let counter = makeCounter();
+
+console.log(counter()); //0
+console.log(counter()); //1
+console.log(counter()); //2
+
+-setTimeout / setInterval-
+일정시간 지난 후 함수 실행 / 일정 시간 간격으로 함수를 반복
+
+function fn(){
+    console.log(3)
+}
+setTimeout(fn, 3000);
+ ->
+setTimeout(function(){
+    console.log(3)
+}, 3000);
+
+function showName(name){
+    console.log(name);
+}
+setTimeout(showName, 3000, 'Mike');
+
+clearTimeout();을 사용하면 스케줄링 취소 가능
+
+function showName(name){
+    console.log(name);
+}
+setInterval(showName, 3000, 'Mike');
+
+딜레이타임을 0으로 줘도 바로 실행되지는 않음
+이유는 현재 실행중인 스크립트가 종료된 이후 스케줄링 함수를 실행하기 때문
+
+let num = 0;
+function showTime(){
+    console.log(`안녕하세요. 접속하신지 ${num++}초가 지났습니다.`);
+    if(num > 5){
+        clearInterval(tId);
+    }
+}
+const tId = setInterval(showTime, 1000);
+
+-call, apply, bind-
+함수 호출 방식과 관계없이 this를 지정할 수 있음
+
+call메서드는 모든 함수에서 사용할 수 있으며, this의 특정값으로 지정할 수 있음
+
+const mike = {
+    name : 'MIke',
+};
+
+const tom = {
+    name : 'Tom',
+};
+
+function showThisName(){
+    console.log(this.name); //<- this는 윈도우를 가르킴
+}
+
+showThisName();
+showThisName.call(mike);    //함수를 호출하면서 콜을 사용하고 디스로 사용할 객체를 넘기면 해당 함수가 주어진 객체의 메소드인것처럼 사용 가능
+showThisName.call(tom);
+
+const mike = {
+    name : 'MIke',
+};
+
+const tom = {
+    name : 'Tom',
+};
+
+function showThisName(){
+    console.log(this.name); //<- this는 윈도우를 가르킴
+}
+
+function update(birthYear, occupation){
+    this.birthYear = birthYear;
+    this.occupation = occupation;
+}
+
+update.call(mike, 1999, 'singer')
+update.call(tom, 2002, 'singer')
+console.log(mike);
+
+apply는 함수 매개변수를 처리하는 방법을 제외하면 call과 완전히 같음
+call은 일반적인 함수오 ㅏ마찬가지로 매개변수를 직접 받지만, apply는 매개변수를 배열로 받음
+
+const mike = {
+    name : 'MIke',
+};
+
+const tom = {
+    name : 'Tom',
+};
+
+function showThisName(){
+    console.log(this.name); //<- this는 윈도우를 가르킴
+}
+
+function update(birthYear, occupation){
+    this.birthYear = birthYear;
+    this.occupation = occupation;
+}
+
+update.apply(mike, [1999, 'singer'])
+update.apply(tom, [2002, 'singer'])
+console.log(mike);
+console.log(tom);
+
+const nums = [3, 10, 1, 6, 4]
+
+const minNum = Math.min.apply(null, nums);
+// const minNum = Math.min(...nums);
+const maxNum = Math.max.call(null, ...nums);
+// const maxNum = Math.max(...nums);
+
+console.log(minNum);
+console.log(maxNum);
+
+bind는 함수의 this값을 영구히 바꿀 수 있음
+
+const mike = {
+    name : 'Mike',
+};
+
+function update(birthYear, occupation){
+    this.birthYear = birthYear;
+    this.occupation = occupation;
+}
+
+const updateMike = update.bind(mike);
+
+updateMike(1980, 'police');
+console.log(mike);
+
+const user = {
+    name : 'Mike',
+    showName : function(){
+        console.log(`hello, ${this.name}`);
+    },
+};
+
+user.showName();
+
+let fn = user.showName;
+fn.call(user);
+fn.apply(user);
+let boundFn = fn.bind(user);
+boundFn();
+
+-상속, prototype-
+
+const car = {
+    wheels : 4,
+    drive(){
+        console.log('drive');
+    },
+};
+
+const bmw = {
+    color : 'red',
+    navigation: 1,
+
+};
+
+const benz = {
+    color: 'black',
+
+};
+
+
+bmw.__proto__ = car;
+
+const x5 = {
+    color : 'white',
+    name : 'x5',
+}
+
+x5.__proto = bmw;
+
+hasOwnProperty는 객체가 가지고 있는 프로퍼티만 반환함
+
+// const car = {
+//     wheels : 4,
+//     drive(){
+//         console.log('drive');
+//     },
+// };
+
+const Bmw = function(color){
+    this.color = color;
+};
+
+const x5 = new Bmw('red');
+const z4 = new Bmw('blue');
+
+Bmw.prototype.wheels = 4;
+Bmw.prototype.drive = function(){
+    console.log('drive...');
+};
+
+Bmw.prototype.navaigation = 1;
+Bmw.prototype.stop = function(){
+    console.log('STOP!');
+};
+
+// x5.__proto__ = car;
+// z4.__proto__ = car;
+
+-클래스-
+
+const User = function(name, age){
+    this.name = name;
+    this.age  = age;
+    this.showName = function(){
+        console.log(this.name);
+    };
+};
+
+const mike = new User('Mike', 30);
+
+class User2{
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
+    }
+    showName(){
+        console.log(this.name)
+    }
+}
+
+const tom = new User2('tom', 10);
+//클래스는 new 없이 실행 불가
+
+클래스에서 상속은 extends를 사용
+
+class Car{
+    constructor(color){
+        this.color = color;
+        this.wheels=4;
+    }
+    drive(){
+        console.log('drive...');
+    }
+    stop(){
+        console.log('STOP');
+    }
+}
+
+class Bmw extends Car{
+    park(){
+        console.log('PARK');
+    }
+}
+
+const z4 = new Bmw('blue');
+
+오버라이딩
+
+class Car{
+    constructor(color){
+        this.color = color;
+        this.wheels=4;
+    }
+    drive(){
+        console.log('drive...');
+    }
+    stop(){
+        console.log('STOP');
+    }
+}
+
+class Bmw extends Car{
+    park(){
+        console.log('PARK');
+    }
+    stop(){
+        super.stop();
+        console.log('OFF');
+    }
+}
+
+const z4 = new Bmw('blue');
+
+
+//extends로 만든 클래스는 빈 객체를 만드는 순서를 건너뜀. 때문에 this를 쓰려면 super사용해야함
+
+class Car{
+    constructor(color){
+        this.color = color;
+        this.wheels=4;
+    }
+    drive(){
+        console.log('drive...');
+    }
+    stop(){
+        console.log('STOP');
+    }
+}
+
+class Bmw extends Car{
+    constructor(color){
+        super(color);
+        this.navigation = 1;
+    }
+    park(){
+        console.log('PARK');
+    }
+
+}
+
+const z4 = new Bmw('blue');
+
+-Promise-
+const pr = new Promise((resolve, reject) => {
+    //code
+});
+resolve는 성공, reject는 실패했을때 실행되는 함수
+어떤 일이 완료된 후 실행되는것을 콜백함수라 함
+then을 이용하면 resolve와 reject를 처리 가능
+첫번째 인수는 이행되었을때 실행. 두번째 인수는 거절되었을때 실행
+then 말고도 catch 와 finally 사용 가능
+catch는 오류가 났을 때, finally는 항상 실행
+
+const pr = new Promise((resolve, reject) => {
+    setTimeout(()=>{
+        resolve('OK');
+    }, 1000)
+});
+
+console.log('시작');
+pr.then((result) => {
+    console.log(result);
+})
+    .catch((err)=>{
+        console.log(err);
+    })
+    .finally(() => {
+        console.log('끝')
+    });
+
+Promise.all은 모두 보여주고 Promise.race는 먼저 들어오면 보여줌
+
+const f1 = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res('1번');
+        }, 1000);
+    });
+};
+
+const f2 = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res('2번');
+        }, 1000);
+    });
+};
+
+const f3 = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res('3번');
+        }, 1000);
+    });
+};
+
+f1()
+    .then((res_ => f2(res)))
+    .then((res_ => f3(res)))
+    .then((res_ => console.log(res)))
+    .catch(console.log)
+    .finally(console.log('끝'))
+
+
+-async, await-
+
+
+async function getName(){
+    //return Promise.resolve('tom');
+    throw new Error('err');
+}    
+
+getName().then(name => {
+    console.log(name);
+})
+
+
+async function getName(name){
+    return new Promise((resolve, reject) =>{
+        setTimeout(() => {
+            resolve(name);
+        }, 1000);
+    });
+
+}   
+
+async function showName(){
+    const result = await getName('Mike');   //await오른쪽에는 Promise코드가 옴
+}
+console.log('시작');
+showName();
+
+const f1 = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res('1번');
+        }, 1000);
+    });
+};
+
+const f2 = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            //res('2번');
+            rej(new Error('err'));
+        }, 1000);
+    });
+};
+
+const f3 = () => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res('3번');
+        }, 1000);
+    });
+};
+async function order(){
+    try{
+        const result = await Promise.all([f1(), f2(), f3()]);
+        console.log(result);
+    }catch (e) {
+        console.log(e);
+    }
+
+    console.log('종료');
+}
+
+-Generator-
+함수의 실행을 중간에 멈췄다가 재개할 수 있는 기능
+
+function* fn() {
+    console.log(1);
+    yield1;
+    console.log(2);
+    yield2;
+    console.log(3);
+    console.log(4);
+    yield3;
+    return 'finish';
+}
+const a = fn();
+
+Generator는 next(), return(), throw() 코드 존재
+Generator는 iterable임
+iterable
+ - Symbol.iteratror 메서드가 있다.
+ - Symbol.iterator는 iterator를 반환해야 한다
+
+iterator
+ - next메서드를 가진다
+ - next메서드는 value와 done속성을 가진 객체를 반환한다.
+ - 작업이 끝나면 done은 true가 된다
+Generator는 iterable 객체임
+
+function fn(){
+    const num1 = yield '첫번쨰 숫자를 입력해주세요';
+    console.log(num1);
+
+    const num2 = yield '두번째 숫자를 입력해주세요';
+    console.log(num2);
+
+    return num1 + num2;
+}
+
+const a = fn();
+
+Generator는 값을 미리 만들어 두지 않음
+
+function* fn(){
+    let index = 0;
+    while(true){
+        yield index++;   
+    }
+}
+
+const a = fn();
+
+function* gen1(){
+    yield 'w';
+    yield 'o';
+    yield 'r';
+    yield 'l';
+    yield 'd';
+}
+
+function* gen2(){
+    yield 'Hello';
+    yield* gen1();
+    yield '!';
+}
 */
