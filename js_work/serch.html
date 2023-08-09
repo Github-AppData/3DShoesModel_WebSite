@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>상품 검색</title>
+  <style>
+    .product-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      background-color: #f5f5f5;
+    }
+    .product-image {
+      max-width: 200px;
+      max-height: 200px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>상품 검색</h1>
+  <input type="text" id="searchInput" placeholder="상품 검색">
+  <button id="searchButton">검색</button>
+  <div id="products">
+    <div class="product-container">
+      <img class="product-image" src="img/NiKE_revolution6.jpeg">
+      <div>
+        <h2>나이키 레볼루션6</h2>
+        <p>가격 : 69,000</p>
+        <p>도로 위에서 새롭게 시작해 보세요. 나이키 레볼루션 6의 100% 재생 소재 신발 끈을 조이고 푹신한 착화감을 느끼며 러닝 여정의 출발점에서 페이스를 설정해 보세요. 성공적인 러닝을 위해서는 편안함이 중요한 걸 알기에 달릴 때 매끄러운 느낌을 위해 쿠셔닝과 유연함을 갖추었습니다. 무게 기준 20% 이상의 재생 소재와 통기성이 뛰어난 디자인으로 인기 아이템을 한 차원 더 진화시켰습니다.</p>
+      </div>
+    </div>
+    <div class="product-container">
+      <img class="product-image" src="img/TIAMO_Original_White.jpeg">
+      <div>
+        <h2>티아모 오리지널 화이트</h2>
+        <p>가격 : 100,000</p>
+        <p>· 티나지 않게 숨어 있는 5.5CM의 높은 굽.</p>
+        <p>· 나노 화이버 가죽으로 제작되어 쉽게 관리 가능.</p>
+        <p>· 최적의 원료 배합 비율로 월등히 뛰어난 착화감.</p>
+        <p>· 독일 귀터만사의 원사 사용으로 내구성 극대화.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    //모든 상품 컨테이너를 가져옴
+    const products = document.querySelectorAll(".product-container");
+
+    // 상품 검색을 수행하는 함수
+    function searchInProducts(query) {
+      query = query.toLowerCase();
+
+      //상품 컨테이너의 텍스트를 소문자로 변환
+      products.forEach(product => {
+        const productContent = product.innerText.toLowerCase();
+
+        //상품 컨테이너의 텍스트와 사용자가 입력한 검색어가 포함되는지 확인
+        if (productContent.includes(query)) {
+          //검색어가 포함되어 있다면 display속성을 block으로 설정하여 화면에 표시
+          product.style.display = "block"; 
+        } else {
+          //검색어가 포함되어 있지 않다면 display속성을 none으로 설정하여 숨김
+          product.style.display = "none";
+        }
+      });
+    }
+
+    // 검색 버튼과 입력 상자의 요소를 가져옴
+    const searchButton = document.getElementById("searchButton");
+    const searchInput = document.getElementById("searchInput");
+
+    // 검색 버튼 클릭 이벤트 리스너 등록
+    searchButton.addEventListener("click", () => {
+
+      // 사용자 입력을 가져옴
+      const userInput = searchInput.value;
+
+      // 상품 검색 함수 호출
+      searchInProducts(userInput);
+    });
+  </script>
+</body>
+</html>
