@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.practice.jpa.Entity.Memo;
 import com.practice.jpa.Repository.MemoRepository;
 
+//TEST코드 실행방법 : RUN -> Run As -> JUnit Test 실행
 @SpringBootTest
 public class CreateTest {
  
