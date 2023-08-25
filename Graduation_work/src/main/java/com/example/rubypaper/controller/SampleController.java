@@ -24,4 +24,10 @@ public class SampleController {
 	{
 		return "test/buytest";
 	}
+	
+	@GetMapping("/contact")
+	public String test4(Model model)
+	{
+		return "nih0824/contact";
+	}
 }
