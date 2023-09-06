@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  .post-container {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid #d7d7d7;
+    margin: 15px;
+  }
+  
+  .post-title {
+    font-size: 20px;
+  }
+  
+  .post-number {
+    font-size: 15px;
+    padding: 15px;
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .prev-button:hover,
+  .next-button:hover,
+  .number-button:hover {
+    font-weight: 800;
+    color: red;
+  }
+  
+  .pagination-container {
+    user-select: none;
+  }
+  
+  .selected {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: dodgerblue;
+  }

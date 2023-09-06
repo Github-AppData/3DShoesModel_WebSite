@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .pagination-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+            }
+
+            .pagination-list li {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            }
+
+            .pagination-list li:hover {
+            background-color: #ddd;
+            }
+
+            .pagination-list li.active {
+            background-color: #007bff;
+            color: #fff;
+            }
+
+            .content-container {
+            margin-top: 20px;
+            }
+
+            .item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            }
+
+            .item-description {
+            font-style: italic;
+            color: #666;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="pagination">
+            <ul class="pagination-list"></ul>
+          </div>
+          <div id="content" class="content-container"></div>
+          
+    </body>
+</html>
+<script>
+    const itemsPerPage = 10; // 한 페이지에 보여줄 아이템 수
+const totalItems = 100;  // 총 아이템 수
+const totalPages = Math.ceil(totalItems / itemsPerPage); // 전체 페이지 수
+
+const paginationList = document.querySelector('.pagination-list');
+const contentDiv = document.getElementById('content');
+
+function showPage(pageNumber) {
+  const startIndex = (pageNumber - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  
+  contentDiv.innerHTML = '';
+  for (let i = startIndex; i < endIndex && i < totalItems; i++) {
+    contentDiv.innerHTML += `<p>Item ${i + 1}</p>`;
+  }
+}
+
+function createPaginationButtons() {
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement('li');
+    button.textContent = i;
+    button.addEventListener('click', () => {
+      showPage(i);
+    });
+    paginationList.appendChild(button);
+  }
+}
+
+createPaginationButtons();
+showPage(1); // 처음에 첫 페이지 보여주기
+
+</script>
