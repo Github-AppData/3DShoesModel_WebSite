@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:ht="http://www.thyemleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script th:inline="javascript">
+	/*![CDATA[*/
+		var message = [[${message}]];
+		alert(message);
+		
+		location.replace([[${serchUrl}]]);
+	/*]]>*/
+</script>
+<body>
+
+</body>
+</html>
