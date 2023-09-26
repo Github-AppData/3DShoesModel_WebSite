@@ -21,10 +21,8 @@ public class MemberService {
     private final BCryptPasswordEncoder encoder;
     
     public void save(MemberDTO memberDTO) {
-    	//memberDTO.encryptPassword(encoder.encode(memberDTO.getMemberPassword()));
         // Repository save 메서드 호출
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
-        memberEntity.encryptPassword(encoder.encode(memberEntity.getMemberPassword()));
         memberRepository.save(memberEntity);
         //Repository save메서드 호출 (조건. entity객체를 넘겨줘야 함)
     }
@@ -34,7 +32,8 @@ public class MemberService {
         if(byMemberId.isPresent()){
             // 조회 결과가 있다
             MemberEntity memberEntity = byMemberId.get(); // Optional에서 꺼냄
-            memberEntity.encryptPassword(encoder.encode(memberEntity.getMemberPassword()));
+            String memberPassword = encoder.encode(memberEntity.getMemberPassword());
+            memberEntity.setMemberPassword(memberPassword);
             if(memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
                 //비밀번호 일치
                 //entity -> dto 변환 후 리턴

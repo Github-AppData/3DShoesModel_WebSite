@@ -2,6 +2,8 @@ package com.study.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,8 @@ public class MemberController {
 
     // 생성자 주입
     private final MemberService memberService;
+    
+    private final BCryptPasswordEncoder encoder;
 
     // 회원가입 페이지 출력 요청
     @GetMapping("/member/save")
@@ -30,6 +34,9 @@ public class MemberController {
     public String save(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("MemberController.save");
         System.out.println("memberDTO = " + memberDTO);
+        String memberPassword = encoder.encode(memberDTO.getMemberPassword());
+        
+        memberDTO.setMemberPassword(memberPassword);
         memberService.save(memberDTO);
 
         return "index";

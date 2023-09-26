@@ -3,6 +3,7 @@ package com.study.entity;
 import com.study.dto.MemberDTO;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,10 +28,6 @@ public class MemberEntity { //table 역할
 
     @Column
     private String memberPassword;
-
-    public void encryptPassword(String BCryptpassword) {
-    	this.memberPassword = BCryptpassword;
-    }
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO){
         MemberEntity memberEntity = new MemberEntity();
