@@ -28,6 +28,9 @@ public class MemberEntity { //table 역할
     @Column
     private String memberPassword;
 
+    public void encryptPassword(String BCryptpassword) {
+    	this.memberPassword = BCryptpassword;
+    }
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO){
         MemberEntity memberEntity = new MemberEntity();

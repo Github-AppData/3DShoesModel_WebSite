@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.study.dto.MemberDTO;
@@ -17,12 +18,15 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
 
     private final MemberRepository memberRepository; // 먼저 jpa, mysql dependency 추가
-
+    private final BCryptPasswordEncoder encoder;
+    
     public void save(MemberDTO memberDTO) {
-        // repsitory의 save 메서드 호출
+    	//memberDTO.encryptPassword(encoder.encode(memberDTO.getMemberPassword()));
+        // Repository save 메서드 호출
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
+        memberEntity.encryptPassword(encoder.encode(memberEntity.getMemberPassword()));
         memberRepository.save(memberEntity);
-        //Repository의 save메서드 호출 (조건. entity객체를 넘겨줘야 함)
+        //Repository save메서드 호출 (조건. entity객체를 넘겨줘야 함)
     }
     
     public MemberDTO login(MemberDTO memberDTO) {
@@ -30,6 +34,7 @@ public class MemberService {
         if(byMemberId.isPresent()){
             // 조회 결과가 있다
             MemberEntity memberEntity = byMemberId.get(); // Optional에서 꺼냄
+            memberEntity.encryptPassword(encoder.encode(memberEntity.getMemberPassword()));
             if(memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
                 //비밀번호 일치
                 //entity -> dto 변환 후 리턴
