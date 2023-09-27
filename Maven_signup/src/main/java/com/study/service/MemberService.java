@@ -32,15 +32,16 @@ public class MemberService {
         if(byMemberId.isPresent()){
             // 조회 결과가 있다
             MemberEntity memberEntity = byMemberId.get(); // Optional에서 꺼냄
-            String memberPassword = encoder.encode(memberEntity.getMemberPassword());
-            memberEntity.setMemberPassword(memberPassword);
-            if(memberEntity.getMemberPassword().equals(memberDTO.getMemberPassword())) {
+            
+            if(encoder.matches(memberDTO.getMemberPassword(),memberEntity.getMemberPassword())) {
                 //비밀번호 일치
                 //entity -> dto 변환 후 리턴
                 MemberDTO dto = MemberDTO.toMemberDTO(memberEntity);
                 return dto;
             } else {
                 //비밀번호 불일치
+            	System.out.println(memberEntity.getMemberPassword());
+            	System.out.println(memberDTO.getMemberPassword());
                 return null;
             }
         } else {
