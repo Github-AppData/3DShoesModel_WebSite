@@ -1,3 +1,4 @@
+/*
 package com.study.entity;
 
 import com.study.dto.MemberDTO;
@@ -38,3 +39,4 @@ public class MemberEntity { //table 역할
     }
 
 }
+*/
