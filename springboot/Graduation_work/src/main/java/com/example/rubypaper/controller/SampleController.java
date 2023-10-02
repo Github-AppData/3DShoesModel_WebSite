@@ -53,5 +53,10 @@ public class SampleController {
 	public String test8(Model model)
 	{
 		return "test/sBuying";
+	}
+	@GetMapping("/sSingup")
+	public String test9(Model model)
+	{
+		return "test/sSingup";
 	}	
 }
