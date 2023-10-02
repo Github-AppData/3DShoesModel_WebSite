@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>id</th>
+    <th>memberId</th>
+    <th>memberPassword</th>
+  </tr>
+  <tr th:each="member: ${result}">
+    <td th:text="${member.id}"></td>
+    <td th:text="${member.memberId}"></td>
+    <td th:text="${member.memberPassword}"></td>
+  </tr>
+</body>
+</html>
+<!-- login.html -->

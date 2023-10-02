@@ -103,7 +103,7 @@ public class MemberController {
     }
 
     
-    @GetMapping("/member/")
+    @GetMapping("/member/list")
     public String findAll(Model model) throws Exception{
         //List<MemberDTO> memberDTOList = memberService.findAll();
     	//List<MemberDTO> memberDTOList = memberDAO.memberfindAll();
@@ -113,5 +113,23 @@ public class MemberController {
         return "list";
 
     }
+    
+    @PostMapping("/member/search") // session : 로그인 유지
+    public String search(@ModelAttribute MemberDTO memberDTO, Model model) throws Exception {
+    	MemberDTO searchResult = memberService.Search(memberDTO);
+        if (searchResult != null) {
+            // 검색 성공
+            System.out.println(searchResult.getMemberId());
+        	System.out.println(searchResult.getMemberPassword());
+        	model.addAttribute("result",searchResult);
+            return "search";
+        } else {
+            // 검색 실패
+        	System.out.println("검색 실패");
+        	System.out.println(memberDTO.getMemberId());
+            return "list";
+        }
+    }
+
     
 }

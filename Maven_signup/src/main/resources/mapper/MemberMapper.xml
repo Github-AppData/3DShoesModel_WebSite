@@ -39,5 +39,16 @@
 		WHERE 
 			member_id = #{memberId};
 	</select>
+	
+	<select id="search" resultType="com.study.dto.MemberDTO">
+		SELECT
+			id As id
+			,member_id			AS memberId
+			,member_Password			AS memberPassword
+		FROM
+			member_table
+		WHERE 
+			member_id = #{memberId};
+	</select>
 
 </mapper>

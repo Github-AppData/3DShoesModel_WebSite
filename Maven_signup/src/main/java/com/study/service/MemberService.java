@@ -42,6 +42,16 @@ public class MemberService {
 	public int idChk(MemberDTO memberDTO) throws Exception{
 		return memberMapper.idChk(memberDTO);
 	}
+	
+	public MemberDTO Search(MemberDTO memberDTO) throws Exception{
+		MemberDTO member = memberMapper.search(memberDTO);
+		if(member != null) {
+			return member;
+		}
+		else {
+			return null;
+		}
+	}
 
     public MemberDTO login(MemberDTO memberDTO) throws Exception {
 //    	Optional<MemberEntity> byMemberId = memberRepository.findByMemberId(memberDTO.getMemberId());

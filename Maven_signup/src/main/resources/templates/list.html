@@ -17,6 +17,9 @@
     <td th:text="${member.memberId}"></td>
     <td th:text="${member.memberPassword}"></td>
   </tr>
+  <form action="/member/search" method="post">
+  검색 : <input type="text" name="memberId"> <input type="submit" value="검색"> <br>
+</form>
 </table>
 </body>
 </html>

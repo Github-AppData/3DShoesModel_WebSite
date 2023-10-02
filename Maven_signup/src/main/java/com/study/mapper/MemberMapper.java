@@ -12,7 +12,9 @@ public interface MemberMapper {
 	
 	public List<MemberDTO> findAll() throws Exception;
 	
-	public MemberDTO login(MemberDTO memberDTO) throws Exception; 
+	public MemberDTO login(MemberDTO memberDTO) throws Exception;
+	
+	public MemberDTO search(MemberDTO memberDTO) throws Exception;
 	
 	public int idChk(MemberDTO memberDTO) throws Exception;
 	
