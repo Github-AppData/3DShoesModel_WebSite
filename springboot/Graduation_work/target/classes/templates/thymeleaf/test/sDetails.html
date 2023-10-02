@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="5JO">
+    <meta name="keywords" content="5JO, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5조신발점 상품 상세화면</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+
+	<script src="js/viewer-api.js"></script>
+	<script>
+        window.addEventListener('load', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
+    </script>
+
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="sLogin">로그인</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span>KRW <i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li>USD</li>
+                    <li>EUR</li>
+                    <li>KRW</li>
+                </ul>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+			<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a th:if="${login}" th:hrf="@{sLogout}">로그아웃</a>
+                				<a th:unless="${login}" th:href="@{sLogin}">로그인</a>
+                                <a href="#">FAQ</a>
+                            </div>
+                            <div class="header__top__hover">
+                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${login}" th:text="${user.name} + '님 어서오세요'"></span>
+    							<span th:unless="${login}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="main"><img src="img/logo.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href="main">메인화면</a></li>
+                            <li class="active"><a href="sMain">신발</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">나이키</a></li>
+                                    <li><a href="#">뉴발란스</a></li>
+                                    <li><a href="#">컨버스</a></li>
+                                    <li><a href="#">아디다스</a></li>
+                                </ul></li></li>
+                            <li><a href="#">고객센터</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">본사정책</a></li>
+                                    <li><a href="sDetails">상세화면</a></li>
+                                    <li><a href="#">장바구니</a></li>
+                                    <li><a href="#">결제하기</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="sBlog">런칭캘린더</a></li>
+                            <li><a href="sContact">매장찾기</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                        <a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Shop Details Section Begin -->
+    <section class="shop-details">
+        <div class="product__details__pic" style="background-image: url(img/white-crumpled-paper-texture-for-background.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__breadcrumb">
+                            <a href="sMain">신발</a>
+                            <span>척테일러 1970s</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c3.png">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c1.png">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c4.png">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
+                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c5.png">
+                                        <i class="fa fa-play"></i>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__pic__item">
+    								<iframe src="" id="api-frame" width="350" height="350" style="border:none"
+    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
+    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
+    										 webkitallowfullscreen="true">
+    								</iframe>		    		
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="product__details__pic__item">
+                                    <img src="img/shop-details/c1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div class="product__details__pic__item">
+                                    <img src="img/shop-details/c4.png" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-4" role="tabpanel"> 
+                                <!-- 2주 전 작업의 iframe을 사용한 유튜브 영상 출력 응용-->
+                                <div class="product__details__pic__item">
+                                    <!--<img src="img/shop-details/c5.png" alt="">-->
+                                    <iframe width="400" height="500" src="https://www.youtube.com/embed/MFnm5lDg5fw" title="[척테일러] CHUCK 70 : The BEST Ever" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <!--<a href="https://www.youtube.com/embed/MFnm5lDg5fw" class="video-popup"><i class="fa fa-play"></i></a>-->
+                                    <!-- 하지만, 팝업형식으로는 적용이 안되서 일단은 응용없이 구현.-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__details__content">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="product__details__text">
+                        <!-- 제품 이름 --> 
+                        <!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
+                            <h4><span th:if="${productDTO != null}" th:text="${productDTO.shoesname}"></span>
+								<span th:if="${productDTO == null}" th:text="제품이름"></span></h4>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span> - 구매:429</span>
+                            </div>
+                            <h4>
+                            <!-- th:text="${productDTO.shoeprice}" dto 이름과 함수명은 알아서  -->
+                            	<span th:if="${productDTO != null}" th:text="${productDTO.shoeprice}"></span>
+								<span th:if="${productDTO == null}" th:text="제품가격"></span>
+							</h4>
+                            <p>디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</p>
+                            <div class="product__details__option">
+                                <div class="product__details__option__size">
+                                    <span>Size:</span>
+                                    <label for="240">240
+                                        <input type="radio" id="240">
+                                    </label>
+                                    <label for="245">245
+                                        <input type="radio" id="245">
+                                    </label>
+                                    <label for="250">250
+                                        <input type="radio" id="250">
+                                    </label>
+                                    <label class="active" for="255">255
+                                        <input type="radio" id="255">
+                                    </label>
+                                    <label for="260">260
+                                        <input type="radio" id="260">
+                                    </label>
+                                    <label for="265">265
+                                        <input type="radio" id="265">
+                                    </label>
+                                    <label for="270">270
+                                        <input type="radio" id="270">
+                                    </label>
+                                    <label for="275">275
+                                        <input type="radio" id="275">
+                                    </label>
+                                    <label for="280">280
+                                        <input type="radio" id="280">
+                                    </label>
+                                </div>
+                                <!-- 컬러 부분은 임시로 뺀 상태
+                                <div class="product__details__option__color">
+                                    <span>Color:</span>
+                                    <label class="c-1" for="sp-1">
+                                        <input type="radio" id="sp-1">
+                                    </label>
+                                    <label class="c-2" for="sp-2">
+                                        <input type="radio" id="sp-2">
+                                    </label>
+                                    <label class="c-3" for="sp-3">
+                                        <input type="radio" id="sp-3">
+                                    </label>
+                                    <label class="c-4" for="sp-4">
+                                        <input type="radio" id="sp-4">
+                                    </label>
+                                    <label class="c-9" for="sp-9">
+                                        <input type="radio" id="sp-9">
+                                    </label>
+                                </div>
+                                 -->
+                            </div>
+                            <div class="product__details__cart__option">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">
+                                    </div>
+                                </div>
+                                <a href="sCart" class="primary-btn">장바구니</a>
+                            </div>
+                            <div class="product__details__btns__option">
+                                <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
+                                <a href="#"><i class="fa fa-exchange"></i> 상품 비교하기</a>
+                            </div>
+                            <div class="product__details__last__option">
+                                <h5><span>5조신발점의 다양한 결제방식</span></h5>
+                                <img src="img/checkoutlist.png" alt="">
+                                <ul>
+                                    <li><span>SKU:</span> 3812912</li>
+                                    <li><span>Categories:</span> SHOES</li>
+                                    <li><span>Tag:</span> shoes, black, converse</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__tab">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-7"
+                                    role="tab">교환/반품안내</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">배송안내</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab">주의사항</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="tabs-5" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        <p class="note">상품 착용 및 세탁 시에는 제품에 부착된 라벨 및 취급 주의사항을 꼭 먼저 확인해 주시길 바랍니다. <br>가벼운 오염물이 묻었을 때에는 부드러운 솔로 털어내주시기 바랍니다.<br> 물에 젖었을 때에는 바람이 잘 통하는 응달에 건조해 주시기 바랍니다.<br> 올바르지 않은 클리너 사용은 황변, 탈색의 원인이 되므로 사용에 주의하시기 바랍니다. <br>밝은 색상의 캔버스 제품 세탁은 전문 세탁 업체를 이용하시는 것을 권장해드립니다.</p>
+                                        <div class="product__details__tab__content__item">
+                                            <h5>품질보증기준</h5>
+                                            <p>관련 법 및 소비자 분쟁 해결 기준에 따름 (품질보증기간 : 구입일로부터 6개월 이내)</p>
+                                        </div>
+                                        <div class="product__details__tab__content__item">
+                                            <h5>A/S 책임자와 전화번호</h5>
+                                            <p>5조신발점 A/S 담당자 : 080-745-5720</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-6" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        <div class="product__details__tab__content__item">
+                                            <h5>배송안내</h5>
+                                            <p>평균 배송일<br>
+                                                평일 4시 이전 주문 당일 출고됩니다. (물류창고 발송에 한함) <br>
+                                                다만, 물류창고 상황에 따라 당일 출고 불가 할 수 있습니다.<br>
+                                                배송 정보 확인까지 송장 등록 후 평균 2일 소요될 수 있습니다. (주말 및 공휴일 제외)<br>
+                                                택배사의 사정에 따라 배송은 다소 지연될 수 있습니다. (배송일정 문의 : 한진택배 1588-0011)<br>
+                                                오프라인 매장 발송은 출고까지 2~5 영업일 더 소요될 수 있습니다.<br>
+                                                동일 주문번호 1족 이상 구매 시 재고 수량에 따라 출고처 및 배송 일정이 상품별 상이할 수 있습니다.</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="tab-pane active" id="tabs-7" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        <p class="note">브랜드 박스(신발 박스)의 훼손이 없도록 택배 박스 및 타 박스로 포장하여 발송해주시기 바랍니다.</p>
+                                        <div class="product__details__tab__content__item">
+                                            <h5>교환/반품안내</h5>
+                                            <p>상품하자 이외 사이즈, 색상교환 등 단순 변심에 의한 교환/반품 택배비 고객부담으로 왕복택배비가 발생합니다.<br>
+                                                (전자상거래 등에서의 소비자보호에 관한 법률 제17조(청약 철회등)9항에 의거 소비자의 사정에 의한 청약 철회 시 택배비는 소비자 부담입니다.)<br>
+                                                제품을 받으신 날부터 7일 이내(상품불량인 경우 30일)에 접수해주시기 바랍니다.<br>
+                                                접수 시 왕복 택배비가 부과됩니다. (단, 상품 불량, 오배송의 경우 택배비를 환불해드립니다.)<br>
+                                                접수 후 14일 이내에 상품이 반품지로 도착하지 않을 경우 접수가 취소됩니다.(배송 지연 제외)<br>
+                                                브랜드 박스 훼손, 타상품 입고, 주문번호 확인 불가 등 처리 불가 시 안내 없이 반송 처리 될 수 있습니다.   </p>
+                                        </div>
+                                        <div class="product__details__tab__content__item">
+                                            <h5>교환/반품(환불)이 불가능한 경우</h5>
+                                            <p>신발/의류를 외부에서 착용한 경우<br>
+                                                제품을 사용 또는 훼손한 경우, 사은품 누락, 상품 TAG, 보증서, 상품 부자재가 제거 혹은 분실된 경우<br>
+                                                밀봉포장을 개봉했거나 내부 포장재를 훼손 또는 분실한 경우(단, 제품확인을 위한 개봉 제외)<br>
+                                                브랜드 박스 분실/훼손된 경우<br>
+                                                고객 부주의로 상품이 훼손, 변경된 경우<br>
+                                                매장 방문 교환 시 추가 교환/반품 불가 (온라인/오프라인 동일)</p> <br>
+                                                <div class="product__details__tab__content__item">
+                                                    <h5>A/S 책임자와 전화번호</h5>
+                                                    <p>5조신발점 A/S 담당자 : 080-745-5720</p>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br><br><br>
+    <!-- Shop Details Section End -->
+
+    
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>상품목록</h6>
+                        <ul>
+                            <li><a href="#">남성 신발</a></li>
+                            <li><a href="#">여성 신발</a></li>
+                            <li><a href="#">유아용 신발</a></li>
+                            <li><a href="#">할인 제품</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>본사정책</h6>
+                        <ul>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">결제 수단</a></li>
+                            <li><a href="#">배송 정책</a></li>
+                            <li><a href="#">반품 및 교환</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>구독</h6>
+                        <div class="footer__newslatter">
+                            <p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
+                            <form action="#">
+                                <input type="text" placeholder="이메일">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | 5조신발점 <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">ih</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="검색">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    
+    
+    
+    
+    <script type="text/javascript">
+
+        
+
+    var iframe = document.getElementById( 'api-frame' );
+    //여기가 uid 부분 여길 상품 페이지에서 눌렀을때 pk 키값으로 제품 uid 랑 제품 이릉 가격등을 가져올때 같이 가져온 값으로 대체
+    var uid = 'faef9fe5ace445e7b2989d1c1ece361c';
+
+    // By default, the latest version of the viewer API will be used.
+    var client = new Sketchfab( iframe );
+
+    // Alternatively, you can request a specific version.
+    // var client = new Sketchfab( '1.12.1', iframe );
+
+    client.init( uid, {
+        success: function onSuccess( api ){
+            api.start();
+            api.addEventListener( 'viewerready', function() {
+
+                // API is ready to use
+                // Insert your code here
+                console.log( 'Viewer is ready' );
+
+            } );
+        },
+        error: function onError() {
+            console.log( 'Viewer error' );
+        }
+    } );
+    </script>
+    
+    
+    
+    
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+
+</html>
