@@ -50,6 +50,10 @@
                 if (inputVerificationCode === verificationCode) { //애초에 값이 안넘오오니 작동이 안됨
                     // 인증 성공
                     console.log('본인 인증 성공');
+                    var targetURL = 'pwUpdateLast';
+                    
+                    window.location.href = targetURL;
+                    
                     // 추가 작업을 원한다면 여기에 작성
                 } else {
                     // 인증 실패
