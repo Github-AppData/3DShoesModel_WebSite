@@ -18,8 +18,9 @@ public class User {
 	private String detail_adress;
 	private String phone;
 	private String salt;
+	private boolean loggedIn;
 	
-	// 활동 중 - 1 / 휴면 - 0 / 탈퇴 - 2  
+	// 로그인 O -> 1 / 로그인 X -> 0  
 	private Integer is_Status;
 
 	public int getIdx() {
@@ -102,15 +103,25 @@ public class User {
 		this.is_Status = is_Status;
 	}
 
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "User [idx=" + idx + ", id=" + id + ", pw=" + pw + ", email=" + email + ", birthday=" + birthday
 				+ ", adress=" + adress + ", detail_adress=" + detail_adress + ", phone=" + phone + ", salt=" + salt
-				+ ", is_Status=" + is_Status + "]";
+				+ ", loggedIn=" + loggedIn + ", is_Status=" + is_Status + "]";
 	}
-	
-	
-	
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
 	public String togetSalt() {
 		return salt;
 	}
