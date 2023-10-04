@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pw Update Last</title>
+</head>
+<body>
+
+	<h1>User Update Last !!!</h1>
+	
+	<!-- TODO : 새로운 Pw를 실제 DB에 update 해야 하는 부분 -->
+	<br><br>
+	<div id="passwordRequirements">
+		
+	</div>
+	<form action="NewPwEqualsServlet" method="post">
+		<label for="input_id">아이디 : </label> 
+		<input type="text" class="form-control" name="input_id" id="input_id" placeholder="Enter input_id"> 				<br><br>
+		<label for="input_new_pw">새로운 pw를 입력 : </label> 
+		<input type="text" class="form-control" name="input_new_pw" id="input_new_pw" placeholder="Enter input_new_pw"> 				<br><br>
+		<label for="input_new_pw_same">새로운 pw를 확인 : </label> 
+		<input type="text" class="form-control" id="input_new_pw_same" name="input_new_pw_same" placeholder="Enter input_new_pw_same"> 
+		
+		<button type="submit" id="signupButton"> 확인 </button>
+	</form>
+	
+	<script>
+		 
+		const passwordField = document.getElementById('input_new_pw');
+	    const passwordRequirements = document.getElementById('passwordRequirements');
+	    const signupButton = document.getElementById('signupButton');
+	    
+	    
+	    passwordField.addEventListener('input', function() {
+			
+	        const password = passwordField.value;
+	        const requirements = [];
+	        
+	        // 비밀번호 조건 검사 및 메시지 추가
+	        if (password.length < 8) {
+				requirements.push('8자 이상 이어야 합니다');
+				
+	        }else if( password.length >= 12){
+					requirements.push('8 ~ 12자 이하 이어야 합니다.');
+			}
+	        if (!/[A-Z]/.test(password)) {
+	            requirements.push('대문자를 포함해야 합니다.');
+	        }
+	        if (!/[a-z]/.test(password)) {
+	            requirements.push('소문자를 포함해야 합니다.');
+	        }
+	        if (!/[0-9]/.test(password)) {
+	            requirements.push('숫자를 포함해야 합니다.');
+	        }
+	        
+	        // 메시지 업데이트
+	        passwordRequirements.innerHTML = requirements.join('<br>');
+	        
+	        // 비밀번호 조건을 충족할 때 버튼 활성화, 그렇지 않으면 비활성화
+	        signupButton.disabled = requirements.length > 0;
+    	});
+	</script>
+</body>
+</html>
