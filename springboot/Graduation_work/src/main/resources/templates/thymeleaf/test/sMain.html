@@ -151,8 +151,8 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="검색어">
+                            <form action="/sMain/search" method="post">
+                                <input type="text" name = "shoes_Name" placeholder="검색어">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
@@ -505,7 +505,8 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <a th:href="@{sDetails}"><div class="product__item__pic set-bg" data-setbg="img/shoes/shoes4.png" >
+                                <a th:href="@{sDetails}">
+								<div class="product__item__pic set-bg" data-setbg="img/shoes/shoes4.png" >
                                     <span class="label text-white" style="background-color: rgb(172, 0, 0);">베스트셀러</span>
                                 </div>
                                 </a>

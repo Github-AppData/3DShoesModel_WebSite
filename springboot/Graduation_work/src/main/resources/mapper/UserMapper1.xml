@@ -16,7 +16,7 @@
 	
 	<select id="idCheckSelect2">
 		select user_id
-		from User 
+		from user	 
 		where user_id = #{id}
 	</select>
 	
@@ -31,16 +31,11 @@
 		from User 
 		where user_id = #{id}
 	</select>
-	
-	
-	
+
 	<select id="newPwChange">
 		UPDATE User
 		SET pw = #{pw}, salt = #{salt}
-		WHERE idx IN (SELECT temp.idx FROM (SELECT idx FROM User WHERE id = #{id}) AS temp);
+		WHERE user_id IN (SELECT temp.user_id FROM (SELECT user_id FROM User WHERE user_id = #{id}) AS temp);
 	</select>
-	
-	
-	
 	
 </mapper>
