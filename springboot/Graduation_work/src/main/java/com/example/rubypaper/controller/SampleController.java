@@ -46,7 +46,7 @@ public class SampleController {
 		try {
 			boardList = boardServiceList.getBoardList();
 			result = boardServiceList.getBoardValue();
-					
+			boardServiceList.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

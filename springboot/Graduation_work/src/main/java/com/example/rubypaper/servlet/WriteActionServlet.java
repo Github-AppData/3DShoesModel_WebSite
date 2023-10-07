@@ -37,7 +37,7 @@ public class WriteActionServlet extends HttpServlet{
 		
 		// user_id 구하는 것.
 		HttpSession session = request.getSession();
-		String checkLogin = (String) session.getAttribute("login"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		String checkLogin = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		
 		// 시간과 날짜 구하기.
 		LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));

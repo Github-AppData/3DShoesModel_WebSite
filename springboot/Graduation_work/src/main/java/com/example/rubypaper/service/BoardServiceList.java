@@ -30,6 +30,11 @@ public class BoardServiceList {
 			return boardList;
 		}
 		
+		// is_delete = 1 삭제 하는 쿼리 
+		public String FindListIsDelete() throws Exception {
+			return boardDAO.FindListIsDelete();
+		}
+		
 		//사용자 총 수 
 		public int getBoardValue() throws Exception {
 			return boardDAO.getBoardValue();

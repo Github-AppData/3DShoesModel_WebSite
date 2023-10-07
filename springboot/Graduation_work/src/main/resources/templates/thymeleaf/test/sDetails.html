@@ -253,66 +253,68 @@
 								<span th:if="${productDTO == null}" th:text="제품가격"></span>
 							</h4>
                             <p>디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</p>
-                            <div class="product__details__option">
-                                <div class="product__details__option__size">
-                                    <span>Size:</span>
-                                    <label for="240">240
-                                        <input type="radio" id="240">
-                                    </label>
-                                    <label for="245">245
-                                        <input type="radio" id="245">
-                                    </label>
-                                    <label for="250">250
-                                        <input type="radio" id="250">
-                                    </label>
-                                    <label class="active" for="255">255
-                                        <input type="radio" id="255">
-                                    </label>
-                                    <label for="260">260
-                                        <input type="radio" id="260">
-                                    </label>
-                                    <label for="265">265
-                                        <input type="radio" id="265">
-                                    </label>
-                                    <label for="270">270
-                                        <input type="radio" id="270">
-                                    </label>
-                                    <label for="275">275
-                                        <input type="radio" id="275">
-                                    </label>
-                                    <label for="280">280
-                                        <input type="radio" id="280">
-                                    </label>
-                                </div>
-                                <!-- 컬러 부분은 임시로 뺀 상태
-                                <div class="product__details__option__color">
-                                    <span>Color:</span>
-                                    <label class="c-1" for="sp-1">
-                                        <input type="radio" id="sp-1">
-                                    </label>
-                                    <label class="c-2" for="sp-2">
-                                        <input type="radio" id="sp-2">
-                                    </label>
-                                    <label class="c-3" for="sp-3">
-                                        <input type="radio" id="sp-3">
-                                    </label>
-                                    <label class="c-4" for="sp-4">
-                                        <input type="radio" id="sp-4">
-                                    </label>
-                                    <label class="c-9" for="sp-9">
-                                        <input type="radio" id="sp-9">
-                                    </label>
-                                </div>
-                                 -->
-                            </div>
-                            <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </div>
-                                <a href="sCart" class="primary-btn">장바구니</a>
-                            </div>
+                            <form action="CartAddObjectServlet" method="post">
+	                            <div class="product__details__option">
+	                                <div class="product__details__option__size">
+	                                    <span>Size:</span>
+	                                    <label for="210">210
+	                                        <input type="radio" id="210" name="selectedSize" value="210">
+	                                    </label>
+	                                    <label for="220">220
+	                                        <input type="radio" id="220" name="selectedSize" value="220">
+	                                    </label>
+	                                    <label for="230">230
+	                                        <input type="radio" id="230" name="selectedSize" value="230">
+	                                    </label>
+	                                    <label class="active" for="240">240
+	                                        <input type="radio" id="240" name="selectedSize" value="240" checked>
+	                                    </label>
+	                                    <label for="250">250
+	                                        <input type="radio" id="250" name="selectedSize" value="250">
+	                                    </label>
+	                                    <label for="260">260
+	                                        <input type="radio" id="260" name="selectedSize" value="260">
+	                                    </label>
+	                                    <label for="270">270
+	                                        <input type="radio" id="270" name="selectedSize" value="270">
+	                                    </label>
+	                                    <label for="280">280
+	                                        <input type="radio" id="280" name="selectedSize" value="280">
+	                                    </label>
+	                                    <label for="290">290
+	                                        <input type="radio" id="290" name="selectedSize" value="290">
+	                                    </label>
+	                                </div>
+	                                <!-- 컬러 부분은 임시로 뺀 상태
+	                                <div class="product__details__option__color">
+	                                    <span>Color:</span>
+	                                    <label class="c-1" for="sp-1">
+	                                        <input type="radio" id="sp-1">
+	                                    </label>
+	                                    <label class="c-2" for="sp-2">
+	                                        <input type="radio" id="sp-2">
+	                                    </label>
+	                                    <label class="c-3" for="sp-3">
+	                                        <input type="radio" id="sp-3">
+	                                    </label>
+	                                    <label class="c-4" for="sp-4">
+	                                        <input type="radio" id="sp-4">
+	                                    </label>
+	                                    <label class="c-9" for="sp-9">
+	                                        <input type="radio" id="sp-9">
+	                                    </label>
+	                                </div>
+	                                 -->
+	                            </div>
+	                            <div class="product__details__cart__option">
+	                                <div class="quantity">
+	                                    <div class="pro-qty">
+	                                        <input type="text" value="1" name="quantityInput">
+	                                    </div>
+	                                </div>
+	                                <button type="submit" class="primary-btn">장바구니</button>
+	                            </div>
+                            </form>
                             <div class="product__details__btns__option">
                                 <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
                                 <a href="#"><i class="fa fa-exchange"></i> 상품 비교하기</a>
