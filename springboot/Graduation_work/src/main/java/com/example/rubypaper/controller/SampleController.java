@@ -17,6 +17,7 @@ import com.example.rubypaper.service.BoardServiceList;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SampleController {
@@ -28,9 +29,16 @@ public class SampleController {
 	
 
 	@RequestMapping("/main")
-	public String main(Model model, User user)
+	public String main(Model model, HttpServletRequest request, HttpSession session)
 	{
-		model.addAttribute("user", user);
+		
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+				
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
 		return "test/main";
 	}
 	
@@ -70,6 +78,9 @@ public class SampleController {
 	@GetMapping("/sMain")
 	public String sMain(Model model)
 	{
+		
+		
+		
 		return "test/sMain";
 	}
 	
