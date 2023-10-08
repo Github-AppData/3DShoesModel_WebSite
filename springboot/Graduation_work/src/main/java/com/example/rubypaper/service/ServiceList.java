@@ -7,22 +7,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.rubypaper.dao.BoardDAO;
+import com.example.rubypaper.dao.TotalDAO;
 
 @Service
-public class BoardServiceList {
+public class ServiceList {
 	
 	// DB에 있는 데이터를 화면에 띄우기 위한 클래스 입니다.
 
 	@Autowired
-	BoardDAO boardDAO;
+	TotalDAO totalDAO;
 	
 	//사용자 목록 가져오기 
 		public List<Map<String, Object>> getBoardList() {
 			List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
 			
 			try {
-				boardList = boardDAO.getBoardList();
+				boardList = totalDAO.getBoardList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -30,13 +30,25 @@ public class BoardServiceList {
 			return boardList;
 		}
 		
+		//신발 가져오기 
+		public List<Map<String, Object>> randSelectShoesId() {
+		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
+
+		try {
+				shoesList = totalDAO.randSelectShoesId();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				return shoesList;
+		}
+		
 		// is_delete = 1 삭제 하는 쿼리 
 		public String FindListIsDelete() throws Exception {
-			return boardDAO.FindListIsDelete();
+			return totalDAO.FindListIsDelete();
 		}
 		
 		//사용자 총 수 
 		public int getBoardValue() throws Exception {
-			return boardDAO.getBoardValue();
+			return totalDAO.getBoardValue();
 		}
 }

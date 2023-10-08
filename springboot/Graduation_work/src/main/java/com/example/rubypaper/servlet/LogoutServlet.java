@@ -20,9 +20,9 @@ public class LogoutServlet  extends HttpServlet{
 		String message = request.getParameter("message");
 		
 		System.out.println("message : " + message);
-		/*
-		 * response.sendRedirect(request.getContextPath() + page);
-		 */
+		
+		 response.sendRedirect(request.getContextPath() + "/main");
+		 
 	}
 
 }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.service.BoardService;
-import com.example.rubypaper.service.BoardServiceList;
+import com.example.rubypaper.service.ServiceList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +27,7 @@ public class SampleController {
 	Object data;
 	
 	@Autowired
-	BoardServiceList boardServiceList;
+	ServiceList serviceList;
 	
 
 	@RequestMapping("/main")
@@ -42,6 +44,14 @@ public class SampleController {
 		return "test/main";
 	}
 	
+	@RequestMapping("/sDetails")
+	public String sDetails(Model model)
+	{
+		
+		
+		return "test/sDetails";
+	}	
+	
 	@RequestMapping("/noticdBoard")
 	public String noticdBoard(Model model)
 	{
@@ -52,9 +62,9 @@ public class SampleController {
 		int result = 0;
 				
 		try {
-			boardList = boardServiceList.getBoardList();
-			result = boardServiceList.getBoardValue();
-			boardServiceList.FindListIsDelete();
+			boardList = serviceList.getBoardList();
+			result = serviceList.getBoardValue();
+			serviceList.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,11 +112,7 @@ public class SampleController {
 	}
 	
 	
-	@GetMapping("/sDetails")
-	public String test3(Model model)
-	{
-		return "test/sDetails";
-	}	
+	
 	
 	@GetMapping("/sBlog")
 	public String test4(Model model)

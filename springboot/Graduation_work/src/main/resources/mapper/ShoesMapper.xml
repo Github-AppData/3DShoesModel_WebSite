@@ -3,11 +3,11 @@
 
 <mapper namespace="com.example.rubypaper.mapper.ShoesMapper">
 
-	<select id="randSelectShoesId">
-		SELECT shoes_id
+	<select id="randSelectShoesId"  resultType="Map">
+		SELECT shoes_id, shoes_name, shoes_price
 		FROM shoes
 		ORDER BY RAND()
-		LIMIT 12;
+		LIMIT 1;
 	</select>
 	
 </mapper>

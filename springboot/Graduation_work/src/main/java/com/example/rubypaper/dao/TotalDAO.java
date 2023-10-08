@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BoardDAO {
+public class TotalDAO {
 	
 	// 
 
@@ -23,6 +23,9 @@ public class BoardDAO {
 	}
 	
 	
+	public List<Map<String, Object>> randSelectShoesId() throws Exception {
+		return sqlSession.selectList("com.example.rubypaper.mapper.ShoesMapper.randSelectShoesId");
+	}
 	
 	// 글 총 
 	public int getBoardValue() throws Exception {
