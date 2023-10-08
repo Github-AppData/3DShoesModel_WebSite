@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.rubypaper.dto.Shoes;
 
 @Mapper
-public interface ShoesMapper {
+public interface SearchMapper {
 	public List<Shoes> search(Shoes shoes) throws Exception;
 }

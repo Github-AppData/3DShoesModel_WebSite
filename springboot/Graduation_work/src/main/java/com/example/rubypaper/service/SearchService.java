@@ -6,20 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Shoes;
-import com.example.rubypaper.mapper.ShoesMapper;
+import com.example.rubypaper.mapper.SearchMapper;
 
 @Service
-public class ShoesService {
+public class SearchService {
 	
-	private final ShoesMapper shoesMapper;
+	private final SearchMapper searchMapper;
 	
 	@Autowired
-	public ShoesService(ShoesMapper shoesMapper) {
-		this.shoesMapper = shoesMapper;
+	public SearchService(SearchMapper shoesMapper) {
+		this.searchMapper = shoesMapper;
 	}
 	
 	public List<Shoes> Search(Shoes shoes) throws Exception{
-		List<Shoes> searchResult = shoesMapper.search(shoes);
+		List<Shoes> searchResult = searchMapper.search(shoes);
 		return searchResult;
 	}
 }

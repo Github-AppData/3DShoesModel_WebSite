@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.example.rubypaper.mapper.ShoesMapper">
+<mapper namespace="com.example.rubypaper.mapper.SearchMapper">
 	<select id="search" resultType="com.example.rubypaper.dto.Shoes">
 		select 
 			shoes_Id as shoes_Id,

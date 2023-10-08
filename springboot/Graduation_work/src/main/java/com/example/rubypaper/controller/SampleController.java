@@ -15,7 +15,7 @@ import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.service.BoardService;
 import com.example.rubypaper.service.BoardServiceList;
-import com.example.rubypaper.service.ShoesService;
+import com.example.rubypaper.service.SearchService;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +29,7 @@ public class SampleController {
 	BoardServiceList boardServiceList;
 	
 	@Autowired
-	ShoesService shoesService;
+	SearchService shoesService;
 	
 
 	@RequestMapping("/main")

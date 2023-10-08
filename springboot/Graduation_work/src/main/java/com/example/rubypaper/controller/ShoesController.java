@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.rubypaper.dto.Shoes;
-import com.example.rubypaper.service.ShoesService;
+import com.example.rubypaper.service.SearchService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class ShoesController {
 	
 	@Autowired
-	ShoesService shoesService;
+	SearchService shoesService;
 	
 	@PostMapping("/test_Search")
 	public String searchTest(@ModelAttribute Shoes shoes, Model model) throws Exception{
