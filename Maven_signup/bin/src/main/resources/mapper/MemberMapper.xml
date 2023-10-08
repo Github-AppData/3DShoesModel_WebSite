@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.study.mapper.MemberMapper">
+	<insert id="memberInsert">
+		INSERT INTO member_table (id, member_id, member_password)
+		SELECT COALESCE(MAX(id) + 1, 1), #{memberId}, #{memberPassword}
+		FROM member_table
+	</insert>
+	
+	<select id="idChk" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			member_table
+		WHERE
+			member_id = #{memberId}
+	</select>
+	
+	<select id="findAll" resultType="com.study.dto.MemberDTO">
+		SELECT
+			id As id
+			,member_id			AS memberId
+			,member_Password			AS memberPassword
+		FROM
+			member_table;
+	</select>
+	
+	<select id="login" resultType="com.study.dto.MemberDTO">
+		SELECT
+			id As id
+			,member_id			AS memberId
+			,member_Password			AS memberPassword
+		FROM
+			member_table
+		WHERE 
+			member_id = #{memberId};
+	</select>
+	
+	<select id="search" resultType="com.study.dto.MemberDTO">
+		SELECT
+			id As id
+			,member_id			AS memberId
+			,member_Password			AS memberPassword
+		FROM
+			member_table
+		WHERE 
+			member_id = #{memberId};
+	</select>
+
+</mapper>
