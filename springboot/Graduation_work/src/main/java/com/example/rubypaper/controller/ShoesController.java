@@ -21,20 +21,24 @@ public class ShoesController {
 	@Autowired
 	ShoesService shoesService;
 	
-	@PostMapping("/sMain/search")
-	public String searchTest(Shoes shoes) throws Exception{
+	@PostMapping("/test_Search")
+	public String searchTest(@ModelAttribute Shoes shoes, Model model) throws Exception{
 		List<Shoes> shoesList = shoesService.Search(shoes);
+		
+		if(shoesList != null){
+			model.addAttribute("result",shoesList);
+			return "test/test_Search";
+		}
+		else {
+			return "test/sMain";
+		}
+		/*
 		System.out.println(shoesList.size());
 		for(int i = 0; i < shoesList.size(); i++)
 		{
 			System.out.println(shoesList.get(i).toString());
 		}
-		
+		*/
 		//System.out.println(shoesList);
-		return "test/sMain";
-	}
-	@GetMapping("/sMain/search")
-	public String searchTest2(Model model) throws Exception{
-		return "test/sMain";
 	}
 }

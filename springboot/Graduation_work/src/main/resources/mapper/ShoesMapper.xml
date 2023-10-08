@@ -17,6 +17,6 @@
 		from 
 			shoes
 		where
-			shoes_Name = #{shoes_Name};
+			 shoes_Name like CONCAT('%',#{shoes_Name},'%');
 	</select>
 </mapper>
