@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기 페이지 </title>
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<form method="post" action="WriteActionServlet">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+						</tr>
+					</thead> 
+					
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control" id="title" placeholder="글 제목" name="title" maxlength="55" required> </td><br>
+						</tr>
+						<td><textarea type="text" class="form-control" id="content" style="height: 350px;" placeholder="글 내용" maxlength="2048" name="content" required></textarea></td>
+					</tbody>	
+					
+				</table>
+				<br>	
+				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

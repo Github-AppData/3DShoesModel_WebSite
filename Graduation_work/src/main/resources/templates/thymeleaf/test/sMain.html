@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5조 신발점 상품목록</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="sLogin">로그인</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span></span>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a th:if="${login}" th:hrf="@{sLogout}">로그아웃</a>
+                				<a th:unless="${login}" th:href="@{sLogin}">로그인</a>
+                                <a href="#">FAQ</a>
+                            </div>
+                            <div class="header__top__hover">
+                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${login}" th:text="${user.name} + '님 어서오세요'"></span>
+    							<span th:unless="${login}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="main"><img src="img/logo.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href="main">메인화면</a></li>
+                            <li class="active"><a href="sMain">신발</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">나이키</a></li>
+                                    <li><a href="#">뉴발란스</a></li>
+                                    <li><a href="#">컨버스</a></li>
+                                    <li><a href="#">아디다스</a></li>
+                                </ul></li></li>
+                            <li><a href="#">고객센터</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">본사정책</a></li>
+                                    <li><a href="sDetails">상세화면</a></li>
+                                    <li><a href="#">장바구니</a></li>
+                                    <li><a href="#">결제하기</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="sBlog">런칭캘린더</a></li>
+                            <li><a href="sContact">매장찾기</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                        <a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option" style="background-image: url(img/bgsnow.png)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>신발</h4>
+                        <div class="breadcrumb__links">
+                            <a href="main">메인화면</a>
+                            <span>신발</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="/test_Search" method="post">
+                                <input type="text" name = "shoes_Name" placeholder="검색어">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                        </div>
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">카테고리</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <!--<ul class="nice-scroll">
+                                                    <li><a href="#">스니커즈</a></li>
+                                                    <li><a href="#">러닝화</a></li>
+                                                    <li><a href="#">슬리퍼</a></li>
+                                                    <li><a href="#">샌들</a></li>
+                                                    <li><a href="#">구두</a></li>
+                                                    <li><a href="#">부츠</a></li>
+                                                    <li><a href="#">크록스</a></li>
+                                                </ul>-->
+                                                <ul class="nice-scroll">
+                                                    <li><label for="스니커즈">스니커즈
+                                                        <input type="checkbox" id="스니커즈">
+                                                    </label></li>
+                                                    <li><label for="러닝화">러닝화
+                                                        <input type="checkbox" id="러닝화">
+                                                    </label></li>
+                                                    <li><label for="슬리퍼">슬리퍼
+                                                        <input type="checkbox" id="슬리퍼">
+                                                    </label></li>
+                                                    <li><label for="샌들">샌들
+                                                        <input type="checkbox" id="샌들">
+                                                    </label></li>
+                                                    <li><label for="구두">구두
+                                                        <input type="checkbox" id="구두">
+                                                    </label></li>
+                                                    <li><label for="부츠">부츠
+                                                        <input type="checkbox" id="부츠">
+                                                    </label></li>
+                                                    <li><label for="크록스">크록스
+                                                        <input type="checkbox" id="크록스">
+                                                    </label></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">브랜드</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <!--<ul>
+                                                    <li><a href="#">나이키</a></li>
+                                                    <li><a href="#">뉴발란스</a></li>
+                                                    <li><a href="#">컨버스</a></li>
+                                                    <li><a href="#">아디다스</a></li>
+                                                </ul>-->
+                                                <ul>
+                                                <li><label for="나이키">나이키
+                                                    <input type="checkbox" id="나이키">
+                                                </label>
+                                            </li>
+                                                <li><label for="뉴발란스">뉴발란스
+                                                    <input type="checkbox" id="뉴발란스">
+                                                </label>
+                                            </li>
+                                                <li><label for="컨버스">컨버스
+                                                    <input type="checkbox" id="컨버스">
+                                                </label>
+                                            </li>
+                                                <li><label for="아디다스">아디다스
+                                                    <input type="checkbox" id="아디다스">
+                                                </label>
+                                            </li>
+                                        </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">성별</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                               
+                                                <ul>
+                                                <li><label for="남성">남성
+                                                    <input type="checkbox" id="남성">
+                                                </label>
+                                            </li>
+                                                <li><label for="여성">여성
+                                                    <input type="checkbox" id="여성">
+                                                </label>
+                                            </li>
+                                                <li><label for="공용">공용
+                                                    <input type="checkbox" id="공용">
+                                                </label>
+                                            </li>
+                                                <li><label for="아동용">아동용
+                                                    <input type="checkbox" id="아동용">
+                                                </label>
+                                            </li>
+                                        </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">발볼(너비)</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                               
+                                                <ul>
+                                                <li><label for="D(보통)">D(보통)
+                                                    <input type="checkbox" id="D(보통)">
+                                                </label>
+                                            </li>
+                                                <li><label for="2E(약간 넓음)">2E(약간 넓음)
+                                                    <input type="checkbox" id="2E(약간 넓음)">
+                                                </label>
+                                            </li>
+                                                <li><label for="4E(넓음)">4E(넓음)
+                                                    <input type="checkbox" id="4E(넓음)">
+                                                </label>
+                                            </li>
+                                                <li><label for="M(보통)">M(보통)
+                                                    <input type="checkbox" id="M(보통)">
+                                                </label>
+                                            </li>
+                                            <li><label for="여성B(보통)">여성B(보통)
+                                                <input type="checkbox" id="여성B(보통)">
+                                            </label>
+                                        </li>
+                                        <li><label for="여성M(보통)">여성M(보통)
+                                            <input type="checkbox" id="여성M(보통)">
+                                        </label>
+                                    </li>
+                                        </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">가격</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <!--<ul>
+                                                    <li><a href="#">5만원 미만</a></li>
+                                                    <li><a href="#">5만원 - 10만원 미만</a></li>
+                                                    <li><a href="#">10만원 - 15만원 미만</a></li>
+                                                    <li><a href="#">15만원 - 20만원 미만</a></li>
+                                                    <li><a href="#">20만원 이상</a></li>
+                                                </ul>-->
+                                                <ul>
+                                                    <li><label for="5만원 미만">5만원 미만
+                                                        <input type="radio" id="5만원 미만" name="a">
+                                                    </label></li>
+                                                    <li><label for="5만원 - 10만원 미만">5만원 - 10만원 미만
+                                                        <input type="radio" id="5만원 - 10만원 미만" name="a">
+                                                    </label></li>
+                                                    <li><label for="10만원 - 15만원 미만">10만원 - 15만원 미만
+                                                        <input type="radio" id="10만원 - 15만원 미만" name="a">
+                                                    </label></li>
+                                                    <li><label for="15만원 - 20만원 미만">15만원 - 20만원 미만
+                                                        <input type="radio" id="15만원 - 20만원 미만" name="a">
+                                                    </label></li>
+                                                    <li><label for="20만원 이상">20만원 이상
+                                                        <input type="radio" id="20만원 이상" name="a">
+                                                    </label></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card ">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFour">사이즈</a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__size">
+                                                <label for="225">225
+                                                    <input type="radio" id="225">
+                                                </label>
+                                                <label for="230">230
+                                                    <input type="radio" id="230">
+                                                </label>
+                                                <label for="235">235
+                                                    <input type="radio" id="235">
+                                                </label>
+                                                <label for="240">240
+                                                    <input type="radio" id="240">
+                                                </label>
+                                                <label for="245">245
+                                                    <input type="radio" id="245">
+                                                </label>
+                                                <label for="250">250
+                                                    <input type="radio" id="250">
+                                                </label>
+                                                <label for="255">255
+                                                    <input type="radio" id="255">
+                                                </label>
+                                                <label for="260">260
+                                                    <input type="radio" id="260">
+                                                </label>
+                                                <label for="265">265
+                                                    <input type="radio" id="265">
+                                                </label>
+                                                <label for="270">270
+                                                    <input type="radio" id="270">
+                                                </label>
+                                                <label for="275">275
+                                                    <input type="radio" id="275">
+                                                </label>
+                                                <label for="280">280
+                                                    <input type="radio" id="280">
+                                                </label>
+                                                <label for="285">285
+                                                    <input type="radio" id="285">
+                                                </label>
+                                                <label for="290">290
+                                                    <input type="radio" id="290">
+                                                </label>
+                                                <label for="295">295
+                                                    <input type="radio" id="295">
+                                                </label>
+                                                <label for="300">300
+                                                    <input type="radio" id="300">
+                                                </label>
+                                                <label for="305">305
+                                                    <input type="radio" id="305">
+                                                </label>
+                                                <label for="310">310
+                                                    <input type="radio" id="310">
+                                                </label>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFive">색상</a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__color">
+                                                <label class="c-1" for="sp-1">
+                                                    <input type="radio" id="sp-1">
+                                                </label>
+                                                <label class="c-2" for="sp-2">
+                                                    <input type="radio" id="sp-2">
+                                                </label>
+                                                <label class="c-3" for="sp-3">
+                                                    <input type="radio" id="sp-3">
+                                                </label>
+                                                <label class="c-4" for="sp-4">
+                                                    <input type="radio" id="sp-4">
+                                                </label>
+                                                <label class="c-5" for="sp-5">
+                                                    <input type="radio" id="sp-5">
+                                                </label>
+                                                <label class="c-6" for="sp-6">
+                                                    <input type="radio" id="sp-6">
+                                                </label>
+                                                <label class="c-7" for="sp-7">
+                                                    <input type="radio" id="sp-7">
+                                                </label>
+                                                <label class="c-8" for="sp-8">
+                                                    <input type="radio" id="sp-8">
+                                                </label>
+                                                <label class="c-9" for="sp-9">
+                                                    <input type="radio" id="sp-9">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 -->
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseSix">태그</a>
+                                    </div>
+                                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__tags">
+                                                <a href="#">세일</a>
+                                                <a href="#">기획</a>
+                                                <a href="#">NEW</a>
+                                                <a href="#">타임딜</a>
+                                                <a href="#">남성</a>
+                                                <a href="#">여성</a>
+                                                <a href="#">아동</a>
+                                                <a href="#">공용</a>
+                                                <a href="#">한정</a>
+                                                <a href="#">드랍</a>
+                                                <a href="#">드로우</a>
+                                                <a href="#">봄</a>
+                                                <a href="#">여름</a>
+                                                <a href="#">가을</a>
+                                                <a href="#">겨울</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <button type="button" class="btn btn-dark btn-block float-right text-white" style="background-image: url(img/bg2.png)"> 검색</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="shop__product__option">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__left">
+                                    <p th:text="'총 '+${result}+'개의 상품'"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__right">
+                                    <p>정렬 기준:&nbsp;</p>
+                                    <select>
+                                        <option value="">베스트상품순</option>
+                                        <option value="">추천순</option>
+                                        <option value="">최신순</option>
+                                        <option value="">높은 가격순</option>
+                                        <option value="">낮은 가격순</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 상품 영역 -->
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <a th:href="@{sDetails}">
+								<div class="product__item__pic set-bg" data-setbg="img/shoes/shoes4.png" >
+                                    <span class="label text-white" style="background-color: rgb(172, 0, 0);">베스트셀러</span>
+                                </div>
+                                </a>
+                                <div class="product__item__text">
+                                <!-- 상품 이름 -->
+                                    <h6>척 70 레터 루나 그레이</h6>
+                                    <a th:href="@{sCart}" class="add-cart">+ 장바구니 추가</a>
+                                    <!-- 별점 -->
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-0"></i>
+                                    </div>
+                                    <h5>105,000원</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes5.png">
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>나이키 캄</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                            
+                                    </div>
+                                    <h5>59,000원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes6.png">
+                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+                                   
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>나이키 덩크 로우 레트로</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>139,000원</h5>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes7.png">
+                                    <span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>스테파노로시 몬투라</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>99,000원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes8.png">
+                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+                                   
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>반스 올드스쿨</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>85,000원</h5>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes9.png">
+                                  
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>M2002RNM</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>189,000원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes1.png">
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>나이키 고 플라이어즈</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>111,300원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes2.png">
+                                    <span class="label text-white" style="background-color: rgb(4, 74, 179);">수량한정</span>
+                                   
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>에어 조던 6 레트로</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-0"></i>
+                                    </div>
+                                    <h5>199,200원</h5>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes3.png">
+                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+                                    
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>NM306PFL</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-0"></i>
+                                    </div>
+                                    <h5>109,000원</h5>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes10.png">
+                                  
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>U997RHC</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-0"></i>
+                                    </div>
+                                    <h5>159,000원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes11.png">
+                                 
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>척 70 틸 유니버스</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>99,000원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes12.png">
+                      
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>잭퍼셀 클래식 화이트</h6>
+                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <h5>99,000원</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product__pagination">
+                                <a class="active" href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <span>...</span>
+                                <a href="#">11</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/logo2.png" alt=""></a>
+                        </div>
+                        <p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>상품목록</h6>
+                        <ul>
+                            <li><a href="#">남성 신발</a></li>
+                            <li><a href="#">여성 신발</a></li>
+                            <li><a href="#">유아용 신발</a></li>
+                            <li><a href="#">할인 제품</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>본사정책</h6>
+                        <ul>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">결제 수단</a></li>
+                            <li><a href="#">배송 정책</a></li>
+                            <li><a href="#">반품 및 교환</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>구독</h6>
+                        <div class="footer__newslatter">
+                            <p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
+                            <form action="#">
+                                <input type="text" placeholder="이메일">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | 5조신발점 <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">ih</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="검색">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.rubypaper.mapper.ShoesMapper">
+	<select id="search" resultType="com.example.rubypaper.dto.Shoes">
+		select 
+			shoes_Id as shoes_Id,
+			shoes_Name as shoes_Name,
+			shoes_Price as shoes_Price,
+			num_Like as num_Like,
+			cate_Name as cate_Name,
+			revise_Date as revise_Date,
+			is_Like as is_Like,
+			brand_Name as brand_Name,
+			color_Code as color_Code
+		from 
+			shoes
+		where
+			 shoes_Name like CONCAT('%',#{shoes_Name},'%');
+	</select>
+</mapper>
