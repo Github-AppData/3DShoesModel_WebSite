@@ -1,5 +1,10 @@
 package com.example.rubypaper.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,21 +12,62 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.rubypaper.dto.User;
+import com.example.rubypaper.service.BoardService;
+import com.example.rubypaper.service.BoardServiceList;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SampleController {
 	
 	Object data;
 	
+	@Autowired
+	BoardServiceList boardServiceList;
+	
 
 	@RequestMapping("/main")
-	public String main(Model model)
+	public String main(Model model, HttpServletRequest request, HttpSession session)
 	{
 		
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+				
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
 		return "test/main";
+	}
+	
+	@RequestMapping("/noticdBoard")
+	public String noticdBoard(Model model)
+	{
+		//사용자 목록 가져오기 
+		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+		
+		//사용자 총 수 
+		int result = 0;
+				
+		try {
+			boardList = boardServiceList.getBoardList();
+			result = boardServiceList.getBoardValue();
+			boardServiceList.FindListIsDelete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		model.addAttribute("list", boardList);
+		
+		return "test/noticdBoard";
+	}
+	
+	@RequestMapping("/write")
+	public String write()
+	{
+		return "test/write";
 	}
 	
 	@RequestMapping("/ptest")
@@ -32,6 +78,9 @@ public class SampleController {
 	@GetMapping("/sMain")
 	public String sMain(Model model)
 	{
+		
+		
+		
 		return "test/sMain";
 	}
 	

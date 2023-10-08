@@ -25,8 +25,9 @@
 </head>
 
 <body>
-
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="js/viewer-api.js"></script>
+	
 	<script>
         window.addEventListener('load', function() {
             var allElements = document.getElementsByTagName('*');
@@ -45,6 +46,8 @@
             });
         });
     </script>
+    
+    
 
 
     <!-- Page Preloder -->
@@ -153,110 +156,44 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Shop Details Section Begin -->
-    <section class="shop-details">
-        <div class="product__details__pic" style="background-image: url(img/white-crumpled-paper-texture-for-background.jpg)">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__details__breadcrumb">
-                            <a href="sMain">신발</a>
-                            <span>척테일러 1970s</span>
+
+
+    <!-- Product section-->
+        <section class="shop-details">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                
+                    <div class="col-md-6">
+                    	<iframe src="" id="api-frame" width="500" height="700" style="border:none"
+    									allow="autoplay; fullscreen; xr-spatial-tracking" 
+    									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
+    									webkitallowfullscreen="true">
+    					</iframe>
+    				</div>
+                    <div class="col-md-5 ms-4 ml-5" ><br>
+                        	<!-- 제품 이름 --> 
+                       		<!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
+                            <span class="fs-1 fw-bold" th:if="${productDTO != null}" th:text="${productDTO.shoesname}"></span>
+							<span class="fs-1 fw-bold" th:if="${productDTO == null}" th:text="제품이름"></span>
+                        <div class="mt-2">
+                            <!-- th:text="${productDTO.shoeprice}" dto 이름과 함수명은 알아서  -->
+                            	<span class="fs-5 fw-bold" th:if="${productDTO != null}" th:text="${productDTO.shoeprice}"></span>
+								<span class="fs-5 fw-bold" th:if="${productDTO == null}" th:text="제품가격"></span>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-3">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c3.png">
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c1.png">
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c4.png">
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
-                                    <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/c5.png">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 col-md-9">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__pic__item">
-    								<iframe src="" id="api-frame" width="350" height="350" style="border:none"
-    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
-    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-    										 webkitallowfullscreen="true">
-    								</iframe>		    		
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="img/shop-details/c1.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="img/shop-details/c4.png" alt="">
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-4" role="tabpanel"> 
-                                <!-- 2주 전 작업의 iframe을 사용한 유튜브 영상 출력 응용-->
-                                <div class="product__details__pic__item">
-                                    <!--<img src="img/shop-details/c5.png" alt="">-->
-                                    <iframe width="400" height="500" src="https://www.youtube.com/embed/MFnm5lDg5fw" title="[척테일러] CHUCK 70 : The BEST Ever" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                    <!--<a href="https://www.youtube.com/embed/MFnm5lDg5fw" class="video-popup"><i class="fa fa-play"></i></a>-->
-                                    <!-- 하지만, 팝업형식으로는 적용이 안되서 일단은 응용없이 구현.-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product__details__content">
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="product__details__text">
-                        <!-- 제품 이름 --> 
-                        <!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
-                            <h4><span th:if="${productDTO != null}" th:text="${productDTO.shoesname}"></span>
-								<span th:if="${productDTO == null}" th:text="제품이름"></span></h4>
-                            <div class="rating">
+                        <div class="product__details__text mb-5 " style="text-align: left" >
+                        <span class="rating"  >
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                                 <span> - 구매:429</span>
-                            </div>
-                            <h4>
-                            <!-- th:text="${productDTO.shoeprice}" dto 이름과 함수명은 알아서  -->
-                            	<span th:if="${productDTO != null}" th:text="${productDTO.shoeprice}"></span>
-								<span th:if="${productDTO == null}" th:text="제품가격"></span>
-							</h4>
-                            <p>디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</p>
-                            <div class="product__details__option">
+                         </span>
+                         
+                         <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
-                                    <span>Size:</span>
-                                    <label for="240">240
+                                    <span class="mb-2">사이즈 선택:</span><br>
+                                    <label for="240" class="mb-2">240
                                         <input type="radio" id="240">
                                     </label>
                                     <label for="245">245
@@ -284,26 +221,84 @@
                                         <input type="radio" id="280">
                                     </label>
                                 </div>
-                                <!-- 컬러 부분은 임시로 뺀 상태
-                                <div class="product__details__option__color">
-                                    <span>Color:</span>
-                                    <label class="c-1" for="sp-1">
-                                        <input type="radio" id="sp-1">
+                            </div>
+                            
+                         <div class="product__details__cart__option">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">                        
+                                    </div>
+                                </div>
+                                <a href="sCart" class="primary-btn">장바구니</a>
+                            </div>
+                         <div class="product__details__btns__option">
+                                <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
+                                <a href="sMain"><i class="fa fa-exchange"></i> 상품 비교하기</a>
+                            </div>
+                         
+                         
+                         </div>
+                            <div class="row pb-3">
+                                <div class="col d-grid">
+                                    <button onclick="requestPay()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">구매하기</button>
+                                    <button onclick="requestPay2()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">카카오페이</button>
+                                </div>
+                            </div>
+						
+                        <p class="lead fs-6 fw-bold pb-4" >첫출시는 1972년도 였지만 현재는 2023년입니다.<br> 그만큼 역사가 있죠 고객분들이 원하는 외형을 재해석하여 더 넓어진 앞꿈치 부분과 더 단단해진 옆면 패널을 디자인에 더해 매일 계속해서 편안하게 착용할 수 있습니다.<br>
+                             재설계된 소재는 사랑받은 클래식 '72 모양을 유지하면서 뒤틀림을 방지하고 내구성을 더합니다.<br> 끈을 조이고 신어보세요. <br>신발은 사람의 맞춰 발전 하기마련이니까요.</p>
+                        <p class="lead fs-6 fw-bold">ㆍ현재 컬러 : 화이트</p>
+                        <p class="lead fs-6 fw-bold">ㆍ모델 번호 : BST-498</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <div class="product__details__content">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="product__details__text">
+                            
+                            <!-- 
+                            
+                            <p>디자인 헤리티지를 더한 프리미엄 컴포트 스니커즈</p>
+                            <div class="product__details__option">
+                                <div class="product__details__option__size">
+                                    <span>Size:</span>
+                                    <label for="240">240
+                                        <input type="radio" id="240">
                                     </label>
-                                    <label class="c-2" for="sp-2">
-                                        <input type="radio" id="sp-2">
+                                    <label for="245">245
+                                        <input type="radio" id="245">s
                                     </label>
-                                    <label class="c-3" for="sp-3">
-                                        <input type="radio" id="sp-3">
+                                    <label for="250">250
+                                        <input type="radio" id="250">
                                     </label>
-                                    <label class="c-4" for="sp-4">
-                                        <input type="radio" id="sp-4">
+                                    <label class="active" for="255">255
+                                        <input type="radio" id="255">
                                     </label>
-                                    <label class="c-9" for="sp-9">
-                                        <input type="radio" id="sp-9">
+                                    <label for="260">260
+                                        <input type="radio" id="260">
+                                    </label>
+                                    <label for="265">265
+                                        <input type="radio" id="265">
+                                    </label>
+                                    <label for="270">270
+                                        <input type="radio" id="270">
+                                    </label>
+                                    <label for="275">275
+                                        <input type="radio" id="275">
+                                    </label>
+                                    <label for="280">280
+                                        <input type="radio" id="280">
                                     </label>
                                 </div>
-                                 -->
+                                
+                                
+                                 
                             </div>
                             <div class="product__details__cart__option">
                                 <div class="quantity">
@@ -313,12 +308,19 @@
                                 </div>
                                 <a href="sCart" class="primary-btn">장바구니</a>
                             </div>
+                            
+                            <div class="product__details__cart__option">
+                                 <button onclick="requestPay()" type="button" class="btn btn-dark btn-lg font-weight-bold" name="submit" value="buy">구매하기</button>
+                                    <button onclick="requestPay2()" type="button" class="btn btn-dark btn-lg font-weight-bold" name="submit" value="buy">카카오페이</button>
+                                
+                            </div>
                             <div class="product__details__btns__option">
                                 <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
                                 <a href="#"><i class="fa fa-exchange"></i> 상품 비교하기</a>
                             </div>
+                            -->
                             <div class="product__details__last__option">
-                                <h5><span>5조신발점의 다양한 결제방식</span></h5>
+                                <h5><span>5조신발점의 결제방식</span></h5>
                                 <img src="img/checkoutlist.png" alt="">
                                 <ul>
                                     <li><span>SKU:</span> 3812912</li>
@@ -522,8 +524,7 @@
     } );
     </script>
     
-    
-    
+     
     
 
     <!-- Js Plugins -->
@@ -537,6 +538,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/import.js"></script>
     
 </body>
 

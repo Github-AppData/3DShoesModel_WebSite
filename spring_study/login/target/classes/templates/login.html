@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>로그인 페이지</title>
+</head>
+<body>
+	<form th:action="@{/main}" method="POST" target="">
+		<a>아이디</a>
+		<input type="text" name="loginId" id="loginId"><br>
+		<a>패스워드</a>
+		<input type="password" name="loginPs" id="loginPs">
+		<button type="submit">로그인</button>
+		<button type="button" th:onclick="|location.href='@{/singUp}'|">회원가입</button>
+	</form>
+</body>
+</html>

@@ -20,6 +20,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/InsertInfoServlet")
 public class InsertInfoServlet extends HttpServlet {
@@ -36,11 +37,12 @@ public class InsertInfoServlet extends HttpServlet {
 	Object data;
 	
 	PasswordHashingUtil passwordHashingUtil = new PasswordHashingUtil();
-
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession(); // 세션 객체 가져오기
+		
 		// 사용자로부터 입력 된 데이터를 받아옵니다.
 		String id = request.getParameter("id");
 		input_pw = request.getParameter("pw");
@@ -52,6 +54,7 @@ public class InsertInfoServlet extends HttpServlet {
 	    // 생일 관련 날짜 처리 
 	    String birthday = request.getParameter("birthday");
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    
 	    
 	    try {
 	    	birth_date = dateFormat.parse(birthday);
@@ -90,6 +93,8 @@ public class InsertInfoServlet extends HttpServlet {
 			 String salt = passwordHashingUtil.generateSalt(); // 솔트 생성
 			 user.setSalt(salt);
 			 
+			
+			 
 			try {
 				// 암호화 
 				hashedPassword = passwordHashingUtil.hashPassword(input_pw, user.getSalt());
@@ -113,19 +118,20 @@ public class InsertInfoServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			 
-			// HttpServletRequest를 매개변수로 받는 메서드에서 사용 가능
-				ServletContext servletContext = request.getServletContext();
 			
 			 request.setAttribute("user", user);
 			 
 			 // 서블릿 컨텍스트에 DTO 객체 저장 
-			 getServletContext().setAttribute("user", user);
 			 System.out.println(user.toString()); 
+			 System.out.println(user.getId());
 			 
 			 // 결과 화면으로 !!! 
 			System.out.println("회원가입 되었습니다. 확인 해 보세요 !");
 	    	response.sendRedirect(request.getContextPath() + "/sLogin");
-			 
+	    	session.setAttribute("login", user.getId());
+	    	
+	    	 ServletContext servletContext = getServletContext();
+			 servletContext.setAttribute("user", user); // set 부분
 	    }
 	    else {
 	    	System.out.println("존재하는 아이디 입니다.");
