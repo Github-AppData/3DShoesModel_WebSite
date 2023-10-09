@@ -200,8 +200,9 @@
 		    								</iframe>
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>나이키 고 플라이어즈</h6>
-                                            <h5>111,300(원)</h5>
+												<article id="shoes1_info">
+		                                            
+	                                            </article>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -211,7 +212,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">111,300(원)</td>
+                                    <td class="cart__price"	>111,300(원)</td>
                                     <td class="cart__close">
     									<!-- <i class="fa fa-close" onclick="removeCartItem(this)"></i> -->
     									<i class="fa fa-close" onclick="removeCartItem(this, 111300)"></i>
@@ -226,8 +227,9 @@
 											     webkitallowfullscreen="true"></iframe>
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>에어 조던 6 레트로</h6>
-                                            <h5>199,200(원)</h5>
+                                            <article id="shoes2_info">
+		                                            
+	                                        </article>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -251,8 +253,9 @@
 											     webkitallowfullscreen="true"></iframe>
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>NM306PFL</h6>
-                                            <h5>109,000(원)</h5>
+                                            <article id="shoes3_info">
+		                                            
+	                                            </article>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -389,7 +392,11 @@
 
     <script type="text/javascript">
 		
-		 var imageToModelMapping_real = [];
+		var imageToModelMapping_real = [];
+		
+		var shoes_id;
+		var shoes_name;
+	    var shoes_price;
 		
 		window.onload = pageLoad;
 		function pageLoad(){
@@ -404,17 +411,30 @@
 		            var objLength = Object.keys(object).length;
 		            
 					for (var i = 0; i < objLength; i++) {
-					    var shoes_id = object[i].shoes_id;
-					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1) });
+					    shoes_id = object[i].shoes_id;
+					    shoes_name = object[i].shoes_name
+					    shoes_price = object[i].shoes_price;
+					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price:shoes_price });
 					}
 					
-					console.log(imageToModelMapping_real);
+					var article_id = ["shoes1_info", "shoes2_info", "shoes3_info"];
+					
+					for(var i = 0; i < objLength; i++)
+					{
+						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
+		    			var shoes_info_price = imageToModelMapping_real[i].shoes_price;
+		    			
+		    			document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>" +
+		    												   			   "<h5>" + shoes_info_price + " 원" + "</h5>";
+		    			
+					}
 					
 					imageToModelMapping_real.forEach(function(mapping) {
 						replaceWith3DModel(mapping.uid, mapping.iframeId);
 					});
 				}
 		    };
+		   
 		
 		    xhr.open("GET", "/ProductListSevlet", true);
 		    xhr.send(null);

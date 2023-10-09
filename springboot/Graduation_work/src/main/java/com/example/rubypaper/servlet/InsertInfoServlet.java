@@ -118,7 +118,6 @@ public class InsertInfoServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			 
-			
 			 request.setAttribute("user", user);
 			 
 			 // 서블릿 컨텍스트에 DTO 객체 저장 
