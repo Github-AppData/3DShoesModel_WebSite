@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.rubypaper.dto.Cart;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -38,6 +39,10 @@ public class CartAddObjectServlet extends HttpServlet{
 		    
 		    cart.setQuantity(quantity);
 		    cart.setSize(size);
+		    
+		    // cart 객체가 어디서든 사용이 될 수 있게 !
+		    ServletContext servletContext = getServletContext();
+			servletContext.setAttribute("caet", cart); // set 부분
 		    
 		    
 		} else {
