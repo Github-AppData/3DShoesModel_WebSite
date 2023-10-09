@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
 
+
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -23,9 +25,37 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     
+    <style>
+    	.aa {position: absolute;
+				width: 260px; /* <iframe>의 크기와 동일하게 설정 */
+        											 height: 260px; /* <iframe>의 크기와 동일하게 설정 */
+        											 opacity: 0; /* 투명도 설정 */
+        											 }
+    </style>
 </head>
 
 <body>
+	<script src="js/viewer-api.js"></script>
+	<script>
+        window.addEventListener('load', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
+        
+    </script>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -117,7 +147,7 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
                         <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                        <a href="sCart"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                     </div>
                 </div>
             </div>
@@ -268,44 +298,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">발볼(너비)</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__brand">
-                                               
-                                                <ul>
-                                                <li><label for="D(보통)">D(보통)
-                                                    <input type="checkbox" id="D(보통)">
-                                                </label>
-                                            </li>
-                                                <li><label for="2E(약간 넓음)">2E(약간 넓음)
-                                                    <input type="checkbox" id="2E(약간 넓음)">
-                                                </label>
-                                            </li>
-                                                <li><label for="4E(넓음)">4E(넓음)
-                                                    <input type="checkbox" id="4E(넓음)">
-                                                </label>
-                                            </li>
-                                                <li><label for="M(보통)">M(보통)
-                                                    <input type="checkbox" id="M(보통)">
-                                                </label>
-                                            </li>
-                                            <li><label for="여성B(보통)">여성B(보통)
-                                                <input type="checkbox" id="여성B(보통)">
-                                            </label>
-                                        </li>
-                                        <li><label for="여성M(보통)">여성M(보통)
-                                            <input type="checkbox" id="여성M(보통)">
-                                        </label>
-                                    </li>
-                                        </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="card">
                                     <div class="card-heading">
                                         <a data-toggle="collapse" data-target="#collapseThree">가격</a>
@@ -341,6 +334,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- 사이즈 부분인데 페이지 크기를 줄이면서 일단 제외 -->
+                                <!-- 
                                 <div class="card ">
                                     <div class="card-heading">
                                         <a data-toggle="collapse" data-target="#collapseFour">사이즈</a>
@@ -407,6 +402,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                 -->
                                 <!-- 
                                 <div class="card">
                                     <div class="card-heading">
@@ -505,15 +501,15 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <a th:href="@{sDetails}">
-								<div class="product__item__pic set-bg" data-setbg="img/shoes/shoes4.png" >
-                                    <span class="label text-white" style="background-color: rgb(172, 0, 0);">베스트셀러</span>
-                                </div>
-                                </a>
+                                <div class="product__item__pic set-bg">
+                                    <iframe id="api-frame-1" width="270" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+     						
                                 <div class="product__item__text">
                                 <!-- 상품 이름 -->
                                     <h6>척 70 레터 루나 그레이</h6>
-                                    <a th:href="@{sCart}" class="add-cart">+ 장바구니 추가</a>
+                                    <a th:href="@{sDetails}" class="add-cart">상품 페이지</a>
                                     <!-- 별점 -->
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
@@ -529,12 +525,13 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes5.png">
-                                    
-                                </div>
-                                <div class="product__item__text">
+                                <div class="product__item__pic set-bg">
+                                    <iframe id="api-frame-2" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
                                     <h6>나이키 캄</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <a th:href="@{sDetails}" class="add-cart">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -550,13 +547,14 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes6.png">
+                                <div class="product__item__pic set-bg">
                                     <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                   
-                                </div>
-                                <div class="product__item__text">
+                                    <iframe id="api-frame-3" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
                                     <h6>나이키 덩크 로우 레트로</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <a th:href="@{sDetails}" class="add-cart">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -571,13 +569,14 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes7.png">
-                                    <span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
-                                    
-                                </div>
-                                <div class="product__item__text">
+                                <div class="product__item__pic set-bg">
+                                   	<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
+                                    <iframe id="api-frame-4" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
                                     <h6>스테파노로시 몬투라</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <a th:href="@{sDetails}" class="add-cart">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -592,13 +591,14 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes8.png">
-                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                   
-                                </div>
-                                <div class="product__item__text">
+                                <div class="product__item__pic set-bg">
+                                   <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+                                    <iframe id="api-frame-5" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
                                     <h6>반스 올드스쿨</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <a th:href="@{sDetails}" class="add-cart">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -613,12 +613,13 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes9.png">
-                                  
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>M2002RNM</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                <div class="product__item__pic set-bg">
+                                    <iframe id="api-frame-6" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
+                                <h6>M2002RNM</h6>
+                                    <a th:href="@{sDetails}" class="add-cart">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -631,131 +632,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes1.png">
-                                    
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>나이키 고 플라이어즈</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>111,300원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes2.png">
-                                    <span class="label text-white" style="background-color: rgb(4, 74, 179);">수량한정</span>
-                                   
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>에어 조던 6 레트로</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
-                                    </div>
-                                    <h5>199,200원</h5>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes3.png">
-                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                    
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>NM306PFL</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
-                                    </div>
-                                    <h5>109,000원</h5>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes10.png">
-                                  
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>U997RHC</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
-                                    </div>
-                                    <h5>159,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes11.png">
-                                 
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>척 70 틸 유니버스</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>99,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes12.png">
-                      
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>잭퍼셀 클래식 화이트</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>99,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
@@ -801,7 +678,7 @@
                     <div class="footer__widget">
                         <h6>본사정책</h6>
                         <ul>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="sContact">Contact Us</a></li>
                             <li><a href="#">결제 수단</a></li>
                             <li><a href="#">배송 정책</a></li>
                             <li><a href="#">반품 및 교환</a></li>
@@ -848,8 +725,97 @@
         </div>
     </div>
     <!-- Search End -->
+    
+    
+    <script type="text/javascript">
+   
+    function replaceWith3DModel(uid, iframeId) {
+        return new Promise(function(resolve, reject) {
+            var iframe = document.getElementById(iframeId);
+            var client = new Sketchfab(iframe);
+
+            client.init(uid, {
+                success: function onSuccess(api) {
+                    api.start();
+                    api.addEventListener('viewerready', function() {
+                        console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+                        resolve(); // Promise가 성공했음을 알립니다.
+                    });
+                },
+                error: function onError() {
+                    console.log(iframeId + ' 3D 모델 초기화 오류');
+                    reject(); // Promise가 실패했음을 알립니다.
+                },
+                // 초기화 매개변수 설정
+                graph_optimizer: 1, //그래프
+                merge_materials: 1, //재질 병합
+                material_packing: 1 //재질 패킹
+            });
+        });
+    }
+    
+    var imageToModelMapping = [
+        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-1' },
+        { uid: 'faef9fe5ace445e7b2989d1c1ece361c', iframeId: 'api-frame-2' },
+        { uid: 'c00345fd64414c4e8895c6aaa262e4d5', iframeId: 'api-frame-3' },
+        { uid: '7afcec9329d54afe99b6db2e30346642', iframeId: 'api-frame-4' },
+        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-5' },
+        { uid: '9c1f56ac53524da09673ce46c8410ac9', iframeId: 'api-frame-6' },
+        
+    ];
+    
+    
+    function loadModels() {
+        // 모든 모델을 비동기식으로 로드합니다.
+        Promise.all(imageToModelMapping.map(function(mapping) {
+            return replaceWith3DModel(mapping.uid, mapping.iframeId);
+        })).then(function() {
+            // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+            console.log('모든 3D 모델이 로드되었습니다.');
+        }).catch(function() {
+            // 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
+            console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
+        });
+    }
+
+    // 모든 모델을 한꺼번에 로드합니다.
+    loadModels();
+    
+    /*
+    //하나씩 로드
+    function loadModels() {
+        var index = 0;
+
+        function loadNextModel() {
+            if (index < imageToModelMapping.length) {
+                replaceWith3DModel(imageToModelMapping[index].uid, imageToModelMapping[index].iframeId)
+                    .then(function() {
+                        // 다음 모델을 로드합니다.
+                        index++;
+                        loadNextModel();
+                    })
+                    .catch(function() {
+                        // 모델 로딩에 실패하더라도 다음 모델을 로드합니다.
+                        index++;
+                        loadNextModel();
+                    });
+            } else {
+                // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+                console.log('모든 3D 모델이 로드되었습니다.');
+            }
+        }
+
+        // 첫 번째 모델 로드를 시작합니다.
+        loadNextModel();
+    }
+
+    // 모든 모델을 비동기식으로 로드합니다.
+    loadModels();
+*/
+    </script>
 
     <!-- Js Plugins -->
+    
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
