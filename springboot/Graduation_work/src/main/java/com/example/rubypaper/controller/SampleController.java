@@ -86,9 +86,14 @@ public class SampleController {
 	}
 	
 	@GetMapping("/sMain")
-	public String sMain(Model model)
+	public String sMain(Model model,HttpServletRequest request, HttpSession session)
 	{
-		
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+								
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
 		
 		
 		return "test/sMain";
@@ -127,9 +132,32 @@ public class SampleController {
 	}	
 	
 	@GetMapping("/sCart")
-	public String test6(Model model)
+	public String test6(Model model,HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
+		
 		return "test/sCart";
+	}
+	
+	
+	@RequestMapping("/like")
+	public String like(Model model,HttpServletRequest request, HttpSession session)
+	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
+		
+		return "test/like";
 	}
 	
 	@GetMapping("/sLogin")

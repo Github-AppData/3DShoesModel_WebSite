@@ -160,7 +160,7 @@
 
     <!-- Product section-->
         <section class="shop-details">
-            <div class="container px-4 px-lg-5 my-5">
+            <div class="container px-4 px-lg-5 my-5">	
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
@@ -192,6 +192,7 @@
                          
                          <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
+<<<<<<< HEAD
                                     <span class="mb-2">사이즈 선택:</span><br>
                                     <label for="240" class="mb-2">240
                                         <input type="radio" id="240">
@@ -231,6 +232,58 @@
                                 </div>
                                 <a href="sCart" class="primary-btn">장바구니</a>
                             </div>
+=======
+									<form action="CartAddObjectServlet" method="post">
+	                                    <span class="mb-2">사이즈 선택:</span><br>
+	                                    
+	                                    <label for="210" class="mb-2">210
+	                                        <input type="radio" id="210" name="selectedSize" value="210">
+	                                    </label>
+	                                    
+	                                    <label for="220">220
+	                                        <input type="radio" id="220" name="selectedSize" value="220">
+	                                    </label>
+	                                    
+	                                    <label for="230">230
+	                                        <input type="radio" id="230" name="selectedSize" value="230">
+	                                    </label>
+	                                    
+	                                    <label class="active" for="240">240
+	                                        <input type="radio" id="240" name="selectedSize" value="240" checked>
+	                                    </label>
+	                                    
+	                                    <label for="250">250
+	                                        <input type="radio" id="250" name="selectedSize" value="250">
+	                                    </label>
+	                                    
+	                                    <label for="260">260
+	                                        <input type="radio" id="260" name="selectedSize" value="260">
+	                                    </label>
+	                                    
+	                                    <label for="270">270
+	                                        <input type="radio" id="270" name="selectedSize" value="270">
+	                                    </label>
+	                                    
+	                                    <label for="280">280
+	                                        <input type="radio" id="280" name="selectedSize" value="280">
+	                                    </label>
+	                                    
+	                                    <label for="290">290
+	                                        <input type="radio" id="290" name="selectedSize" value="290">
+	                                    </label>
+	                                </div>
+	                            </div>
+	                            
+	                         	<div class="product__details__cart__option">
+	                                <div class="quantity">
+	                                    <div class="pro-qty">
+	                                        <input type="text" value="1" name="quantityInput">                        
+	                                    </div>
+	                                </div>
+	                                <button type="submit" class="primary-btn">장바구니</button>
+	                            </div>
+                            </form>
+>>>>>>> 03b21f1 (Sucess: 장바구니 작업)
                          <div class="product__details__btns__option">
                                 <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
                                 <a href="sMain"><i class="fa fa-exchange"></i> 상품 비교하기</a>

@@ -28,6 +28,7 @@
 
 
 	<script src="js/viewer-api.js"></script>
+
 	<script>
         window.addEventListener('load', function() {
             var allElements = document.getElementsByTagName('*');
@@ -45,6 +46,7 @@
                 }
             });
         });
+        
         
     </script>
     <!-- Page Preloder -->
@@ -88,21 +90,21 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a th:if="${login}" th:hrf="@{sLogout}">로그아웃</a>
-                				<a th:unless="${login}" th:href="@{sLogin}">로그인</a>
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
                                 <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
-                                <span th:if="${login}" th:text="${user.name} + '님 어서오세요'"></span>
-    							<span th:unless="${login}" th:text="어서오세요"></span>
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
                             </div>
                         </div>
                     </div>
@@ -144,7 +146,7 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
                         <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                        <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                     </div>
                 </div>
             </div>
@@ -191,15 +193,16 @@
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
-                                             <iframe id="api-frame-1" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
-    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
-    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-    										 webkitallowfullscreen="true">
-    								</iframe>
+                                             <iframe id="api-frame-1" width="200" height="100" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
+		    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
+		    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
+		    										 webkitallowfullscreen="true">
+		    								</iframe>
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>나이키 고 플라이어즈</h6>
-                                            <h5>111,300(원)</h5>
+												<article id="shoes1_name">
+		                                            
+	                                            </article>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -209,23 +212,27 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">111,300(원)</td>
+                                    
+                                    <td id="shoes1_price" class="cart__price">
+		                                            
+	                                 </td>
                                     <td class="cart__close">
-    									<!-- <i class="fa fa-close" onclick="removeCartItem(this)"></i> -->
+    									
     									<i class="fa fa-close" onclick="removeCartItem(this, 111300)"></i>
 									</td>
                                 </tr>
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
-                                            <iframe id="api-frame-2" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
+                                            <iframe id="api-frame-2" width="200" height="100" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
      											allow="autoplay; fullscreen; xr-spatial-tracking" 
      											xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
 											     webkitallowfullscreen="true"></iframe>
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>에어 조던 6 레트로</h6>
-                                            <h5>199,200(원)</h5>
+                                            <article id="shoes2_name">
+		                                            
+	                                        </article>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -235,7 +242,9 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">199,200(원)</td>
+                                    <td id="shoes2_price" class="cart__price">
+		                                            
+	                                 </td>
                                     <td class="cart__close">
     									<i class="fa fa-close" onclick="removeCartItem(this)"></i>
 									</td>
@@ -243,14 +252,15 @@
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
-                                            <iframe id="api-frame-3" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
+                                            <iframe id="api-frame-3" width="200" height="100" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
      											allow="autoplay; fullscreen; xr-spatial-tracking" 
      											xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
 											     webkitallowfullscreen="true"></iframe>
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>NM306PFL</h6>
-                                            <h5>109,000(원)</h5>
+                                            <article id="shoes3_name">
+		                                            
+	                                            </article>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -260,7 +270,9 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">109,000(원)</td>
+                                    <td id="shoes3_price" class="cart__price">
+		                                            
+	                                 </td>
                                     <td class="cart__close">
     									<i class="fa fa-close" onclick="removeCartItem(this)"></i>
 									</td>
@@ -294,9 +306,9 @@
                     	<form action="/sBuying" method ="POST" target="_blank">
                         <h4>결제 금액</h4>
                         <ul>
-                            <li>상품비 <span>419,500(원)</span></li>
-                            <li>배송비 <span>2,500(원)</span></li>
-                            <li>합계 <span>422,000(원)</span></li>
+                            <li> 총 금액 : <span id="cost"> 419,500(원)</span></li>
+                            <li>배송비 : <span id="delivery_cost">2,500(원)</span></li>
+                            <li>합계 <span id="total_cost">422,000(원)</span></li>
                         </ul>
                         <input type="submit" class="primary-btn" value="구매하기">
                        <!--  <a href="sBuying" class="primary-btn">구매하기</a> -->
@@ -386,10 +398,84 @@
     
 
     <script type="text/javascript">
-
+		
+		var imageToModelMapping_real = [];
+		
+		var shoes_id;
+		var shoes1_name;
+	    var shoes_price;
+		
+		window.onload = pageLoad;
+		function pageLoad(){
+			console.log("페이지가 로드 되었습니다.");
+		
+		    var xhr = new XMLHttpRequest();
+		   	
+		
+		    xhr.onreadystatechange = function () {
+		        if (xhr.readyState === 4 && xhr.status === 200) {
+		            var object = JSON.parse(xhr.responseText);
+		            var objLength = Object.keys(object).length;
+		            
+					for (var i = 0; i < objLength; i++) {
+					    shoes_id = object[i].shoes_id;
+					    shoes_name = object[i].shoes_name
+					    shoes_price = object[i].shoes_price;
+					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price:shoes_price });
+					}
+					
+					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
+					
+					// 신발 이름 
+					var article_id = ["shoes1_name", "shoes2_name", "shoes3_name"];
+					
+					for(var i = 0; i < objLength; i++)
+					{
+						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
+		    			document.getElementById(article_id[i]).innerHTML = "<br><h4>" + shoes_info_name + "</h4>";
+					}
+					
+					// 신발 가격
+					var price_sum = 0;  // 상품 총 금액 
+					var delivery_cost = 3000; // 배송비 
+					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
+					
+					// 신발 가격을 표시하는 부분의 id
+					var article_price_id = ["shoes1_price", "shoes2_price", "shoes3_price"];
+					
+					
+					for(var i = 0; i < objLength; i++)
+					{
+						var shoes_info_price = imageToModelMapping_real[i].shoes_price;
+						price_sum += shoes_info_price;
+		    			document.getElementById(article_price_id[i]).innerHTML = "<td class='cart__price'>" + shoes_info_price + "(원) </td>";
+					}
+					
+					total_cost = price_sum + delivery_cost;
+					
+					
+					var result_price = [price_sum, delivery_cost, total_cost];
+					var result_price_id = ["cost", "delivery_cost", "total_cost"];
+					
+					for(var i = 0; i < objLength; i++)
+					{
+		    			document.getElementById(result_price_id[i]).innerHTML = "<span>" + result_price[i] + "(원) </span>";
+					}
+					
+					imageToModelMapping_real.forEach(function(mapping) {
+						replaceWith3DModel(mapping.uid, mapping.iframeId);
+					});
+				}
+		    };
+		   
+		
+		    xhr.open("GET", "/ProductListSevlet", true);
+		    xhr.send(null);
+    	};
+    	
     function replaceWith3DModel(uid, iframeId) {
         var iframe = document.getElementById(iframeId);
-        var client = new Sketchfab(iframe);
+        var client = new Sketchfab( iframe );
 
         client.init(uid, {
             success: function onSuccess(api) {
@@ -403,24 +489,20 @@
             }
         });
     }
-    //넣어달라고 해서 넣어둿긴했는데
-    var imageToModelMapping = [
-        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-1' },
-        { uid: 'faef9fe5ace445e7b2989d1c1ece361c', iframeId: 'api-frame-2' },
-        { uid: 'c00345fd64414c4e8895c6aaa262e4d5', iframeId: 'api-frame-3' }
-        
-    ];
+   
+	
 
-    // 이미지를 3D 모델로 대체
-    imageToModelMapping.forEach(function(mapping) {
+    /*// 이미지를 3D 모델로 대체
+    imageToModelMapping_real.forEach(function(mapping) {
         replaceWith3DModel(mapping.uid, mapping.iframeId);
-    });
-
+    });*/
     </script>
-
-
+    
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>

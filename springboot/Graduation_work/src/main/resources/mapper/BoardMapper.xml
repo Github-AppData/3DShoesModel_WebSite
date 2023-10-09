@@ -23,7 +23,6 @@
 		delete
 		from notice_board
 		where is_delete = 1
-	
 	</delete>
 	
 	<select id="boardCount" resultType="Integer">

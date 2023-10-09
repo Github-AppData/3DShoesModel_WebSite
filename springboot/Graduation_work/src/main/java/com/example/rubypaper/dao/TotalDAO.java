@@ -10,10 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TotalDAO {
 	
-	// 
-
-	
-	
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -37,4 +33,10 @@ public class TotalDAO {
 		return sqlSession.selectOne("com.example.rubypaper.mapper.BoardMapper.FindListIsDelete");
 		
 	}
+
+	public List<Map<String, Object>> findIsLike() throws Exception{
+		return sqlSession.selectList("com.example.rubypaper.mapper.ShoesMapper.findIsLike");
+	}
+
+
 }
