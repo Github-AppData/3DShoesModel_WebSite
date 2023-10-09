@@ -72,9 +72,6 @@
                 </ul>
             </div>
         </div>
-        
-        
-        
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
             <a href="#"><img src="img/icon/heart.png" alt=""></a>
@@ -191,63 +188,49 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
                                 <span> - 구매:429</span>
-                                 <!--<div th:each="list : ${shoes}">
-									<b th:text="${list.shoes_id}">asdasdasd</b>
-								</div>-->
                          </span>
                          
                          <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
-									<form action="CartAddObjectServlet" method="post">
-	                                    <span class="mb-2">사이즈 선택:</span><br>
-	                                    
-	                                    <label for="210" class="mb-2">210
-	                                        <input type="radio" id="210" name="selectedSize" value="210">
-	                                    </label>
-	                                    
-	                                    <label for="220">220
-	                                        <input type="radio" id="220" name="selectedSize" value="220">
-	                                    </label>
-	                                    
-	                                    <label for="230">230
-	                                        <input type="radio" id="230" name="selectedSize" value="230">
-	                                    </label>
-	                                    
-	                                    <label class="active" for="240">240
-	                                        <input type="radio" id="240" name="selectedSize" value="240">
-	                                    </label>
-	                                    
-	                                    <label for="250">250
-	                                        <input type="radio" id="250" name="selectedSize" value="250">
-	                                    </label>
-	                                    
-	                                    <label for="260">260
-	                                        <input type="radio" id="260" name="selectedSize" value="260">
-	                                    </label>
-	                                    
-	                                    <label for="270">270
-	                                        <input type="radio" id="270" name="selectedSize" value="270">
-	                                    </label>
-	                                    
-	                                    <label for="280">280
-	                                        <input type="radio" id="280" name="selectedSize" value="280">
-	                                    </label>
-	                                    
-	                                    <label for="290">290
-	                                        <input type="radio" id="290" name="selectedSize" value="290">
-	                                    </label>
-	                                </div>
-	                            </div>
-	                            
-	                         	<div class="product__details__cart__option">
-	                                <div class="quantity">
-	                                    <div class="pro-qty">
-	                                        <input type="text" value="1" name="quantityInput">                        
-	                                    </div>
-	                                </div>
-	                                <button type="submit" class="primary-btn">장바구니</button>
-	                            </div>
-                            </form>
+                                    <span class="mb-2">사이즈 선택:</span><br>
+                                    <label for="240" class="mb-2">240
+                                        <input type="radio" id="240">
+                                    </label>
+                                    <label for="245">245
+                                        <input type="radio" id="245">
+                                    </label>
+                                    <label for="250">250
+                                        <input type="radio" id="250">
+                                    </label>
+                                    <label class="active" for="255">255
+                                        <input type="radio" id="255">
+                                    </label>
+                                    <label for="260">260
+                                        <input type="radio" id="260">
+                                    </label>
+                                    <label for="265">265
+                                        <input type="radio" id="265">
+                                    </label>
+                                    <label for="270">270
+                                        <input type="radio" id="270">
+                                    </label>
+                                    <label for="275">275
+                                        <input type="radio" id="275">
+                                    </label>
+                                    <label for="280">280
+                                        <input type="radio" id="280">
+                                    </label>
+                                </div>
+                            </div>
+                            
+                         <div class="product__details__cart__option">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1">                        
+                                    </div>
+                                </div>
+                                <a href="sCart" class="primary-btn">장바구니</a>
+                            </div>
                          <div class="product__details__btns__option">
                                 <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
                                 <a href="sMain"><i class="fa fa-exchange"></i> 상품 비교하기</a>
@@ -509,18 +492,20 @@
     
     
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script type="text/javascript">
+
         
+
     var iframe = document.getElementById( 'api-frame' );
     //여기가 uid 부분 여길 상품 페이지에서 눌렀을때 pk 키값으로 제품 uid 랑 제품 이릉 가격등을 가져올때 같이 가져온 값으로 대체
-    var uid = 'c2a5343bf18949fc8d6815034ec7f87d';
+    var uid = 'faef9fe5ace445e7b2989d1c1ece361c';
 
     // By default, the latest version of the viewer API will be used.
     var client = new Sketchfab( iframe );
 
     // Alternatively, you can request a specific version.
-    // var client = new Sketchfab( '1.12.1', iframe );	
+    // var client = new Sketchfab( '1.12.1', iframe );
 
     client.init( uid, {
         success: function onSuccess( api ){
@@ -537,8 +522,6 @@
             console.log( 'Viewer error' );
         }
     } );
-    
-  
     </script>
     
      
