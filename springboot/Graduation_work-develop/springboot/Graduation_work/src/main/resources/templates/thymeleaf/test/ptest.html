@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>전화번호 인증</title>
+</head>
+<body>
+
+    <section class="ftco-section" style="background-image: url(img/bg-1.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">본인인증</h2>
+                    <p>휴대폰 번호를 입력하고 인증 코드를 받으세요.</p>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> 
+						<form action="/LoginCheckServlet" class="signin-form" method="post">
+			      			<div class="form-group mb-3">
+			      				<label class="label">휴대폰 번호</label>
+			      				<input type="text" class="form-control" id="phoneNumber" placeholder="ex)010-2854-5824">
+                                
+			      			</div>
+
+                              <div class="form-group text-right">
+								<!-- 코드 전송 버튼-->
+		            			<button class=" btn btn-primary submit px-3" id="sendButton">인증 코드 전송</button>
+		            		</div>
+
+		            		<div class="form-group mb-3">
+		            			<label class="label" for="login_pw">인증 코드</label>
+		              			<input type="text" id="verificationCode" class="form-control" placeholder="ex)6H2DB9">
+		            		</div>
+
+                            <div class="form-group text-right">
+								<!-- 코드 확인 버튼-->
+		            			<button class="btn btn-primary submit px-3" id="verifyButton">인증 확인</button>
+		            		</div>
+
+
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+
+		          		</form>
+
+						
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sendButton = document.getElementById('sendButton'); //버튼 들 가져옴
+            const verifyButton = document.getElementById('verifyButton');
+
+            let sentPhoneNumber = ''; // 발송한 휴대폰 번호 
+            let verificationCode = ''; // 발송한 인증 코드
+
+            sendButton.addEventListener('click', function() {
+                const phoneNumber = document.getElementById('phoneNumber').value; // 핸드폰번호 저장
+
+                fetch('/send-one', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ phoneNumber: phoneNumber })
+                })
+                .then(responseMap => responseMap.json())
+                .then(data => {
+                    console.log(data);
+                    sentPhoneNumber = phoneNumber; // 발송한 번호 저장
+                    verificationCode = data.verificationCode; // SMS 메시지 내용에서 인증 코드 추출
+                    console.log(verificationCode) //테스용 로그 출력 스플릿으로 잘라볼려고 하는데 data.text로 자르기보다 그냥 값을 따로 하나 가져와야할듯
+                    //아마도 send-one 실행시 지내들이 만든 내장함수로 번호랑 메세지를 가져가고 서버에서 메세지를 보내주는 방식이라 메세지는발 보내지는데 여기에 값이 안넘어와서 그런듯
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+
+            verifyButton.addEventListener('click', function() {
+                const inputVerificationCode = document.getElementById('verificationCode').value; //인증 확인 버튼 누르면 저장된 값
+				alert(verificationCode); // 혹시나 인증 버튼에서 잘되나 볼려고 했는데 어림도 없지 값이 저장이 안된다
+                if (inputVerificationCode === verificationCode) { //애초에 값이 안넘오오니 작동이 안됨
+                    // 인증 성공
+                    console.log('본인 인증 성공');
+                    var targetURL = 'pwUpdateLast';
+                    
+                    window.location.href = targetURL;
+                    
+                    // 추가 작업을 원한다면 여기에 작성
+                } else {
+                    // 인증 실패
+                    console.log('본인 인증 실패');
+                    // 추가 작업을 원한다면 여기에 작성
+                }
+            });
+        });
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
+
