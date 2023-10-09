@@ -25,30 +25,9 @@
 </head>
 
 <body>
+	
 
 
-	<script src="js/viewer-api.js"></script>
-
-	<script>
-        window.addEventListener('load', function() {
-            var allElements = document.getElementsByTagName('*');
-            Array.prototype.forEach.call(allElements, function(el) {
-                var includePath = el.dataset.includePath;
-                if (includePath) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            el.outerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open('GET', includePath, true);
-                    xhttp.send();
-                }
-            });
-        });
-        
-        
-    </script>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -193,16 +172,11 @@
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
-                                             <iframe id="api-frame-1" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
-		    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
-		    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-		    										 webkitallowfullscreen="true">
-		    								</iframe>
+                                            <img src="img/shoes/shoes1.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail">
                                         </div>
                                         <div class="product__cart__item__text">
-												<article id="shoes1_info">
-		                                            
-	                                            </article>
+                                            <h6>나이키 고 플라이어즈</h6>
+                                            <h5>111,300(원)</h5>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -212,7 +186,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price"	>111,300(원)</td>
+                                    <td class="cart__price">111,300(원)</td>
                                     <td class="cart__close">
     									<!-- <i class="fa fa-close" onclick="removeCartItem(this)"></i> -->
     									<i class="fa fa-close" onclick="removeCartItem(this, 111300)"></i>
@@ -221,15 +195,11 @@
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
-                                            <iframe id="api-frame-2" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
-     											allow="autoplay; fullscreen; xr-spatial-tracking" 
-     											xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-											     webkitallowfullscreen="true"></iframe>
+                                            <img src="img/shoes/shoes2.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail">
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <article id="shoes2_info">
-		                                            
-	                                        </article>
+                                            <h6>에어 조던 6 레트로</h6>
+                                            <h5>199,200(원)</h5>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -247,15 +217,11 @@
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
-                                            <iframe id="api-frame-3" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
-     											allow="autoplay; fullscreen; xr-spatial-tracking" 
-     											xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-											     webkitallowfullscreen="true"></iframe>
+                                            <img src="img/shoes/shoes3.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail">
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <article id="shoes3_info">
-		                                            
-	                                            </article>
+                                            <h6>NM306PFL</h6>
+                                            <h5>109,000(원)</h5>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -389,87 +355,12 @@
     </div>
     <!-- Search End -->
     
-
-    <script type="text/javascript">
-		
-		var imageToModelMapping_real = [];
-		
-		var shoes_id;
-		var shoes_name;
-	    var shoes_price;
-		
-		window.onload = pageLoad;
-		function pageLoad(){
-			console.log("페이지가 로드 되었습니다.");
-		
-		    var xhr = new XMLHttpRequest();
-		   	
-		
-		    xhr.onreadystatechange = function () {
-		        if (xhr.readyState === 4 && xhr.status === 200) {
-		            var object = JSON.parse(xhr.responseText);
-		            var objLength = Object.keys(object).length;
-		            
-					for (var i = 0; i < objLength; i++) {
-					    shoes_id = object[i].shoes_id;
-					    shoes_name = object[i].shoes_name
-					    shoes_price = object[i].shoes_price;
-					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price:shoes_price });
-					}
-					
-					var article_id = ["shoes1_info", "shoes2_info", "shoes3_info"];
-					
-					for(var i = 0; i < objLength; i++)
-					{
-						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
-		    			var shoes_info_price = imageToModelMapping_real[i].shoes_price;
-		    			
-		    			document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>" +
-		    												   			   "<h5>" + shoes_info_price + " 원" + "</h5>";
-		    			
-					}
-					
-					imageToModelMapping_real.forEach(function(mapping) {
-						replaceWith3DModel(mapping.uid, mapping.iframeId);
-					});
-				}
-		    };
-		   
-		
-		    xhr.open("GET", "/ProductListSevlet", true);
-		    xhr.send(null);
-    	};
-    	
-    function replaceWith3DModel(uid, iframeId) {
-        var iframe = document.getElementById(iframeId);
-        var client = new Sketchfab( iframe );
-
-        client.init(uid, {
-            success: function onSuccess(api) {
-                api.start();
-                api.addEventListener('viewerready', function() {
-                    console.log(iframeId + ' 3D 모델이 준비되었습니다.');
-                });
-            },
-            error: function onError() {
-                console.log(iframeId + ' 3D 모델 초기화 오류');
-            }
-        });
-    }
-   
-	
-
-    /*// 이미지를 3D 모델로 대체
-    imageToModelMapping_real.forEach(function(mapping) {
-        replaceWith3DModel(mapping.uid, mapping.iframeId);
-    });*/
-    </script>
     
+   
+    
+
     <!-- Js Plugins -->
-    <script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
