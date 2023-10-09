@@ -194,10 +194,10 @@
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
                                              <iframe id="api-frame-1" width="140" height="60" style="border:none" class="d-inline-block align-text-top rounded img-thumbnail"
-    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
-    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-    										 webkitallowfullscreen="true">
-    								</iframe>
+		    										 allow="autoplay; fullscreen; xr-spatial-tracking" 
+		    										xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
+		    										 webkitallowfullscreen="true">
+		    								</iframe>
                                         </div>
                                         <div class="product__cart__item__text">
                                             <h6>나이키 고 플라이어즈</h6>
@@ -388,10 +388,41 @@
     
 
     <script type="text/javascript">
-
+		
+		 var imageToModelMapping_real = [];
+		
+		window.onload = pageLoad;
+		function pageLoad(){
+			console.log("페이지가 로드 되었습니다.");
+		
+		    var xhr = new XMLHttpRequest();
+		   	
+		
+		    xhr.onreadystatechange = function () {
+		        if (xhr.readyState === 4 && xhr.status === 200) {
+		            var object = JSON.parse(xhr.responseText);
+		            var objLength = Object.keys(object).length;
+		            
+					for (var i = 0; i < objLength; i++) {
+					    var shoes_id = object[i].shoes_id;
+					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1) });
+					}
+					
+					console.log(imageToModelMapping_real);
+					
+					imageToModelMapping_real.forEach(function(mapping) {
+						replaceWith3DModel(mapping.uid, mapping.iframeId);
+					});
+				}
+		    };
+		
+		    xhr.open("GET", "/ProductListSevlet", true);
+		    xhr.send(null);
+    	};
+    	
     function replaceWith3DModel(uid, iframeId) {
         var iframe = document.getElementById(iframeId);
-        var client = new Sketchfab(iframe);
+        var client = new Sketchfab( iframe );
 
         client.init(uid, {
             success: function onSuccess(api) {
@@ -405,24 +436,20 @@
             }
         });
     }
-    //넣어달라고 해서 넣어둿긴했는데
-    var imageToModelMapping = [
-        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-1' },
-        { uid: 'faef9fe5ace445e7b2989d1c1ece361c', iframeId: 'api-frame-2' },
-        { uid: 'c00345fd64414c4e8895c6aaa262e4d5', iframeId: 'api-frame-3' }
-        
-    ];
+   
+	
 
-    // 이미지를 3D 모델로 대체
-    imageToModelMapping.forEach(function(mapping) {
+    /*// 이미지를 3D 모델로 대체
+    imageToModelMapping_real.forEach(function(mapping) {
         replaceWith3DModel(mapping.uid, mapping.iframeId);
-    });
-
+    });*/
     </script>
-
-
+    
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>

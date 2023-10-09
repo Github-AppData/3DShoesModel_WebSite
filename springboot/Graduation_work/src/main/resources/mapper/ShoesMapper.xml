@@ -7,7 +7,7 @@
 		SELECT shoes_id, shoes_name, shoes_price
 		FROM shoes
 		ORDER BY RAND()
-		LIMIT 1;
+		LIMIT 3;
 	</select>
 	
 </mapper>

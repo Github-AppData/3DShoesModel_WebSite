@@ -1,6 +1,7 @@
 package com.example.rubypaper.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class ProductListSevlet extends HttpServlet{
 
 	// 이 서블릿은 sMain에 있는 상품들을 하기 위해서.
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("ProductListSevlet 실행 되었습니다." );
 		
@@ -37,13 +38,17 @@ public class ProductListSevlet extends HttpServlet{
         ObjectMapper objectMapper = new ObjectMapper();
 
         // List<Map<String, Object>>를 JSON으로 변환
-        String json = objectMapper.writeValueAsString(shoesList);
+        String shoes_id = objectMapper.writeValueAsString(shoesList);
         
-        // TODO : 이제 json을 html의 js 부분으로 보내면 된다.
-
         // JSON 출력
-        System.out.println(json);
+        System.out.println(shoes_id);
 
-				
+        // Content-Type 설정 (JSON으로 응답)
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(shoes_id);
+        
+        
+        
 	}
 }
