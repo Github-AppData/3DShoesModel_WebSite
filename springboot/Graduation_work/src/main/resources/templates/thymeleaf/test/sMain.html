@@ -502,6 +502,7 @@
 	    var dataToSend = null;
 	    
 	    var xhr = new XMLHttpRequest();
+	    var xhr2 = new XMLHttpRequest();
 	    
 		
 		window.onload = pageLoad;
@@ -561,7 +562,7 @@
 
 			}; // xhr.onreadystatechange 끝
 			
-			xhr.open("GET", "/ProductListSevlet", true);
+			xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
 		   	xhr.send(null); // ProductListSevlet에 보낼 요청
 		   			
 		}; // pageLoad
@@ -578,7 +579,9 @@
 		console.log("linkId:", linkId); // linkId 값을 로그로 출력
 			    		
 		console.log("-----handleLinkClick2----");
-		    		
+		
+		
+		
 		xhr.onreadystatechange = function () 
 		{
 			console.log("-----handleLinkClick3----");
@@ -586,6 +589,7 @@
 			
 			if (xhr.readyState === 4 && xhr.status === 200) 
 			{
+				console.log(xhr.responseText);
 				console.log("-----handleLinkClick4----");
 				switch (linkId) 
 				{
@@ -624,7 +628,14 @@
 						console.log("아무것도 눌리지 않았습니다.");
 				}  
 				 
-				var jsonData;
+				 
+						 
+			} 
+			else {
+				console.log("응답되지 않았습니다.");
+			}
+			
+			var jsonData;
 				if(dataToSend != null)
 				{
 					console.log("dataToSend NOT NULL");
@@ -632,13 +643,12 @@
 								
 				} else {
 					console.log("dataToSend NULL");
-				}	    		 
-			}
+				}	   
+			
 			
 			
 			    	
 		} // xhr.onreadystatechange 끝
-
 		xhr.open("GET", "/ProductDetailPageServlet", true);
 		xhr.send(null); // ProductDetailPageServlet 보낼 요청
 		console.log("handleLinkClick 안에 있음 ", imageToModelMapping_real[5]);

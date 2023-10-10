@@ -23,6 +23,13 @@ public class ProductDetailPageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
 		System.out.println("ProductDetailPageServlet !!!");
+		
+		JSONObject jsonResponse = new JSONObject();
+	    jsonResponse.put("message", "This is a sample JSON response.");
+
+	    response.getWriter().write(jsonResponse.toJSONString());
+	    response.getWriter().flush();
+	    response.getWriter().close();
 //		String jsonInfo = request.getParameter("jsonData");
 //		
 //		
