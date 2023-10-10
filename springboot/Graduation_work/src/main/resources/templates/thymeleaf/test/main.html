@@ -74,15 +74,15 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
-                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+                                <a th:if="${login}" th:href="@{sLogout}">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${login}" th:href="@{sLogin}">로그인</a>
                                 <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
-                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
-    							<span th:unless="${userID}" th:text="어서오세요"></span>
+                                <span th:if="${login}" th:text="${user.id} + '님 어서오세요'"></span>
+    							<span th:unless="${login}" th:text="어서오세요"></span>
                             </div>
                         </div>
                     </div>
@@ -404,31 +404,6 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    
-    <script>
-		
-		
-		// 현재 페이지의 URL을 가져옵니다.
-		var link =  document.location.href;
-		var currentPageName = link.substring(21);
-		
-		var url = 'message=' + currentPageName;
-		
-		// XMLHttpRequest 객체 생성
-		var xhr = new XMLHttpRequest();
-		
-		// 서블릿 URL 지정
-		var servletUrl = "LogoutServlet"; // 실제 서블릿 URL로 변경
-		
-		// 파일명을 출력합니다.
-		console.log("현재 페이지 파일명: " + currentPageName);
-		
-		// POST 요청 설정
-		xhr.open("POST", servletUrl, true);
-		
-		// 데이터 전송
-		xhr.send(url);
-	</script>
     
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

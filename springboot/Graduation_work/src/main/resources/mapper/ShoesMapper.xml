@@ -6,8 +6,8 @@
 	<select id="randSelectShoesId"  resultType="Map">
 		SELECT shoes_id, shoes_name, shoes_price
 		FROM shoes
-		ORDER BY RAND()
-		LIMIT 3;
+		LIMIT 6;
+
 	</select>
 	
 	<select id="findIsLike" resultType="Map">

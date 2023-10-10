@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
 
+
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
@@ -23,9 +25,37 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     
+    <style>
+    	.aa {position: absolute;
+				width: 260px; /* <iframe>의 크기와 동일하게 설정 */
+        											 height: 260px; /* <iframe>의 크기와 동일하게 설정 */
+        											 opacity: 0; /* 투명도 설정 */
+        											 }
+    </style>
 </head>
 
 <body>
+	<script src="js/viewer-api.js"></script>
+	<script>
+        window.addEventListener('load', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
+        
+    </script>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -101,12 +131,7 @@
                                     <li><a href="#">아디다스</a></li>
                                 </ul></li></li>
                             <li><a href="#">고객센터</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">본사정책</a></li>
-                                    <li><a href="sDetails">상세화면</a></li>
-                                    <li><a href="#">장바구니</a></li>
-                                    <li><a href="#">결제하기</a></li>
-                                </ul>
+                                
                             </li>
                             <li><a href="sBlog">런칭캘린더</a></li>
                             <li><a href="sContact">매장찾기</a></li>
@@ -116,8 +141,15 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+<<<<<<< HEAD
                         <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
                         <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+=======
+
+                        <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
+                        <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+
+>>>>>>> origin/develop
                     </div>
                 </div>
             </div>
@@ -159,153 +191,22 @@
                         <div class="shop__sidebar__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">카테고리</a>
-                                    </div>
+                                    
                                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <div class="shop__sidebar__categories">
-                                                <!--<ul class="nice-scroll">
-                                                    <li><a href="#">스니커즈</a></li>
-                                                    <li><a href="#">러닝화</a></li>
-                                                    <li><a href="#">슬리퍼</a></li>
-                                                    <li><a href="#">샌들</a></li>
-                                                    <li><a href="#">구두</a></li>
-                                                    <li><a href="#">부츠</a></li>
-                                                    <li><a href="#">크록스</a></li>
-                                                </ul>-->
-                                                <ul class="nice-scroll">
-                                                    <li><label for="스니커즈">스니커즈
-                                                        <input type="checkbox" id="스니커즈">
-                                                    </label></li>
-                                                    <li><label for="러닝화">러닝화
-                                                        <input type="checkbox" id="러닝화">
-                                                    </label></li>
-                                                    <li><label for="슬리퍼">슬리퍼
-                                                        <input type="checkbox" id="슬리퍼">
-                                                    </label></li>
-                                                    <li><label for="샌들">샌들
-                                                        <input type="checkbox" id="샌들">
-                                                    </label></li>
-                                                    <li><label for="구두">구두
-                                                        <input type="checkbox" id="구두">
-                                                    </label></li>
-                                                    <li><label for="부츠">부츠
-                                                        <input type="checkbox" id="부츠">
-                                                    </label></li>
-                                                    <li><label for="크록스">크록스
-                                                        <input type="checkbox" id="크록스">
-                                                    </label></li>
-                                                </ul>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">브랜드</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__brand">
-                                                <!--<ul>
-                                                    <li><a href="#">나이키</a></li>
-                                                    <li><a href="#">뉴발란스</a></li>
-                                                    <li><a href="#">컨버스</a></li>
-                                                    <li><a href="#">아디다스</a></li>
-                                                </ul>-->
-                                                <ul>
-                                                <li><label for="나이키">나이키
-                                                    <input type="checkbox" id="나이키">
-                                                </label>
-                                            </li>
-                                                <li><label for="뉴발란스">뉴발란스
-                                                    <input type="checkbox" id="뉴발란스">
-                                                </label>
-                                            </li>
-                                                <li><label for="컨버스">컨버스
-                                                    <input type="checkbox" id="컨버스">
-                                                </label>
-                                            </li>
-                                                <li><label for="아디다스">아디다스
-                                                    <input type="checkbox" id="아디다스">
-                                                </label>
-                                            </li>
-                                        </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">성별</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__brand">
-                                               
-                                                <ul>
-                                                <li><label for="남성">남성
-                                                    <input type="checkbox" id="남성">
-                                                </label>
-                                            </li>
-                                                <li><label for="여성">여성
-                                                    <input type="checkbox" id="여성">
-                                                </label>
-                                            </li>
-                                                <li><label for="공용">공용
-                                                    <input type="checkbox" id="공용">
-                                                </label>
-                                            </li>
-                                                <li><label for="아동용">아동용
-                                                    <input type="checkbox" id="아동용">
-                                                </label>
-                                            </li>
-                                        </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">발볼(너비)</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__brand">
-                                               
-                                                <ul>
-                                                <li><label for="D(보통)">D(보통)
-                                                    <input type="checkbox" id="D(보통)">
-                                                </label>
-                                            </li>
-                                                <li><label for="2E(약간 넓음)">2E(약간 넓음)
-                                                    <input type="checkbox" id="2E(약간 넓음)">
-                                                </label>
-                                            </li>
-                                                <li><label for="4E(넓음)">4E(넓음)
-                                                    <input type="checkbox" id="4E(넓음)">
-                                                </label>
-                                            </li>
-                                                <li><label for="M(보통)">M(보통)
-                                                    <input type="checkbox" id="M(보통)">
-                                                </label>
-                                            </li>
-                                            <li><label for="여성B(보통)">여성B(보통)
-                                                <input type="checkbox" id="여성B(보통)">
-                                            </label>
-                                        </li>
-                                        <li><label for="여성M(보통)">여성M(보통)
-                                            <input type="checkbox" id="여성M(보통)">
-                                        </label>
-                                    </li>
-                                        </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="card">
                                     <div class="card-heading">
                                         <a data-toggle="collapse" data-target="#collapseThree">가격</a>
@@ -313,13 +214,7 @@
                                     <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
-                                                <!--<ul>
-                                                    <li><a href="#">5만원 미만</a></li>
-                                                    <li><a href="#">5만원 - 10만원 미만</a></li>
-                                                    <li><a href="#">10만원 - 15만원 미만</a></li>
-                                                    <li><a href="#">15만원 - 20만원 미만</a></li>
-                                                    <li><a href="#">20만원 이상</a></li>
-                                                </ul>-->
+                                                
                                                 <ul>
                                                     <li><label for="5만원 미만">5만원 미만
                                                         <input type="radio" id="5만원 미만" name="a">
@@ -341,138 +236,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card ">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">사이즈</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__size">
-                                                <label for="225">225
-                                                    <input type="radio" id="225">
-                                                </label>
-                                                <label for="230">230
-                                                    <input type="radio" id="230">
-                                                </label>
-                                                <label for="235">235
-                                                    <input type="radio" id="235">
-                                                </label>
-                                                <label for="240">240
-                                                    <input type="radio" id="240">
-                                                </label>
-                                                <label for="245">245
-                                                    <input type="radio" id="245">
-                                                </label>
-                                                <label for="250">250
-                                                    <input type="radio" id="250">
-                                                </label>
-                                                <label for="255">255
-                                                    <input type="radio" id="255">
-                                                </label>
-                                                <label for="260">260
-                                                    <input type="radio" id="260">
-                                                </label>
-                                                <label for="265">265
-                                                    <input type="radio" id="265">
-                                                </label>
-                                                <label for="270">270
-                                                    <input type="radio" id="270">
-                                                </label>
-                                                <label for="275">275
-                                                    <input type="radio" id="275">
-                                                </label>
-                                                <label for="280">280
-                                                    <input type="radio" id="280">
-                                                </label>
-                                                <label for="285">285
-                                                    <input type="radio" id="285">
-                                                </label>
-                                                <label for="290">290
-                                                    <input type="radio" id="290">
-                                                </label>
-                                                <label for="295">295
-                                                    <input type="radio" id="295">
-                                                </label>
-                                                <label for="300">300
-                                                    <input type="radio" id="300">
-                                                </label>
-                                                <label for="305">305
-                                                    <input type="radio" id="305">
-                                                </label>
-                                                <label for="310">310
-                                                    <input type="radio" id="310">
-                                                </label>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">색상</a>
-                                    </div>
-                                    <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__color">
-                                                <label class="c-1" for="sp-1">
-                                                    <input type="radio" id="sp-1">
-                                                </label>
-                                                <label class="c-2" for="sp-2">
-                                                    <input type="radio" id="sp-2">
-                                                </label>
-                                                <label class="c-3" for="sp-3">
-                                                    <input type="radio" id="sp-3">
-                                                </label>
-                                                <label class="c-4" for="sp-4">
-                                                    <input type="radio" id="sp-4">
-                                                </label>
-                                                <label class="c-5" for="sp-5">
-                                                    <input type="radio" id="sp-5">
-                                                </label>
-                                                <label class="c-6" for="sp-6">
-                                                    <input type="radio" id="sp-6">
-                                                </label>
-                                                <label class="c-7" for="sp-7">
-                                                    <input type="radio" id="sp-7">
-                                                </label>
-                                                <label class="c-8" for="sp-8">
-                                                    <input type="radio" id="sp-8">
-                                                </label>
-                                                <label class="c-9" for="sp-9">
-                                                    <input type="radio" id="sp-9">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 -->
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseSix">태그</a>
-                                    </div>
-                                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__tags">
-                                                <a href="#">세일</a>
-                                                <a href="#">기획</a>
-                                                <a href="#">NEW</a>
-                                                <a href="#">타임딜</a>
-                                                <a href="#">남성</a>
-                                                <a href="#">여성</a>
-                                                <a href="#">아동</a>
-                                                <a href="#">공용</a>
-                                                <a href="#">한정</a>
-                                                <a href="#">드랍</a>
-                                                <a href="#">드로우</a>
-                                                <a href="#">봄</a>
-                                                <a href="#">여름</a>
-                                                <a href="#">가을</a>
-                                                <a href="#">겨울</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div><br>
                             <button type="button" class="btn btn-dark btn-block float-right text-white" style="background-image: url(img/bg2.png)"> 검색</button>
                         </div>
@@ -483,20 +246,11 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
-                                    <p th:text="'총 '+${result}+'개의 상품'"></p>
+                                    <p th:text="'총 6개의 상품'"></p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__right">
-                                    <p>정렬 기준:&nbsp;</p>
-                                    <select>
-                                        <option value="">베스트상품순</option>
-                                        <option value="">추천순</option>
-                                        <option value="">최신순</option>
-                                        <option value="">높은 가격순</option>
-                                        <option value="">낮은 가격순</option>
-                                    </select>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -505,16 +259,16 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <a th:href="@{sDetails}">
-									
-								<div class="product__item__pic set-bg" data-setbg="img/shoes/shoes4.png" >
-                                    <span class="label text-white" style="background-color: rgb(172, 0, 0);">베스트셀러</span>
-                                </div>
-                                </a>
+                                <div class="product__item__pic set-bg">
+                                    <iframe id="api-frame-1" width="270" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+     						
                                 <div class="product__item__text">
+									
                                 <!-- 상품 이름 -->
-                                    <h6>척 70 레터 루나 그레이</h6>
-                                    <a th:href="@{sCart}" class="add-cart">+ 장바구니 추가</a>
+                                    <h6 id="shoes1_name"></h6>
+                                    <a id="shoes1_page" th:href="@{sDetails}" class="add-cart" data-link-id="1" onclick="handleLinkClick(this)">상품 페이지</a>
                                     <!-- 별점 -->
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
@@ -524,18 +278,19 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star-0"></i>
                                     </div>
-                                    <h5>105,000원</h5>
+                                    <h5 id="shoes1_price">105,000원</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes5.png">
-                                    
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>나이키 캄</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                <div class="product__item__pic set-bg">
+                                    <iframe id="api-frame-2" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
+                                    <h6 id="shoes2_name"></h6>
+                                    <a id="shoes2_page" th:href="@{sDetails}" class="add-cart" data-link-id="2" onclick="handleLinkClick(this)">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -544,20 +299,21 @@
                                         <i class="fa fa-star-o"></i>
                             
                                     </div>
-                                    <h5>59,000원</h5>
+                                    <h5 id="shoes2_price">105,000원</h5>
                                     
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes6.png">
+                                <div class="product__item__pic set-bg">
                                     <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                   
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>나이키 덩크 로우 레트로</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                    <iframe id="api-frame-3" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
+                                    <h6 id="shoes3_name"></h6>
+                                    <a id="shoes3_page" th:href="@{sDetails}" class="add-cart" data-link-id="3" onclick="handleLinkClick(this)">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -565,81 +321,43 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>139,000원</h5>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes7.png">
-                                    <span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
-                                    
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>스테파노로시 몬투라</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>99,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes8.png">
-                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                   
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>반스 올드스쿨</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>85,000원</h5>
+                                    <h5 id="shoes3_price">105,000원</h5>
                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes9.png">
-                                  
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>M2002RNM</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                <div class="product__item__pic set-bg">
+                                   	<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
+                                    <iframe id="api-frame-4" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
+                                    <h6 id="shoes4_name"></h6>
+                                    <a id="shoes4_page" th:href="@{sDetails}" class="add-cart" data-link-id="4" onclick="handleLinkClick(this)">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>189,000원</h5>
+                                    <h5 id="shoes4_price">105,000원</h5>
                                     
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes1.png">
-                                    
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>나이키 고 플라이어즈</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                <div class="product__item__pic set-bg">
+                                   <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+                                    <iframe id="api-frame-5" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
+                                    <h6 id="shoes5_name"></h6>
+                                    <a id="shoes5_page" th:href="@{sDetails}" class="add-cart" data-link-id="5" onclick="handleLinkClick(this)">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -647,116 +365,33 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>111,300원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes2.png">
-                                    <span class="label text-white" style="background-color: rgb(4, 74, 179);">수량한정</span>
-                                   
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>에어 조던 6 레트로</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
-                                    </div>
-                                    <h5>199,200원</h5>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes3.png">
-                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                    
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>NM306PFL</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
-                                    </div>
-                                    <h5>109,000원</h5>
+                                    <h5 id="shoes5_price">105,000원</h5>
                                    
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes10.png">
-                                  
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>U997RHC</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
+                                <div class="product__item__pic set-bg">
+                                    <iframe id="api-frame-6" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
+    								</iframe>
+    							</div>
+                            <div class="product__item__text">
+                                <h6 id="shoes6_name"></h6>
+                                    <a id="shoes6_page" th:href="@{sDetails}" class="add-cart" data-link-id="6" onclick="handleLinkClick(this)">상품 페이지</a>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
+                                        <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>159,000원</h5>
+                                    <h5 id="shoes6_price">105,000원</h5>
                                     
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes11.png">
-                                 
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>척 70 틸 유니버스</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>99,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shoes/shoes12.png">
-                      
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>잭퍼셀 클래식 화이트</h6>
-                                    <a href="#" class="add-cart">+ 장바구니 추가</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>99,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
@@ -802,7 +437,7 @@
                     <div class="footer__widget">
                         <h6>본사정책</h6>
                         <ul>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="sContact">Contact Us</a></li>
                             <li><a href="#">결제 수단</a></li>
                             <li><a href="#">배송 정책</a></li>
                             <li><a href="#">반품 및 교환</a></li>
@@ -818,6 +453,7 @@
                                 <input type="text" placeholder="이메일">
                                 <button type="submit"><span class="icon_mail_alt"></span></button>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -849,6 +485,241 @@
         </div>
     </div>
     <!-- Search End -->
+    
+    
+    <script type="text/javascript">
+		
+		// 전역변수 공간 입니다만.
+		
+		var imageToModelMapping_real = [];
+		var iframe_clicked = [];
+		var shoes_selected = ["shoes1_page","shoes2_page","shoes3_page","shoes4_page","shoes5_page","shoes6_page"];
+		
+		var shoes_id;
+		var shoes1_name;
+	    var shoes_price;
+	    
+	    var dataToSend = null;
+	    
+	    var xhr = new XMLHttpRequest();
+	    
+		
+		window.onload = pageLoad;
+		function pageLoad()
+		{
+			xhr.onreadystatechange = function () 
+			{
+				// 응답이 되었으면,
+				if (xhr.readyState === 4 && xhr.status === 200) 
+				{
+		            var object = JSON.parse(xhr.responseText);
+		            var objLength = Object.keys(object).length;
+		            console.log("objLength : ",objLength);
+		            
+					for (var i = 0; i < objLength; i++) 
+					{
+					    shoes_id = object[i].shoes_id;
+					    shoes_name = object[i].shoes_name;
+					    shoes_price = object[i].shoes_price;
+					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price:shoes_price });
+					    console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+					}
+					
+					
+					
+					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
+					// 신발 이름 
+					var article_id = ["shoes1_name", "shoes2_name", "shoes3_name", "shoes4_name", "shoes5_name", "shoes6_name"];
+					
+					for(var i = 0; i < objLength; i++)
+					{
+						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
+		    			document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
+					}
+					
+					// 신발 가격
+					var price_sum = 0;  // 상품 총 금액 
+					var delivery_cost = 3000; // 배송비 
+					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
+					
+					// 신발 가격을 표시하는 부분의 id
+					var article_price_id = ["shoes1_price", "shoes2_price", "shoes3_price","shoes4_price", "shoes5_price", "shoes6_price"];
+					
+					for(var i = 0; i < objLength; i++)
+					{
+						var shoes_info_price = imageToModelMapping_real[i].shoes_price;
+						price_sum += shoes_info_price;
+		    			document.getElementById(article_price_id[i]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+					}
+					
+					imageToModelMapping_real.forEach(function(mapping) 
+					{
+						replaceWith3DModel(mapping.uid, mapping.iframeId);
+					});
+					
+				} // if (xhr.readyState === 4 && xhr.status === 200) 
+
+			}; // xhr.onreadystatechange 끝
+			
+			xhr.open("GET", "/ProductListSevlet", true);
+		   	xhr.send(null); // ProductListSevlet에 보낼 요청
+		   			
+		}; // pageLoad
+		
+	// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
+	function handleLinkClick(link) 
+	{
+		
+						
+		console.log("-----handleLinkClick----");
+		var linkId = null;
+		
+		linkId = link.getAttribute("data-link-id");
+		console.log("linkId:", linkId); // linkId 값을 로그로 출력
+			    		
+		console.log("-----handleLinkClick2----");
+		    		
+		xhr.onreadystatechange = function () 
+		{
+			console.log("-----handleLinkClick3----");
+			console.log("handleLinkClick3 후 linkId:", linkId); // linkId 값을 로그로 출력
+			
+			if (xhr.readyState === 4 && xhr.status === 200) 
+			{
+				console.log("-----handleLinkClick4----");
+				switch (linkId) 
+				{
+						
+					case "1":
+						dataToSend = imageToModelMapping_real[0];
+						console.log(dataToSend);
+						break;
+							            
+					case "2":
+						dataToSend = imageToModelMapping_real[1];
+						console.log(dataToSend);
+						break;
+							            
+					case "3":
+						dataToSend = imageToModelMapping_real[2];
+						console.log(dataToSend);
+						break;
+							            
+					case "4":
+						dataToSend = imageToModelMapping_real[3];
+						console.log(dataToSend);
+						break;
+							            
+					case "5":
+						dataToSend = imageToModelMapping_real[4];
+						console.log(dataToSend);
+						break;
+							            
+					case "6":
+						dataToSend = imageToModelMapping_real[5];
+						console.log(dataToSend);
+						break;
+							       
+					default:
+						console.log("아무것도 눌리지 않았습니다.");
+				}  
+				 
+				var jsonData;
+				if(dataToSend != null)
+				{
+					console.log("dataToSend NOT NULL");
+					jsonData = JSON.stringify(dataToSend);
+								
+				} else {
+					console.log("dataToSend NULL");
+				}	    		 
+			}
+			
+			
+			    	
+		} // xhr.onreadystatechange 끝
+
+		xhr.open("GET", "/ProductDetailPageServlet", true);
+		xhr.send(null); // ProductDetailPageServlet 보낼 요청
+		console.log("handleLinkClick 안에 있음 ", imageToModelMapping_real[5]);
+					
+	} // ㅁㄴ암ㄴ
+				
+   
+    function replaceWith3DModel(uid, iframeId) {
+        return new Promise(function(resolve, reject) {
+            var iframe = document.getElementById(iframeId);
+            var client = new Sketchfab(iframe);
+
+            client.init(uid, {
+                success: function onSuccess(api) {
+                    api.start();
+                    api.addEventListener('viewerready', function() {
+                        console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+                        resolve(); // Promise가 성공했음을 알립니다.
+                    });
+                },
+                error: function onError() {
+                    console.log(iframeId + ' 3D 모델 초기화 오류');
+                    reject(); // Promise가 실패했음을 알립니다.
+                },
+                // 초기화 매개변수 설정
+                graph_optimizer: 1, //그래프
+                merge_materials: 1, //재질 병합
+                material_packing: 1 //재질 패킹
+            });
+        });
+    }
+    
+    
+    function loadModels() {
+        // 모든 모델을 비동기식으로 로드합니다.
+        Promise.all(imageToModelMapping_real.map(function(mapping) {
+            return replaceWith3DModel(mapping.uid, mapping.iframeId);
+        })).then(function() {
+            // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+            console.log('모든 3D 모델이 로드되었습니다.');
+        }).catch(function() {
+            // 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
+            console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
+        });
+    }
+
+    // 모든 모델을 한꺼번에 로드합니다.
+    loadModels();
+    
+    /*
+    //하나씩 로드
+    function loadModels() {
+        var index = 0;
+
+        function loadNextModel() {
+            if (index < imageToModelMapping_real.length) {
+                replaceWith3DModel(imageToModelMapping_real[index].uid, imageToModelMapping_real[index].iframeId)
+                    .then(function() {
+                        // 다음 모델을 로드합니다.
+                        index++;
+                        loadNextModel();
+                    })
+                    .catch(function() {
+                        // 모델 로딩에 실패하더라도 다음 모델을 로드합니다.
+                        index++;
+                        loadNextModel();
+                    });
+            } else {
+                // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+                console.log('모든 3D 모델이 로드되었습니다.');
+            }
+        }
+
+        // 첫 번째 모델 로드를 시작합니다.
+        loadNextModel();
+    }*/
+
+    // 모든 모델을 비동기식으로 로드합니다.
+    // loadModels();
+
+    </script>
 
     <!-- Js Plugins -->
     
