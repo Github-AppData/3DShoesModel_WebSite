@@ -37,6 +37,44 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+.h1s{
+	
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #545454;
+}
+
+.container3d{
+	padding-right: 50px;
+ 	padding-left: 50px;
+}
+
+.products3d {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  width: 760px;
+  text-align: center;
+}
+.products3d a{
+  text-decoration: none;
+  color: black;
+  float: left;
+  font-size: 16px;
+}
+
+.price3d{
+  margin-top: 4px;
+  margin-bottom: 80px;
+}
+
+.clearfix{
+  clear: both;
+}
+
 h1,
 h2,
 h3,

@@ -27,6 +27,17 @@
 </head>
 
 <body>
+	<script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+        "GLTFLoader": "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js",
+        "OrbitControls": "https://unpkg.com/three@0.141.0/examples/jsm/controls/OrbitControls.js"
+      }
+    }
+  </script>
+  <script type="module" src="js/3dmodel.js"></script>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -186,7 +197,58 @@
     </section>
     <!-- Hero Section End -->
 
+	<div class="container3d">
+	<div class="products3d">
+	<div class="h1s">Our new Products</div>
+      <a>
+        <canvas id="canvas1" style="margin-right: 20px;
+  					margin-bottom: 20px;" width="225" height="225">
+  		</canvas>
+        <h6 style="font-weight:bold;">Nike Air Force Fresh</h6>
+        <p class="price3d">169,000</p>
+        
+      </a>
+      <a>
+        <canvas id="canvas2" style="margin-right: 20px;
+  					margin-bottom: 20px;" width="225" height="225">
+  		</canvas>
+        <h6 style="font-weight:bold;">Nike Air Vapor Max 2023</h6>
+        <p class="price3d">228,000</p>
+      </a>
+      <a>
+        <canvas id="canvas3" style="margin-right: 20px;
+  					margin-bottom: 20px;" width="225" height="225">
+  		</canvas>
+        <h6 style="font-weight:bold;">Niki Romo 4</h6>
+        <p class="price3d">249,000</p>
+      </a>
+      <a>
+        <canvas id="canvas4" style="margin-right: 20px;
+  					margin-bottom: 20px;" width="225" height="225">
+  		</canvas>
+        <h6 style="font-weight:bold;">Nike Pegasus 40</h6>
+        <p class="price3d">139,000</p>
+      </a>
+      <a>
+        <canvas id="canvas5" style="margin-right: 20px;
+  					margin-bottom: 20px;" width="225" height="225">
+  		</canvas>
+        <h6 style="font-weight:bold;">Nike Blazer </h6>
+        <p class="price3d">99,000</p>
+      </a>
+      <a>
+        <canvas id="canvas6" style="margin-right: 20px;
+  					margin-bottom: 20px;" width="225" height="225">
+  		</canvas>
+        <h6 style="font-weight:bold;">Jordan No Retro 1 Low</h6>
+        <p class="price3d">129,000</p>
+      </a>
+      <div class="clearfix"></div>
+    </div>
+	</div>
+	
     <!-- Banner Section Begin -->
+    <!-- 
     <section class="banner spad">
         <div class="container">
             <div class="row">
@@ -226,6 +288,7 @@
             </div>
         </div>
     </section>
+    -->
     <!-- Banner Section End -->
 
 
