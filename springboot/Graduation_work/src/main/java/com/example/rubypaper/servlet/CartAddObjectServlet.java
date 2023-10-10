@@ -35,6 +35,9 @@ public class CartAddObjectServlet extends HttpServlet{
 		    int size = Integer.parseInt(selectedSize);
 		    int quantity = Integer.parseInt(quantityInput);
 		    
+		    System.out.println("--------- size --------- :"+size);
+		    System.out.println("--------- quantity --------- :"+quantity);
+		    
 		    // 여기다가 3D Model의 id만 추가 하고, 장바구니에서는 해당 아이디 값만, 적용시켜 주는 데에 넣어주면 딴.
 		    
 		    cart.setQuantity(quantity);
