@@ -1,50 +1,37 @@
 package com.example.rubypaper.servlet;
 
 
+import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/ProductDetailPageServlet")
 public class ProductDetailPageServlet extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
+		// 클라이언트로부터의 JSON 데이터 수신
+        BufferedReader reader = request.getReader();
+        StringBuilder jsonBuffer = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            jsonBuffer.append(line);
+        }
         
-		System.out.println("ProductDetailPageServlet !!!");
-		
-		JSONObject jsonResponse = new JSONObject();
-	    jsonResponse.put("message", "This is a sample JSON response.");
-
-	    response.getWriter().write(jsonResponse.toJSONString());
-	    response.getWriter().flush();
-	    response.getWriter().close();
-//		String jsonInfo = request.getParameter("jsonData");
-//		
-//		
-//	    JSONParser jsonparse = new JSONParser();
-//	    try {
-//			JSONObject jsonObject = (JSONObject) jsonparse.parse(jsonInfo);
-//			System.out.println(jsonObject.get("uid"));
-//			
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	    
-	    
-		
+        System.out.println("jsonBuffer : " + jsonBuffer);
+        
+        // JSON 데이터를 세션에 저장
+        HttpSession session = request.getSession();
+        session.setAttribute("jsonData", jsonBuffer.toString());
 	}
 
 }

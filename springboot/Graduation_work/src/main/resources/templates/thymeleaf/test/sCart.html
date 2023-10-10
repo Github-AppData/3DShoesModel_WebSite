@@ -59,7 +59,8 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-                <a href="sLogin">로그인</a>
+                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                <a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
                 <a href="#">FAQ</a>
             </div>
             <div class="offcanvas__top__hover">
@@ -419,9 +420,9 @@
 		            var objLength = Object.keys(object).length;
 		            
 					for (var i = 0; i < objLength; i++) {
-					    shoes_id = object[i].shoes_id;
-					    shoes_name = object[i].shoes_name
-					    shoes_price = object[i].shoes_price;
+					    shoes_id = object[0].shoes_id;
+					    shoes_name = object[0].shoes_name
+					    shoes_price = object[0].shoes_price;
 					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price:shoes_price });
 					}
 					
@@ -472,7 +473,7 @@
 		    };
 		   
 		
-		    xhr.open("GET", "/ProductListSevlet", true);
+		    xhr.open("POST", "/CartPageSetServlet", true);
 		    xhr.send(null);
     	};
     	

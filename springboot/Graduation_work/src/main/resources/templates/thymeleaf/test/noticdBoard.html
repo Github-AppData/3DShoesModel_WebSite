@@ -73,16 +73,13 @@
 						<div class="col-lg-6 col-md-5">
 							<div class="header__top__right">
 								<div class="header__top__links">
-									<a href="#">로그인</a>
+									<a th:if="${userID}" th:href="@{sLogout}">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                					<a th:unless="${userID}" th:href="@{sLogin}">로그인</a>
 									<a href="#">FAQ</a>
 								</div>
 								<div class="header__top__hover">
-									<span>KRW <i class="arrow_carrot-down"></i></span>
-									<ul>
-										<li>USD</li>
-										<li>EUR</li>
-										<li>KRW</li>
-									</ul>
+									<span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    								<span th:unless="${userID}" th:text="어서오세요"></span>
 								</div>
 							</div>
 						</div>
@@ -93,30 +90,17 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo2.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+							<a href="main"><img src="img/logo2.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<nav class="header__menu mobile-menu">
 							<ul>
-								<li><a href="./index.html">메인화면</a></li>
-								<li><a href="./shop.html">신발</a>
-									<ul class="dropdown">
-										<li><a href="#">나이키</a></li>
-										<li><a href="#">뉴발란스</a></li>
-										<li><a href="#">컨버스</a></li>
-										<li><a href="#">아디다스</a></li>
-									</ul></li></li>
-								<li><a href="#">고객센터</a>
-									<ul class="dropdown">
-										<li><a href="#">본사정책</a></li>
-										<li><a href="./shop-details.html">상세화면</a></li>
-										<li><a href="#">장바구니</a></li>
-										<li><a href="#">결제하기</a></li>
-									</ul>
-								</li>
-								<li class="active"><a href="./blog.html">런칭캘린더</a></li>
-								<li><a href="./contact.html">매장찾기</a></li>
+								<li><a href="main">메인화면</a></li>
+								<li><a href="sMain">신발</a>
+								<li><a href="sBlog">런칭캘린더</a></li>
+								<li><a th:href="@{noticdBoard}">게시판</a></li>
+								<li><a href="sContact">매장찾기</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -161,13 +145,13 @@
 						  <div class="search-window">
 							  <form action="">
 								<select class="ml-4">
-									<option value="질문"; name="qna"; >질문 게시판</option>
-									<option value="자유";name="forum";>자유 게시판</option>
-									<option value="공지";name="inform";>공지 게시판</option>
+									<option value="질문" name="qna">질문 게시판</option>
+									<option value="자유" name="forum" >자유 게시판</option>
+									<option value="공지" name="inform" >공지 게시판</option>
 									</select>
 								  <div class="search-wrap">
 									  <label for="search" class="blind">공지사항 내용 검색</label>
-									  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+									  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요.">
 									  <button type="submit" class="btn btn-dark">검색</button>
 								  </div>
 							  </form>
@@ -181,9 +165,9 @@
 						  <table class="board-table">
 							  <thead>
 							  <tr>
-								  <th scope="col">유형 및 번호</th>
+								  <th scope="col">번호</th>
 								  <th scope="col">제목</th>
-								  <th scope="col">글쓴이</th>
+								  
 								  <th scope="col">등록일</th>
 								  <th scope="col">조회수</th>
 							  </tr>
@@ -192,30 +176,7 @@
 								<tr th:each="board : ${list}">
 									<td th:text="${board.idx}">공지1</td>
 									<td th:text="${board.title}"><a href="#!"><b>[공지사항] 개인정보 처리방침 변경안내처리방침</b></a></td>
-									<td th:text="${board.writer}">김성관</td>
 									<td th:text="${board.write_date}">2023.10.29</td>
-									<td th:text="${board.views}">158</td>
-								</tr> 
-								<tr th:each="board : ${list}">
-									<td th:text="${board.idx}">자유1</td>
-									<td th:text="${board.title}"><a href="#!"><b>10월 리뷰이벤트 후기입니다!!!</b></a></td>
-									<td th:text="${board.writer}">유대선</td>
-									<td th:text="${board.write_date}">2023.09.11</td>
-									<td th:text="${board.views}">72</td>
-								</tr> 
-								<tr th:each="board : ${list}">
-									<td th:text="${board.idx}">질문2</td>
-									<td th:text="${board.title}"><a href="#!"><b>상자안에 신발이 없어요...</b></a></td>
-									<td th:text="${board.writer}">문정하</td>
-									<td th:text="${board.write_date}">2023.11.26</td>
-									<td th:text="${board.views}">263</td>
-								</tr> 
-								<tr th:each="board : ${list}">
-									<td th:text="${board.idx}">질문1</td>
-									<td th:text="${board.title}"><a href="#!"><b>29일까지 주문하면 배송비 무료 맞나요?</b></a></td>
-									<td th:text="${board.writer}">성태인</td>
-									<td th:text="${board.write_date}">2023.10.22</td>
-									<td th:text="${board.views}">127</td>
 								</tr> 
 							  </tbody>
 						  </table>
@@ -223,7 +184,7 @@
 						  <form action="IsLoginCheckServlet" method="post" style="text-align: right;" class="mt-2">
 							<button type="submit" class="btn btn-dark">목록</button>
 							<button type="submit" class="btn btn-dark">글쓰기</button> 
-						</form>
+						  </form>
 						
 					  </div>
 				  </div>

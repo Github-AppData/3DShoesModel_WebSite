@@ -27,6 +27,19 @@ public class ServiceList {
 			
 			return boardList;
 		}
+	
+		// 카트 목록 가져오기 
+		public List<Map<String, Object>> getCartList() {
+			List<Map<String, Object>> CartList = new ArrayList<Map<String, Object>>();
+			
+			try {
+				CartList = totalDAO.getCartList();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+				return CartList;
+			}
 		
 		//신발 가져오기 
 	public List<Map<String, Object>> findIsLike() {

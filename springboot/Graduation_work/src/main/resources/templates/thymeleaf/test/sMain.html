@@ -141,15 +141,8 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-<<<<<<< HEAD
                         <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
                         <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-=======
-
-                        <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
-                        <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-
->>>>>>> origin/develop
                     </div>
                 </div>
             </div>
@@ -570,90 +563,66 @@
 	// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
 	function handleLinkClick(link) 
 	{
-		
-						
-		console.log("-----handleLinkClick----");
 		var linkId = null;
+		var jsonData = null;
 		
 		linkId = link.getAttribute("data-link-id");
-		console.log("linkId:", linkId); // linkId 값을 로그로 출력
-			    		
-		console.log("-----handleLinkClick2----");
 		
 		
-		
-		xhr.onreadystatechange = function () 
+		switch (linkId) 
 		{
-			console.log("-----handleLinkClick3----");
-			console.log("handleLinkClick3 후 linkId:", linkId); // linkId 값을 로그로 출력
-			
-			if (xhr.readyState === 4 && xhr.status === 200) 
-			{
-				console.log(xhr.responseText);
-				console.log("-----handleLinkClick4----");
-				switch (linkId) 
-				{
 						
-					case "1":
-						dataToSend = imageToModelMapping_real[0];
-						console.log(dataToSend);
-						break;
+			case "1":
+				dataToSend = imageToModelMapping_real[0];
+				console.log(dataToSend);
+				break;
 							            
-					case "2":
-						dataToSend = imageToModelMapping_real[1];
-						console.log(dataToSend);
-						break;
+			case "2":
+				dataToSend = imageToModelMapping_real[1];
+				console.log(dataToSend);
+				break;
 							            
-					case "3":
-						dataToSend = imageToModelMapping_real[2];
-						console.log(dataToSend);
-						break;
+			case "3":
+				dataToSend = imageToModelMapping_real[2];
+				console.log(dataToSend);
+				break;
 							            
-					case "4":
-						dataToSend = imageToModelMapping_real[3];
-						console.log(dataToSend);
-						break;
+			case "4":
+				dataToSend = imageToModelMapping_real[3];
+				console.log(dataToSend);
+				break;
 							            
-					case "5":
-						dataToSend = imageToModelMapping_real[4];
-						console.log(dataToSend);
-						break;
+			case "5":
+				dataToSend = imageToModelMapping_real[4];
+				console.log(dataToSend);
+				break;
 							            
-					case "6":
-						dataToSend = imageToModelMapping_real[5];
-						console.log(dataToSend);
-						break;
+			case "6":
+				dataToSend = imageToModelMapping_real[5];
+				console.log(dataToSend);
+				break;
 							       
-					default:
-						console.log("아무것도 눌리지 않았습니다.");
-				}  
-				 
-				 
-						 
-			} 
-			else {
-				console.log("응답되지 않았습니다.");
-			}
+			default:
+				console.log("아무것도 눌리지 않았습니다.");
+		}  
+	 
+	
 			
-			var jsonData;
-				if(dataToSend != null)
-				{
-					console.log("dataToSend NOT NULL");
-					jsonData = JSON.stringify(dataToSend);
+		if(dataToSend != null)
+		{
+			console.log("dataToSend NOT NULL");
+			
+			jsonData = JSON.stringify(dataToSend);
 								
-				} else {
-					console.log("dataToSend NULL");
-				}	   
-			
-			
-			
-			    	
-		} // xhr.onreadystatechange 끝
-		xhr.open("GET", "/ProductDetailPageServlet", true);
-		xhr.send(null); // ProductDetailPageServlet 보낼 요청
-		console.log("handleLinkClick 안에 있음 ", imageToModelMapping_real[5]);
+		} else {
+			console.log("dataToSend NULL");
+		}	   
+		
+		
+		xhr2.open("POST", "/ProductDetailPageServlet", true);
+		xhr2.send(jsonData); // ProductDetailPageServlet 보낼 요청
 					
-	} // ㅁㄴ암ㄴ
+	} 
 				
    
     function replaceWith3DModel(uid, iframeId) {

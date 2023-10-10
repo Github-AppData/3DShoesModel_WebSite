@@ -23,6 +23,11 @@ public class TotalDAO {
 		return sqlSession.selectList("com.example.rubypaper.mapper.ShoesMapper.randSelectShoesId");
 	}
 	
+	
+	public List<Map<String, Object>> getCartList() throws Exception {
+		return sqlSession.selectList("com.example.rubypaper.mapper.CartMapper.cartFindList");
+	}
+	
 	// 글 총 
 	public int getBoardValue() throws Exception {
 		return sqlSession.selectOne("com.example.rubypaper.mapper.BoardMapper.boardCount");

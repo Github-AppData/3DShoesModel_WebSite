@@ -40,6 +40,8 @@ public class ProductListSevlet extends HttpServlet{
         // List<Map<String, Object>>를 JSON으로 변환
         String shoes_id = objectMapper.writeValueAsString(shoesList);
         
+        System.out.println("shoes_id : " + shoes_id.toString());
+        
         // JSON 출력
         System.out.println(shoes_id);
 

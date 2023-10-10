@@ -45,7 +45,7 @@ public class SampleController {
 	}
 	
 	@RequestMapping("/sDetails")
-	public String sDetails(Model model)
+	public String sDetails(Model model, HttpServletRequest request)
 	{
 		
 		
@@ -53,7 +53,7 @@ public class SampleController {
 	}	
 	
 	@RequestMapping("/noticdBoard")
-	public String noticdBoard(Model model)
+	public String noticdBoard(Model model, HttpServletRequest request, HttpSession session)
 	{
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
@@ -70,6 +70,13 @@ public class SampleController {
 		}
 				
 		model.addAttribute("list", boardList);
+		
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
 		
 		return "test/noticdBoard";
 	}
@@ -141,6 +148,21 @@ public class SampleController {
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		
+		
+		//사용자 목록 가져오기 
+		List<Map<String, Object>> CartList = new ArrayList<Map<String, Object>>();
+				
+		//사용자 총 수 
+		int result = 0;
+						
+		try {
+			CartList = serviceList.getCartList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", CartList);
 		
 		return "test/sCart";
 	}
