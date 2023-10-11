@@ -1,29 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Pw Update Last</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>비밀번호 변경 절차 2단계? </title>
 </head>
 <body>
-
-	<h1>User Update Last !!!</h1>
 	
 	<!-- TODO : 새로운 Pw를 실제 DB에 update 해야 하는 부분 -->
-	<br><br>
+
 	<div id="passwordRequirements">
 		
 	</div>
-	<form action="NewPwEqualsServlet" method="post">
-		<label for="input_id">아이디 : </label> 
-		<input type="text" class="form-control" name="input_id" id="input_id" placeholder="Enter input_id"> 				<br><br>
-		<label for="input_new_pw">새로운 pw를 입력 : </label> 
-		<input type="text" class="form-control" name="input_new_pw" id="input_new_pw" placeholder="Enter input_new_pw"> 				<br><br>
-		<label for="input_new_pw_same">새로운 pw를 확인 : </label> 
-		<input type="text" class="form-control" id="input_new_pw_same" name="input_new_pw_same" placeholder="Enter input_new_pw_same"> 
-		
-		<button type="submit" id="signupButton"> 확인 </button>
-	</form>
-	
+
+
+	<section class="ftco-section" style="background-image: url(img/bg-2.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">비밀번호 변경</h2>
+                    <p>새로운 비밀번호를 설정해주세요.</p>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> 
+						<form action="NewPwEqualsServlet" method="post">
+			      			<div class="form-group mb-3">
+			      				 <label class="label" for="input_id">아이디</label>
+			      				<input type="text" class="form-control" name="input_id" id="input_id" placeholder="회원님의 아이디를 입력해주세요">
+								  <label class="label" for="input_new_pw">비밀번호</label>
+			      				<input type="text" class="form-control" name="input_new_pw" id="input_new_pw" placeholder="새로운 비밀번호를 입력해주세요">
+								  <label class="label" for="input_new_pw_same">비밀번호 확인</label>
+			      				<input type="text" class="form-control" id="input_new_pw_same" name="input_new_pw_same" placeholder="변경하실 비밀번호를 한번 더 입력해주세요">
+			      			</div>
+
+                              <div class="form-group text-right">
+		            			<button class=" btn btn-primary submit px-3" id="signupButton">비밀번호 변경</button>
+		            		</div>
+
+		     
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+
+		          		</form>
+
+						
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 	<script>
 		 
 		const passwordField = document.getElementById('input_new_pw');
@@ -60,5 +99,11 @@
 	        signupButton.disabled = requirements.length > 0;
     	});
 	</script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>

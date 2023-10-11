@@ -160,11 +160,11 @@
 
     <!-- Product section-->
         <section class="shop-details">
-            <div class="container px-4 px-lg-5 my-5">
+            <div class="container px-4 px-lg-5 my-5">	
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
-                    	<iframe src="" id="api-frame" width="500" height="700" style="border:none"
+                    	<iframe src="" id="api-frame-1" width="500" height="700" style="border:none"
     									allow="autoplay; fullscreen; xr-spatial-tracking" 
     									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
     									webkitallowfullscreen="true">
@@ -173,12 +173,9 @@
                     <div class="col-md-5 ms-4 ml-5" ><br>
                         	<!-- 제품 이름 --> 
                        		<!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
-                            <span class="fs-1 fw-bold" th:if="${productDTO != null}" th:text="${productDTO.shoesname}"></span>
-							<span class="fs-1 fw-bold" th:if="${productDTO == null}" th:text="제품이름"></span>
+                            <h6 id="shoes_name"></h6>
                         <div class="mt-2">
-                            <!-- th:text="${productDTO.shoeprice}" dto 이름과 함수명은 알아서  -->
-                            	<span class="fs-5 fw-bold" th:if="${productDTO != null}" th:text="${productDTO.shoeprice}"></span>
-								<span class="fs-5 fw-bold" th:if="${productDTO == null}" th:text="제품가격"></span>
+                            <h5 id="shoes_price">105,000원</h5>
                         </div>
                         <div class="product__details__text mb-5 " style="text-align: left" >
                         <span class="rating"  >
@@ -192,63 +189,82 @@
                          
                          <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
-                                    <span class="mb-2">사이즈 선택:</span><br>
-                                    <label for="240" class="mb-2">240
-                                        <input type="radio" id="240">
-                                    </label>
-                                    <label for="245">245
-                                        <input type="radio" id="245">
-                                    </label>
-                                    <label for="250">250
-                                        <input type="radio" id="250">
-                                    </label>
-                                    <label class="active" for="255">255
-                                        <input type="radio" id="255">
-                                    </label>
-                                    <label for="260">260
-                                        <input type="radio" id="260">
-                                    </label>
-                                    <label for="265">265
-                                        <input type="radio" id="265">
-                                    </label>
-                                    <label for="270">270
-                                        <input type="radio" id="270">
-                                    </label>
-                                    <label for="275">275
-                                        <input type="radio" id="275">
-                                    </label>
-                                    <label for="280">280
-                                        <input type="radio" id="280">
-                                    </label>
-                                </div>
-                            </div>
-                            
-                         <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">                        
-                                    </div>
-                                </div>
-                                <a href="sCart" class="primary-btn">장바구니</a>
-                            </div>
-                         <div class="product__details__btns__option">
-                                <a href="#"><i class="fa fa-heart"></i> 위시리스트에 추가</a>
-                                <a href="sMain"><i class="fa fa-exchange"></i> 상품 비교하기</a>
-                            </div>
-                         
-                         
-                         </div>
+                                    <form action="CartAddObjectServlet" method="post">
+	                                    <br><span class="mb-2">사이즈 선택:</span><br>
+	                                    
+	                                    <label for="210" class="mb-2">210
+	                                        <input type="radio" id="210" name="selectedSize" value="210">
+	                                    </label>
+	                                    
+	                                    <label for="220">220
+	                                        <input type="radio" id="220" name="selectedSize" value="220">
+	                                    </label>
+	                                    
+	                                    <label for="230">230
+	                                        <input type="radio" id="230" name="selectedSize" value="230">
+	                                    </label>
+	                                    
+	                                    <label class="active" for="240">240
+	                                        <input type="radio" id="240" name="selectedSize" value="240" checked>
+	                                    </label>
+	                                    
+	                                    <label for="250">250
+	                                        <input type="radio" id="250" name="selectedSize" value="250">
+	                                    </label>
+	                                    
+	                                    <label for="260">260
+	                                        <input type="radio" id="260" name="selectedSize" value="260">
+	                                    </label>
+	                                    
+	                                    <label for="270">270
+	                                        <input type="radio" id="270" name="selectedSize" value="270">
+	                                    </label>
+	                                    
+	                                    <label for="280">280
+	                                        <input type="radio" id="280" name="selectedSize" value="280">
+	                                    </label>
+	                                    
+	                                    <label for="290">290
+	                                        <input type="radio" id="290" name="selectedSize" value="290">
+	                                    </label>
+	                                </div>
+	                            </div>
+	                            
+	                         	<div class="product__details__cart__option">
+	                                <div class="quantity">
+	                                    <div class="pro-qty">
+	                                        <input type="text" value="1" name="quantityInput">                        
+	                                    </div>
+	                                </div>
+	                                <button type="submit" class="primary-btn">장바구니</button>
+	                            </div>
+	                            
+	                            </div>
                             <div class="row pb-3">
                                 <div class="col d-grid">
                                     <button onclick="requestPay()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">구매하기</button>
                                     <button onclick="requestPay2()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">카카오페이</button>
                                 </div>
                             </div>
+                            
+                            <p class="lead fs-6 fw-bold pb-4" >첫출시는 1972년도 였지만 현재는 2023년입니다.<br> 그만큼 역사가 있죠 고객분들이 원하는 외형을 재해석하여 더 넓어진 앞꿈치 부분과 더 단단해진 옆면 패널을 디자인에 더해 매일 계속해서 편안하게 착용할 수 있습니다.<br>
+	                             재설계된 소재는 사랑받은 클래식 '72 모양을 유지하면서 뒤틀림을 방지하고 내구성을 더합니다.<br> 끈을 조이고 신어보세요. <br>신발은 사람의 맞춰 발전 하기마련이니까요.</p>
+	                        <p class="lead fs-6 fw-bold">ㆍ현재 컬러 : 화이트</p>
+	                        <p class="lead fs-6 fw-bold">ㆍ모델 번호 : BST-498</p>
+                            </form>
+                            
+                                </div>
+                                
+                                
+                                
+                            </div>
+                            
+                         
+                         
+                         
+                         
 						
-                        <p class="lead fs-6 fw-bold pb-4" >첫출시는 1972년도 였지만 현재는 2023년입니다.<br> 그만큼 역사가 있죠 고객분들이 원하는 외형을 재해석하여 더 넓어진 앞꿈치 부분과 더 단단해진 옆면 패널을 디자인에 더해 매일 계속해서 편안하게 착용할 수 있습니다.<br>
-                             재설계된 소재는 사랑받은 클래식 '72 모양을 유지하면서 뒤틀림을 방지하고 내구성을 더합니다.<br> 끈을 조이고 신어보세요. <br>신발은 사람의 맞춰 발전 하기마련이니까요.</p>
-                        <p class="lead fs-6 fw-bold">ㆍ현재 컬러 : 화이트</p>
-                        <p class="lead fs-6 fw-bold">ㆍ모델 번호 : BST-498</p>
+	                        
                         </div>
                     </div>
                 </div>
@@ -494,34 +510,88 @@
     
     
     <script type="text/javascript">
+		
+		// 전역변수 공간 입니다만.
+		
+		var imageToModelMapping_real = [];
+		var iframe_clicked = [];
+		
+		var shoes_id;
+	    var shoes_price;
+	    
+	    var xhr = new XMLHttpRequest();
+	    
+	    window.onload = pageLoad;
+		function pageLoad()
+		{
+			xhr.onreadystatechange = function () 
+			{
+				// 응답이 되었으면,
+				if (xhr.readyState === 4 && xhr.status === 200) 
+				{
+		            var object = JSON.parse(xhr.responseText);
+		            var objLength = Object.keys(object).length;
+		            console.log("objLength : ",objLength);
+		            
+		            console.log(object[0]);
+		            
+		            shoes_id = object[0].uid;
+					shoes_name = object[0].shoes_name;
+					shoes_price = object[0].shoes_price;
+					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, shoes_price:shoes_price });
+					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
+		            
+					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
+					// 신발 이름 
+					
+					var shoes_info_name = imageToModelMapping_real[0].shoes_name;
+		    		document.getElementById("shoes_name").innerHTML = "<h6>" + shoes_info_name + "</h6>";
+					
+					
+					
+					var shoes_info_price = imageToModelMapping_real[0].shoes_price;
+		    		document.getElementById("shoes_price").innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+					
+					
+					imageToModelMapping_real.forEach(function(mapping) 
+					{
+						replaceWith3DModel(mapping.uid, mapping.iframeId);
+					});
+					
+				} // if (xhr.readyState === 4 && xhr.status === 200) 
 
-        
+			}; // xhr.onreadystatechange 끝 
+			
+			
+			xhr.open("POST", "/DetailPageSetServlet", true); // 비동기 요청 시작.
+		   	xhr.send(null); // ProductListSevlet에 보낼 요청
+		   			
+		}; // pageLoad  
+	    
+	    function replaceWith3DModel(uid, iframeId) {
+        return new Promise(function(resolve, reject) {
+            var iframe = document.getElementById(iframeId);
+            var client = new Sketchfab(iframe);
 
-    var iframe = document.getElementById( 'api-frame' );
-    //여기가 uid 부분 여길 상품 페이지에서 눌렀을때 pk 키값으로 제품 uid 랑 제품 이릉 가격등을 가져올때 같이 가져온 값으로 대체
-    var uid = 'faef9fe5ace445e7b2989d1c1ece361c';
-
-    // By default, the latest version of the viewer API will be used.
-    var client = new Sketchfab( iframe );
-
-    // Alternatively, you can request a specific version.
-    // var client = new Sketchfab( '1.12.1', iframe );
-
-    client.init( uid, {
-        success: function onSuccess( api ){
-            api.start();
-            api.addEventListener( 'viewerready', function() {
-
-                // API is ready to use
-                // Insert your code here
-                console.log( 'Viewer is ready' );
-
-            } );
-        },
-        error: function onError() {
-            console.log( 'Viewer error' );
-        }
-    } );
+            client.init(uid, {
+                success: function onSuccess(api) {
+                    api.start();
+                    api.addEventListener('viewerready', function() {
+                        console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+                        resolve(); // Promise가 성공했음을 알립니다.
+                    });
+                },
+                error: function onError() {
+                    console.log(iframeId + ' 3D 모델 초기화 오류');
+                    reject(); // Promise가 실패했음을 알립니다.
+                },
+                // 초기화 매개변수 설정
+                graph_optimizer: 1, //그래프
+                merge_materials: 1, //재질 병합
+                material_packing: 1 //재질 패킹
+            });
+        });
+    }
     </script>
     
      

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Pw Update Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>비밀번호 변경 절차 1단계? </title>
 </head>
 <body>
 
@@ -10,12 +16,49 @@
        			 <!-- 비밀번호 조건 메시지를 여기에 표시합니다. -->
     </div>
     		
-	 <form action="ReviseInfoServlet" method="post">
-		<label for="input_pw">당신의 pw를 입력하여주세요. :</label>
-		<input type="text" class="form-control" id="input_pw" name="input_pw" placeholder="Enter pw">
-		<button type="submit" id="signupButton">비밀번호 확인</button>
-	 </form>
-	 
+	 <section class="ftco-section" style="background-image: url(img/bg-2.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">비밀번호 확인</h2>
+                    <p>개인정보 변경 전 비밀번호 확인이 필요합니다.</p>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> 
+						<form action="ReviseInfoServlet" method="post">
+
+		            		<div class="form-group mb-3">
+		            			<label class="label" for="input_pw">Password</label>
+		              			<input type="password" id="input_pw" name="input_pw" class="form-control" placeholder="비밀번호를 입력해주세요">
+		            		</div>
+
+                            <div class="form-group text-right">
+		            			<button class="btn btn-primary submit px-3" id="signupButton">비밀번호 확인</button>
+		            		</div>
+
+
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+
+		          		</form>
+
+						
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
 	 <script>
 		 
 		const passwordField = document.getElementById('input_pw');
@@ -52,5 +95,11 @@
 	        signupButton.disabled = requirements.length > 0;
     	});
 	</script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>

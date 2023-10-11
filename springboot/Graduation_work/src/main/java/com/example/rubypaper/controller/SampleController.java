@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.service.BoardService;
-import com.example.rubypaper.service.BoardServiceList;
+import com.example.rubypaper.service.ServiceList;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +27,7 @@ public class SampleController {
 	Object data;
 	
 	@Autowired
-	BoardServiceList boardServiceList;
+	ServiceList serviceList;
 	
 
 	@RequestMapping("/main")
@@ -41,8 +43,16 @@ public class SampleController {
 		return "test/main";
 	}
 	
+	@RequestMapping("/sDetails")
+	public String sDetails(Model model, HttpServletRequest request)
+	{
+		
+		
+		return "test/sDetails";
+	}	
+	
 	@RequestMapping("/noticdBoard")
-	public String noticdBoard(Model model)
+	public String noticdBoard(Model model, HttpServletRequest request, HttpSession session)
 	{
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
@@ -51,14 +61,21 @@ public class SampleController {
 		int result = 0;
 				
 		try {
-			boardList = boardServiceList.getBoardList();
-			result = boardServiceList.getBoardValue();
-			boardServiceList.FindListIsDelete();
+			boardList = serviceList.getBoardList();
+			result = serviceList.getBoardValue();
+			serviceList.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 				
 		model.addAttribute("list", boardList);
+		
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
 		
 		return "test/noticdBoard";
 	}
@@ -75,8 +92,16 @@ public class SampleController {
 	}
 	
 	@GetMapping("/sMain")
-	public String sMain(Model model)
+	public String sMain(Model model,HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+								
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
+		
 		return "test/sMain";
 	}
 	
@@ -98,11 +123,7 @@ public class SampleController {
 	}
 	
 	
-	@GetMapping("/sDetails")
-	public String test3(Model model)
-	{
-		return "test/sDetails";
-	}	
+	
 	
 	@GetMapping("/sBlog")
 	public String test4(Model model)
@@ -117,9 +138,47 @@ public class SampleController {
 	}	
 	
 	@GetMapping("/sCart")
-	public String test6(Model model)
+	public String test6(Model model,HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
+		
+		//사용자 목록 가져오기 
+		List<Map<String, Object>> CartList = new ArrayList<Map<String, Object>>();
+				
+		//사용자 총 수 
+		int result = 0;
+						
+		try {
+			CartList = serviceList.getCartList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", CartList);
+		
 		return "test/sCart";
+	}
+	
+	
+	@RequestMapping("/like")
+	public String like(Model model,HttpServletRequest request, HttpSession session)
+	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
+		
+		return "test/like";
 	}
 	
 	@GetMapping("/sLogin")
