@@ -26,23 +26,17 @@ public class SearchController {
 		List<Shoes> shoesList = searchService.Search(shoes);
 		
 		if(shoesList != null){
+			/*
 			for(int i = 0; i < shoesList.size(); i++)
 			{
 				System.out.println(shoesList.get(i).toString());
 			}
+			*/
 			model.addAttribute("result",shoesList);
 			return "test/test_Search";
 		}
 		else {
 			return "test/sMain";
 		}
-		/*
-		System.out.println(shoesList.size());
-		for(int i = 0; i < shoesList.size(); i++)
-		{
-			System.out.println(shoesList.get(i).toString());
-		}
-		*/
-		//System.out.println(shoesList);
 	}
 }

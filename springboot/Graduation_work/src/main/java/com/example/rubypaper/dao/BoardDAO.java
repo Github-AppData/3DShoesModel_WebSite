@@ -22,8 +22,6 @@ public class BoardDAO {
 		return sqlSession.selectList("com.example.rubypaper.mapper.BoardMapper.boardFindList");
 	}
 	
-	
-	
 	// 글 총 
 	public int getBoardValue() throws Exception {
 		return sqlSession.selectOne("com.example.rubypaper.mapper.BoardMapper.boardCount");

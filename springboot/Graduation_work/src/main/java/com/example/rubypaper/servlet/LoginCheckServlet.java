@@ -26,8 +26,6 @@ public class LoginCheckServlet extends HttpServlet {
 	
 	String check_id, check_pw;
 	
-	
-	
 	@Autowired
 	UserService userService;
 	
