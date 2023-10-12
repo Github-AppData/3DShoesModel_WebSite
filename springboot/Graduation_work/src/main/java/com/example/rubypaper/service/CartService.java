@@ -22,6 +22,17 @@ public class CartService {
 		cartMapper.cartInsert(cart);
 	}
 	
+	public String cartCheckShoesId(String shoes_id) throws Exception {
+		return cartMapper.cartCheckShoesId(shoes_id);
+	}
+	
+	public int numberOfCart() throws Exception {
+		return cartMapper.numberOfCart();
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -11,8 +11,9 @@ function removeCartItem(element, itemPrice) {
     // 위에서 브라우저에서 삭제한 이후에 처리해줘야함 
         
     // db에서도 제거가 되면 여기서 총합 액수를 계산하는 함수 호출
-    recalculateTotal();
+    // recalculateTotal();
 
+	/*
     // 상품 가격만큼 총합에서 차감
     const totalElement = document.querySelector('.cart__total li:last-child span');
     const totalText = totalElement.textContent;
@@ -23,7 +24,7 @@ function removeCartItem(element, itemPrice) {
         totalElement.textContent = newTotal.toLocaleString() + '(원)';
     } else {
         totalElement.textContent = '0(원)'; // 음수가 되면 0으로 표시
-    }
+    }*/
 }
 
 function updateSubtotal(inputElement) {

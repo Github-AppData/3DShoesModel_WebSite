@@ -11,9 +11,20 @@
 	</insert>
 	
 	<select id="cartFindList" resultType="Map">
-		SELECT shoes_id, quantity, size
-		FROM cart
-		WHERE is_delete = 0
-		ORDER BY cart_id ASC;
+		SELECT cart.shoes_id, cart.quantity, shoes.shoes_price, cart.size, shoes.shoes_name
+		FROM cart, shoes
+		WHERE cart.is_delete = 0 and cart.shoes_id = shoes.shoes_id
+		ORDER BY cart.cart_id ASC
+	</select>
+	
+	<select id="cartCheckShoesId">
+		select shoes_id
+		from cart	 
+		where shoes_id = #{shoes_id}
+	</select>
+	
+	<select id="numberOfCart" resultType="int">
+		select MAX(cart_id)
+		from cart
 	</select>
 </mapper>

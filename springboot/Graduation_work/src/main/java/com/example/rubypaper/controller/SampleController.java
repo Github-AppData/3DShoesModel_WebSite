@@ -159,22 +159,9 @@ public class SampleController {
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		
+		int numberOfCart = serviceList.numberOfCart();
 		
-		//사용자 목록 가져오기 
-		List<Map<String, Object>> CartList = new ArrayList<Map<String, Object>>();
-				
-		//사용자 총 수 
-		int result = 0;
-						
-		try {
-			CartList = serviceList.getCartList();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("list", CartList);
-		
+		model.addAttribute("numberOfCart", numberOfCart);
 		return "test/sCart";
 	}
 	

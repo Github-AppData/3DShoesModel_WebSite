@@ -18,6 +18,9 @@ public class TotalDAO {
 		return sqlSession.selectList("com.example.rubypaper.mapper.BoardMapper.boardFindList");
 	}
 	
+	public int numberOfCart() throws Exception{
+		return sqlSession.selectOne("com.example.rubypaper.mapper.CartMapper.numberOfCart"); 
+	}
 	
 	public List<Map<String, Object>> randSelectShoesId() throws Exception {
 		return sqlSession.selectList("com.example.rubypaper.mapper.ShoesMapper.randSelectShoesId");
@@ -38,7 +41,7 @@ public class TotalDAO {
 		return sqlSession.selectOne("com.example.rubypaper.mapper.BoardMapper.FindListIsDelete");
 		
 	}
-
+	
 	public List<Map<String, Object>> findIsLike() throws Exception{
 		return sqlSession.selectList("com.example.rubypaper.mapper.ShoesMapper.findIsLike");
 	}

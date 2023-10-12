@@ -41,8 +41,8 @@ public class DetailPageSetServlet extends HttpServlet {
 		String jsonArrayString = jsonArray.toJSONString();
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("jsonArrayString", jsonArrayString);
 		
+		session.setAttribute("jsonArrayString", jsonArrayString);
 		System.out.println("jsonArrayString :" + jsonArrayString);
 		
 		

@@ -15,6 +15,17 @@ public class ServiceList {
 	@Autowired
 	TotalDAO totalDAO;
 	
+	public int numberOfCart() {
+		int numberOfCart = 0;
+		try {
+			numberOfCart = totalDAO.numberOfCart();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return numberOfCart;
+	}
+	
 	//사용자 목록 가져오기 
 	public List<Map<String, Object>> getBoardList() {
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();

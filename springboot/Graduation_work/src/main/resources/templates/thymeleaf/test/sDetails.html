@@ -124,12 +124,6 @@
                         <ul>
                             <li><a href="main">메인화면</a></li>
                             <li class="active"><a href="sMain">신발</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">나이키</a></li>
-                                    <li><a href="#">뉴발란스</a></li>
-                                    <li><a href="#">컨버스</a></li>
-                                    <li><a href="#">아디다스</a></li>
-                                </ul></li></li>
                             <li><a href="#">고객센터</a>
                                 <ul class="dropdown">
                                     <li><a href="#">본사정책</a></li>
@@ -189,7 +183,8 @@
                          
                          <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
-                                    <form action="CartAddObjectServlet" method="post">
+									<form method="post" action="CartAddObjectServlet">
+                                    
 	                                    <br><span class="mb-2">사이즈 선택:</span><br>
 	                                    
 	                                    <label for="210" class="mb-2">210
@@ -236,7 +231,8 @@
 	                                        <input type="text" value="1" name="quantityInput">                        
 	                                    </div>
 	                                </div>
-	                                <button type="submit" class="primary-btn">장바구니</button>
+	                                <button type="submit" onclick="noticeMessage()" class="primary-btn">장바구니</button>
+	                                </form>
 	                            </div>
 	                            
 	                            </div>
@@ -247,21 +243,8 @@
                                 </div>
                             </div>
                             
-                            
-                            </form>
-                            
                                 </div>
-                                
-                                
-                                
                             </div>
-                            
-                         
-                         
-                         
-                         
-						
-	                        
                         </div>
                     </div>
                 </div>
@@ -450,12 +433,15 @@
 		
 		var shoes_id;
 	    var shoes_price;
+	    var cnt = 0;
 	    
 	    var xhr = new XMLHttpRequest();
+	    var xhr2 = new XMLHttpRequest();
 	    
 	    window.onload = pageLoad;
 		function pageLoad()
 		{
+			cnt = 0;
 			xhr.onreadystatechange = function () 
 			{
 				// 응답이 되었으면,
@@ -496,9 +482,37 @@
 			
 			
 			xhr.open("POST", "/DetailPageSetServlet", true); // 비동기 요청 시작.
-		   	xhr.send(null); // ProductListSevlet에 보낼 요청
+		   	xhr.send(null); 
 		   			
 		}; // pageLoad  
+		
+		function noticeMessage(){
+			
+			xhr2.onreadystatechange = function () 
+			{
+				if (xhr2.readyState === 4 && xhr2.status === 200)
+				{
+					if(cnt == 0)
+					{
+						console.log(xhr2.responseText);
+						alert("상품이 추가 되었습니다.");
+						cnt++;
+					} 
+				} else {
+					if(cnt == 0)
+					{
+						console.log(xhr2.responseText);
+						alert("이미 장바구니에 있습니다.");
+						cnt++;
+					} 
+					
+				}
+			}
+			
+			xhr2.open("POST", "/CartAddObjectServlet", true);
+			xhr2.send(null);
+		}
+		
 	    
 	    function replaceWith3DModel(uid, iframeId) {
         return new Promise(function(resolve, reject) {
