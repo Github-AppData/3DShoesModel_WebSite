@@ -94,6 +94,8 @@ public class SampleController {
 	@GetMapping("/sMain")
 	public String sMain(Model model,HttpServletRequest request, HttpSession session)
 	{
+		
+		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
