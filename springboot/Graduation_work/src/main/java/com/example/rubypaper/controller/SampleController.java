@@ -98,6 +98,12 @@ public class SampleController {
 		return "test/write";
 	}
 	
+	@RequestMapping("/wDetails")
+	public String wDetails()
+	{
+		return "test/wDetails";
+	}
+	
 	@RequestMapping("/ptest")
 	public String ptest(Model model) {
 		return "test/ptest";
