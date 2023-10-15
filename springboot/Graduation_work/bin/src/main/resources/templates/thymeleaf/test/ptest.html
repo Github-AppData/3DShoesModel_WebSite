@@ -3,15 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>본인인증 예제</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>전화번호 인증</title>
 </head>
 <body>
-    <h1>본인인증</h1>
-    <p>휴대폰 번호를 입력하고 인증 코드를 받으세요.</p>
-    <input type="text" id="phoneNumber" placeholder="휴대폰 번호">
-    <button id="sendButton">인증 코드 전송</button>
-    <input type="text" id="verificationCode" placeholder="인증 코드">
-    <button id="verifyButton">인증 확인</button>
+
+    <section class="ftco-section" style="background-image: url(img/bg-1.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">본인인증</h2>
+                    <p>휴대폰 번호를 입력하고 인증 코드를 받으세요.</p>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> 
+						<form action="/LoginCheckServlet" class="signin-form" method="post">
+			      			<div class="form-group mb-3">
+			      				<label class="label">휴대폰 번호</label>
+			      				<input type="text" class="form-control" id="phoneNumber" placeholder="ex)010-2854-5824">
+                                
+			      			</div>
+
+                              <div class="form-group text-right">
+								<!-- 코드 전송 버튼-->
+		            			<button class=" btn btn-primary submit px-3" id="sendButton">인증 코드 전송</button>
+		            		</div>
+
+		            		<div class="form-group mb-3">
+		            			<label class="label" for="login_pw">인증 코드</label>
+		              			<input type="text" id="verificationCode" class="form-control" placeholder="ex)6H2DB9">
+		            		</div>
+
+                            <div class="form-group text-right">
+								<!-- 코드 확인 버튼-->
+		            			<button class="btn btn-primary submit px-3" id="verifyButton">인증 확인</button>
+		            		</div>
+
+
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+
+		          		</form>
+
+						
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
    <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -50,6 +100,10 @@
                 if (inputVerificationCode === verificationCode) { //애초에 값이 안넘오오니 작동이 안됨
                     // 인증 성공
                     console.log('본인 인증 성공');
+                    var targetURL = 'pwUpdateLast';
+                    
+                    window.location.href = targetURL;
+                    
                     // 추가 작업을 원한다면 여기에 작성
                 } else {
                     // 인증 실패
@@ -59,6 +113,10 @@
             });
         });
     </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 
