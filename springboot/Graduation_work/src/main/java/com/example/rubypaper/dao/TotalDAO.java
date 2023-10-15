@@ -14,13 +14,9 @@ public class TotalDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public int cartUpdateIsDelete(String shoes_id) throws Exception {
-	    int s = sqlSession.update("com.example.rubypaper.mapper.CartMapper.cartUpdateIsDelete", shoes_id);
-	    sqlSession.commit();
-	    return s;
-	}
 	
-	public int cartDeleteShoesId(String shoes_id) throws Exception {
+	
+	public int cartDeleteShoesId() throws Exception {
 	    return sqlSession.delete("com.example.rubypaper.mapper.CartMapper.cartDeleteShoesId");
 	}
 	

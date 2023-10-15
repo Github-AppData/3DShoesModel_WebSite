@@ -27,21 +27,12 @@ public class ServiceList {
 		return numberOfCart;
 	}
 	
-	public int cartUpdateIsDelete(@Param("shoes_id")String shoes_id) {
-		int cartUpdateIsDelete = 0;
-		try {
-			cartUpdateIsDelete = totalDAO.cartUpdateIsDelete(shoes_id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return cartUpdateIsDelete;
-	}
 	
-	public int cartDeleteShoesId(@Param("shoes_id")String shoes_id) {
+	
+	public int cartDeleteShoesId() {
 		int cartDeleteShoesId = 0;
 		try {
-			cartDeleteShoesId = totalDAO.cartDeleteShoesId(shoes_id);
+			cartDeleteShoesId = totalDAO.cartDeleteShoesId();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

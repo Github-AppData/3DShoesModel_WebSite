@@ -302,6 +302,7 @@
 	    
 	    var xhr = new XMLHttpRequest();
 	    var xhr2 = new XMLHttpRequest();
+	    var cnt2=0;
 	    
 	    var cart_info_id = ["cost", "delivery_cost", "total_cost"]; 
 	    var shoes_real_name = [];
@@ -324,7 +325,13 @@
 		var delete_uid = null;
 		var delete_price = 0;
 		
+		var stored_quantity = 0;
+		var stored_price = 0;
+		var object;
 		
+		var prex_price;
+			var prex_price_real;
+			var prex_price_rreal;
 	    
 	    window.onload = pageLoad;
 		function pageLoad()
@@ -334,7 +341,7 @@
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) 
 				{
-		            var object = JSON.parse(xhr.responseText);
+		            object = JSON.parse(xhr.responseText);
 		            // DB에 저장된 카트의 갯수 
 		           	objLength = Object.keys(object).length;
 		           	
@@ -398,23 +405,14 @@
 								'</div>' +
 							'</div>'
 						+'</td>' +
-					    '<td id="price_'+ i +'" class="cart__price">' + shoes_real_price_0 + '</td>' +
+					    '<td id="price'+ i +'" class="cart__price">' + shoes_real_price_0 + '</td>' +
 					    '<td class="cart__close"><i class="fa fa-close" onclick="removeCartItem_real(this)" data-link-id="'+ i +'"></i></td></tr>';
 					     // 새로운 항목을 저장할 문자열	
 					    newItemsHTML += newItem;
 					    
 					    document.getElementById("shoes_list").innerHTML = newItemsHTML;
-					    
-					    
-					    
-					    //var div = document.getElementById("shoes_list").innerHTML = newItemsHTML;
-					    // 
-						// div.innerHTML("shoes_list") = newItemsHTML;
-						
-						
-						
-						//document.getElementById("shoes_list").innerHTML = "asdasd";
 					}
+					
 					imageToModelMapping_real.forEach(function(mapping) 
 						{
 							
@@ -431,7 +429,7 @@
 					for(var i = 0; i < cart_info_id.length; i++)
 					{
 						document.getElementById(cart_info_id[i]).innerHTML = all_info[i];
-						document.getElementById("price" + i).innerHTML = "13";
+						
 					}
 					
 					
@@ -482,33 +480,62 @@
 	    function updateSubtotal_real(inputElement) {
 		    const quantity = parseInt(inputElement.value);
 		    
-		    linkId = inputElement.getAttribute("data-link-id");
-		    
-		    // span 요소를 가져옵니다.
-			var spanElement = document.getElementById("cost");
+		    var price_id_array = [];
+		    var price_array = [];
+			console.log("quantity :", quantity);	
 			
-			// span 요소의 내용(텍스트)을 가져옵니다.
-			var costValue = spanElement.textContent;
+			linkId = inputElement.getAttribute("data-link-id");
+			console.log("linkId : ", linkId);
 			
-			var costValueAsNumber = parseInt(costValue, 10); // 10진수로 파싱
-			console.log(costValueAsNumber);
-
-			
-		    console.log(linkId);
-		    delete_price = imageToModelMapping_real[linkId].shoes_price;
-			var cost_k = (delete_price * quantity) - delete_price;
-			var real_cost = 0;		    
-			real_cost =  (total_cost - delivery_cost) + cost_k;
-			
-			document.getElementById("total_cost").innerHTML = real_cost + 3000;
-			document.getElementById("cost").innerHTML = real_cost;
-			
-			linkId.onreadystatechange = function(){
-				
-				document.getElementById("total_cost").innerHTML = real_cost + 3000 + costValueAsNumber;
-				document.getElementById("cost").innerHTML = real_cost + costValueAsNumber;
+			for(var i = 0; i < objLength; i++){
+				price_array[i] = "price" + i;
 			}
 			
+			// up 버튼 클릭한, 가격을 가지고 오는 변수 입니다.
+			var fix_price = imageToModelMapping_real[linkId].shoes_price;
+			var fix_price_real = parseInt(fix_price);
+			
+			console.log("fix_price_real : ", fix_price_real);
+			
+			console.log("stored_quantity1 : ", stored_quantity);
+			prex_price = document.getElementById(price_array[linkId]).textContent;
+			prex_price_real = parseInt(prex_price);
+			
+			var one_prex_price_real = 0;
+			var two_prex_price_real = 0;
+			
+			if(quantity == 0)
+			{
+				document.getElementById("price"+linkId).innerHTML = 0 + " 원"; 
+			} else if(quantity > stored_quantity){
+				prex_price_rreal = prex_price_real + fix_price_real;
+				document.getElementById("price"+linkId).innerHTML = fix_price_real + (fix_price_real * (quantity - 1));
+				one_prex_price_real = fix_price_real + (fix_price_real * (quantity - 1));
+				console.log("prex_price_rreal : ", prex_price_rreal);
+			} else if (quantity < stored_quantity){
+				prex_price_rreal = prex_price_real;
+				document.getElementById("price"+linkId).innerHTML = prex_price_rreal - fix_price_real;
+				two_prex_price_real = prex_price_rreal - fix_price_real;
+				console.log("prex_price_rreal : ", prex_price_rreal - fix_price_real);
+				
+			}
+			
+			var result_cost = [];
+			var result_cost_real =  0;
+			for(var i = 0; i < objLength; i++)
+			{
+				var g = [];
+				g[i] = document.getElementById(price_array[i]).textContent; 
+				result_cost[i] = parseInt(g[i]);
+				console.log("result_cost[i] : ", result_cost[i]);
+				result_cost_real +=  result_cost[i];
+			}
+			
+			document.getElementById("cost").innerHTML = result_cost_real;
+			document.getElementById("total_cost").innerHTML = result_cost_real + delivery_cost;
+			
+			stored_quantity = quantity;
+			console.log("stored_quantity2 : ", stored_quantity);
 			
 		}
     
@@ -520,33 +547,7 @@
 		    // td에 상위 인 tr을 찾아서 저장
 		    const trElement = tdElement.parentElement;
 		
-		    // tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
-		    trElement.remove();
-			
-			linkId = element.getAttribute("data-link-id");
-			delete_uid = imageToModelMapping_real[linkId].uid;
-			delete_price = imageToModelMapping_real[linkId].shoes_price;
-			
-			// 총 cost에서 삭제된 상품의 액수만큼 빼준다. - 브라우저에 표시되는 금액 
-			total_cost -= delete_price;
-			before_total_cost -= delete_price; 
-			console.log("total_cost- : ",total_cost);
-			
-			document.getElementById("total_cost").innerHTML = total_cost;
-			document.getElementById("cost").innerHTML = before_total_cost;
-			
-			if(delete_uid != null)
-			{
-				console.log("delete_uid NOT NULL");
-				jsonData_delete_uid = JSON.stringify(delete_uid);
-									
-			} else {
-				console.log("delete_uid NULL");
-			}	   
-		    
-		    // 
-			xhr2.open("POST", "/CartUpdateServlet", true); // 비동기 요청 시작.
-			xhr2.send(jsonData_delete_uid); 
+		   // 작업 해야 한다.
 		}
     </script>
     

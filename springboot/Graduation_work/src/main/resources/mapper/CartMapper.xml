@@ -23,17 +23,17 @@
 		where shoes_id = #{shoes_id}
 	</select>
 	
-	<!-- MyBatis XML에서 SQL 업데이트 쿼 리 정의 -->
-		<update id="cartUpdateIsDelete" parameterType="String">
-		    update cart
-		    set is_delete = 1
-		    where shoes_id = #{shoes_id}
-		</update>
+	<!-- MyBatis XML에서 SQL 업데이트 쿼리 정의 -->
+	<update id="cartUpdateIsDelete" parameterType="String">
+	    update cart
+	    set is_delete = 1
+	    where shoes_id = #{shoes_id}
+	</update>
 
 	
 	<delete id="cartDeleteShoesId">
 		delete from cart	 
-		where shoes_id = #{shoes_id}
+		where is_delete = 1
 	</delete>
 	
 	<select id="numberOfCart" resultType="int">

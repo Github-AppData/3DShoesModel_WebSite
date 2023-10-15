@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.rubypaper.dao.TotalDAO;
 import com.example.rubypaper.service.CartService;
 import com.example.rubypaper.service.ServiceList;
+import com.example.rubypaper.service.UpdateService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +21,8 @@ import jakarta.servlet.http.HttpSession;
 public class CartUpdateServlet extends HttpServlet {
 	
 	@Autowired
-	CartService cartService;
+	ServiceList serviceList;
+//	UpdateService updateService;
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,24 +36,20 @@ public class CartUpdateServlet extends HttpServlet {
         while ((line = reader.readLine()) != null) {
         	delete_uid.append(line);
         }
-        String gf = delete_uid.toString();
+        
+        System.out.println("Before delete_uid : " + delete_uid);
+        String sa = delete_uid.toString();
+        System.out.println("After delete_uids : " + delete_uid);
+        
         try {
-//        	serviceList.cartDeleteShoesId(gf);
+        	serviceList.cartDeleteShoesId();
 //			serviceList.cartUpdateIsDelete(gf);
-        	cartService.cartUpdateIsDelete(gf);
+//        	updateService.cartUpdateIsDelete(gf);
         	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        System.out.println("Before delete_uid : " + delete_uid);
-        
-        String sa = delete_uid.toString();
-        
-        
-        
-        System.out.println("After delete_uid : " + delete_uid);
 //        
 //        // JSON 데이터를 세션에 저장
 //        HttpSession session = request.getSession();
