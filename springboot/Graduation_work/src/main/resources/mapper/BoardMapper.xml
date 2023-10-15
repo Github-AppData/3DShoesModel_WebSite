@@ -18,6 +18,12 @@
 	</select>
 	
 	
+	<select id="boardCheckIdFindList" resultType="Map" parameterType="String">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE user_id = #{user_id} and is_delete = 0 
+		ORDER BY idx ASC;
+	</select>
 	
 	<delete id="FindListIsDelete">
 		delete

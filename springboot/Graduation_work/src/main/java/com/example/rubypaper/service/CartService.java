@@ -30,8 +30,9 @@ public class CartService {
 		return cartMapper.numberOfCart();
 	}
 	
-	
-	
+	public int cartUpdateIsDelete(String shoes_id) throws Exception {
+		return cartMapper.cartUpdateIsDelete(shoes_id);
+	}
 	
 	
 	

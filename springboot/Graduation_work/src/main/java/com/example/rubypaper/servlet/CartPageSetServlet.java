@@ -33,7 +33,9 @@ public class CartPageSetServlet extends HttpServlet {
 		
 		List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();
 		
+		
 		cartList = serviceList.getCartList();
+		
 		
 		// ObjectMapper 생성
         ObjectMapper objectMapper = new ObjectMapper();

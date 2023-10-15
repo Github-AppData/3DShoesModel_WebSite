@@ -15,6 +15,12 @@ public interface CartMapper {
 
 	public int numberOfCart();
 
+	public int cartUpdateIsDelete(@Param("shoes_id") String shoes_id);
+
+
+
+
+
 	
 	
 

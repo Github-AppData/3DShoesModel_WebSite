@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,43 @@ public class ServiceList {
 		}
 		return numberOfCart;
 	}
+	
+	public int cartUpdateIsDelete(@Param("shoes_id")String shoes_id) {
+		int cartUpdateIsDelete = 0;
+		try {
+			cartUpdateIsDelete = totalDAO.cartUpdateIsDelete(shoes_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cartUpdateIsDelete;
+	}
+	
+	public int cartDeleteShoesId(@Param("shoes_id")String shoes_id) {
+		int cartDeleteShoesId = 0;
+		try {
+			cartDeleteShoesId = totalDAO.cartDeleteShoesId(shoes_id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cartDeleteShoesId;
+	}
+	
+	
+	//사용자 목록 가져오기 
+		public List<Map<String, Object>> getboardCheckIdFindList(@Param("user_id") String user_id) {
+			List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+			
+			try {
+				boardList = totalDAO.getboardCheckIdFindList(user_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+				return boardList;
+			}
+	
 	
 	//사용자 목록 가져오기 
 	public List<Map<String, Object>> getBoardList() {

@@ -32,10 +32,26 @@ public class SampleController {
 	@RequestMapping("/mypage")
 	public String mypage(Model model, HttpServletRequest request, HttpSession session)
 	{
+		
+		//사용자 목록 가져오기 
+		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+				
+		//사용자 총 수 
+		int result = 0;
+		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		System.out.println(userID);
+		try {
+			boardList = serviceList.getboardCheckIdFindList(userID);
+			System.out.println(boardList);
+			serviceList.FindListIsDelete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 						
+		model.addAttribute("list", boardList);
 		model.addAttribute("userID", userID); // userID를 전한다.
 		
 		return "test/mypage";
@@ -56,8 +72,13 @@ public class SampleController {
 	}
 	
 	@RequestMapping("/sDetails")
-	public String sDetails(Model model, HttpServletRequest request)
+	public String sDetails(Model model, HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+				
+		model.addAttribute("userID", userID); // userID를 전한다.
 		
 		
 		return "test/sDetails";
@@ -93,8 +114,13 @@ public class SampleController {
 	}
 	
 	@RequestMapping("/write")
-	public String write()
+	public String write(Model model, HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+				
+		model.addAttribute("userID", userID); // userID를 전한다.
 		return "test/write";
 	}
 	
@@ -138,19 +164,29 @@ public class SampleController {
 	
 	
 	@GetMapping("/sBlog")
-	public String test4(Model model)
+	public String sBlog(Model model, HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+				
+		model.addAttribute("userID", userID); // userID를 전한다.
 		return "test/sBlog";
 	}	
 	
 	@GetMapping("/sContact")
-	public String test5(Model model)
+	public String sContact(Model model, HttpServletRequest request, HttpSession session)
 	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+				
+		model.addAttribute("userID", userID); // userID를 전한다.
 		return "test/sContact";
 	}	
 	
-	@GetMapping("/sCart")
-	public String test6(Model model,HttpServletRequest request, HttpSession session)
+	@RequestMapping("/sCart")
+	public String sCart(Model model,HttpServletRequest request, HttpSession session)
 	{
 		// user_id 구하는 것.
 		session = request.getSession();
