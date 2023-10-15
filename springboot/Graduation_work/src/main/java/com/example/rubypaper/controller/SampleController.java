@@ -113,6 +113,21 @@ public class SampleController {
 		return "test/noticdBoard";
 	}
 	
+	@GetMapping("/wDetails")
+	public String wDetails(Model model, HttpServletRequest request, HttpSession session)
+	{
+		
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+								
+		model.addAttribute("userID", userID); // userID를 전한다.
+		
+		return "test/wDetails";
+	}
+	
+	
+	
 	@RequestMapping("/write")
 	public String write(Model model, HttpServletRequest request, HttpSession session)
 	{
