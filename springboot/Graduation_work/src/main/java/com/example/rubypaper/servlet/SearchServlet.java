@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/ProductListSevlet")
-public class ProductListSevlet extends HttpServlet{
+public class SearchServlet extends HttpServlet{
 	
 	@Autowired
 	ServiceList serviceList;
