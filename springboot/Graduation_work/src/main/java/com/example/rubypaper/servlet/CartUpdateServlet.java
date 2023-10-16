@@ -5,9 +5,8 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.rubypaper.dao.TotalDAO;
 import com.example.rubypaper.service.CartService;
-import com.example.rubypaper.service.ServiceList;
+import com.example.rubypaper.service.TotalService;
 import com.example.rubypaper.service.UpdateService;
 
 import jakarta.servlet.ServletException;
@@ -21,13 +20,16 @@ import jakarta.servlet.http.HttpSession;
 public class CartUpdateServlet extends HttpServlet {
 	
 	@Autowired
-	ServiceList serviceList;
-//	UpdateService updateService;
+	UpdateService updateService;
+//	ServiceList serviceList;
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("CartUpdateServlet");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
 		// 클라이언트로부터의 JSON 데이터 수신
         BufferedReader reader = request.getReader();
@@ -36,13 +38,11 @@ public class CartUpdateServlet extends HttpServlet {
         while ((line = reader.readLine()) != null) {
         	delete_uid.append(line);
         }
-        
-        System.out.println("Before delete_uid : " + delete_uid);
         String sa = delete_uid.toString();
-        System.out.println("After delete_uids : " + delete_uid);
         
+        System.out.println(sa.getClass().getName());
         try {
-        	serviceList.cartDeleteShoesId();
+        	updateService.cartUpdateIsDelete(sa);
 //			serviceList.cartUpdateIsDelete(gf);
 //        	updateService.cartUpdateIsDelete(gf);
         	
@@ -50,7 +50,10 @@ public class CartUpdateServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        System.out.println("delete_uid.toString() : "+  delete_uid.toString());
 //        
+        
 //        // JSON 데이터를 세션에 저장
 //        HttpSession session = request.getSession();
 //        session.setAttribute("delete_uidㅁㄴㅇㅁ", delete_uid.toString());
