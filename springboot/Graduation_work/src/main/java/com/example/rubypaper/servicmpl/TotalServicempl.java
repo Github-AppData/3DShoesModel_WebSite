@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.mapper.TotalMapper;
 import com.example.rubypaper.service.TotalService;
 
@@ -41,8 +42,13 @@ public class TotalServicempl implements TotalService{
 	}
 
 	@Override
-	public List<Map<String, Object>> boardFindList() throws Exception {
-		return totalMapper.boardFindList();
+	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception {
+		return totalMapper.boardFindList(paging);
+	}
+	
+	@Override
+	public int  boardCount() throws Exception{
+		return totalMapper.boardCount();
 	}
 
 	@Override

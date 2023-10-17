@@ -10,6 +10,13 @@
 		FROM notice_board
 	</insert>
 	
+	<select id="boardFindList" resultType="Map">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE is_delete = 0
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
 	
 	
 	<select id="boardCount" resultType="Integer">

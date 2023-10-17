@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.rubypaper.dto.Paging;
+
 @Mapper
 public interface TotalMapper {
 
@@ -17,7 +19,8 @@ public interface TotalMapper {
 	public List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_id);
 	public List<Map<String, Object>> boardIdxData(@Param("idx") int idx);
 	public int numberOfCart();
-	
+	public List<Map<String, Object>> boardFindList(Paging paging);
+	public int boardCount() throws Exception;
 	public List<Map<String, Object>> cartFindList();
 	
 	public List<Map<String, Object>> boardFindList();
