@@ -170,10 +170,10 @@
 							  </tr>
 							  </thead>
 							  <tbody>
-								<tr th:each="ss, iterStat : ${list}">
-									<td th:id="'idx + ${iterStat.index}'" th:text="${ss.idx}">공지1</td>
-									<td th:data-link-id="${iterStat.index}" onClick="submitData(this)" th:text="${ss.title}"></td>
-									<td th:text="${ss.write_date}">2023.10.29</td>
+								<tr th:each="board, iterStat : ${list}">
+									<td th:id="'idx' + ${iterStat.index}" th:text="${board.idx}">공지1</td>
+									<td th:data-link-id="${iterStat.index}" onClick="submitData(this)" th:text="${board.title}"></td>
+									<td th:text="${board.write_date}">2023.10.29</td>
 								</tr> 
 							  </tbody>
 						  </table>
@@ -321,6 +321,10 @@
 					}
 				}
 				
+				for(var i = 0; i < object; i++)
+				{
+					document.getElementById("submitData_td").innerHTML = '<td data-link-id="datas' + i +'" th:text="${board.title}"></td>';
+				}														
 				
 					
 				xhr.open("POST", "/boardCountServlet",true);
