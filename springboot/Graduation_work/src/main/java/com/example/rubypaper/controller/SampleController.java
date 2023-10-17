@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.service.BoardService;
 import com.example.rubypaper.service.ServiceList;
@@ -52,23 +54,32 @@ public class SampleController {
 	}	
 	
 	@RequestMapping("/noticdBoard")
-	public String noticdBoard(Model model, HttpServletRequest request, HttpSession session)
+	public String noticdBoard(@RequestParam(value="page", defaultValue = "1") int page ,Model model, HttpServletRequest request, HttpSession session)
 	{
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+		
+		//페이징 객체 생성
+		Paging paging = new Paging();
+		
+		paging.setPage(page);
+		var startRow = 10 * (page - 1);
+		paging.setStartRow(startRow);
 		
 		//사용자 총 수 
 		int result = 0;
 				
 		try {
-			boardList = serviceList.getBoardList();
+			boardList = serviceList.getBoardList(paging);
 			result = serviceList.getBoardValue();
+			paging.setTotalArticle(result);
 			serviceList.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 				
 		model.addAttribute("list", boardList);
+		model.addAttribute("paging", paging);
 		
 		// user_id 구하는 것.
 		session = request.getSession();

@@ -3,7 +3,7 @@ package com.example.rubypaper.dto;
 public class Paging {
 	private int page; // 현재 페이지 번호
 	private int totalPage; // 페이지 갯수
-	private int pageSize = 6; // 한 페이지에 들어가는 객체 개수
+	private int pageSize = 10; // 한 페이지에 들어가는 객체 개수
 	private int totalArticle; // 전체 객체 개수
 	private int startRow; // 한 페이지에 객체 시작 행
 	private int endRow; // 한 페이지에 객체 끝 행

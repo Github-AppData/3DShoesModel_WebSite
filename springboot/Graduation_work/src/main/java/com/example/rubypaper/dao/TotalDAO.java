@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.rubypaper.dto.Paging;
+
 @Repository
 public class TotalDAO {
 	
@@ -14,8 +16,8 @@ public class TotalDAO {
 	SqlSession sqlSession;
 	
 	// 게시판 목록 
-	public List<Map<String, Object>> getBoardList() throws Exception {
-		return sqlSession.selectList("com.example.rubypaper.mapper.BoardMapper.boardFindList");
+	public List<Map<String, Object>> getBoardList(Paging paging) throws Exception {
+		return sqlSession.selectList("com.example.rubypaper.mapper.BoardMapper.boardFindList", paging);
 	}
 	
 	

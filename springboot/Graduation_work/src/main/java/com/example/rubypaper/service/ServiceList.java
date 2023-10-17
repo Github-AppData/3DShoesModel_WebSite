@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dao.TotalDAO;
+import com.example.rubypaper.dto.Paging;
 
 @Service
 public class ServiceList {
@@ -16,11 +17,11 @@ public class ServiceList {
 	TotalDAO totalDAO;
 	
 	//사용자 목록 가져오기 
-	public List<Map<String, Object>> getBoardList() {
+	public List<Map<String, Object>> getBoardList(Paging paging) {
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
 		
 		try {
-			boardList = totalDAO.getBoardList();
+			boardList = totalDAO.getBoardList(paging);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

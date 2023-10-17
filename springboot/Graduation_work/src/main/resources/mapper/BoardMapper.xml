@@ -14,7 +14,8 @@
 		SELECT idx, title, write_date
 		FROM notice_board
 		WHERE is_delete = 0
-		ORDER BY idx ASC;
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
 	</select>
 	
 	
