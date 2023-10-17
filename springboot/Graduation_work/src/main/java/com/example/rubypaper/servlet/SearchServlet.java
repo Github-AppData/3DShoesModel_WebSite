@@ -9,7 +9,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.rubypaper.service.SearchService;
-import com.example.rubypaper.service.ServiceList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -26,7 +25,7 @@ public class SearchServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		/*
 		System.out.println("SearchSevlet 실행 되었습니다." );
 		
 		// 신발 목록 가져오기 
@@ -53,5 +52,6 @@ public class SearchServlet extends HttpServlet{
         response.getWriter().write(shoes_id); 
         
         response.sendRedirect(request.getContextPath() + "/test_Search");
+        */
 	}
 }

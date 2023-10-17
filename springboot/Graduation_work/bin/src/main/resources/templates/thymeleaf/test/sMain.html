@@ -379,13 +379,8 @@
                         
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="product__pagination">
-                                <a class="active" href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <span>...</span>
-                                <a href="#">11</a>
-                            </div>
+                            <div class="product__pagination" id="pagebuttons">
+							</div>
                         </div>
                     </div>
                 </div>
@@ -478,143 +473,197 @@
 		
 		var imageToModelMapping_real = [];
 		var iframe_clicked = [];
-		var shoes_selected = ["shoes1_page","shoes2_page","shoes3_page","shoes4_page","shoes5_page","shoes6_page"];
-		
+		var shoes_selected = ["shoes1_page", "shoes2_page", "shoes3_page", "shoes4_page", "shoes5_page", "shoes6_page"];
+
 		var shoes_id;
 		var shoes1_name;
-	    var shoes_price;
-	    
-	    var dataToSend = null;
-	    
-	    var xhr = new XMLHttpRequest();
-	    var xhr2 = new XMLHttpRequest();
-	    
-		
+		var shoes_price;
+
+		var page = 1;
+		var pageLength;
+
+		var object = null;
+		var objLength = null;
+
+		var dataToSend = null;
+
+		var xhr = new XMLHttpRequest();
+		var xhr2 = new XMLHttpRequest();
+
+
 		window.onload = pageLoad;
-		function pageLoad()
-		{
-			xhr.onreadystatechange = function () 
-			{
+		function pageLoad() {
+			xhr.onreadystatechange = function () {
 				// 응답이 되었으면,
-				if (xhr.readyState === 4 && xhr.status === 200) 
-				{
-		            var object = JSON.parse(xhr.responseText);
-		            var objLength = Object.keys(object).length;
-		            console.log("objLength : ",objLength);
-		            
-					for (var i = 0; i < objLength; i++) 
-					{
-					    shoes_id = object[i].shoes_id;
-					    shoes_name = object[i].shoes_name;
-					    shoes_price = object[i].shoes_price;
-					    imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price:shoes_price });
-					    console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					object = JSON.parse(xhr.responseText);
+					objLength = Object.keys(object).length;
+					console.log("objLength : ", objLength);
+					console.log("page : ",page);
+					
+					pageLength = Math.ceil(objLength / 6);
+					console.log("pageLength : ",pageLength);
+					
+					if (pageLength <= 0) {
+						pageLength = 1;
 					}
 					
+					var last = page * 6 - 1;
+					//if (last > objLength) last = objLength;
+					var first = last - (6 - 1);
 					
+					if(first <= 0){
+						fitst = last - (6-1);
+					}
 					
+					console.log("first : ",first);
+					console.log("last : ",last);
+					
+					var pagebuttons = document.getElementById("pagebuttons");
+					//초기화
+					pagebuttons.innerHTML = '';
+					//페이지 버튼 제작
+					for (var i = 0; i < pageLength; i++) {
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
+					}
+					/*
+					for (var i = 0; i < objLength; i++) {
+						shoes_id = object[i].shoes_id;
+						shoes_name = object[i].shoes_name;
+						shoes_price = object[i].shoes_price;
+					}
+					*/
+					//필요한 것만 불러오도록 변경
+					for(var i = first; i <= last; i++){
+						if (page != 1) {
+							var num = i - first;
+						} else {
+							var num = i;
+						}
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (num + 1), shoes_name: object[i].shoes_name, shoes_price: object[i].shoes_price});
+						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+					}
+
 					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					// 신발 이름 
 					var article_id = ["shoes1_name", "shoes2_name", "shoes3_name", "shoes4_name", "shoes5_name", "shoes6_name"];
-					
-					for(var i = 0; i < objLength; i++)
-					{
-						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
-		    			document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
-					}
-					
+					// 신발 가격을 표시하는 부분의 id
+					var article_price_id = ["shoes1_price", "shoes2_price", "shoes3_price", "shoes4_price", "shoes5_price", "shoes6_price"];
 					// 신발 가격
 					var price_sum = 0;  // 상품 총 금액 
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
-					
-					// 신발 가격을 표시하는 부분의 id
-					var article_price_id = ["shoes1_price", "shoes2_price", "shoes3_price","shoes4_price", "shoes5_price", "shoes6_price"];
-					
-					for(var i = 0; i < objLength; i++)
-					{
+
+					for (var i = first; i <= last; i++) {
+						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
 						var shoes_info_price = imageToModelMapping_real[i].shoes_price;
 						price_sum += shoes_info_price;
-		    			document.getElementById(article_price_id[i]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+						if (page != 1) {
+							var num = i - first;
+						} else {
+							var num = i;
+						}
+						document.getElementById(article_id[num]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
+						document.getElementById(article_price_id[num]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
 					}
-					
-					imageToModelMapping_real.forEach(function(mapping) 
-					{
+
+					imageToModelMapping_real.forEach(function (mapping) {
 						replaceWith3DModel(mapping.uid, mapping.iframeId);
 					});
-					
+
 				} // if (xhr.readyState === 4 && xhr.status === 200) 
 
 			}; // xhr.onreadystatechange 끝
+
+			xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
+			xhr.send(null); // ProductListSevlet에 보낼 요청
+
+		}; // pageLoad
+
+		function setPage(link) {
+			var pageId = null;
+
+			pageId = link.getAttribute("data-link-id");
+
+			console.log(pageId);
+			setPagenum(pageId);
 			
 			xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
-		   	xhr.send(null); // ProductListSevlet에 보낼 요청
-		   			
-		}; // pageLoad
-		
-	// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
-	function handleLinkClick(link) 
-	{
-		var linkId = null;
-		var jsonData = null;
-		
-		linkId = link.getAttribute("data-link-id");
-		
-		
-		switch (linkId) 
-		{
-						
-			case "1":
-				dataToSend = imageToModelMapping_real[0];
-				console.log(dataToSend);
-				break;
-							            
-			case "2":
-				dataToSend = imageToModelMapping_real[1];
-				console.log(dataToSend);
-				break;
-							            
-			case "3":
-				dataToSend = imageToModelMapping_real[2];
-				console.log(dataToSend);
-				break;
-							            
-			case "4":
-				dataToSend = imageToModelMapping_real[3];
-				console.log(dataToSend);
-				break;
-							            
-			case "5":
-				dataToSend = imageToModelMapping_real[4];
-				console.log(dataToSend);
-				break;
-							            
-			case "6":
-				dataToSend = imageToModelMapping_real[5];
-				console.log(dataToSend);
-				break;
-							       
-			default:
-				console.log("아무것도 눌리지 않았습니다.");
-		}  
-	 
-	
-			
-		if(dataToSend != null)
-		{
-			console.log("dataToSend NOT NULL");
-			
-			jsonData = JSON.stringify(dataToSend);
-								
-		} else {
-			console.log("dataToSend NULL");
-		}	   
-		
-		
-		xhr2.open("POST", "/ProductDetailPageServlet", true);
-		xhr2.send(jsonData); // ProductDetailPageServlet 보낼 요청
-					
-	} 
+			xhr.send(null);
+		}
+
+		function setPagenum(num) {
+			page = num;
+		}
+
+		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
+		function handleLinkClick(link) {
+			var linkId = null;
+			var jsonData = null;
+
+			linkId = link.getAttribute("data-link-id");
+
+
+
+			switch (linkId) {
+
+				case "1":
+					var num = 0 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "2":
+					var num = 1 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "3":
+					var num = 2 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "4":
+					var num = 3 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "5":
+					var num = 4 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "6":
+					var num = 5 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				default:
+					console.log("아무것도 눌리지 않았습니다.");
+			}
+
+
+
+			if (dataToSend != null) {
+				console.log("dataToSend NOT NULL");
+
+				jsonData = JSON.stringify(dataToSend);
+
+			} else {
+				console.log("dataToSend NULL");
+			}
+
+
+			xhr2.open("POST", "/ProductDetailPageServlet", true);
+			xhr2.send(jsonData); // ProductDetailPageServlet 보낼 요청
+
+		}
+
 				
    
     function replaceWith3DModel(uid, iframeId) {

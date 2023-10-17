@@ -5,8 +5,7 @@
 <mapper namespace="com.example.rubypaper.mapper.TotalMapper">
 	<select id="randSelectShoesId"  resultType="Map">
 		SELECT shoes_id, shoes_name, shoes_price
-		FROM shoes
-		LIMIT 6;
+		FROM shoes;
 
 	</select>
 	
@@ -39,7 +38,12 @@
 		SELECT idx, title, write_date
 		FROM notice_board
 		WHERE is_delete = 0
-		ORDER BY idx ASC;
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<select id="boardCount" resultType="Integer">
+		SELECT count(*) FROM Graduation_WorkDB.notice_board where is_delete = 0
 	</select>
 	
 	<select id="cartFindShoesId">

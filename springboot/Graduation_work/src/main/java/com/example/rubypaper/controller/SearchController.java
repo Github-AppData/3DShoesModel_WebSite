@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class SearchController {
-	
+	/*
 	@Autowired
 	SearchService searchService;
 	
@@ -51,4 +51,5 @@ public class SearchController {
 			return "test/sMain";
 		}
 	}
+	*/
 }

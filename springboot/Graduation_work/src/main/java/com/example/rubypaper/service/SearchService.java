@@ -7,12 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.rubypaper.dao.TotalDAO;
-
 
 @Service
 public class SearchService {
-	
+	/*
 	@Autowired
 	TotalDAO totalDAO;
 	
@@ -26,4 +24,5 @@ public class SearchService {
 			}
 				return shoesList;
 	}
+	*/
 }

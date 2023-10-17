@@ -27,7 +27,7 @@ public class SampleController {
 	Object data;
 	
 	@Autowired
-	TotalService totalSerivce;
+	TotalService totalService;
 	
 	@GetMapping("/mypage")
 	public String mypage(Model model, HttpServletRequest request, HttpSession session)
@@ -43,7 +43,7 @@ public class SampleController {
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		System.out.println(userID);
 		try {
-			boardList = totalSerivce.myPageUserDataSet(userID);
+			boardList = totalService.myPageUserDataSet(userID);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -97,13 +97,16 @@ public class SampleController {
 		//사용자 총 수 
 		int result = 0;
 				
-		try {
+		try {/*
 			boardList = serviceList.getBoardList(paging);
 			result = serviceList.getBoardValue();
 			paging.setTotalArticle(result);
 			serviceList.FindListIsDelete();
-			boardList = totalSerivce.boardFindList();
-			totalSerivce.FindListIsDelete();
+			*/
+			boardList = totalService.boardFindList(paging);
+			var boardCount = totalService.boardCount();
+			paging.setTotalArticle(boardCount);
+			totalService.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -142,7 +145,7 @@ public class SampleController {
 		System.out.println("idx_real : "+idx_real);
 		
 		try {
-			boardIdxDataList = totalSerivce.boardIdxData(idx_real);
+			boardIdxDataList = totalService.boardIdxData(idx_real);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,7 +167,7 @@ public class SampleController {
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		
-		int numberOfCart = totalSerivce.numberOfCart();
+		int numberOfCart = totalService.numberOfCart();
 		
 		model.addAttribute("numberOfCart", numberOfCart);
 		return "test/sCart";
