@@ -19,7 +19,7 @@ public interface TotalService {
 	public int numberOfCart();
 	
 	public  List<Map<String, Object>> boardIdxData(int idx) throws Exception;
-	public  List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_id) throws Exception;
+	public  List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_ids) throws Exception;
 	public int cartDeleteShoesId() throws Exception;
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id) throws Exception;
 	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception;
@@ -27,12 +27,11 @@ public interface TotalService {
 	public List<Map<String, Object>> cartFindList() throws Exception;
 	public List<Map<String, Object>> findIsLike() throws Exception;
 	public List<Map<String, Object>> randSelectShoesId() throws Exception;
-	
 	public void FindListIsDelete() throws Exception;
-	public List<Map<String, Object>> boardFindList() throws Exception;
-	
 	public int getBoardValue() throws Exception;
 
 	public int cartUpdateIsDelete(String sa) throws Exception;
 	public String cartFindShoesId(String shoes_id) throws Exception;
+
+	List<Map<String, Object>> boardFindList() throws Exception;
 }

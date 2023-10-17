@@ -12,6 +12,7 @@ import com.example.rubypaper.mapper.BoardMapper;
 public interface BoardService {
 
 	public void boardInsert(NoticeBoard noticeBoard) throws Exception;
+	public void boardFindList(NoticeBoard noticeBoard) throws Exception;
 	public int boardCount() throws Exception;
 	public void boardIdxData(int idx) throws Exception;
 	

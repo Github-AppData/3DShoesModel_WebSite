@@ -111,7 +111,6 @@ public class SampleController {
 			e.printStackTrace();
 		}
 				
-		System.out.println("boardList"+boardList.toString());
 		model.addAttribute("list", boardList);
 		model.addAttribute("paging", paging);
 		
