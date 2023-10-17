@@ -32,4 +32,6 @@ public interface TotalService {
 
 	public int cartUpdateIsDelete(String sa) throws Exception;
 	public String cartFindShoesId(String shoes_id) throws Exception;
+
+	List<Map<String, Object>> boardFindList() throws Exception;
 }
