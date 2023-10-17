@@ -184,15 +184,14 @@
 				<div class="col-lg-3">
 					<div class="shop__sidebar">
 						<div class="shop__sidebar__search">
-							<form action="/test_Search" method="post">
+							<form action="SearchServlet" method="post">
 								<input type="text" name="shoes_Name" placeholder="검색어">
-								<button type="submit"><span class="icon_search"></span></button>
+								<button type="submit" onclick="sendHttpRequest()"><span class="icon_search"></span></button>
 							</form>
 						</div>
 						<div class="shop__sidebar__accordion">
 							<div class="accordion" id="accordionExample">
 								<div class="card">
-
 									<div id="collapseOne" class="collapse show" data-parent="#accordionExample">
 										<div class="card-body">
 
@@ -556,12 +555,21 @@
 					for (var i = 0; i < pageLength; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
-
+					/*
 					for (var i = 0; i < objLength; i++) {
 						shoes_id = object[i].shoes_id;
 						shoes_name = object[i].shoes_name;
 						shoes_price = object[i].shoes_price;
-						imageToModelMapping_real.push({uid: shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: shoes_name, shoes_price: shoes_price});
+					}
+					*/
+					//필요한 것만 불러오도록 변경
+					for(var i = first; i <= last; i++){
+						if (page != 1) {
+							var num = i - first;
+						} else {
+							var num = i;
+						}
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (num + 1), shoes_name: object[i].shoes_name, shoes_price: object[i].shoes_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
 					}
 

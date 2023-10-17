@@ -3,7 +3,7 @@
 
 
 <mapper namespace="com.example.rubypaper.mapper.SearchMapper">
-	<select id="search" resultType="com.example.rubypaper.dto.Shoes">
+	<select id="search" resultType="Map">
 		select 
 			shoes_Id as shoes_Id,
 			shoes_Name as shoes_Name,

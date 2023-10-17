@@ -42,6 +42,10 @@ public class TotalDAO {
 	public List<Map<String, Object>> findIsLike() throws Exception{
 		return sqlSession.selectList("com.example.rubypaper.mapper.ShoesMapper.findIsLike");
 	}
+	
+	public List<Map<String, Object>> search() throws Exception{
+		return sqlSession.selectList("com.example.rubypaper.mapper.SearchMapper.search");
+	}
 
 
 }
