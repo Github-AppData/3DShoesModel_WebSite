@@ -11,7 +11,6 @@ public class NoticeBoard {
 	private String write_date;
 	private String user_id;
 	private int is_delete;
-	
 	public int getIdx() {
 		return idx;
 	}
@@ -59,6 +58,8 @@ public class NoticeBoard {
 		return "NoticeBoard [idx=" + idx + ", title=" + title + ", writer=" + writer + ", content=" + content
 				+ ", write_date=" + write_date + ", user_id=" + user_id + ", is_delete=" + is_delete + "]";
 	}
+	
+	
 	
 	
 }
