@@ -10,7 +10,7 @@
 
 	</select>
 	
-	<select id="myPageUserDataSet" resultType="Map" >
+	<select id="myPageUserDataSet">
 		select user_id, name, birthday, adress, detail_adress, email, phone
 		from User 
 		where user_id = #{user_id};
@@ -31,8 +31,6 @@
 		WHERE cart.is_delete = 0 and cart.shoes_id = shoes.shoes_id
 		ORDER BY cart.cart_id ASC
 	</select>
-	
-	
 	
 	
 	<select id="boardFindList" resultType="Map">

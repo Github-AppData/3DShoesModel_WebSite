@@ -27,6 +27,7 @@ public class boardCountServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 		// Content-Type 설정 (JSON으로 응답)
+		System.out.println("boardCountServlet");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(Integer.toString(s));

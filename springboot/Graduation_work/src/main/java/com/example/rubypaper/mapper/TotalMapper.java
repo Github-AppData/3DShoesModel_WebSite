@@ -17,9 +17,12 @@ public interface TotalMapper {
 	public List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_id);
 	public List<Map<String, Object>> boardIdxData(@Param("idx") int idx);
 	public int numberOfCart();
-	public List<Map<String, Object>> boardFindList();
+	
 	public List<Map<String, Object>> cartFindList();
+	
+	public List<Map<String, Object>> boardFindList();
 	public void FindListIsDelete() throws Exception;
+	
 	public int cartUpdateIsDelete(@Param("shoes_id") String shoes_id) throws Exception;
 	public String cartFindShoesId(@Param("shoes_id") String shoes_id) throws Exception;
 }

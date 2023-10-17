@@ -54,6 +54,8 @@ public class WriteActionServlet extends HttpServlet{
 		noticeBoard.setTitle(title);
 		noticeBoard.setWrite_date(formatedNow);
 		
+		System.out.println("WriteActionServlet noticeBoard : "+noticeBoard.toString());
+		
 		ServletContext servletContext = getServletContext();
 		servletContext.setAttribute("noticeBoard", noticeBoard); // set 부분
 		
