@@ -124,6 +124,11 @@ public class SampleController {
 		return "test/noticdBoard";
 	}
 	
+	@GetMapping("/hearts")
+	public String hearts() {
+		return "test/hearts";
+	}
+	
 	@GetMapping("/wDetails")
 	public String wDetails(Model model, HttpServletRequest request, HttpSession session, HttpSession session2)
 	{
