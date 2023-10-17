@@ -9,12 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.rubypaper.dto.Paging;
-import com.example.rubypaper.dto.User;
+import org.springframework.web.bind.annotation.RequestMapping;import rg.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestControlle
+import com.example.rubypaper.dto.Paging;import o m.example.rubypaper.dto.User;
 import com.example.rubypaper.service.TotalService;
 
 import jakarta.annotation.Resource;
@@ -26,21 +23,20 @@ public class SampleController {
 	
 	Object data;
 	
-	@Autowired
-	TotalService totalSerivce;
-	
+
+	TotalService
+
 	@GetMapping("/mypage")
-	public String mypage(Model model, HttpServletRequest request, HttpSession session)
-	{
+	public String mypage(Model
+
 		//사용자 목록 가져오기 
-		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
-				
-		//사용자 총 수 
+		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>(); 			
+		// 사용자 총 수 
 		int result = 0;
-		
-		// user_id 구하는 것.
-		session = request.getSession();
-		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+
+		//  user_i 구하는 것.
+		session = reque
+
 		System.out.println(userID);
 		try {
 			boardList = totalSerivce.myPageUserDataSet(userID);
@@ -50,44 +46,42 @@ public class SampleController {
 		System.out.println("boardList"+boardList.toString());
 						
 		model.addAttribute("list", boardList);
-		model.addAttribute("userID", userID); // userID를 전한다.
-		
+		model.addAttribute("userID", u s erID); // userID를 전한다.
+
 		return "test/mypage";
 	}
 
-	@GetMapping("/main")
+		GetMapping("/main")
 	public String main(Model model, HttpServletRequest request, HttpSession session)
 	{
 		// user_id 구하는 것.
-		session = request.getSession();
-		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		session = request.getSession(); 	String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 				
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
-		
+
 		return "test/main";
 	}
-	
-	@GetMapping("/sDetails")
-	public String sDetails(Model model, HttpServletRequest request, HttpSession session)
-	{
+
+		GetMapping("/sDetails")
+	p
+
 		// user_id 구하는 것.
-		session = request.getSession();
-		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		session = request.getSession(); 	String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 				
 		model.addAttribute("userID", userID); // userID를 전한다.
 		
-		
+
 		return "test/sDetails";
-	}	
-	
-	@GetMapping("/noticdBoard")
-	public String noticdBoard(@RequestParam(value="page", defaultValue = "1") int page ,Model model, HttpServletRequest request, HttpSession session)
-	{
-		//사용자 목록 가져오기 
-		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
+
+		GetMapping("/noticdBoard")
+	p
+
+			//사용자목록 가 	List<Map<String, Object>> boar
+
 		
-		//페이징 객체 생성
+		//페이징
+
 		Paging paging = new Paging();
 		
 		paging.setPage(page);
@@ -131,150 +125,134 @@ public class SampleController {
 								
 		model.addAttribute("userID", userID); // userID를 전한다.
 		
-		session2 = request.getSession();
+
 		Object idx = (Object) session2.getAttribute("idx");
-		
-		int idx_real = Integer.parseInt(idx.toString());
+		 	int idx_real = Integer.parseInt(idx.toString());
 		
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardIdxDataList = new ArrayList<Map<String, Object>>();
 		
-		System.out.println("idx_real : "+idx_real);
+
 		
-		try {
+
 			boardIdxDataList = totalSerivce.boardIdxData(idx_real);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
-		}
-		
+
+		 
 		System.out.println(boardIdxDataList.toString());
-		model.addAttribute("boardIdxDataList", boardIdxDataList);
+
+		  
+
 		
-		return "test/wDetails";
-	}
 	
 	@GetMapping("/sCart")
 	public String sCart(Model model,HttpServletRequest request, HttpSession session)
 	{
-		// user_id 구하는 것.
-		session = request.getSession();
+		/
+
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 						
-		model.addAttribute("userID", userID); // userID를 전한다.
+
 		System.out.println("userID : " + userID);
 		
-		int numberOfCart = totalSerivce.numberOfCart();
+
 		
-		model.addAttribute("numberOfCart", numberOfCart);
-		return "test/sCart";
+		model.addAttribute("numberOfCar t", numberOfCart); 	return "test/sCart";
 	}
 	
 	
-	
-	@GetMapping("/write")
-	public String write(Model model, HttpServletRequest request, HttpSession session)
-	{
+
+		GetMapping("/write")
+	public String write(Model model, HttpServl
+
 		// user_id 구하는 것.
-		session = request.getSession();
+
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 				
-		model.addAttribute("userID", userID); // userID를 전한다.
-		return "test/write";
-	}
+		
+
 	
-	
-	@GetMapping("/ptest")
-	public String ptest(Model model) {
+	@GetMapping("/ptest") public String ptest(Model model) {
 		return "test/ptest";
 	}
 	
-	@GetMapping("/sMain")
-	public String sMain(Model model,HttpServletRequest request, HttpSession session)
+
+		ublic String sMain(Model model,HttpServletRequest request, HttpSession session)
 	{
-		// user_id 구하는 것.
-		session = request.getSession();
-		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		
+
 								
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		
-		return "test/sMain";
+
 	}
-	
-	@GetMapping("/findPw")
+	  @GetMapping("/findPw")
 	public String findPw(Model model)
 	{
 		return "test/findPw";
-	}
-	
+
+		
 	@GetMapping("/PwUpdate")
-	public String pwUpdate(Model model, User user) {
+
 		model.addAttribute("user", user);
-		return "test/pwUpdate";
-	}
+		
+
 	
-	@GetMapping("/pwUpdateLast")
-	public String pwUpdateLast(Model model, User user) {
+	@GetMapping("/pwUpdateLast") public String pwUpdateLast(Model model, User user) {
 		return "test/pwUpdateLast";
 	}
-	
+
 	
 	
 	
 	@GetMapping("/sBlog")
-	public String sBlog(Model model, HttpServletRequest request, HttpSession session)
-	{
+	p
+
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
-				
-		model.addAttribute("userID", userID); // userID를 전한다.
-		return "test/sBlog";
-	}	
-	
+		
+
 	@GetMapping("/sContact")
-	public String sContact(Model model, HttpServletRequest request, HttpSession session)
-	{
+	public String sContact(Model model, HttpServletRequest request, HttpSession sessi {
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
-				
+
 		model.addAttribute("userID", userID); // userID를 전한다.
 		return "test/sContact";
-	}	
+	}
+
 	
-	
-	
-	
+	 
 	@GetMapping("/like")
 	public String like(Model model,HttpServletRequest request, HttpSession session)
 	{
-		// user_id 구하는 것.
+
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
-						
-		model.addAttribute("userID", userID); // userID를 전한다.
-		System.out.println("userID : " + userID);
 		
-		
+
 		return "test/like";
-	}
-	
+	}  
 	@GetMapping("/sLogin")
 	public String Login()
 	{
-		return "test/login";
-	}
+
+		
 	
-	@PostMapping("/sBuying")
-	public String test8(Model model)
-	{
-		return "test/sBuying";
-	}
+
+		
+		
+
 	@GetMapping("/SignUp")
-	public String SignUp(Model model)
-	{
+	public String SignUp( {
 		return "test/SignUp";
-	}	
-}
+	}
+
+	 
+
+	 
