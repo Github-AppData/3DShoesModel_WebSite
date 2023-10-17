@@ -18,8 +18,6 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/DetailPageSetServlet")
 public class DetailPageSetServlet extends HttpServlet {
 	
-
-	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 장바구니에 들어갈 신발 정보 
