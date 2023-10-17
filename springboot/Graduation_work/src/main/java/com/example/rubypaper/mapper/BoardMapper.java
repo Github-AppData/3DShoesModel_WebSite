@@ -11,13 +11,9 @@ import com.example.rubypaper.dto.User;
 
 @Mapper
 public interface BoardMapper {
-
-	public void boardInsert(NoticeBoard noticeBoard);
-
-	public NoticeBoard boardFindList(NoticeBoard noticeBoard);
-
+	public void boardInsert() throws Exception;
 	public int boardCount();
-
+	public void boardFindList(NoticeBoard noticeBoard);
 	public void boardIdxData(@Param("idx") int idx);
-
+	
 }

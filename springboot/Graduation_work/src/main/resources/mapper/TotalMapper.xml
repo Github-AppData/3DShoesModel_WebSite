@@ -42,11 +42,24 @@
 		ORDER BY idx ASC;
 	</select>
 	
+	<select id="cartFindShoesId">
+		SELECT shoes_id
+		FROM cart
+		WHERE shoes_id = #{shoes_id}
+	</select>
+	
 	<delete id="FindListIsDelete">
 		delete
 		from notice_board
 		where is_delete = 1
 	</delete>
+	
+	<!-- MyBatis XML에서 SQL 업데이트 쿼리 정의 -->
+	<update id="cartUpdateIsDelete">
+	    update cart
+	    set is_delete = 1
+	    where shoes_id = #{shoes_id}
+	</update>
 	
 	<select id="boardIdxData" resultType="Map">
 		select title, content, write_date

@@ -15,6 +15,7 @@ import com.example.rubypaper.service.CartService;
 import com.example.rubypaper.service.TotalService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,8 +26,8 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/CartPageSetServlet")
 public class CartPageSetServlet extends HttpServlet {
 	
-	@Autowired
-	TotalService serviceList;
+	@Resource
+	TotalService totalService;
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,8 +35,12 @@ public class CartPageSetServlet extends HttpServlet {
 		List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();
 		
 		
-		cartList = serviceList.cartFindList();
-		
+		try {
+			cartList = totalService.cartFindList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// ObjectMapper 생성
         ObjectMapper objectMapper = new ObjectMapper();

@@ -10,14 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.rubypaper.dto.User;
-import com.example.rubypaper.service.BoardService;
 import com.example.rubypaper.service.TotalService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.servlet.ServletContext;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -27,12 +25,11 @@ public class SampleController {
 	Object data;
 	
 	@Autowired
-	TotalService totalList;
+	TotalService totalSerivce;
 	
-	@RequestMapping("/mypage")
+	@GetMapping("/mypage")
 	public String mypage(Model model, HttpServletRequest request, HttpSession session)
 	{
-		
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
 				
@@ -44,7 +41,7 @@ public class SampleController {
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		System.out.println(userID);
 		try {
-			boardList = totalList.myPageUserDataSet(userID);
+			boardList = totalSerivce.myPageUserDataSet(userID);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,10 +53,9 @@ public class SampleController {
 		return "test/mypage";
 	}
 
-	@RequestMapping("/main")
+	@GetMapping("/main")
 	public String main(Model model, HttpServletRequest request, HttpSession session)
 	{
-		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
@@ -70,7 +66,7 @@ public class SampleController {
 		return "test/main";
 	}
 	
-	@RequestMapping("/sDetails")
+	@GetMapping("/sDetails")
 	public String sDetails(Model model, HttpServletRequest request, HttpSession session)
 	{
 		// user_id 구하는 것.
@@ -83,7 +79,7 @@ public class SampleController {
 		return "test/sDetails";
 	}	
 	
-	@RequestMapping("/noticdBoard")
+	@GetMapping("/noticdBoard")
 	public String noticdBoard(Model model, HttpServletRequest request, HttpSession session)
 	{
 		//사용자 목록 가져오기 
@@ -93,8 +89,8 @@ public class SampleController {
 		int result = 0;
 				
 		try {
-			boardList = totalList.boardFindList();
-			totalList.FindListIsDelete();
+			boardList = totalSerivce.boardFindList();
+			totalSerivce.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -130,7 +126,13 @@ public class SampleController {
 		List<Map<String, Object>> boardIdxDataList = new ArrayList<Map<String, Object>>();
 		
 		System.out.println("idx_real : "+idx_real);
-		boardIdxDataList = totalList.boardIdxData(idx_real);
+		
+		try {
+			boardIdxDataList = totalSerivce.boardIdxData(idx_real);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println(boardIdxDataList.toString());
 		model.addAttribute("boardIdxDataList", boardIdxDataList);
@@ -138,9 +140,25 @@ public class SampleController {
 		return "test/wDetails";
 	}
 	
+	@GetMapping("/sCart")
+	public String sCart(Model model,HttpServletRequest request, HttpSession session)
+	{
+		// user_id 구하는 것.
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+						
+		model.addAttribute("userID", userID); // userID를 전한다.
+		System.out.println("userID : " + userID);
+		
+		int numberOfCart = totalSerivce.numberOfCart();
+		
+		model.addAttribute("numberOfCart", numberOfCart);
+		return "test/sCart";
+	}
 	
 	
-	@RequestMapping("/write")
+	
+	@GetMapping("/write")
 	public String write(Model model, HttpServletRequest request, HttpSession session)
 	{
 		// user_id 구하는 것.
@@ -152,7 +170,7 @@ public class SampleController {
 	}
 	
 	
-	@RequestMapping("/ptest")
+	@GetMapping("/ptest")
 	public String ptest(Model model) {
 		return "test/ptest";
 	}
@@ -171,19 +189,19 @@ public class SampleController {
 		return "test/sMain";
 	}
 	
-	@RequestMapping("/findPw")
+	@GetMapping("/findPw")
 	public String findPw(Model model)
 	{
 		return "test/findPw";
 	}
 	
-	@RequestMapping("/PwUpdate")
+	@GetMapping("/PwUpdate")
 	public String pwUpdate(Model model, User user) {
 		model.addAttribute("user", user);
 		return "test/pwUpdate";
 	}
 	
-	@RequestMapping("/pwUpdateLast")
+	@GetMapping("/pwUpdateLast")
 	public String pwUpdateLast(Model model, User user) {
 		return "test/pwUpdateLast";
 	}
@@ -216,7 +234,7 @@ public class SampleController {
 	
 	
 	
-	@RequestMapping("/like")
+	@GetMapping("/like")
 	public String like(Model model,HttpServletRequest request, HttpSession session)
 	{
 		// user_id 구하는 것.

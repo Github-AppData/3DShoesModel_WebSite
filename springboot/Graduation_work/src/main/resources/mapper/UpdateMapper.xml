@@ -3,10 +3,5 @@
 
 
 <mapper namespace="com.example.rubypaper.mapper.UpdateMapper">
-	<!-- MyBatis XML에서 SQL 업데이트 쿼리 정의 -->
-	<update id="cartUpdateIsDelete">
-	    update cart
-	    set is_delete = 1
-	    where shoes_id = #{shoes_id}
-	</update>
+	
 </mapper>
