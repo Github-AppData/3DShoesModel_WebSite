@@ -13,29 +13,23 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 		rel="stylesheet">
 
-
-
-	<!-- Css Styles -->
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-	<link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-	<link rel="stylesheet" href="css/nice-select.css" type="text/css">
-	<link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-	<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-	<link rel="stylesheet" href="css/style.css" type="text/css">
-
-	<style>
-		.aa {
-			position: absolute;
-			width: 260px;
-			/* <iframe>의 크기와 동일하게 설정 */
-			height: 260px;
-			/* <iframe>의 크기와 동일하게 설정 */
-			opacity: 0;
-			/* 투명도 설정 */
-		}
-	</style>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <style>
+    	.aa {position: absolute;
+				width: 260px; /* <iframe>의 크기와 동일하게 설정 */
+        											 height: 260px; /* <iframe>의 크기와 동일하게 설정 */
+        											 opacity: 0; /* 투명도 설정 */
+        											 }
+    </style>
 </head>
 
 <body>
@@ -60,10 +54,28 @@
 
 	</script>
 
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="sLogin">로그인</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span></span>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
 
 	<!-- Offcanvas Menu Begin -->
 	<div class="offcanvas-menu-overlay"></div>
@@ -109,36 +121,44 @@
 							<div class="header__top__hover">
 								<!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
-								<span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
-								<span th:unless="${userID}" th:text="어서오세요"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-3">
-					<div class="header__logo">
-						<a href="main"><img src="img/logo.png" alt="" width="140" height="60"
-								class="d-inline-block align-text-top rounded img-thumbnail"></a>
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6">
-					<nav class="header__menu mobile-menu">
-						<ul>
-							<li><a href="main">메인화면</a></li>
-							<li class="active"><a href="sMain">신발</a>
-								<ul class="dropdown">
-									<li><a href="#">나이키</a></li>
-									<li><a href="#">뉴발란스</a></li>
-									<li><a href="#">컨버스</a></li>
-									<li><a href="#">아디다스</a></li>
-								</ul>
-							</li>
-							</li>
-							<li><a href="#">고객센터</a>
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="main"><img src="img/logo.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href="main">메인화면</a></li>
+                            <li class="active"><a href="sMain">신발</a>
+                            <li><a href="noticdBoard">게시판 </a></li>
+                            <li><a href="sBlog">관리자 페이지</a></li>
+                            <li><a href="sContact">매장찾기</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                        <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
+                        <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
 
 							</li>
 							<li><a href="sBlog">런칭캘린더</a></li>

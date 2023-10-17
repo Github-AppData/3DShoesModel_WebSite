@@ -1,0 +1,11 @@
+Model Information:
+* title:	Converse Shoes
+* source:	https://sketchfab.com/3d-models/converse-shoes-562be2471d5b45e8a6946fbbcc7c0f04
+* author:	CookieCake (https://sketchfab.com/cookiecake250)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Converse Shoes" (https://sketchfab.com/3d-models/converse-shoes-562be2471d5b45e8a6946fbbcc7c0f04) by CookieCake (https://sketchfab.com/cookiecake250) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

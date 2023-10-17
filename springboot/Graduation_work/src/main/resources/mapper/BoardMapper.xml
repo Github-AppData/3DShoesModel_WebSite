@@ -19,15 +19,7 @@
 	</select>
 	
 	
-	
-	<delete id="FindListIsDelete">
-		delete
-		from notice_board
-		where is_delete = 1
-	</delete>
-	
 	<select id="boardCount" resultType="Integer">
-		select count(*)
-		from notice_board
+		SELECT count(*) FROM Graduation_WorkDB.notice_board where is_delete = 0
 	</select>
 </mapper>
