@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -41,8 +42,8 @@ public class DetailPageSetServlet extends HttpServlet {
 		String jsonArrayString = jsonArray.toJSONString();
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("jsonArrayString", jsonArrayString);
 		
+		session.setAttribute("jsonArrayString", jsonArrayString);
 		System.out.println("jsonArrayString :" + jsonArrayString);
 		
 		

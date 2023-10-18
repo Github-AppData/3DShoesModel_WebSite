@@ -11,8 +11,6 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/IsLoginCheckServlet")
 public class IsLoginCheckServlet extends HttpServlet{
-
-	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

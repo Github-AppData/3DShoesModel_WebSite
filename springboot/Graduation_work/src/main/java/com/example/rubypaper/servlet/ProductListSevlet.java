@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.rubypaper.service.ServiceList;
+import com.example.rubypaper.service.TotalService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ProductListSevlet extends HttpServlet{
 	
 	@Autowired
-	ServiceList serviceList;
+	TotalService totalService;
 
 	// 이 서블릿은 sMain에 있는 상품들을 하기 위해서.
 	@Override
@@ -32,7 +32,12 @@ public class ProductListSevlet extends HttpServlet{
 		// 신발 목록 가져오기 
 		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
 				
-		shoesList = serviceList.randSelectShoesId(); // 데이터 저장.
+		try {
+			shoesList = totalService.randSelectShoesId();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 데이터 저장.
 		
 		// ObjectMapper 생성
         ObjectMapper objectMapper = new ObjectMapper();
@@ -48,9 +53,6 @@ public class ProductListSevlet extends HttpServlet{
         // Content-Type 설정 (JSON으로 응답)
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        response.getWriter().write(shoes_id);
-        
-        
-        
+        response.getWriter().write(shoes_id);  
 	}
 }

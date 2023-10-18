@@ -8,23 +8,13 @@ import com.example.rubypaper.dto.NoticeBoard;
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.mapper.BoardMapper;
 
-@Service
-public class BoardService {
 
-	private final BoardMapper boardMapper;
+public interface BoardService {
+
+	public void boardInsert(NoticeBoard noticeBoard) throws Exception;
+	public void boardFindList(NoticeBoard noticeBoard) throws Exception;
+	public int boardCount() throws Exception;
+	public void boardIdxData(int idx) throws Exception;
 	
 	
-	
-	@Autowired
-	public BoardService(BoardMapper boardMapper) {
-		this.boardMapper = boardMapper;
-	}
-	
-	public void boardInsert(NoticeBoard noticeBoard) throws Exception {
-	    boardMapper.boardInsert(noticeBoard);
-	}
-	
-	public void boardFindList(NoticeBoard noticeBoard) throws Exception{
-		boardMapper.boardFindList(noticeBoard);
-	}
 }

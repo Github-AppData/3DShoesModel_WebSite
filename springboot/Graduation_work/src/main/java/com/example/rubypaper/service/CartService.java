@@ -8,21 +8,10 @@ import com.example.rubypaper.dto.User;
 import com.example.rubypaper.mapper.CartMapper;
 import com.example.rubypaper.mapper.UserMapper;
 
-@Service
-public class CartService {
 
-	private final CartMapper cartMapper;
+public interface CartService {
 	
-	@Autowired
-	public CartService(CartMapper cartMapper) {
-		this.cartMapper = cartMapper;
-	}
-	
-	public void cartInsert(Cart cart) throws Exception{
-		cartMapper.cartInsert(cart);
-	}
-	
-	
-	
-	
+	public void cartInsert(Cart cart) throws Exception;
+	public String cartCheckShoesId(String shoes_id) throws Exception;
+	public int numberOfCart() throws Exception;
 }

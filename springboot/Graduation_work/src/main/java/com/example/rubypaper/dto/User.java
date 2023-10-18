@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class User {
 
 	private int idx;
-	private String id;
+	private String user_id;
 	private String pw;
 	private String email;
 	private Date birthday;
@@ -18,6 +18,7 @@ public class User {
 	private String detail_adress;
 	private String phone;
 	private String salt;
+	private String name;
 	private boolean loggedIn;
 	
 	// 로그인 O -> 1 / 로그인 X -> 0  
@@ -31,12 +32,14 @@ public class User {
 		this.idx = idx;
 	}
 
-	public String getId() {
-		return id;
+	
+
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getPw() {
@@ -107,12 +110,15 @@ public class User {
 	
 	
 	
-	@Override
-	public String toString() {
-		return "User [idx=" + idx + ", id=" + id + ", pw=" + pw + ", email=" + email + ", birthday=" + birthday
-				+ ", adress=" + adress + ", detail_adress=" + detail_adress + ", phone=" + phone + ", salt=" + salt
-				+ ", loggedIn=" + loggedIn + ", is_Status=" + is_Status + "]";
+	public String getName() {
+		return name;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	
 
 	public boolean isLoggedIn() {
 		return loggedIn;
@@ -129,6 +135,15 @@ public class User {
 	public String togetPw() {
 		return pw;
 	}
+
+	@Override
+	public String toString() {
+		return "User [idx=" + idx + ", user_id=" + user_id + ", pw=" + pw + ", email=" + email + ", birthday="
+				+ birthday + ", adress=" + adress + ", detail_adress=" + detail_adress + ", phone=" + phone + ", salt="
+				+ salt + ", name=" + name + ", loggedIn=" + loggedIn + ", is_Status=" + is_Status + "]";
+	}
+
+	
 	
 	
 }
