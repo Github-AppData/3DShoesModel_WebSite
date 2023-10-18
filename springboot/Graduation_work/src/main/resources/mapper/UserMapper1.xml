@@ -9,6 +9,12 @@
 		FROM User
 	</insert>
 	
+	<update id="userInfoUpdate">
+		update user
+		set name = #{name}, birthday = #{birthday}, email = #{email}, adress = #{adress}, detail_adress = #{detail_adress}
+		where user_id = #{user_id}
+	</update>
+	
 	<select id="findAll">
 		select *
 		from User order by idx desc

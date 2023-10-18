@@ -82,7 +82,7 @@ public class InsertInfoServlet extends HttpServlet {
 	    if(resultId == null)
 	    {	
 			// DTO 객체 생성 및 데이터 설정 User user = new User(); user.setId(id);
-	    	 user.setId(id);
+	    	 user.setUser_id(id);
 			 user.setEmail(email); 
 			 user.setBirthday(birth_date);
 			 user.setAdress(adress);
@@ -124,12 +124,12 @@ public class InsertInfoServlet extends HttpServlet {
 			 
 			 // 서블릿 컨텍스트에 DTO 객체 저장 
 			 System.out.println(user.toString()); 
-			 System.out.println(user.getId());
+			 System.out.println(user.getUser_id());
 			 
 			 // 결과 화면으로 !!! 
 			System.out.println("회원가입 되었습니다. 확인 해 보세요 !");
 	    	response.sendRedirect(request.getContextPath() + "/sLogin");
-	    	session.setAttribute("login", user.getId());
+	    	session.setAttribute("login", user.getUser_id());
 	    	
 	    	 ServletContext servletContext = getServletContext();
 			 servletContext.setAttribute("user", user); // set 부분

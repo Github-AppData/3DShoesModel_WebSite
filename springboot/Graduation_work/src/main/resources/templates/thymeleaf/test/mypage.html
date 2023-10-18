@@ -155,7 +155,7 @@
                 <div class="col-md-9">
                   <div class="tab-content">
                     <div class="tab-pane fade active show" id="account-general">
-        
+        			<form action="MypageInfoUpdateServlet" method="POST">
                       <div class="card-body media align-items-center">
                         <img src="img/banner/banner-2.jpg" alt="" class="d-block ui-w-80">
                         <div class="media-body ml-4">
@@ -173,36 +173,48 @@
                       <div class="card-body">
                         <div class="form-group">
 						  <div th:each="board : ${list}">
-                          <label class="form-label">아이디</label>
-                          <input type="text" class="form-control mb-1" th:text="${board.user_id}">
+                          <label for="id" class="form-label">아이디</label>
+                          <input name="id" type="text" class="form-control mb-1" th:value="${board.user_id}" disabled>
+                        
+                        <div class="form-group">
+                          <label id="name" class="form-label">이름</label>
+                          <input name="name" type="text" class="form-control" placeholder="성태현" th:value="${board.name}" readonly>
                         </div>
                         <div class="form-group">
-                          <label class="form-label">이름</label>
-                          <input type="text" class="form-control" placeholder="성태현">
+                          <label id="birthday" class="form-label">생일</label>
+                          <input name="birthday" type="date" class="form-control"  th:value="${board.birthday}" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control mb-1" placeholder="n23basdl@gmail.com">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input name="email" type="email" class="form-control mb-1" placeholder="n23basdl@gmail.com" th:value="${board.email}" readonly>
                           </div>
                           
                           <div class=""> <!-- ??? -->
                         </div>
                         <div class="form-group">
-                          <label class="form-label">주소</label>
-                          <input type="text" class="form-control" placeholder="서울시 강남구 테헤란로">
+                          <label for="adress" class="form-label">주소</label>
+                          <input name="adress" type="text" class="form-control" placeholder="서울시 강남구 테헤란로" th:value="${board.adress}" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">상세주소</label>
-                            <input type="text" class="form-control" placeholder="무적아파트 1902-802">
+                            <label for="detail_adress" class="form-label">상세주소</label>
+                            <input name="detail_adress" type="text" class="form-control" placeholder="무적아파트 1902-802" th:value="${board.detail_adress}" readonly>
                           </div>
                          
                           <div class="form-group">
-                            <label class="form-label">전화번호</label>
-                            <input type="tel" class="form-control">
+                            <label for="phone" class="form-label">전화번호</label>
+                            <input name="phone" type="tel" class="form-control" th:value="${board.phone}" readonly>
                           </div>
+                          </div>
+                          <div class="text-right mt-3">
+							  <span id="stored_button_add">
+				              	<button type="button" class="btn btn-dark" onclick="updateButton()">수정</button>&nbsp;&nbsp; <!-- 업데이트 집어넣을 예정  -->
+				              </span>
+				          </div><br>
                       </div>
+                      
         			</div>
                     </div>
+                    </form>
                     
                     <div class="tab-pane fade" id="account-info">
                       <div class="card-body pb-2">
@@ -239,11 +251,6 @@
 							  </thead>
 							  <tbody>
 								  
-									  <tr th:each="board : ${list}">
-										<td th:text="${board.idx}">공지1</td>
-										<td th:text="${board.title}"><a href="#!"><b>[공지사항] 개인정보 처리방침 변경안내처리방침</b></a></td>
-										<td th:text="${board.write_date}">2023.10.29</td>
-									</tr> 
 								  
 							  </tbody>
 						  </table>
@@ -282,10 +289,7 @@
               </div>
             </div>
         
-            <div class="text-right mt-3">
-              <button type="button" class="btn btn-dark">저장</button>&nbsp;
-              <button type="button" class="btn btn-default">취소</button>
-            </div><br>
+            
         
           </div>
 			
@@ -366,6 +370,20 @@
 			</div>
 		</div>
 		<!-- Search End -->
+		<script>
+			function updateButton()
+			{
+			    // 수정 버튼을 클릭하면 모든 readonly 속성을 제거합니다.
+			    var inputFields = document.querySelectorAll("input[readonly]");
+			    
+			    for (var i = 0; i < inputFields.length; i++) 
+			    {
+			        inputFields[i].removeAttribute('readonly');
+			    }
+			    
+			    document.getElementById("stored_button_add").innerHTML = '<button type="submit" class="btn btn-default" onclick=“stored()">저장</button>';
+			};
+		</script>
 	
 		<!-- Js Plugins -->
 		<script src="js/jquery-3.3.1.min.js"></script>

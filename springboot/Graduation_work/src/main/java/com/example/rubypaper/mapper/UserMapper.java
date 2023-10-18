@@ -16,4 +16,5 @@ public interface UserMapper {
 	public User newPwChange (@Param("pw") String pw, @Param("salt") String salt, @Param("id") String id);
 	public User getSaltSelect(@Param("id") String id);
 	public User getPwSelect(@Param("id") String id);
+	public int userInfoUpdate(User user);
 }
