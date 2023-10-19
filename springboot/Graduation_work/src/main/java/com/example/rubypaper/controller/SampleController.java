@@ -1,5 +1,6 @@
 package com.example.rubypaper.controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.rubypaper.dto.NoticeBoard;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.service.TotalService;
@@ -82,8 +84,11 @@ public class SampleController {
 	}	
 	
 	@GetMapping("/noticdBoard")
-	public String noticdBoard(@RequestParam(value="page", defaultValue = "1") int page ,Model model, HttpServletRequest request, HttpSession session)
-	{
+	public String noticdBoard(@RequestParam(value="page", defaultValue = "1") int page ,
+							@RequestParam(value="search", required = false) String search,
+							Model model, 
+							HttpServletRequest request, 
+							HttpSession session){
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
 		
@@ -103,8 +108,14 @@ public class SampleController {
 			paging.setTotalArticle(result);
 			serviceList.FindListIsDelete();
 			*/
-			boardList = totalService.boardFindList(paging);
-			var boardCount = totalService.boardCount();
+			if(search != null) {
+				boardList = totalService.searchBoards(search);
+				System.out.println(search);
+			} else {
+				boardList = totalService.boardFindList(paging);
+			}
+			//var boardCount = totalService.boardCount();
+			var boardCount = boardList.size();
 			paging.setTotalArticle(boardCount);
 			totalService.FindListIsDelete();
 		} catch (Exception e) {

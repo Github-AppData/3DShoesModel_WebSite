@@ -9,6 +9,13 @@
 
 	</select>
 	
+	<select id="searchShoes"  resultType="Map">
+		SELECT shoes_id, shoes_name, shoes_price
+		FROM shoes
+		WHERE shoes_name = CONCAT('%',#{shoes_Name},'%');
+
+	</select>
+	
 	<select id="myPageUserDataSet" resultType="Map" >
 		select user_id, name, birthday, adress, detail_adress, email, phone
 		from User 
@@ -22,6 +29,14 @@
 		FROM notice_board
 		WHERE user_id = #{user_id} and is_delete = 0 
 		ORDER BY idx ASC;
+	</select>
+	
+	<select id="searchBoards"  resultType="Map" parameterType="String">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE title LIKE CONCAT('%',#{boards_Name},'%')
+		ORDER BY idx ASC;
+
 	</select>
 	
 	<select id="cartFindList" resultType="Map">

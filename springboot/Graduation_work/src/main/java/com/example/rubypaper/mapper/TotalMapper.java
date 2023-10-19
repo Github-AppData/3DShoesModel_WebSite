@@ -13,6 +13,7 @@ public interface TotalMapper {
 
 	public int getBoardValue();
 	public List<Map<String, Object>> randSelectShoesId();
+	public List<Map<String, Object>> searchShoes(String shoes_Name);
 	public List<Map<String, Object>> findIsLike();
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id);
 	public int cartDeleteShoesId();
@@ -20,6 +21,7 @@ public interface TotalMapper {
 	public List<Map<String, Object>> boardIdxData(@Param("idx") int idx);
 	public int numberOfCart();
 	public List<Map<String, Object>> boardFindList(Paging paging);
+	public List<Map<String, Object>> searchBoards(String boards_Name);
 	public int boardCount() throws Exception;
 	public List<Map<String, Object>> cartFindList();
 	public void FindListIsDelete() throws Exception;

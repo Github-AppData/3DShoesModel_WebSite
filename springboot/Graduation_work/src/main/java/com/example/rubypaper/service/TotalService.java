@@ -23,10 +23,12 @@ public interface TotalService {
 	public int cartDeleteShoesId() throws Exception;
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id) throws Exception;
 	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception;
+	public List<Map<String, Object>> searchBoards(String boards_Name) throws Exception;
 	public int boardCount() throws Exception;
 	public List<Map<String, Object>> cartFindList() throws Exception;
 	public List<Map<String, Object>> findIsLike() throws Exception;
 	public List<Map<String, Object>> randSelectShoesId() throws Exception;
+	public List<Map<String, Object>> searchShoes(String shoes_Name) throws Exception;
 	public void FindListIsDelete() throws Exception;
 	public int getBoardValue() throws Exception;
 

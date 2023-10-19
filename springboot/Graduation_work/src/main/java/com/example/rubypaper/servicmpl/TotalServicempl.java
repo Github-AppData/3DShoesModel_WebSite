@@ -65,6 +65,16 @@ public class TotalServicempl implements TotalService{
 	public List<Map<String, Object>> randSelectShoesId() throws Exception {
 		return totalMapper.randSelectShoesId();
 	}
+	
+	@Override
+	public List<Map<String, Object>> searchShoes(String shoes_Name) throws Exception {
+		return totalMapper.searchShoes(shoes_Name);
+	}
+	
+	@Override
+	public List<Map<String, Object>> searchBoards(String boards_Name) throws Exception {
+		return totalMapper.searchBoards(boards_Name);
+	}
 
 	@Override
 	public void FindListIsDelete() throws Exception {
