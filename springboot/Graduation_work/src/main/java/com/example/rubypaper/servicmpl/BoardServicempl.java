@@ -15,7 +15,7 @@ public class BoardServicempl implements BoardService {
 
 	@Override
 	public void boardInsert(NoticeBoard noticeBoard) throws Exception {
-		boardMapper.boardInsert();
+		boardMapper.boardInsert(noticeBoard);
 	}
 
 	@Override

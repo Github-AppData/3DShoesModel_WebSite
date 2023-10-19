@@ -105,6 +105,7 @@ public class SampleController {
 			*/
 			boardList = totalService.boardFindList(paging);
 			var boardCount = totalService.boardCount();
+			System.out.println("boardCount : "+boardCount);
 			paging.setTotalArticle(boardCount);
 			totalService.FindListIsDelete();
 		} catch (Exception e) {
@@ -113,6 +114,8 @@ public class SampleController {
 				
 		model.addAttribute("list", boardList);
 		model.addAttribute("paging", paging);
+		
+		System.out.println("boardList : "+boardList);
 		
 		// user_id 구하는 것.
 		session = request.getSession();
@@ -285,4 +288,6 @@ public class SampleController {
 	{
 		return "test/SignUp";
 	}	
+	
+	
 }
