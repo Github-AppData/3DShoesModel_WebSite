@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nike Air
+* source:	https://sketchfab.com/3d-models/nike-air-b73f56a710c8401cb237af9adef5477c
+* author:	yaro.pro (https://sketchfab.com/yaro.pro)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nike Air" (https://sketchfab.com/3d-models/nike-air-b73f56a710c8401cb237af9adef5477c) by yaro.pro (https://sketchfab.com/yaro.pro) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
