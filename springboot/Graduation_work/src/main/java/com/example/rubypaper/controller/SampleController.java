@@ -97,17 +97,15 @@ public class SampleController {
 		//사용자 총 수 
 		int result = 0;
 				
-		try {/*
-			boardList = serviceList.getBoardList(paging);
-			result = serviceList.getBoardValue();
-			paging.setTotalArticle(result);
-			serviceList.FindListIsDelete();
-			*/
-			boardList = totalService.boardFindList(paging);
-			var boardCount = totalService.boardCount();
-			System.out.println("boardCount : "+boardCount);
-			paging.setTotalArticle(boardCount);
-			totalService.FindListIsDelete();
+		try {
+				
+				boardList = totalService.boardFindList(paging);
+				totalService.FindListIsDelete();
+				var boardCount = totalService.boardCount();
+				
+				System.out.println("boardCount : "+boardCount);
+				paging.setTotalArticle(boardCount);
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

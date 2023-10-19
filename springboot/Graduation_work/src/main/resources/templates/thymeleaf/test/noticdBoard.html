@@ -163,16 +163,17 @@
 						  <table class="board-table">
 							  <thead>
 							  <tr>
-								  <th scope="col">번호</th>
+								  <th scope="col"></th>
+								  <th scope="col"></th>
 								  <th scope="col">제목</th>
 								  <th scope="col">등록일</th>
-								  <th scope="col">조회수</th>
 							  </tr>
 							  </thead>
 							  <tbody>
 								<tr th:each="board, iterStat : ${list}">
-									<td th:id="'idx' + ${iterStat.index}" th:text="${board.idx}">공지1</td>
-									<td th:data-link-id="${iterStat.index}" onClick="submitData(this)" th:text="${board.title}"></td>
+									<td></td>
+									<td></td>
+									<td th:data-link-id="${board.idx}" onClick="submitData(this)" th:text="${board.title}"></td>
 									<td th:text="${board.write_date}">2023.10.29</td>
 								</tr> 
 							  </tbody>
@@ -334,6 +335,16 @@
 				
 				var linkId = element.getAttribute("data-link-id");
 				console.log("linkId : ", linkId);
+				
+				xhr2.onreadystatechange = function () 
+				{
+					// 응답이 되었으면,
+					if (xhr2.readyState === 4) 
+					{
+						object = xhr2.responseText;
+						window.location='wDetails'
+					}
+				}
 					
 				xhr2.open("GET", "/BoardDetailPageSetServlet?linkId=" + linkId, true);
 				xhr2.send(null);

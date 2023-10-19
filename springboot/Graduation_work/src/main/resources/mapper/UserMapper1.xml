@@ -5,7 +5,7 @@
 <mapper namespace="com.example.rubypaper.mapper.UserMapper">
 	<insert id="userInsert">
 		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
-		SELECT COALESCE(MAX(idx) + 1, 1), #{id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
 		FROM User
 	</insert>
 	

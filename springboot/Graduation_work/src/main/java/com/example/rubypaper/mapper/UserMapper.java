@@ -17,4 +17,5 @@ public interface UserMapper {
 	public User getSaltSelect(@Param("id") String id);
 	public User getPwSelect(@Param("id") String id);
 	public int userInfoUpdate(User user);
+	public int noticeBoardIdxResort() throws Exception;
 }

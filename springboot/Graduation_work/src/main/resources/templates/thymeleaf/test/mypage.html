@@ -220,49 +220,78 @@
                       <div class="card-body pb-2">
                         <!-- 여기다가 자기가 작성한 게시글 목록잉 들어갈 예정 / 작성일자, 조회수, 좋아요 -->
                        <section class="notice">
-				<div class="page-title">
-					  <div class="container">
-						  <h3>고객 게시판</h3>
-					  </div>
-				  </div>
+						 <div class="page-title">
+							  <div class="container">
+								  <h3>고객 게시판</h3>
+							  </div>
+				  		 </div>
 			  
 				  <!-- board seach area -->
-				  <div id="board-search">
-					  <div class="container">
-						  <div class="search-window">
-							  <form action="">
-								
-							  </form>
+					  <div id="board-search">
+						  <div class="container">
+							  <div class="search-window">
+								  <form action="">
+									
+									  <div class="search-wrap">
+										  <label for="search" class="blind">공지사항 내용 검색</label>
+										  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요.">
+										  <button type="submit" class="btn btn-dark">검색</button>
+									  </div>
+								  </form>
+							  </div>
 						  </div>
 					  </div>
-				  </div>
-				 
-				<!-- board list area -->
-				  <div id="board-list">
-					  <div class="container">
-						  <table class="board-table">
-							  <thead>
-							  <tr>
-								  <th scope="col">번호</th>
-								  <th scope="col">제목</th>
-								  <th scope="col">등록일</th>
-								  <th scope="col">조회수</th>
-							  </tr>
-							  </thead>
-							  <tbody>
-								  
-								  
-							  </tbody>
-						  </table>
-						  
-						  <form action="IsLoginCheckServlet" method="post" style="text-align: right;" class="mt-2">
-							<button type="submit" class="btn btn-dark">글쓰기</button> 
-						  </form>
-						
+					 
+					<!-- board list area -->
+					  <div id="board-list">
+						  <div class="container">
+							  <table class="board-table">
+								  <thead>
+								  <tr>
+									  <th scope="col">번호</th>
+									  <th scope="col">제목</th>&nbsp;
+									  <th scope="col">등록일</th>
+									  <th scope="col">조회수</th>
+								  </tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td>공지1</td>
+										<td>adsasd</td>
+										<td>2023.10.29</td>
+									</tr> 
+								  </tbody>
+							  </table>
+							  
+							  <form action="IsLoginCheckServlet" method="post" style="text-align: right;" class="mt-2">
+								<button type="submit" class="btn btn-dark">목록</button>
+								<button type="submit" class="btn btn-dark">글쓰기</button> 
+							  </form>
+							
+						  </div>
 					  </div>
-				  </div>
-
-				  <!--type1-->
+	
+					  <!--type1-->
+					<!--type2-->
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous">
+							  <span aria-hidden="true">&laquo;</span>
+							</a>
+						  </li>
+						  <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Next">
+							  <span aria-hidden="true">&raquo;</span>
+							</a>
+						  </li>
+						</ul>
+					  </nav>
 			
 
 			  </section>

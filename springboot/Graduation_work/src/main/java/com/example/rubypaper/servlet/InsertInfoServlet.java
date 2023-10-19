@@ -32,8 +32,8 @@ public class InsertInfoServlet extends HttpServlet {
 	User resultId;
 	User user = new User();
 	String input_pw;
-	String hashedPassword;
-	Date birth_date;
+	String pw;
+	Date birthday;
 	Object data;
 	
 	PasswordHashingUtil passwordHashingUtil = new PasswordHashingUtil();
@@ -44,7 +44,7 @@ public class InsertInfoServlet extends HttpServlet {
 		HttpSession session = request.getSession(); // 세션 객체 가져오기
 		
 		// 사용자로부터 입력 된 데이터를 받아옵니다.
-		String id = request.getParameter("id");
+		String user_id = request.getParameter("id");
 		input_pw = request.getParameter("pw");
 		String adress = request.getParameter("adress");
 		String detail_adress = request.getParameter("detail_adress");
@@ -53,12 +53,12 @@ public class InsertInfoServlet extends HttpServlet {
 	    String name = request.getParameter("name");
 	    
 	    // 생일 관련 날짜 처리 
-	    String birthday = request.getParameter("birthday");
+	    String birthday_real = request.getParameter("birthday");
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    
 	    
 	    try {
-	    	birth_date = dateFormat.parse(birthday);
+	    	birthday = dateFormat.parse(birthday_real);
 		} catch (ParseException e) {
 			// TODO: handle exception
 		}
@@ -72,7 +72,7 @@ public class InsertInfoServlet extends HttpServlet {
 	    
 	    // 아이디 중복 체크 
 	    try {
-			resultId = userService.idCheckSelect2(id);
+			resultId = userService.idCheckSelect2(user_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,14 +82,13 @@ public class InsertInfoServlet extends HttpServlet {
 	    if(resultId == null)
 	    {	
 			// DTO 객체 생성 및 데이터 설정 User user = new User(); user.setId(id);
-	    	 user.setUser_id(id);
+	    	 user.setUser_id(user_id);
 			 user.setEmail(email); 
-			 user.setBirthday(birth_date);
+			 user.setBirthday(birthday);
 			 user.setAdress(adress);
 			 user.setDetail_adress(detail_adress);
 			 user.setPhone(phone);
 			 user.setIs_Status(1);
-			 user.setPhone(phone);
 			 user.setName(name);
 			 
 			 String salt = passwordHashingUtil.generateSalt(); // 솔트 생성
@@ -99,14 +98,14 @@ public class InsertInfoServlet extends HttpServlet {
 			 
 			try {
 				// 암호화 
-				hashedPassword = passwordHashingUtil.hashPassword(input_pw, user.getSalt());
+				pw = passwordHashingUtil.hashPassword(input_pw, user.getSalt());
 			} catch (NoSuchAlgorithmException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			 
 			// 해싱된 비밀번호와 솔트를 저장
-		        user.setPw(hashedPassword);
+		        user.setPw(pw);
 		    
 		     // 사용자 객체에 저장된 비밀번호 및 솔트 확인
 		        System.out.println("Hashed Password: " + user.getPw());
