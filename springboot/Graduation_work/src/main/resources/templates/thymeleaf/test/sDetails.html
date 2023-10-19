@@ -155,11 +155,17 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
-                    	<iframe src="" id="api-frame-1" width="550" height="600" style="border:none"
+                    	<!--<iframe src="" id="api-frame-1" width="550" height="600" style="border:none"
     									allow="autoplay; fullscreen; xr-spatial-tracking" 
     									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-    									webkitallowfullscreen="true">
+    									webkitallowfullscreen="true">-->
     					</iframe>
+    					<div class="sketchfab-embed-wrapper"> 
+							<iframe id="sketchfab-iframe" width="550" height="600" title="Shoe" frameborder="0" allowfullscreen mozallowfullscreen="true" 
+								webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
+								xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
+								web-share src="https://sketchfab.com/models/578c885c820544359969facae168c529/embed\"> 
+						  	</iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/shoe-578c885c820544359969facae168c529?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Shoe </a> by <a href="https://sketchfab.com/pierzcd13?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Chris Pierz </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
     				</div>
                     <div class="col-md-5 ms-4 ml-5" ><br>
                         	<!-- 제품 이름 --> 
@@ -532,6 +538,7 @@
 					shoes_price = object[0].shoes_price;
 					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, shoes_price:shoes_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
+					
 		            
 					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					// 신발 이름 

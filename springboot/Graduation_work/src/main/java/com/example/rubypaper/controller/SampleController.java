@@ -287,5 +287,55 @@ public class SampleController {
 		return "test/SignUp";
 	}	
 	
+	@GetMapping("/adminMain")
+	public String adminMain()
+	{
+		return "test/adminMain";
+	}
+	
+	@GetMapping("/admin404")
+	public String admin404()
+	{
+		return "test/admin404";
+	}
+	
+	@GetMapping("/adminAccount")
+	public String adminAccount()
+	{
+		return "test/adminAccount";
+	}
+	
+	@GetMapping("/adminCharts")
+	public String adminCharts()
+	{
+		return "test/adminCharts";
+	}
+	
+	@GetMapping("/adminDocs")
+	public String adminDocs()
+	{
+		return "test/adminDocs";
+	}
+	
+	
+	
+	@GetMapping("/adminNotifications")
+	public String adminNotifications()
+	{
+		return "test/adminNotifications";
+	}
+	
+	@GetMapping("/adminOrders")
+	public String adminOrders()
+	{
+		return "test/adminOrders";
+	}
+	
+	@GetMapping("/adminSettings")
+	public String adminSettings()
+	{
+		return "test/adminSettings";
+	}
+	
 	
 }
