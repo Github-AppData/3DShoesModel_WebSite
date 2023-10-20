@@ -9,11 +9,23 @@
 
 	</select>
 	
+	<select id="adminPageSelectShoesList" resultType="Map">
+		select shoes_id, shoes_name, shoes_price, num_like
+		from shoes
+		where is_delete = 0;
+	</select>
+	
 	<select id="myPageUserDataSet" resultType="Map" >
 		select user_id, name, birthday, adress, detail_adress, email, phone
 		from User 
 		where user_id = #{user_id};
 	</select>
+	<select id="adminPageSelectUserList" resultType="Map">
+		SELECT user_id, name, adress, birthday, phone
+		FROM user
+		WHERE user_id != "admin";
+	</select>
+	
 	
 	
 	

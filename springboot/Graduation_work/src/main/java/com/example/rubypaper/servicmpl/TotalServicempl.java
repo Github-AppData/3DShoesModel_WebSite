@@ -91,5 +91,15 @@ public class TotalServicempl implements TotalService{
 	public int noticeBoardIdxResort() throws Exception {
 		return totalMapper.noticeBoardIdxResort();
 	}
-	
+
+	@Override
+	public List<Map<String, Object>> adminPageSelectUserList() throws Exception {
+		return totalMapper.adminPageSelectUserList();
+	}
+
+	@Override
+	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception {
+		return totalMapper.adminPageSelectShoesList();
+	}
+
 }

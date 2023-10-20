@@ -1,0 +1,5 @@
+body{background:#f5f5f5}
+.text-white-50 { color: rgba(255, 255, 255, .5); }
+.bg-blue { background-color:rgb(222, 230, 235); }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }

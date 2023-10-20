@@ -55,7 +55,8 @@
 			<div class="offcanvas__nav__option">
 				<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
 				<a href="#"><img src="img/icon/heart.png" alt=""></a>
-				<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+				<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""></a>
+				
 				<div class="price">0 원</div>
 			</div>
 			<div id="mobile-menu-wrap"></div>
@@ -77,9 +78,10 @@
 						</div>
 						<div class="col-lg-6 col-md-5">
 							<div class="header__top__right">
-								<div class="header__top__links">
+                            <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -87,7 +89,7 @@
                                 <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
     							<span th:unless="${userID}" th:text="어서오세요"></span>
                             </div>
-							</div>
+                        </div>
 						</div>
 					</div>
 				</div>
@@ -102,19 +104,20 @@
 					<div class="col-lg-6 col-md-6">
 						<nav class="header__menu mobile-menu">
 							<ul>
-								<li><a href="sMain.html">신발</a>
-								<li><a href="noticdBoard">게시판 </a></li>
-								<li><a href="./blog.html">런칭캘린더</a></li>
-								<li><a href="./contact.html">매장찾기</a></li>
+								<li><a href="main">메인화면</a></li>
+	                            <li class="active"><a href="sMain">신발</a>
+	                            <li><a href="noticdBoard">게시판 </a></li>
+	                            <li><a href="sBlog">관리자 페이지</a></li>
+	                            <li><a href="sContact">매장찾기</a></li>
 							</ul>
 						</nav>
 					</div>
 					<div class="col-lg-3 col-md-3">
 						<div class="header__nav__option">
 							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-							<a href="#"><img src="img/icon/heart.png" alt=""></a>
-							<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-							<div class="price">0 원</div>
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
 						</div>
 					</div>
 				</div>
@@ -146,15 +149,13 @@
                 <div class="col-md-3 pt-0">
                   <div class="list-group list-group-flush account-settings-links">
                     <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>내 계정</a>
-                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>비밀번호 변경</a>
                     <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>작성 글 목록</a>
-                    
                   </div>
                 </div>
                 <div class="col-md-9">
                   <div class="tab-content">
                     <div class="tab-pane fade active show" id="account-general">
-        
+        			<form action="MypageInfoUpdateServlet" method="POST">
                       <div class="card-body media align-items-center">
                         <img src="img/banner/banner-2.jpg" alt="" class="d-block ui-w-80">
                         <div class="media-body ml-4">
@@ -171,45 +172,129 @@
         
                       <div class="card-body">
                         <div class="form-group">
-                          <label class="form-label">아이디</label>
-                          <input type="text" class="form-control mb-1" placeholder="xodnr2019">
+						  <div th:each="board : ${list}">
+                          <label for="id" class="form-label">아이디</label>
+                          <input name="id" type="text" class="form-control mb-1" th:value="${board.user_id}" disabled>
+                        
+                        <div class="form-group">
+                          <label id="name" class="form-label">이름</label>
+                          <input name="name" type="text" class="form-control" placeholder="성태현" th:value="${board.name}" readonly>
                         </div>
                         <div class="form-group">
-                          <label class="form-label">이름</label>
-                          <input type="text" class="form-control" placeholder="성태현">
+                          <label id="birthday" class="form-label">생일</label>
+                          <input name="birthday" type="date" class="form-control"  th:value="${board.birthday}" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control mb-1" placeholder="n23basdl@gmail.com">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input name="email" type="email" class="form-control mb-1" placeholder="n23basdl@gmail.com" th:value="${board.email}" readonly>
                           </div>
                           
                           <div class=""> <!-- ??? -->
                         </div>
                         <div class="form-group">
-                          <label class="form-label">주소</label>
-                          <input type="text" class="form-control" placeholder="서울시 강남구 테헤란로">
+                          <label for="adress" class="form-label">주소</label>
+                          <input name="adress" type="text" class="form-control" placeholder="서울시 강남구 테헤란로" th:value="${board.adress}" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">상세주소</label>
-                            <input type="text" class="form-control" placeholder="무적아파트 1902-802">
+                            <label for="detail_adress" class="form-label">상세주소</label>
+                            <input name="detail_adress" type="text" class="form-control" placeholder="무적아파트 1902-802" th:value="${board.detail_adress}" readonly>
                           </div>
+                         
                           <div class="form-group">
-                            <label class="form-label">우편번호</label>
-                            <input type="number" class="form-control">
+                            <label for="phone" class="form-label">전화번호</label>
+                            <input name="phone" type="tel" class="form-control" th:value="${board.phone}" readonly>
                           </div>
-                          <div class="form-group">
-                            <label class="form-label">전화번호</label>
-                            <input type="tel" class="form-control">
                           </div>
+                          <div class="text-right mt-3">
+							  <span id="stored_button_add">
+				              	<button type="button" class="btn btn-dark" onclick="updateButton()">수정</button>&nbsp;&nbsp; <!-- 업데이트 집어넣을 예정  -->
+				              </span>
+				          </div><br>
                       </div>
-        
+                      
+        			</div>
                     </div>
+                    </form>
                     
                     <div class="tab-pane fade" id="account-info">
                       <div class="card-body pb-2">
-						  
                         <!-- 여기다가 자기가 작성한 게시글 목록잉 들어갈 예정 / 작성일자, 조회수, 좋아요 -->
-                        
+                       <section class="notice">
+						 <div class="page-title">
+							  <div class="container">
+								  <h3>고객 게시판</h3>
+							  </div>
+				  		 </div>
+			  
+				  <!-- board seach area -->
+					  <div id="board-search">
+						  <div class="container">
+							  <div class="search-window">
+								  <form action="">
+									
+									  <div class="search-wrap">
+										  <label for="search" class="blind">공지사항 내용 검색</label>
+										  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요.">
+										  <button type="submit" class="btn btn-dark">검색</button>
+									  </div>
+								  </form>
+							  </div>
+						  </div>
+					  </div>
+					 
+					<!-- board list area -->
+					  <div id="board-list">
+						  <div class="container">
+							  <table class="board-table">
+								  <thead>
+								  <tr>
+									  <th scope="col">번호</th>
+									  <th scope="col">제목</th>&nbsp;
+									  <th scope="col">등록일</th>
+									  <th scope="col">조회수</th>
+								  </tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td>공지1</td>
+										<td>adsasd</td>
+										<td>2023.10.29</td>
+									</tr> 
+								  </tbody>
+							  </table>
+							  
+							  <form action="IsLoginCheckServlet" method="post" style="text-align: right;" class="mt-2">
+								<button type="submit" class="btn btn-dark">목록</button>
+								<button type="submit" class="btn btn-dark">글쓰기</button> 
+							  </form>
+							
+						  </div>
+					  </div>
+	
+					  <!--type1-->
+					<!--type2-->
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Previous">
+							  <span aria-hidden="true">&laquo;</span>
+							</a>
+						  </li>
+						  <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+						  <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
+						  <li class="page-item">
+							<a class="page-link" href="#" aria-label="Next">
+							  <span aria-hidden="true">&raquo;</span>
+							</a>
+						  </li>
+						</ul>
+					  </nav>
+			
+
+			  </section>
                       </div>
                       <hr class="border-light m-0">
                       <br><br><br><br><br>
@@ -233,10 +318,7 @@
               </div>
             </div>
         
-            <div class="text-right mt-3">
-              <button type="button" class="btn btn-dark">저장</button>&nbsp;
-              <button type="button" class="btn btn-default">취소</button>
-            </div><br>
+            
         
           </div>
 			
@@ -317,6 +399,20 @@
 			</div>
 		</div>
 		<!-- Search End -->
+		<script>
+			function updateButton()
+			{
+			    // 수정 버튼을 클릭하면 모든 readonly 속성을 제거합니다.
+			    var inputFields = document.querySelectorAll("input[readonly]");
+			    
+			    for (var i = 0; i < inputFields.length; i++) 
+			    {
+			        inputFields[i].removeAttribute('readonly');
+			    }
+			    
+			    document.getElementById("stored_button_add").innerHTML = '<button type="submit" class="btn btn-default" onclick=“stored()">저장</button>';
+			};
+		</script>
 	
 		<!-- Js Plugins -->
 		<script src="js/jquery-3.3.1.min.js"></script>

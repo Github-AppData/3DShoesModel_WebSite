@@ -26,4 +26,6 @@ public interface TotalMapper {
 	public int cartUpdateIsDelete(@Param("shoes_id") String shoes_id) throws Exception;
 	public String cartFindShoesId(@Param("shoes_id") String shoes_id) throws Exception;
 	public int noticeBoardIdxResort() throws Exception;
+	public List<Map<String, Object>> adminPageSelectUserList() throws Exception;
+	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
 }

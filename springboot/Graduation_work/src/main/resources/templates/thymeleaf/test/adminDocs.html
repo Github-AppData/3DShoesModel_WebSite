@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>관리자 페이지 - 사용자목록</title>
     
@@ -350,11 +350,6 @@
 			    </div><!--//row-->
 			   
 			    
-			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-				    <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
-				    <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">vip</a>
-				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">보통 고객</a>
-				    <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">신규 고객</a>
 				</nav>
 				
 				
@@ -369,51 +364,18 @@
 												<th class="cell">이름</th>
 												<th class="cell">주소</th>
 												<th class="cell">아이디</th>
-												<th class="cell">가입일</th>
-												<th class="cell">등급</th>
+												<th class="cell">생일</th>
 												<th class="cell">휴대폰 번호</th>
-												<th class="cell"></th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="cell">김일성</td>
-												<td class="cell"><span class="truncate">서울시 강남구 테헤란로</span></td>
-												<td class="cell">하늘바라기</td>
-												<td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
-												<td class="cell"><span class="badge bg-success">vip</span></td>
-												<td class="cell">010-2222-5555</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">더 보기</a></td>
-											</tr>
-											<tr>
-												<td class="cell">한세원</td>
-												<td class="cell"><span class="truncate">부산시 중구 사이로</span></td>
-												<td class="cell">소슬</td>
-												<td class="cell"><span class="cell-data">16 Oct</span><span class="note">03:16 AM</span></td>
-												<td class="cell"><span class="badge bg-warning">보통 고객</span></td>
-												<td class="cell">010-6777-3333</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">더 보기</a></td>
-											</tr>
-											
-											
-											<tr>
-												<td class="cell">소태원</td>
-												<td class="cell"><span class="truncate">대전 성심당 2계점</span></td>
-												<td class="cell">es12bdh</td>
-												<td class="cell"><span class="cell-data">12 Oct</span><span class="note">04:23 PM</span></td>
-												<td class="cell"><span class="badge bg-danger">신규 고객</span></td>
-												<td class="cell">010-7453-8788</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">더 보기</a></td>
-											</tr>
-											
-											<tr>
-												<td class="cell">박현서</td>
-												<td class="cell"><span class="truncate">울산시 과인동 세한로</span></td>
-												<td class="cell">카스테라빵</td>
-												<td class="cell"><span class="cell-data">11 Oct</span><span class="note">11:18 AM</span></td>
-												<td class="cell"><span class="badge bg-warning">보통 고객</span></td>
-												<td class="cell">010-3253-7777</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">더 보기</a></td>
+											<tr th:each="userList : ${userList}">
+												<td class="cell" th:text="${userList.name}">김일성</td>
+												<td class="cell" th:text="${userList.adress}"><span class="truncate">서울시 강남구 테헤란로</span></td>
+												<td class="cell" th:text="${userList.user_id}">하늘바라기</td>
+												<td class="cell" th:text="${userList.birthday}">
+													<span>17 Oct</span></td>
+												<td class="cell" th:text="${userList.phone}">010-2222-5555</td>
 											</tr>
 		
 										</tbody>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>관리자 페이지 - 메인</title>
     
@@ -202,7 +202,7 @@
   <circle cx="3.5" cy="10.5" r=".5"/>
 </svg>
 						         </span>
-		                         <span class="nav-link-text">주문관리</span>
+		                         <span class="nav-link-text">상품 등록</span>
 					        </a><!--//nav-link-->
 					    </li><!--//nav-item-->
 					    <li class="nav-item has-submenu">
@@ -603,13 +603,13 @@
 						                
 							        </div><!--//col-->
 							        <div class="col-auto">
-								        <h4 class="app-card-title">공지사항(댓글) 작성하기</h4>
+								        <h4 class="app-card-title">게시판 답변 작성하기</h4>
 							        </div><!--//col-->
 						        </div><!--//row-->
 						    </div><!--//app-card-header-->
 						    <div class="app-card-body px-4">
 							    
-							    <div class="intro">관리자 명의로 공지사항과 질문게시판, 댓글을 작성할 수 있다.</div>
+							    <div class="intro">관리자 명의로 공지사항 댓글을 작성할 수 있습니다.</div>
 						    </div><!--//app-card-body-->
 						    <div class="app-card-footer p-4 mt-auto">
 							   <a class="btn app-btn-secondary" href="#">GO!</a>
@@ -630,17 +630,22 @@
 						                
 							        </div><!--//col-->
 							        <div class="col-auto">
-								        <h4 class="app-card-title">고객 목록</h4>
+								        <h4 class="app-card-title">사용자 목록</h4>
 							        </div><!--//col-->
 						        </div><!--//row-->
 						    </div><!--//app-card-header-->
 						    <div class="app-card-body px-4">
+								
+							    <!-- 고객 목록 받아오기 -->
+							    <div class="intro" th:each="userList : ${userList}">
+									<b th:text="${userList.user_id}"></b>
+								</div>
+							    	
+							    </div><!--//app-card-body-->
 							    
-							    <div class="intro">목록 쫘르르르르륵</div>
-						    </div><!--//app-card-body-->
-						    <div class="app-card-footer p-4 mt-auto">
-							   <a class="btn app-btn-secondary" href="#">GO!</a>
-						    </div><!--//app-card-footer-->
+							    <div class="app-card-footer p-4 mt-auto">
+								   <a class="btn app-btn-secondary" href="adminDocs">GO!</a>
+							    </div><!--//app-card-footer-->
 						</div><!--//app-card-->
 				    </div><!--//col-->
 				    <div class="col-12 col-lg-4">
