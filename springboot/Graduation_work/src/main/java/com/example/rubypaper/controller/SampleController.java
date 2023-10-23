@@ -282,6 +282,7 @@ public class SampleController {
 	{
 		return "test/sBuying";
 	}
+	
 	@GetMapping("/SignUp")
 	public String SignUp(Model model)
 	{
