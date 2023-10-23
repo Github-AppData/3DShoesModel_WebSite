@@ -41,8 +41,7 @@ public class LoginCheckServlet extends HttpServlet {
 	// 이 서블릿은 로그인시 조건을 체크하는 서블릿 입니다.
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
 		// 다른 데에서 set한 user 라는 키의 객체 user의 정보를 가지고 온다.
@@ -92,7 +91,6 @@ public class LoginCheckServlet extends HttpServlet {
 				}
 			}
 		}
-
-		
 	}
+	
 }

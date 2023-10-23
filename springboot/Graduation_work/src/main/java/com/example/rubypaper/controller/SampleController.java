@@ -276,6 +276,7 @@ public class SampleController {
 		return "test/login";
 	}
 	
+	
 	@PostMapping("/sBuying")
 	public String test8(Model model)
 	{
