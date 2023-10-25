@@ -6,15 +6,8 @@
 ### Preview...
 ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c)
 
- <!--
-<details>
-    <summary>자세히</summary>
-
+ 
 <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
-
-![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c) 
-</details>
--->
 
 </div>
 
