@@ -1,5 +1,7 @@
 # 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
 
+<div align=center> 
+ 
 ### Preview...
 ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c)
  
@@ -33,3 +35,5 @@
 ## :grey_question: 트러블슈팅 (문제해결로그)
 
 ## :heavy_check_mark: 본 프로젝트 제작을 통하여 배운점 ( learning 주제 몇가지 )
+
+</div>
