@@ -2,7 +2,7 @@
 
 <div align="center">
   ### <미리보기>
-<p align="center"> ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/ddd5460e-e8b3-4331-86a3-b64550c7a2dc) </p>
+<p align="center"> ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c) </p>
     
 </div>
 
