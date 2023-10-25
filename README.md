@@ -14,7 +14,6 @@
 
 ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c) 
 </details>
-
 -->
 
 </div>
