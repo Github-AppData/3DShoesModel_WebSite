@@ -3,7 +3,7 @@
 <div align="center">
   ### <미리보기>
     </div>
-<p align="center"> ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c) </p>
+ ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c) 
   
 
 ## :star: 프로젝트 설명
