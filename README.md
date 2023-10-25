@@ -1,7 +1,9 @@
 # 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
 
-### <!gif형식의 미리보기 제공예정>
+### <미리보기>
+<div align="center">
 ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/ddd5460e-e8b3-4331-86a3-b64550c7a2dc)
+</div>
 
 ## :star: 프로젝트 설명
 제작기간 2023/03/17 ~ 2023/11/11 <br/>
