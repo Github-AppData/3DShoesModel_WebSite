@@ -25,6 +25,7 @@ public interface TotalService {
 	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception;
 	public List<Map<String, Object>> searchBoards(String boards_Name) throws Exception;
 	public int boardCount() throws Exception;
+	public int searchCount(String boards_Name) throws Exception;
 	public List<Map<String, Object>> cartFindList() throws Exception;
 	public List<Map<String, Object>> findIsLike() throws Exception;
 	public List<Map<String, Object>> randSelectShoesId() throws Exception;

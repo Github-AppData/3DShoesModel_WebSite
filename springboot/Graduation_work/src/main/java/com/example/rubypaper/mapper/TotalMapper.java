@@ -23,6 +23,7 @@ public interface TotalMapper {
 	public List<Map<String, Object>> boardFindList(Paging paging);
 	public List<Map<String, Object>> searchBoards(String boards_Name);
 	public int boardCount() throws Exception;
+	public int searchCount(String boards_Name) throws Exception;
 	public List<Map<String, Object>> cartFindList();
 	public void FindListIsDelete() throws Exception;
 	public int cartUpdateIsDelete(@Param("shoes_id") String shoes_id) throws Exception;

@@ -36,7 +36,13 @@
 		FROM notice_board
 		WHERE title LIKE CONCAT('%',#{boards_Name},'%')
 		ORDER BY idx ASC;
-
+	</select>
+	
+	<select id="searchCount" resultType="Integer" parameterType="String">
+		SELECT count(*) 
+		FROM notice_board 
+		where is_delete = 0 and
+			title LIKE CONCAT('%',#{boards_Name},'%');
 	</select>
 	
 	<select id="cartFindList" resultType="Map">

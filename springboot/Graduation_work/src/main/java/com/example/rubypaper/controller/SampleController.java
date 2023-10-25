@@ -110,13 +110,17 @@ public class SampleController {
 			*/
 			if(search != null) {
 				boardList = totalService.searchBoards(search);
+				var searchCount = totalService.searchCount(search);
+				System.out.println(searchCount);
+				paging.setTotalArticle(searchCount);
 				System.out.println(search);
 			} else {
 				boardList = totalService.boardFindList(paging);
+				var boardCount = totalService.boardCount();
+				System.out.println(boardCount);
+				paging.setTotalArticle(boardCount);
 			}
 			//var boardCount = totalService.boardCount();
-			var boardCount = boardList.size();
-			paging.setTotalArticle(boardCount);
 			totalService.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();

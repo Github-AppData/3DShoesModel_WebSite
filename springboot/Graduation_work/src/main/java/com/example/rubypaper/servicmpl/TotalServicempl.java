@@ -50,6 +50,11 @@ public class TotalServicempl implements TotalService{
 	public int  boardCount() throws Exception{
 		return totalMapper.boardCount();
 	}
+	
+	@Override
+	public int searchCount(String boards_Name) throws Exception{
+		return totalMapper.searchCount(boards_Name);
+	}
 
 	@Override
 	public List<Map<String, Object>> cartFindList() throws Exception {
