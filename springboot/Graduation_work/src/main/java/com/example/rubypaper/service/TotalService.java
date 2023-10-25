@@ -32,9 +32,10 @@ public interface TotalService {
 	public List<Map<String, Object>> searchShoes(String shoes_Name) throws Exception;
 	public void FindListIsDelete() throws Exception;
 	public int getBoardValue() throws Exception;
-
+	public int noticeBoardIdxResort() throws Exception;
+	public List<Map<String, Object>> adminPageSelectUserList() throws Exception;
 	public int cartUpdateIsDelete(String sa) throws Exception;
 	public String cartFindShoesId(String shoes_id) throws Exception;
+	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
 
-	List<Map<String, Object>> boardFindList() throws Exception;
 }

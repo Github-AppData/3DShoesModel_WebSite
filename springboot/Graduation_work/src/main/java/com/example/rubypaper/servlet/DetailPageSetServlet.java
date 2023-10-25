@@ -22,7 +22,7 @@ public class DetailPageSetServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 장바구니에 들어갈 신발 정보 
 		HttpSession session2 = request.getSession();
-		String jsonData_set = (String) session2.getAttribute("jsonData"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		String jsonData_set = (String) session2.getAttribute("jsonData"); 
 		
 		System.out.println("jsonData_set : " + jsonData_set.toString());
 

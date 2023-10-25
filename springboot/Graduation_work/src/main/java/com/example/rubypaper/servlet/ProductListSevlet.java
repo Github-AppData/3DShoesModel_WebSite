@@ -29,6 +29,7 @@ public class ProductListSevlet extends HttpServlet{
 		
 		System.out.println("ProductListSevlet 실행 되었습니다." );
 		
+		
 		// 신발 목록 가져오기 
 		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
 				

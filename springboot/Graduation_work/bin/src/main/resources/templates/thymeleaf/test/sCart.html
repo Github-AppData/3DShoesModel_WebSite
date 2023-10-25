@@ -61,16 +61,8 @@
             <div class="offcanvas__links">
                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 <a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                <a href="#">FAQ</a>
             </div>
-            <div class="offcanvas__top__hover">
-                <span>KRW <i class="arrow_carrot-down"></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>KRW</li>
-                </ul>
-            </div>
+            
         </div>
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
@@ -78,9 +70,6 @@
 			<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
         </div>
         <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__text">
-            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
-        </div>
     </div>
     <!-- Offcanvas Menu End -->
 
@@ -99,7 +88,6 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -123,22 +111,9 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li><a href="main">메인화면</a></li>
-                            <li class="active"><a href="sMain">신발</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">나이키</a></li>
-                                    <li><a href="#">뉴발란스</a></li>
-                                    <li><a href="#">컨버스</a></li>
-                                    <li><a href="#">아디다스</a></li>
-                                </ul></li></li>
-                            <li><a href="#">고객센터</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">본사정책</a></li>
-                                    <li><a href="sDetails">상세화면</a></li>
-                                    <li><a href="#">장바구니</a></li>
-                                    <li><a href="#">결제하기</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="sBlog">런칭캘린더</a></li>
+                            <li><a href="sMain">신발</a>
+                            <li><a href="noticdBoard">게시판 </a></li>
+                            <li><a href="sBlog">관리자 페이지</a></li>
                             <li><a href="sContact">매장찾기</a></li>
                         </ul>
                     </nav>
@@ -205,7 +180,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
     						<div class="continue__btn update__btn">
-        						<a href="#" onclick="clearCart()"><i class="fa fa-spinner"></i> 장바구니 초기화</a>
+        						<a href="#" onclick="clearCart_real()"><i class="fa fa-spinner"></i> 장바구니 초기화</a>
     						</div>
 						</div>
                     </div>
@@ -327,6 +302,7 @@
 	    
 	    var xhr = new XMLHttpRequest();
 	    var xhr2 = new XMLHttpRequest();
+	    var cnt2=0;
 	    
 	    var cart_info_id = ["cost", "delivery_cost", "total_cost"]; 
 	    var shoes_real_name = [];
@@ -342,6 +318,20 @@
 		var objLength = 0;
 		
 		
+		var cnt = 0;
+		// removeCartItem_real // 
+		var linkId = null;
+	    var jsonData_delete_uid = null;
+		var delete_uid = null;
+		var delete_price = 0;
+		
+		var stored_quantity = 0;
+		var stored_price = 0;
+		var object;
+		
+		var prex_price;
+			var prex_price_real;
+			var prex_price_rreal;
 	    
 	    window.onload = pageLoad;
 		function pageLoad()
@@ -351,7 +341,7 @@
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) 
 				{
-		            var object = JSON.parse(xhr.responseText);
+		            object = JSON.parse(xhr.responseText);
 		            // DB에 저장된 카트의 갯수 
 		           	objLength = Object.keys(object).length;
 		           	
@@ -386,7 +376,7 @@
 						before_total_cost += cost[i];
 						
 												
-						var iframeCode = '<iframe id="api-frame-' + (i + 1) + '" width="200" height="100" style="border:none" ' +
+						var iframeCode = '<iframe id="api-frame-' + (i + 1) + '" width="235" height="250" style="border:none" ' +
 					    'class="d-inline-block align-text-top rounded img-thumbnail" ' +
 					    'allow="autoplay; fullscreen; xr-spatial-tracking" ' +
 					    'xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered ' +
@@ -410,28 +400,19 @@
 							'<div class="quantity">' +
 								'<div class="pro-qty-2">' +
 									'<span class="fa fa-angle-left dec qtybtn"></span>' +
-									'<input type="number" value="1" onchange="updateSubtotal(this)">'+ 
+									'<input data-link-id="'+ i +'" type="number" value="1" onchange="updateSubtotal_real(this)">'+ 
 									'<span class="fa fa-angle-right inc qtybtn"></span>' +
 								'</div>' +
 							'</div>'
 						+'</td>' +
-					    '<td 	class="cart__price">' + shoes_real_price_0 + '</td>' +
+					    '<td id="price'+ i +'" class="cart__price">' + shoes_real_price_0 + '</td>' +
 					    '<td class="cart__close"><i class="fa fa-close" onclick="removeCartItem_real(this)" data-link-id="'+ i +'"></i></td></tr>';
 					     // 새로운 항목을 저장할 문자열	
 					    newItemsHTML += newItem;
 					    
 					    document.getElementById("shoes_list").innerHTML = newItemsHTML;
-					    
-					    
-					    
-					    //var div = document.getElementById("shoes_list").innerHTML = newItemsHTML;
-					    // 
-						// div.innerHTML("shoes_list") = newItemsHTML;
-						
-						
-						
-						//document.getElementById("shoes_list").innerHTML = "asdasd";
 					}
+					
 					imageToModelMapping_real.forEach(function(mapping) 
 						{
 							
@@ -448,7 +429,10 @@
 					for(var i = 0; i < cart_info_id.length; i++)
 					{
 						document.getElementById(cart_info_id[i]).innerHTML = all_info[i];
+						
 					}
+					
+					
 					
 				} // if (xhr.readyState === 4 && xhr.status === 200) 
 
@@ -461,6 +445,18 @@
 		   			
 		}; // pageLoad  
 		
+		function clearCart_real(){
+			document.getElementById("shoes_list").innerHTML = "";
+			
+			for(var i = 0; i < cart_info_id.length; i++)
+			{
+				document.getElementById(cart_info_id[i]).innerHTML = 0;
+			}
+			
+			// 전송 보내야됨 - update all -> is_delete = 1; => update가 DB에 적용이 되지를 않는다.
+			
+			document.getElementById("objLength").innerHTML = "총 " + 0+"개 ";
+		}		
 		var o = document.getElementById("objLength").value;
 		console.log("objLengthasdd :", objLength);
 		
@@ -478,69 +474,130 @@
 	            error: function onError() {
 	                console.log(iframeId + ' 3D 모델 초기화 오류');
 	            }
-        });
-    }
+	        });
+	    }
+	    
+	    function updateSubtotal_real(inputElement) {
+		    const quantity = parseInt(inputElement.value);
+		    
+		    var price_id_array = [];
+		    var price_array = [];
+			console.log("quantity :", quantity);	
+			
+			linkId = inputElement.getAttribute("data-link-id");
+			console.log("linkId : ", linkId);
+			
+			for(var i = 0; i < objLength; i++){
+				price_array[i] = "price" + i;
+			}
+			
+			// up 버튼 클릭한, 가격을 가지고 오는 변수 입니다.
+			var fix_price = imageToModelMapping_real[linkId].shoes_price;
+			var fix_price_real = parseInt(fix_price);
+			
+			console.log("fix_price_real : ", fix_price_real);
+			
+			console.log("stored_quantity1 : ", stored_quantity);
+			prex_price = document.getElementById(price_array[linkId]).textContent;
+			prex_price_real = parseInt(prex_price);
+			
+			var one_prex_price_real = 0;
+			var two_prex_price_real = 0;
+			
+			if(quantity == 0)
+			{
+				document.getElementById("price"+linkId).innerHTML = 0 + " 원"; 
+			} else if(quantity > stored_quantity){
+				prex_price_rreal = prex_price_real + fix_price_real;
+				document.getElementById("price"+linkId).innerHTML = fix_price_real + (fix_price_real * (quantity - 1));
+				one_prex_price_real = fix_price_real + (fix_price_real * (quantity - 1));
+				console.log("prex_price_rreal : ", prex_price_rreal);
+			} else if (quantity < stored_quantity){
+				prex_price_rreal = prex_price_real;
+				document.getElementById("price"+linkId).innerHTML = prex_price_rreal - fix_price_real;
+				two_prex_price_real = prex_price_rreal - fix_price_real;
+				console.log("prex_price_rreal : ", prex_price_rreal - fix_price_real);
+				
+			}
+			
+			var result_cost = [];
+			var result_cost_real =  0;
+			for(var i = 0; i < objLength; i++)
+			{
+				var g = [];
+				g[i] = document.getElementById(price_array[i]).textContent; 
+				result_cost[i] = parseInt(g[i]);
+				console.log("result_cost[i] : ", result_cost[i]);
+				result_cost_real +=  result_cost[i];
+			}
+			
+			document.getElementById("cost").innerHTML = result_cost_real;
+			document.getElementById("total_cost").innerHTML = result_cost_real + delivery_cost;
+			
+			stored_quantity = quantity;
+			console.log("stored_quantity2 : ", stored_quantity);
+			
+		}
     
     
-    function removeCartItem_real(element, itemPrice) {
-	    // 클릭된 td 를 찾아서 저장
-	    const tdElement = element.parentElement;
-	
-	    // td에 상위 인 tr을 찾아서 저장
-	    const trElement = tdElement.parentElement;
-	
-	    // tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제 라 이후에 db쪽에서도 삭제해줘야함
-	    trElement.remove();
-	    
-	    var linkId = null;
-	    var jsonData = null;
-		var dataToSend;
+	    function removeCartItem_real(element, itemPrice) {
+			// 클릭된 td 를 찾아서 저장
+		    const tdElement = element.parentElement;
 		
-		linkId = element.getAttribute("data-link-id");
-		dataToSend = imageToModelMapping_real[linkId].uid;
+		    // td에 상위 인 tr을 찾아서 저장
+		    const trElement = tdElement.parentElement;
 		
-		if(dataToSend != null)
-		{
-			console.log("dataToSend NOT NULL");
-			jsonData = JSON.stringify(dataToSend);
-								
-		} else {
-			console.log("dataToSend NULL");
-		}	   
-	    
-		xhr.open("POST", "/CartUpdateServlet", true); // 비동기 요청 시작.
-		xhr.send(null); 
-	    // 위에서 브라우저에서 삭제한 이후에 처리해줘야함 
-	        
-	    // db에서도 제거가 되면 여기서 총합 액수를 계산하는 함수 호출
-	    // recalculateTotal();
-	
-		/*
-	    // 상품 가격만큼 총합에서 차감
-	    const totalElement = document.querySelector('.cart__total li:last-child span');
-	    const totalText = totalElement.textContent;
-	    const total = parseFloat(totalText.replace(/[^0-9.-]+/g, '')); // 숫자만 추출
-	    const newTotal = total - itemPrice;
-	    
-	    if (newTotal >= 0) {
-	        totalElement.textContent = newTotal.toLocaleString() + '(원)';
-	    } else {
-	        totalElement.textContent = '0(원)'; // 음수가 되면 0으로 표시
-	    }*/
-	}
-	
+		    // tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
+		    trElement.remove();
+			
+			linkId = element.getAttribute("data-link-id");
+			delete_uid = imageToModelMapping_real[linkId].uid;
+			delete_price = imageToModelMapping_real[linkId].shoes_price;
+			
+			// 총 cost에서 삭제된 상품의 액수만큼 빼준다. - 브라우저에 표시되는 금액 
+			total_cost -= delete_price;
+			before_total_cost -= delete_price; 
+			console.log("total_cost- : ",total_cost);
+			
+			document.getElementById("total_cost").innerHTML = total_cost;
+			document.getElementById("cost").innerHTML = before_total_cost;
+			
+			if(delete_uid != null)
+			{
+				console.log("delete_uid NOT NULL");
+				jsonData_delete_uid = JSON.stringify(delete_uid);
+									
+			} else {
+				console.log("delete_uid NULL");
+			}	   
+		    
+		    // 
+			xhr2.open("POST", "/CartUpdateServlet", true); // 비동기 요청 시작.
+			xhr2.send(jsonData_delete_uid); 
 
-    /*// 이미지를 3D 모델로 대체
-    imageToModelMapping_real.forEach(function(mapping) {
-        replaceWith3DModel(mapping.uid, mapping.iframeId);
-    });*/
+		    // 위에서 브라우저에서 삭제한 이후에 처리해줘야함 
+		        
+		    // db에서도 제거가 되면 여기서 총합 액수를 계산하는 함수 호출
+		    // recalculateTotal();
+		
+			/*
+		    // 상품 가격만큼 총합에서 차감
+		    const totalElement = document.querySelector('.cart__total li:last-child span');
+		    const totalText = totalElement.textContent;
+		    const total = parseFloat(totalText.replace(/[^0-9.-]+/g, '')); // 숫자만 추출
+		    const newTotal = total - itemPrice;
+		    
+		    if (newTotal >= 0) {
+		        totalElement.textContent = newTotal.toLocaleString() + '(원)';
+		    } else {
+		        totalElement.textContent = '0(원)'; // 음수가 되면 0으로 표시
+		    }*/
+		}
     </script>
     
     <!-- Js Plugins -->
     <script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
@@ -550,7 +607,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/removeCart.js"></script>
+    <!--<script src="js/removeCart.js"></script>-->
 </body>
 
 </html>

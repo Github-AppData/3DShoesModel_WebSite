@@ -72,16 +72,18 @@
 						</div>
 						<div class="col-lg-6 col-md-5">
 							<div class="header__top__right">
-								<div class="header__top__links">
-									<a th:if="${userID}" th:href="@{sLogout}">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
-                					<a th:unless="${userID}" th:href="@{sLogin}">로그인</a>
-									<a href="#">FAQ</a>
-								</div>
-								<div class="header__top__hover">
-									<span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
-    								<span th:unless="${userID}" th:text="어서오세요"></span>
-								</div>
-							</div>
+                            <div class="header__top__links">
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+                                <a href="#">FAQ</a>
+                            </div>
+                            <div class="header__top__hover">
+                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
 						</div>
 					</div>
 				</div>
@@ -97,19 +99,19 @@
 						<nav class="header__menu mobile-menu">
 							<ul>
 								<li><a href="main">메인화면</a></li>
-								<li><a href="sMain">신발</a>
-								<li><a href="sBlog">런칭캘린더</a></li>
-								<li><a th:href="@{noticdBoard}">게시판</a></li>
-								<li><a href="sContact">매장찾기</a></li>
+	                            <li><a href="sMain">신발</a>
+	                            <li class="active"><a href="noticdBoard">게시판 </a></li>
+	                            <li><a href="sBlog">관리자 페이지</a></li>
+	                            <li><a href="sContact">매장찾기</a></li>
 							</ul>
 						</nav>
 					</div>
 					<div class="col-lg-3 col-md-3">
 						<div class="header__nav__option">
 							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-							<a href="#"><img src="img/icon/heart.png" alt=""></a>
-							<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-							<div class="price">0 원</div>
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
 						</div>
 					</div>
 				</div>
@@ -144,11 +146,7 @@
 					  <div class="container">
 						  <div class="search-window">
 							  <form action="">
-								<select class="ml-4">
-									<option value="질문" name="qna">질문 게시판</option>
-									<option value="자유" name="forum" >자유 게시판</option>
-									<option value="공지" name="inform" >공지 게시판</option>
-									</select>
+								
 								  <div class="search-wrap">
 									  <label for="search" class="blind">공지사항 내용 검색</label>
 									  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요.">
@@ -165,17 +163,17 @@
 						  <table class="board-table">
 							  <thead>
 							  <tr>
-								  <th scope="col">번호</th>
+								  <th scope="col"></th>
+								  <th scope="col"></th>
 								  <th scope="col">제목</th>
-								  
 								  <th scope="col">등록일</th>
-								  <th scope="col">조회수</th>
 							  </tr>
 							  </thead>
 							  <tbody>
-								<tr th:each="board : ${list}">
-									<td th:text="${board.idx}">공지1</td>
-									<td th:text="${board.title}"><a href="#!"><b>[공지사항] 개인정보 처리방침 변경안내처리방침</b></a></td>
+								<tr th:each="board, iterStat : ${list}">
+									<td></td>
+									<td></td>
+									<td th:data-link-id="${board.idx}" onClick="submitData(this)" th:text="${board.title}"></td>
 									<td th:text="${board.write_date}">2023.10.29</td>
 								</tr> 
 							  </tbody>
@@ -207,11 +205,11 @@
 						  <span aria-hidden="true">&laquo;</span>
 						</a>
 					  </li>
-					  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-					  <li class="page-item"><a class="page-link" href="#">2</a></li>
-					  <li class="page-item"><a class="page-link" href="#">3</a></li>
-					  <li class="page-item"><a class="page-link" href="#">4</a></li>
-					  <li class="page-item"><a class="page-link" href="#">5</a></li>
+					  <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+					  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+					  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+					  <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+					  <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
 					  <li class="page-item">
 						<a class="page-link" href="#" aria-label="Next">
 						  <span aria-hidden="true">&raquo;</span>
@@ -288,6 +286,8 @@
 			</div>
 		</footer>
 		<!-- Footer Section End -->
+		
+		
 	
 		<!-- Search Begin -->
 		<div class="search-model">
@@ -300,7 +300,58 @@
 		</div>
 		<!-- Search End -->
 	
+	<script type="text/javascript">
+		
+	</script>
 		<!-- Js Plugins -->
+		<script>
+			var xhr = new XMLHttpRequest();
+			var xhr2 = new XMLHttpRequest();
+			var object;
+			
+			window.onload = pageLoad;
+			function pageLoad()
+			{
+				xhr.onreadystatechange = function () 
+				{
+					// 응답이 되었으면,
+					if (xhr.readyState === 4 && xhr.status === 200) 
+					{
+						object = xhr.responseText;
+						console.log(object);
+					}
+				}
+				
+				for(var i = 0; i < object; i++)
+				{
+					document.getElementById("submitData_td").innerHTML = '<td data-link-id="datas' + i +'" th:text="${board.title}"></td>';
+				}														
+				
+					
+				xhr.open("POST", "/boardCountServlet",true);
+				xhr.send(null)				
+			}
+			function submitData(element){
+				
+				var linkId = element.getAttribute("data-link-id");
+				console.log("linkId : ", linkId);
+				
+				xhr2.onreadystatechange = function () 
+				{
+					// 응답이 되었으면,
+					if (xhr2.readyState === 4) 
+					{
+						object = xhr2.responseText;
+						window.location='wDetails'
+					}
+				}
+					
+				xhr2.open("GET", "/BoardDetailPageSetServlet?linkId=" + linkId, true);
+				xhr2.send(null);
+				
+			}
+			
+		</script>
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.nice-select.min.js"></script>

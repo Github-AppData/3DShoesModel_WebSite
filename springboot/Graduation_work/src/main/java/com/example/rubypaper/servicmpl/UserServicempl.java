@@ -43,5 +43,10 @@ public class UserServicempl implements UserService {
 	public User getPwSelect(String id) throws Exception {
 		return userMapper.getPwSelect(id);
 	}
+
+	@Override
+	public int userInfoUpdate(User user) throws Exception {
+		return userMapper.userInfoUpdate(user);
+	}
 	
 }

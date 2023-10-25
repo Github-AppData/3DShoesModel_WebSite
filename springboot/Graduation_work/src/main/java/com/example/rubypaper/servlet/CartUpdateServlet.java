@@ -24,6 +24,7 @@ public class CartUpdateServlet extends HttpServlet {
 	@Resource
 	TotalService totalService;
 	
+	StringBuilder delete_uid = new StringBuilder();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -32,28 +33,27 @@ public class CartUpdateServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
         BufferedReader reader = request.getReader();
-        StringBuilder delete_uid = new StringBuilder();
+        
         String line;
         while ((line = reader.readLine()) != null) {
         	delete_uid.append(line);
         }
         
         
-        
-        ObjectMapper objectMapper = new ObjectMapper();
-        String result = null;
-        
-        try {
-            String jsonString = objectMapper.writeValueAsString(delete_uid);
-            System.out.println(jsonString);
-            
-         // JSON 문자열을 일반 문자열로 변환
-            result = objectMapper.readValue(jsonString, String.class);
-
-            System.out.println("일반 문자열: " + result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String result = null;
+//        
+//        try {
+//            String jsonString = objectMapper.writeValueAsString(delete_uid);
+//            System.out.println(jsonString);
+//            
+//         // JSON 문자열을 일반 문자열로 변환
+//            result = objectMapper.readValue(jsonString, String.class);
+//
+//            System.out.println("일반 문자열: " + result);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         
         
         String valid = "12bed79f58014290baa9baca711f66b7";
@@ -95,6 +95,11 @@ public class CartUpdateServlet extends HttpServlet {
         // JSON 데이터를 세션에 저장
         HttpSession session = request.getSession();
         session.setAttribute("delete_uidㅁㄴㅇㅁ", delete_uid.toString());*/
+	}
+	
+	public String toString2(StringBuilder delete_uid) 
+	{
+		return ""+delete_uid;
 	}
 
 }

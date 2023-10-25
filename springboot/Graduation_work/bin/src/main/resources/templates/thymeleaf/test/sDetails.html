@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <link rel="stylesheet" href="css/search.css" type="text/css">
+    
 </head>
 
 <body>
@@ -97,15 +100,15 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a th:if="${login}" th:hrf="@{sLogout}">로그아웃</a>
-                				<a th:unless="${login}" th:href="@{sLogin}">로그인</a>
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
                                 <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
-                                <span th:if="${login}" th:text="${user.name} + '님 어서오세요'"></span>
-    							<span th:unless="${login}" th:text="어서오세요"></span>
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
                             </div>
                         </div>
                     </div>
@@ -122,27 +125,21 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="main">메인화면</a></li>
+                           <li><a href="main">메인화면</a></li>
                             <li class="active"><a href="sMain">신발</a>
-                            <li><a href="#">고객센터</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">본사정책</a></li>
-                                    <li><a href="sDetails">상세화면</a></li>
-                                    <li><a href="#">장바구니</a></li>
-                                    <li><a href="#">결제하기</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="sBlog">런칭캘린더</a></li>
+                            <li><a href="noticdBoard">게시판 </a></li>
+                            <li><a href="sBlog">관리자 페이지</a></li>
                             <li><a href="sContact">매장찾기</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                    </div>
+							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+						</div>
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -158,11 +155,17 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
-                    	<iframe src="" id="api-frame-1" width="500" height="700" style="border:none"
+                    	<!--<iframe src="" id="api-frame-1" width="550" height="600" style="border:none"
     									allow="autoplay; fullscreen; xr-spatial-tracking" 
     									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-    									webkitallowfullscreen="true">
+    									webkitallowfullscreen="true">-->
     					</iframe>
+    					<div class="sketchfab-embed-wrapper"> 
+							<iframe id="sketchfab-iframe" width="550" height="600" title="Shoe" frameborder="0" allowfullscreen mozallowfullscreen="true" 
+								webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
+								xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
+								web-share src="https://sketchfab.com/models/578c885c820544359969facae168c529/embed\"> 
+						  	</iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/shoe-578c885c820544359969facae168c529?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Shoe </a> by <a href="https://sketchfab.com/pierzcd13?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Chris Pierz </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
     				</div>
                     <div class="col-md-5 ms-4 ml-5" ><br>
                         	<!-- 제품 이름 --> 
@@ -411,11 +414,88 @@
     <!-- Footer Section End -->
 
     <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="search-model" style="background-image: url(img/bg-2.jpg);">
+        <div class="h-100 d-flex align-items-center justify-content-center backdrop-filter: blur(5px);">
             <div class="search-close-switch">+</div>
             <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="검색">
+                <form method="post">
+  <div class="container mt-4"> 
+	  <div class="row d-flex justify-content-center"> 
+		  <div class="col-md-12"> 
+			  <div class="card p-4 mt-3" style="background-color: rgb(255, 255, 255);"> 
+				  <h3 class="heading mt-5 text-center">무엇을 찾으시나요?</h3> 
+				  <div class="d-flex justify-content-center px-5"> 
+					  <div class="search"> 
+						  <input type="text" class="search-input" list="datalistOptions" placeholder="ex) 나이키, 뉴발란스 ..." name=""> 
+						  <datalist id="datalistOptions">
+  <option value="나이키">
+  <option value="잭퍼셀">
+  <option value="남성">
+		  <option value="as">
+			  <option value="질문">
+				  <option value="게시판">
+					  <option value="배송">
+						  <option value="고객센터">
+								  <option value="black">
+									  <option value="검정">
+										  <option value="255">
+</datalist>
+						  <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a> 
+						  </div>
+						   </div>
+						    <div class="row mt-4 g-1 px-4 mb-5"> 
+								<div class="col-md-2"> 
+									<div class="card-inner p-3 d-flex flex-column align-items-center"> 
+										<a href="mypage"><img src="https://i.imgur.com/Mb8kaPV.png" width="50"></a>
+										 <div class="text-center mg-text"> 
+											 <span class="mg-text">계정</span> 
+											 </div> 
+											 </div>
+											  </div> 
+											  <div class="col-md-2"> 
+												  <div class="card-inner p-3 d-flex flex-column align-items-center">
+													   <a href="sBuying"><img src="https://i.imgur.com/ueLEPGq.png" width="50"> </a>
+													   <div class="text-center mg-text">
+														    <span class="mg-text">결제</span> 
+														    </div>
+														     </div> 
+														     </div>
+														      <div class="col-md-2"> 
+																  <div class="card-inner p-3 d-flex flex-column align-items-center">
+																	   <a href="mypage"><img src="https://i.imgur.com/tmqv0Eq.png" width="50"></a>
+																	   <div class="text-center mg-text">
+																		    <span class="mg-text">배송</span>
+																		     </div>
+																		      </div> 
+																		      </div>
+																		       <div class="col-md-2">
+																				    <div class="card-inner p-3 d-flex flex-column align-items-center"> 
+																						<a href="sCart"><img src="https://i.imgur.com/D0Sm15i.png" width="50"></a>
+																						<div class="text-center mg-text"> <span class="mg-text">장바구니</span>
+																						 </div>
+																						  </div> 
+																						  </div>
+																						  
+																						   <div class="col-md-2"> 
+																							   <div class="card-inner p-3 d-flex flex-column align-items-center"> 
+																								   <a href="sMain"><img src="https://i.imgur.com/Z7BJ8Po.png" width="50"> </a>
+																								   <div class="text-center mg-text"> <span class="mg-text">타임딜</span> 
+																								   </div> 
+																								   </div>
+																								    </div> 
+																								    <div class="col-md-2"> 
+																										<div class="card-inner p-3 d-flex flex-column align-items-center">
+																											 <a href="noticdBoard"><img src="https://i.imgur.com/YLsQrn3.png" width="50"></a> 
+																											 <div class="text-center mg-text"> <span class="mg-text">게시판</span>
+																											  </div> 
+																											  </div>
+																											   </div> 
+																											   </div> 
+																											   </div> 
+																											   </div> 
+																											   </div>
+																											    </div>
+</form>
             </form>
         </div>
     </div>
@@ -458,6 +538,7 @@
 					shoes_price = object[0].shoes_price;
 					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, shoes_price:shoes_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
+					
 		            
 					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					// 신발 이름 

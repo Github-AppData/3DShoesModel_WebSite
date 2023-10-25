@@ -100,15 +100,15 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a th:if="${login}" th:hrf="@{sLogout}">로그아웃</a>
-                				<a th:unless="${login}" th:href="@{sLogin}">로그인</a>
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
                                 <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
-                                <span th:if="${login}" th:text="${user.name} + '님 어서오세요'"></span>
-    							<span th:unless="${login}" th:text="어서오세요"></span>
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
                             </div>
                         </div>
                     </div>
@@ -155,12 +155,19 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
-                    	<iframe src="" id="api-frame-1" width="500" height="700" style="border:none"
+                    		<iframe src="" id="api-frame-1" width="550" height="600" style="border:none"
     									allow="autoplay; fullscreen; xr-spatial-tracking" 
     									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
     									webkitallowfullscreen="true">
     					</iframe>
-    				</div>
+    					<!--
+    					<div class="sketchfab-embed-wrapper"> 
+							<iframe id="sketchfab-iframe" width="550" height="600" title="Shoe" frameborder="0" allowfullscreen mozallowfullscreen="true" 
+								webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
+								xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
+								web-share src="https://sketchfab.com/models/578c885c820544359969facae168c529/embed\"> 
+						  	</iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/shoe-578c885c820544359969facae168c529?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Shoe </a> by <a href="https://sketchfab.com/pierzcd13?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Chris Pierz </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
+    				</div>-->
                     <div class="col-md-5 ms-4 ml-5" ><br>
                         	<!-- 제품 이름 --> 
                        		<!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
@@ -422,18 +429,18 @@
 					  <div class="search"> 
 						  <input type="text" class="search-input" list="datalistOptions" placeholder="ex) 나이키, 뉴발란스 ..." name=""> 
 						  <datalist id="datalistOptions">
-  <option value="나이키">
-  <option value="잭퍼셀">
-  <option value="남성">
-		  <option value="as">
-			  <option value="질문">
-				  <option value="게시판">
-					  <option value="배송">
-						  <option value="고객센터">
-								  <option value="black">
-									  <option value="검정">
-										  <option value="255">
-</datalist>
+			  					<option value="나이키">
+							 	 <option value="잭퍼셀">
+							  	<option value="남성">
+					  			<option value="as">
+						  		<option value="질문">
+							  	<option value="게시판">
+								<option value="배송">
+								<option value="고객센터">
+								<option value="black">
+								 <option value="검정">
+								<option value="255">
+							</datalist>
 						  <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a> 
 						  </div>
 						   </div>
@@ -489,7 +496,7 @@
 																											   </div> 
 																											   </div>
 																											    </div>
-</form>
+				</form>
             </form>
         </div>
     </div>
@@ -532,6 +539,7 @@
 					shoes_price = object[0].shoes_price;
 					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, shoes_price:shoes_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
+					
 		            
 					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					// 신발 이름 

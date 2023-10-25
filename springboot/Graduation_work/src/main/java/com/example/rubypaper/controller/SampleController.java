@@ -129,6 +129,8 @@ public class SampleController {
 		model.addAttribute("list", boardList);
 		model.addAttribute("paging", paging);
 		
+		System.out.println("boardList : "+boardList);
+		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
@@ -290,14 +292,98 @@ public class SampleController {
 		return "test/login";
 	}
 	
+	
 	@PostMapping("/sBuying")
 	public String test8(Model model)
 	{
 		return "test/sBuying";
 	}
+	
 	@GetMapping("/SignUp")
 	public String SignUp(Model model)
 	{
 		return "test/SignUp";
 	}	
+	
+	@GetMapping("/adminMain")
+	public String adminMain(Model model)
+	{
+		//사용자 목록 가져오기 
+		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
+		
+		try {
+			userList = totalService.adminPageSelectUserList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("userList", userList);
+		return "test/adminMain";
+	}
+	
+	@GetMapping("/admin404")
+	public String admin404()
+	{
+		return "test/admin404";
+	}
+	
+	@GetMapping("/adminAccount")
+	public String adminAccount()
+	{
+		return "test/adminAccount";
+	}
+	
+	@GetMapping("/adminCharts")
+	public String adminCharts()
+	{
+		return "test/adminCharts";
+	}
+	
+	@GetMapping("/adminDocs")
+	public String adminDocs(Model model)
+	{
+		//사용자 목록 가져오기 
+		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
+		
+		try {
+			userList = totalService.adminPageSelectUserList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("userList", userList);
+		return "test/adminDocs";
+	}
+	
+	
+	
+	@GetMapping("/adminNotifications")
+	public String adminNotifications()
+	{
+		return "test/adminNotifications";
+	}
+	
+	@GetMapping("/adminOrders")
+	public String adminOrders(Model model)
+	{
+		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
+		
+		try {
+			shoesList = totalService.adminPageSelectShoesList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("shoesList", shoesList);
+		return "test/adminOrders";
+	}
+	
+	@GetMapping("/adminSettings")
+	public String adminSettings()
+	{
+		return "test/adminSettings";
+	}
+	
+	
 }

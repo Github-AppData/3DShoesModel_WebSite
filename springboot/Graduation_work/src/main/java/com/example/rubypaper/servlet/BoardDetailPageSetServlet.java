@@ -46,6 +46,10 @@ public class BoardDetailPageSetServlet extends HttpServlet{
 	        HttpSession session = request.getSession();
 	        session.setAttribute("idx", idx_real);
 	    }
+	    
+	    request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("asd");
 	}
 
 

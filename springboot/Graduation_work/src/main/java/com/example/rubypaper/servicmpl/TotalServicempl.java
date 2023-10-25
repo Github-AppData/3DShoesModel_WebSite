@@ -101,10 +101,20 @@ public class TotalServicempl implements TotalService{
 		return totalMapper.cartFindShoesId(shoes_id);
 	}
 
+
 	@Override
-	public List<Map<String, Object>> boardFindList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int noticeBoardIdxResort() throws Exception {
+		return totalMapper.noticeBoardIdxResort();
 	}
-	
+
+	@Override
+	public List<Map<String, Object>> adminPageSelectUserList() throws Exception {
+		return totalMapper.adminPageSelectUserList();
+	}
+
+	@Override
+	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception {
+		return totalMapper.adminPageSelectShoesList();
+	}
+
 }

@@ -13,7 +13,12 @@
 		SELECT shoes_id, shoes_name, shoes_price
 		FROM shoes
 		WHERE shoes_name = CONCAT('%',#{shoes_Name},'%');
+	</select>
 
+	<select id="adminPageSelectShoesList" resultType="Map">
+		select shoes_id, shoes_name, shoes_price, num_like
+		from shoes
+		where is_delete = 0;
 	</select>
 	
 	<select id="myPageUserDataSet" resultType="Map" >
@@ -21,6 +26,13 @@
 		from User 
 		where user_id = #{user_id};
 	</select>
+	
+	<select id="adminPageSelectUserList" resultType="Map">
+		SELECT user_id, name, adress, birthday, phone
+		FROM user
+		WHERE user_id != "admin";
+	</select>
+	
 	
 	
 	
@@ -96,6 +108,14 @@
 		delete from cart	 
 		where is_delete = 1
 	</delete>
+	
+	<update id="noticeBoardIdxResort">
+		SET @row_number = 0;
+		
+		UPDATE notice_board
+		SET idx = (@row_number := @row_number + 1)
+		ORDER BY idx; 
+	</update>
 	
 	<select id="numberOfCart" resultType="int">
 		select MAX(cart_id)
