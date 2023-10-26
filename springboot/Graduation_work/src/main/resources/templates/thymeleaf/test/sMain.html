@@ -21,15 +21,9 @@
     <link rel="stylesheet" href="css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/hearts.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    
-    <style>
-    	.aa {position: absolute;
-				width: 260px; /* <iframe>의 크기와 동일하게 설정 */
-        											 height: 260px; /* <iframe>의 크기와 동일하게 설정 */
-        											 opacity: 0; /* 투명도 설정 */
-        											 }
-    </style>
+   
 </head>
 
 <body>
@@ -149,10 +143,11 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
-                        <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                    </div>
+							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+						</div>
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -262,16 +257,15 @@
 						<div class="col-lg-4 col-md-6 col-sm-6">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
-									<iframe id="api-frame-1" width="270" height="260" style="border:none"
+									<iframe id="api-frame-1" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
 									</iframe>
 								</div>
-
-								<div class="product__item__text">
-
+								<div class="row">
+								<div class="col product__item__text">
 									<!-- 상품 이름 -->
 									<h6 id="shoes1_name"></h6>
-									<a id="shoes1_page" th:href="@{sDetails}" class="add-cart" data-link-id="1"
+									<a id="shoes1_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="1"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<!-- 별점 -->
 									<div class="rating">
@@ -283,6 +277,17 @@
 										<i class="fa fa-star-0"></i>
 									</div>
 									<h5 id="shoes1_price">105,000원</h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button class='like-button'>
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -293,9 +298,10 @@
 										class="d-inline-block align-text-top">
 									</iframe>
 								</div>
-								<div class="product__item__text">
+								<div class="row">
+								<div class="col product__item__text">
 									<h6 id="shoes2_name"></h6>
-									<a id="shoes2_page" th:href="@{sDetails}" class="add-cart" data-link-id="2"
+									<a id="shoes2_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="2"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
 										<i class="fa fa-star"></i>
@@ -303,10 +309,19 @@
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
-
-									</div>
+</div>
 									<h5 id="shoes2_price">105,000원</h5>
-
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button class='like-button'>
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -318,9 +333,10 @@
 										class="d-inline-block align-text-top">
 									</iframe>
 								</div>
-								<div class="product__item__text">
+								<div class="row">
+								<div class="col product__item__text">
 									<h6 id="shoes3_name"></h6>
-									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart" data-link-id="3"
+									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="3"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
 										<i class="fa fa-star"></i>
@@ -330,7 +346,17 @@
 										<i class="fa fa-star-o"></i>
 									</div>
 									<h5 id="shoes3_price">105,000원</h5>
-
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button class='like-button'>
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -342,9 +368,10 @@
 										class="d-inline-block align-text-top">
 									</iframe>
 								</div>
-								<div class="product__item__text">
+								<div class="row">
+								<div class="col product__item__text">
 									<h6 id="shoes4_name"></h6>
-									<a id="shoes4_page" th:href="@{sDetails}" class="add-cart" data-link-id="4"
+									<a id="shoes4_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="4"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
 										<i class="fa fa-star"></i>
@@ -354,7 +381,17 @@
 										<i class="fa fa-star-o"></i>
 									</div>
 									<h5 id="shoes4_price">105,000원</h5>
-
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button class='like-button'>
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -366,9 +403,10 @@
 										class="d-inline-block align-text-top">
 									</iframe>
 								</div>
-								<div class="product__item__text">
+								<div class="row">
+								<div class="col product__item__text">
 									<h6 id="shoes5_name"></h6>
-									<a id="shoes5_page" th:href="@{sDetails}" class="add-cart" data-link-id="5"
+									<a id="shoes5_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="5"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
 										<i class="fa fa-star"></i>
@@ -378,7 +416,17 @@
 										<i class="fa fa-star-o"></i>
 									</div>
 									<h5 id="shoes5_price">105,000원</h5>
-
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button class='like-button'>
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -389,9 +437,10 @@
 										class="d-inline-block align-text-top">
 									</iframe>
 								</div>
-								<div class="product__item__text">
+								<div class="row">
+								<div class="col product__item__text">
 									<h6 id="shoes6_name"></h6>
-									<a id="shoes6_page" th:href="@{sDetails}" class="add-cart" data-link-id="6"
+									<a id="shoes6_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="6"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
 										<i class="fa fa-star"></i>
@@ -401,7 +450,17 @@
 										<i class="fa fa-star-o"></i>
 									</div>
 									<h5 id="shoes6_price">105,000원</h5>
-
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button class='like-button'>
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -459,11 +518,6 @@
 						<div class="footer__newslatter">
 							<p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span
 									style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
-							<form action="#">
-								<input type="text" placeholder="이메일">
-								<button type="submit"><span class="icon_mail_alt"></span></button>
-							</form>
-
 						</div>
 					</div>
 				</div>
@@ -471,12 +525,11 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="footer__copyright__text">
-						<p>Copyright ©GET http://localhost:8025/fonts/poppins/poppins-v5-latin-regular.woff2 net::ERR_ABORTED 404 (Not Found)
+						<p>Copyright ©
 							<script>
 								document.write(new Date().getFullYear());
 							</script>2020
-							All rights reserved | 5조신발점 <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">ih</a>
+							All rights reserved | 5조신발점 <i class="fa fa-heart-o" aria-hidden="true"></i>
 						</p>
 					</div>
 				</div>
@@ -737,37 +790,6 @@
 		// 모든 모델을 한꺼번에 로드합니다.
 		loadModels();
 
-		/*
-		//하나씩 로드
-		function loadModels() {
-			var index = 0;
-	
-			function loadNextModel() {
-				if (index < imageToModelMapping_real.length) {
-					replaceWith3DModel(imageToModelMapping_real[index].uid, imageToModelMapping_real[index].iframeId)
-						.then(function() {
-							// 다음 모델을 로드합니다.
-							index++;
-							loadNextModel();
-						})
-						.catch(function() {
-							// 모델 로딩에 실패하더라도 다음 모델을 로드합니다.
-							index++;
-							loadNextModel();
-						});
-				} else {
-					// 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
-					console.log('모든 3D 모델이 로드되었습니다.');
-				}
-			}
-	
-			// 첫 번째 모델 로드를 시작합니다.
-			loadNextModel();
-		}*/
-
-    // 모든 모델을 비동기식으로 로드합니다.
-    // loadModels();
-
 	</script>
 
 	<!-- Js Plugins -->
@@ -781,6 +803,7 @@
 	<script src="js/jquery.slicknav.js"></script>
 	<script src="js/mixitup.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/hearticon.js"></script>
 	<!--<script src="js/main.js"></script>-->
 </body>
 

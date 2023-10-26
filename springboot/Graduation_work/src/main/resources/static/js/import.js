@@ -3,6 +3,8 @@
     IMP.init(userCode);
     function requestPay(){
                 //class가 btn_payment인 태그를 선택했을 때 작동한다.       
+                  var shoesPriceElement = document.getElementById("shoes_price");
+                  var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
                   
                     //결제시 전달되는 정보
                   IMP.request_pay({
@@ -10,7 +12,7 @@
                               pay_method : 'card',
                               merchant_uid : 'merchant_' + new Date().getTime(),
                               name : '주문명:결제테스트'/*상품명*/,
-                              amount : 10/*상품 가격*/, 
+                              amount : shoesPrice/*상품 가격*/, 
                               buyer_email : 'dlfheks@naver.com'/*구매자 이메일*/,
                               buyer_name : '테스터',
                               buyer_tel : '010-3061-3357'/*구매자 연락처*/,
@@ -40,6 +42,9 @@
                       }
     
     function requestPay2() {
+		
+		var shoesPriceElement = document.getElementById("shoes_price");
+        var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
 
         IMP.request_pay({
 
@@ -48,7 +53,7 @@
             merchant_uid: 'merchant_' + new Date().getTime(),
             name : '주문명:결제테스트'/*상품명*/,
             name: "테스트",
-            amount: 10,
+            amount: shoesPrice,
             buyer_name : '테스터',
             buyer_tel: "010-3061-3357",
 

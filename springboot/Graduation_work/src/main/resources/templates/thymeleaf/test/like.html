@@ -25,6 +25,27 @@
 </head>
 
 <body>
+
+<script src="js/viewer-api.js"></script>
+	<script>
+		window.addEventListener('load', function () {
+			var allElements = document.getElementsByTagName('*');
+			Array.prototype.forEach.call(allElements, function (el) {
+				var includePath = el.dataset.includePath;
+				if (includePath) {
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function () {
+						if (this.readyState == 4 && this.status == 200) {
+							el.outerHTML = this.responseText;
+						}
+					};
+					xhttp.open('GET', includePath, true);
+					xhttp.send();
+				}
+			});
+		});
+
+	</script>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -99,31 +120,19 @@
                         <ul>
                             <li><a href="main">메인화면</a></li>
                             <li><a href="sMain">신발</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">나이키</a></li>
-                                    <li><a href="#">뉴발란스</a></li>
-                                    <li><a href="#">컨버스</a></li>
-                                    <li><a href="#">아디다스</a></li>
-                                </ul></li></li>
-                            <li><a href="#">고객센터</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">본사정책</a></li>
-                                    <li><a href="sDetails">상세화면</a></li>
-                                    <li><a href="#">장바구니</a></li>
-                                    <li><a href="#">결제하기</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a href="sBlog">런칭캘린더</a></li>
+                            <li><a href="noticdBoard">게시판 </a></li>
+                            <li><a href="sBlog">관리자 페이지</a></li>
                             <li><a href="sContact">매장찾기</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                    </div>
+							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+						</div>
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -148,6 +157,7 @@
     <section class="blog spad">
         <div class="container">
             <div class="row">
+            <!-- 
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-6.jpg"></div>
@@ -178,10 +188,13 @@
                         </div>
                     </div>
                 </div>
+                 -->
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/shoes/shoes9.png"></div>
-                        <div class="blog__item__text">
+                        <iframe id="api-frame-1" width="360" style="border:none"
+										class="d-inline-block align-text-top blog__item__pic set-bg">
+						</iframe>
+                        <div class="blog__item__text mt-1">
                             <span><img src="img/icon/snow.png" alt=""> 아무도 이 상품에 관심이 없습니다</span>
                             <h5>뉴발란스 U72RE9</h5>
                             <a href="#">Read More</a>
@@ -190,8 +203,10 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/shoes/shoes8.png"></div>
-                        <div class="blog__item__text">
+                        <iframe id="api-frame-2" width="360" style="border:none"
+										class="d-inline-block align-text-top blog__item__pic set-bg">
+						</iframe>
+                        <div class="blog__item__text mt-1">
                             <span><img src="img/icon/snow2.png" alt=""> 3명이 이 상품에 관심이 있습니다</span>
                             <h5>반스 올드스쿨 클래식</h5>
                             <a href="#">Read More</a>
@@ -200,8 +215,10 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/shoes/shoes12.png"></div>
-                        <div class="blog__item__text">
+                        <iframe id="api-frame-3" width="360" style="border:none"
+										class="d-inline-block align-text-top blog__item__pic set-bg">
+						</iframe>
+                        <div class="blog__item__text mt-1">
                             <span><img src="img/icon/snow2.png" alt=""> 2명이 이 상품에 관심이 있습니다</span>
                             <h5>잭퍼셀 클래식 화이트</h5>
                             <a href="#">Read More</a>
@@ -210,8 +227,10 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/shoes/shoes6.png"></div>
-                        <div class="blog__item__text">
+                        <iframe id="api-frame-4" width="360" style="border:none"
+										class="d-inline-block align-text-top blog__item__pic set-bg">
+						</iframe>
+                        <div class="blog__item__text mt-1">
                             <span><img src="img/icon/last3.png" alt=""> </span>
                             <h5>나이키 덩크로우 블루</h5>
                             <a href="#">Read More</a>
@@ -220,8 +239,10 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-8.jpg"></div>
-                        <div class="blog__item__text">
+                        <iframe id="api-frame-5" width="360" style="border:none"
+										class="d-inline-block align-text-top blog__item__pic set-bg">
+						</iframe>
+                        <div class="blog__item__text mt-1">
                             <span><img src="img/icon/snow2.png" alt=""> 1명이 이 상품에 관심이 있습니다</span>
                             <h5>뉴발란스 PALACE_M991PAL</h5>
                             <a href="#">Read More</a>
@@ -230,8 +251,10 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-9.jpg"></div>
-                        <div class="blog__item__text">
+                        <iframe id="api-frame-6" width="360" style="border:none"
+										class="d-inline-block align-text-top blog__item__pic set-bg">
+						</iframe>
+                        <div class="blog__item__text mt-1">
                             <span><img src="img/icon/last2.png" alt=""> </span>
                             <h5>뉴발란스 BlueBottle 1080V2</h5>
                             <a href="#">Read More</a>
@@ -318,6 +341,62 @@
         </div>
     </div>
     <!-- Search End -->
+    
+    <script type="text/javascript">
+    
+    function replaceWith3DModel(uid, iframeId) {
+        return new Promise(function(resolve, reject) {
+            var iframe = document.getElementById(iframeId);
+            var client = new Sketchfab(iframe);
+
+            client.init(uid, {
+                success: function onSuccess(api) {
+                    api.start();
+                    api.addEventListener('viewerready', function() {
+                        console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+                        resolve(); // Promise가 성공했음을 알립니다.
+                    });
+                },
+                error: function onError() {
+                    console.log(iframeId + ' 3D 모델 초기화 오류');
+                    reject(); // Promise가 실패했음을 알립니다.
+                },
+                // 초기화 매개변수 설정
+                graph_optimizer: 1, //그래프
+                merge_materials: 1, //재질 병합
+                material_packing: 1 //재질 패킹
+            });
+        });
+    }
+    
+    function loadModels() {
+        // 모든 모델을 비동기식으로 로드합니다.
+        Promise.all(imageToModelMapping.map(function(mapping) {
+            return replaceWith3DModel(mapping.uid, mapping.iframeId);
+        })).then(function() {
+            // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+            console.log('모든 3D 모델이 로드되었습니다.');
+        }).catch(function() {
+            // 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
+            console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
+        });
+    }
+    
+    
+    var imageToModelMapping = [
+        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-1' },
+        { uid: 'faef9fe5ace445e7b2989d1c1ece361c', iframeId: 'api-frame-2' },
+        { uid: 'c00345fd64414c4e8895c6aaa262e4d5', iframeId: 'api-frame-3' },
+        { uid: '7afcec9329d54afe99b6db2e30346642', iframeId: 'api-frame-4' },
+        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-5' },
+        { uid: '9c1f56ac53524da09673ce46c8410ac9', iframeId: 'api-frame-6' },
+        
+    ];
+
+    // 모든 모델을 한꺼번에 로드합니다.
+    loadModels();
+    
+    </script>
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>

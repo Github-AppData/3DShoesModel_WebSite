@@ -8,7 +8,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
+	<script src="js/imgselect.js"></script>
+	
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
@@ -157,13 +158,13 @@
                     <div class="tab-pane fade active show" id="account-general">
         			<form action="MypageInfoUpdateServlet" method="POST">
                       <div class="card-body media align-items-center">
-                        <img src="img/banner/banner-2.jpg" alt="" class="d-block ui-w-80">
+                        <img id="selected-image" src="img/banner/banner-2.jpg" alt="" class="d-block ui-w-80">
                         <div class="media-body ml-4">
                           <label class="btn btn-outline-success">
                             이미지 선택
-                            <input type="file" class="account-settings-fileinput">
+                            <input type="file" id="image-input" class="account-settings-fileinput" onchange="updateImage()">
                           </label> &nbsp;
-                          <button type="button" class="btn btn-default md-btn-flat">초기화</button>
+                          <button type="button" class="btn btn-default md-btn-flat" onclick="resetImage()">초기화</button>
         
                           <div class="text-light small mt-1">타인에게 공개되는 사진이므로 신중하게 선택해주세요.</div>
                         </div>
@@ -364,10 +365,6 @@
 							<h6>구독</h6>
 							<div class="footer__newslatter">
 								<p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
-								<form action="#">
-									<input type="text" placeholder="이메일">
-									<button type="submit"><span class="icon_mail_alt"></span></button>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -380,7 +377,7 @@
 									document.write(new Date().getFullYear());
 								</script>2020
 								All rights reserved | 5조신발점 <i class="fa fa-heart-o"
-								aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">ih</a>
+								aria-hidden="true"></i>
 							</p>
 						</div>
 					</div>
@@ -412,7 +409,11 @@
 			    
 			    document.getElementById("stored_button_add").innerHTML = '<button type="submit" class="btn btn-default" onclick=“stored()">저장</button>';
 			};
+			
+			
 		</script>
+	
+	
 	
 		<!-- Js Plugins -->
 		<script src="js/jquery-3.3.1.min.js"></script>
