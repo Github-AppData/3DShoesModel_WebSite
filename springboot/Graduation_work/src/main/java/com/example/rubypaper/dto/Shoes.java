@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Shoes {
-	private String shoes_Id;
+	private String shoes_id;
 	private String shoes_name;
 	private int shoes_price;
 	private int sales;
@@ -15,33 +15,28 @@ public class Shoes {
 	private int is_Like;	
 	private int is_delete;	
 	
-	@JsonCreator
-    public void Shoes2(@JsonProperty("shoes_Name") String shoes_Name, @JsonProperty("shoes_Price") int shoes_Price) {
-        this.shoes_name = shoes_Name;
-        this.shoes_price = shoes_Price;
-    }
 
-	public String getShoes_Id() {
-		return shoes_Id;
+	public String getShoes_id() {
+		return shoes_id;
 	}
 
-	public void setShoes_Id(String shoes_Id) {
-		this.shoes_Id = shoes_Id;
+	public void setShoes_id(String shoes_id) {
+		this.shoes_id = shoes_id;
 	}
 
-	public String getShoes_Name() {
+	public String getShoes_name() {
 		return shoes_name;
 	}
 
-	public void setShoes_Name(String shoes_name) {
+	public void setShoes_name(String shoes_name) {
 		this.shoes_name = shoes_name;
 	}
 
-	public int getShoes_Price() {
+	public int getShoes_price() {
 		return shoes_price;
 	}
 
-	public void setShoes_Price(int shoes_price) {
+	public void setShoes_price(int shoes_price) {
 		this.shoes_price = shoes_price;
 	}
 
@@ -87,9 +82,11 @@ public class Shoes {
 
 	@Override
 	public String toString() {
-		return "Shoes [shoes_Id=" + shoes_Id + ", shoes_Name=" + shoes_name + ", shoes_Price=" + shoes_price
+		return "Shoes [shoes_id=" + shoes_id + ", shoes_name=" + shoes_name + ", shoes_price=" + shoes_price
 				+ ", sales=" + sales + ", final_price=" + final_price + ", num_Like=" + num_Like + ", is_Like="
 				+ is_Like + ", is_delete=" + is_delete + "]";
 	}
+
+	
 	
 }

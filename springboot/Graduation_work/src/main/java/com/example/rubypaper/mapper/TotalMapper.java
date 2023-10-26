@@ -32,4 +32,6 @@ public interface TotalMapper {
 	public int noticeBoardIdxResort() throws Exception;
 	public List<Map<String, Object>> adminPageSelectUserList() throws Exception;
 	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
+	public void adminPageDeleteShoesInfo(String shoes_name);
+	public void adminPageShoesInsert(Shoes shoes) throws Exception;
 }

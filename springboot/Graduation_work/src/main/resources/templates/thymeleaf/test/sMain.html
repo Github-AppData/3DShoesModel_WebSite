@@ -623,7 +623,7 @@
 						} else {
 							var num = i;
 						}
-						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (num + 1), shoes_name: object[i].shoes_name, shoes_price: object[i].shoes_price});
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (num + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
 					}
 
@@ -639,7 +639,7 @@
 
 					for (var i = first; i <= last; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
-						var shoes_info_price = imageToModelMapping_real[i].shoes_price;
+						var shoes_info_price = imageToModelMapping_real[i].final_price;
 						price_sum += shoes_info_price;
 						if (page != 1) {
 							var num = i - first;

@@ -4,7 +4,7 @@
 
 <mapper namespace="com.example.rubypaper.mapper.TotalMapper">
 	<select id="randSelectShoesId"  resultType="Map">
-		SELECT shoes_id, shoes_name, shoes_price
+		SELECT shoes_id, shoes_name, final_price
 		FROM shoes;
 	</select>
 	
@@ -20,6 +20,23 @@
 		set shoes_price = #{shoes_price}, sales = #{sales}, final_price = #{final_price}
 		where shoes_name = #{shoes_name};
 	</update>
+	
+	<delete id="adminPageDeleteShoesInfo">
+		Delete 
+		from shoes
+		where shoes_name = #{shoes_name};
+	</delete>
+	
+	<insert id="adminPageShoesInsert">
+		insert into shoes (shoes_id, shoes_name, shoes_price, final_price)
+		values (#{shoes_id}, #{shoes_name}, #{shoes_price}, #{final_price})
+	</insert>
+	
+	<!-- <insert id="userInsert">
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User
+	</insert> -->
 	
 	<select id="myPageUserDataSet" resultType="Map" >
 		select user_id, name, birthday, adress, detail_adress, email, phone

@@ -108,4 +108,14 @@ public class TotalServicempl implements TotalService{
 		return totalMapper.adminPageUpdateShoesInfo(shoes);
 	}
 
+	@Override
+	public void adminPageDeleteShoesInfo(String shoes_name) throws Exception {
+		totalMapper.adminPageDeleteShoesInfo(shoes_name);
+	}
+
+	@Override
+	public void adminPageShoesInsert(Shoes shoes) throws Exception {
+		totalMapper.adminPageShoesInsert(shoes);
+	}
+
 }

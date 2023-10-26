@@ -36,5 +36,7 @@ public interface TotalService {
 	public int cartUpdateIsDelete(String sa) throws Exception;
 	public String cartFindShoesId(String shoes_id) throws Exception;
 	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
+	public void adminPageDeleteShoesInfo(@Param("shoes_name") String shoes_name) throws Exception;
+	public void adminPageShoesInsert(Shoes shoes) throws Exception;
 
 }

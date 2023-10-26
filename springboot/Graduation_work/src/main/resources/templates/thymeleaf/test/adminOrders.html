@@ -352,12 +352,9 @@
 					     <div class="page-utilities">
 						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 							    <div class="col-auto">
-								    <form class="table-search-form row gx-1 align-items-center">
 					                    <div class="col-auto">
-					                        &nbsp;&nbsp;<button style="background-color: orangered; color: white;" type="submit" class="btn app-btn-secondary"><b>등록하기</b></button>
+					                        &nbsp;&nbsp;<button onclick="addRow()"  style="background-color: orangered; color: white;" type="submit" class="btn app-btn-secondary"><b>등록하기</b></button>
 					                    </div>
-					                </form>
-					                
 							    </div><!--//col-->
 							    <div class="col-auto">						    
 								    
@@ -378,7 +375,7 @@
 					    <div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
 							    <div class="table-responsive">
-								        <table class="table app-table-hover ml-10">
+								        <table class="table app-table-hover ml-10" id="myTable">
 											<thead>
 												<tr>
 													<th class="cell" >신발 이름</th>
@@ -398,7 +395,7 @@
 													<td th:id="result + ${rowstat.count}" class="cell" th:text="${shoesList.final_price}"></td>
 													<td class="cell" th:text="${shoesList.num_like}"><span class="note text-center"></span></td>
 													<td class="cell"><span th:id="cheangeName+${rowstat.count}"><button type="button" class="pretty-revisebutton" th:data-link-id="${rowstat.count}" th:onclick="changeShoesInfo(this)">수정</button></span></td>
-													<td class="cell"><button class="pretty-deletebutton" onclick="deleteShoesInfo()">삭제</button></td>
+													<td class="cell"><button class="pretty-deletebutton" onclick="deleteShoesInfo(this)" th:data-link-id="${rowstat.count}">삭제</button></td>
 												</tr>
 											</tbody>
 										</table>
@@ -419,151 +416,7 @@
 								</li>
 							</ul>
 						</nav><!--//app-pagination-->
-						
 			        </div><!--//tab-pane-->
-			        
-			        <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
-					    <div class="app-card app-card-orders-table mb-5">
-						    <div class="app-card-body">
-							    <div class="table-responsive">
-								    
-							        <table class="table mb-0 text-left">
-										<thead>
-											<tr>
-												<th class="cell">Order</th>
-												<th class="cell">상품</th>
-												<th class="cell">고객</th>
-												<th class="cell">결제일</th>
-												<th class="cell">상태</th>
-												<th class="cell">지불금액</th>
-												<th class="cell"></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td class="cell">#15346</td>
-												<td class="cell"><span class="truncate">나이키 무시기</span></td>
-												<td class="cell">하늘바라기</td>
-												<td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
-												<td class="cell"><span class="badge bg-success">결제 완료</span></td>
-												<td class="cell">129,000원</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">구매 정보</a></td>
-											</tr>
-											
-											<tr>
-												<td class="cell">#15344</td>
-												<td class="cell"><span class="truncate">뉴발란스 무시기</span></td>
-												<td class="cell">asd36vb</td>
-												<td class="cell"><span class="cell-data">16 Oct</span><span class="note">01:16 AM</span></td>
-												<td class="cell"><span class="badge bg-success">결제 완료</span></td>
-												<td class="cell">94,200원</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">구매 정보</a></td>
-											</tr>
-											
-											<tr>
-												<td class="cell">#15343</td>
-												<td class="cell"><span class="truncate">반스 무시기</span></td>
-												<td class="cell">nds46n</td>
-												<td class="cell"><span class="cell-data">15 Oct</span><span class="note">8:07 PM</span></td>
-												<td class="cell"><span class="badge bg-success">결제 완료</span></td>
-												<td class="cell">127,000원</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">구매 정보</a></td>
-											</tr>
-											
-										
-											<tr>
-												<td class="cell">#15341</td>
-												<td class="cell"><span class="truncate">반스 무시기</span></td>
-												<td class="cell">카스테라빵</td>
-												<td class="cell"><span class="cell-data">11 Oct</span><span class="note">11:18 AM</span></td>
-												<td class="cell"><span class="badge bg-success">결제 완료</span></td>
-												<td class="cell">59,800원</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">구매 정보</a></td>
-											</tr>
-		
-										</tbody>
-									</table>
-						        </div><!--//table-responsive-->
-						    </div><!--//app-card-body-->		
-						</div><!--//app-card-->
-			        </div><!--//tab-pane-->
-			        
-			        <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
-					    <div class="app-card app-card-orders-table mb-5">
-						    <div class="app-card-body">
-							    <div class="table-responsive">
-							        <table class="table mb-0 text-left">
-										<thead>
-											<tr>
-												<th class="cell">Order</th>
-												<th class="cell">상품</th>
-												<th class="cell">고객</th>
-												<th class="cell">결제일</th>
-												<th class="cell">상태</th>
-												<th class="cell">지불금액</th>
-												<th class="cell"></th>
-											</tr>
-										</thead>
-										<tbody>
-											
-											<tr>
-												<td class="cell">#15345</td>
-												<td class="cell"><span class="truncate">잭퍼셀 클래식 머시기</span></td>
-												<td class="cell">소슬</td>
-												<td class="cell"><span class="cell-data">16 Oct</span><span class="note">03:16 AM</span></td>
-												<td class="cell"><span class="badge bg-warning">배송 중</span></td>
-												<td class="cell">213,400원</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">구매 정보</a></td>
-											</tr>
-											
-										</tbody>
-									</table>
-						        </div><!--//table-responsive-->
-						    </div><!--//app-card-body-->		
-						</div><!--//app-card-->
-			        </div><!--//tab-pane-->
-			        <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
-					    <div class="app-card app-card-orders-table mb-5">
-						    <div class="app-card-body">
-							    <div class="table-responsive">
-							        <table class="table mb-0 text-left">
-										<thead>
-											<tr>
-												<th class="cell">Order</th>
-												<th class="cell">상품</th>
-												<th class="cell">고객</th>
-												<th class="cell">결제일</th>
-												<th class="cell">상태</th>
-												<th class="cell">지불금액</th>
-												<th class="cell"></th>
-											</tr>
-										</thead>
-										<tbody>
-											
-											
-											
-											<tr>
-												<td class="cell">#15342</td>
-												<td class="cell"><span class="truncate">컨버스 무시기</span></td>
-												<td class="cell">es12bdh</td>
-												<td class="cell"><span class="cell-data">12 Oct</span><span class="note">04:23 PM</span></td>
-												<td class="cell"><span class="badge bg-danger">환불 완료</span></td>
-												<td class="cell">63,000원</td>
-												<td class="cell"><a class="btn-sm app-btn-secondary" href="#">구매 정보</a></td>
-											</tr>
-											
-											
-											
-										</tbody>
-									</table>
-						        </div><!--//table-responsive-->
-						    </div><!--//app-card-body-->		
-						</div><!--//app-card-->
-			        </div><!--//tab-pane-->
-				</div><!--//tab-content-->
-				
-				
-			    
 		    </div><!--//container-fluid-->
 	    </div><!--//app-content-->
 	    
@@ -584,7 +437,11 @@
 		
 		var linkId;
 		var xhr = new XMLHttpRequest();
-		var total_price;
+		var xhr2 = new XMLHttpRequest();
+		var xhr3 = new XMLHttpRequest();
+		var total_price = 0;
+		
+		
 		function changeShoesInfo(element) 
 		{
 			// 사용자 정의한 속성 data-link-id 값을 얻어와. 바꿀 열 체크 
@@ -647,6 +504,47 @@
 
 		}
 		
+		function addRow() {
+            // 1. table 요소 선택
+            var table = document.getElementById("myTable");
+
+            // 2. 새로운 행 추가
+            var newRow = table.insertRow(1); // 0은 맨 첫 번째 위치를 나타냅니다.
+
+            // 3. 새로운 행에 데이터 셀 추가 (이 예제에서는 3개의 셀을 추가합니다)
+            var cell0 = newRow.insertCell(0);
+            var cell1 = newRow.insertCell(1);
+            var cell2 = newRow.insertCell(2);
+            var cell3 = newRow.insertCell(3);
+
+            // 각 셀에 내용을 추가 - 최종가격은 나중에 서블릿에서 추가하자 
+            cell0.innerHTML = '신발 아이디 : <input type="text" id="shoes_id"></input>';
+            cell1.innerHTML = '신발 이름 : <input type="text" id="shoes_name"></input>';
+            cell2.innerHTML = '신발 가격 : <input type="number" id="shoes_price"></input>';
+            cell3.innerHTML = '<button onclick="adminPageInsert(this)" class="pretty-revisebutton">저장</button>';
+        }
+        
+        function adminPageInsert(element)
+        {
+			var data_array = [];
+			
+			var shoes_id = document.getElementById("shoes_id").value;
+			var shoes_name = document.getElementById("shoes_name").value;
+			var shoes_price = document.getElementById("shoes_price").value;
+			
+			data_array.push(shoes_id);
+			data_array.push(shoes_name);
+			data_array.push(shoes_price);
+			
+			console.log(data_array);
+			// POST 요청 설정
+			xhr3.open("POST", "/AdminPageShoesInsertServlet", true);
+			xhr3.setRequestHeader("Content-Type", "application/json");
+			
+			xhr3.send(data_array);
+			
+		}
+		
 		function updateInfo(element)
 		{
 			// 나머지 tr 태그의 입력 요소나 버튼 등을 disable 처리
@@ -686,6 +584,34 @@
 			xhr.send(real);	
 		}
 		
+		function deleteShoesInfo(element)
+		{
+			// is_delete를 1로 만들어 주면 DB에서도 삭제가 되게 
+			
+			// 사용자 정의한 속성 data-link-id 값을 얻어와. 바꿀 열 체크 
+			linkId = element.getAttribute("data-link-id");
+			console.log(linkId);
+			
+			var shoes_name_id2 = "shoes_name" + linkId;
+			var shoes_name2 = document.getElementById(shoes_name_id2).textContent;
+			console.log(shoes_name2);
+			
+			
+			if(confirm(shoes_name2 + "를 정말 삭제 하시겠습니까 ?"))
+			{
+				alert("삭제 되었습니다.");
+				
+				// POST 요청 설정
+				xhr2.open("POST", "/ShoesDeleteServlet", true);
+				xhr2.send(shoes_name2);
+				
+			} else {
+				location.reload();
+			}
+			
+			
+		}
+		
 			
 		function printTotalPrice()  {
 			
@@ -693,7 +619,8 @@
 		  const sales = document.getElementById('myInput1').value;
 		  
 		  total_price = price - (price * (sales / 100));
-		  var total_price_real = numeral(total_price).format('0,0');
+		  var total_price_real = null;
+		  total_price_real = numeral(total_price).format('0,0');
 		  
 		  var so = "result"+ linkId; // linkId - 전역변수 이다.
 		  document.getElementById(so).innerHTML = total_price_real + " 원";

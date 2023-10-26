@@ -21,8 +21,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/AdminShoesInfoUpdateServlet")
 public class AdminShoesInfoUpdateServlet  extends HttpServlet{
-	StringBuilder updateInfo = new StringBuilder();
+	
 	Shoes shoes = new Shoes();
+	String [] parts = null;
 	
 	@Autowired
 	TotalService totalService;
@@ -33,23 +34,22 @@ public class AdminShoesInfoUpdateServlet  extends HttpServlet{
 		response.setContentType("text/html;charset=UTF-8");
 		
         BufferedReader reader = request.getReader();
-        
+        StringBuilder updateInfo = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
         	updateInfo.append(line);
         }
         String str = updateInfo.toString();
-        System.out.println(str);
+        System.out.println("str : "+str);
+        System.out.println("str type : "+str.getClass().getName());
         
-        String [] parts = str.split(",");
-        for(int i = 0; i < parts.length; i++)
-        {
-        	System.out.println(parts[i]);
-        }
+        
+        parts = str.split(",");
+        System.out.println("parts type : "+ parts.getClass().getName());
         int shoes_price = 0;
         shoes_price = Integer.parseInt(parts[0]); // 원래 가격
         
-        int sales = 0;
+        int sales = 0;	
         sales = Integer.parseInt(parts[1]) ; // 할인 율 
         
         String shoes_name = null;
@@ -60,8 +60,8 @@ public class AdminShoesInfoUpdateServlet  extends HttpServlet{
         
         shoes.setFinal_price(final_price);
         shoes.setSales(sales);
-        shoes.setShoes_Name(shoes_name);
-        shoes.setShoes_Price(shoes_price);
+        shoes.setShoes_name(shoes_name);
+        shoes.setShoes_price(shoes_price);
         
         try {
 			totalService.adminPageUpdateShoesInfo(shoes);
