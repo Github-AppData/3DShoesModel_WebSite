@@ -6,14 +6,20 @@
 	<select id="randSelectShoesId"  resultType="Map">
 		SELECT shoes_id, shoes_name, shoes_price
 		FROM shoes;
-
 	</select>
 	
 	<select id="adminPageSelectShoesList" resultType="Map">
-		select shoes_id, shoes_name, shoes_price, num_like
+		select shoes_id, shoes_name, shoes_price, sales, num_like, final_price
 		from shoes
 		where is_delete = 0;
 	</select>
+	
+	<!-- 관리자 페이지 신발 정보 업데이트 -->
+	<update id="adminPageUpdateShoesInfo">
+		update shoes
+		set shoes_price = #{shoes_price}, sales = #{sales}, final_price = #{final_price}
+		where shoes_name = #{shoes_name};
+	</update>
 	
 	<select id="myPageUserDataSet" resultType="Map" >
 		select user_id, name, birthday, adress, detail_adress, email, phone

@@ -2,75 +2,94 @@ package com.example.rubypaper.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Shoes {
 	private String shoes_Id;
-	private String shoes_Name;
-	private Long shoes_Price;
-	private Long num_Like;
-	private String cate_Name;
-	private Date revise_Date;
-	private Long is_Like;
-	private String brand_Name;
-	private String color_Code;
+	private String shoes_name;
+	private int shoes_price;
+	private int sales;
+	private int final_price;
+	private int num_Like;
+	private int is_Like;	
+	private int is_delete;	
 	
-	@Override
-	public String toString() {
-		return "Shoes [shoes_Id=" + shoes_Id + ", shoes_Name=" + shoes_Name + ", shoes_Price=" + shoes_Price
-				+ ", num_Like=" + num_Like + ", cate_Name=" + cate_Name + ", revise_Date=" + revise_Date + ", is_Like="
-				+ is_Like + ", brand_Name=" + brand_Name + ", color_Code=" + color_Code + "]";
-	}
+	@JsonCreator
+    public void Shoes2(@JsonProperty("shoes_Name") String shoes_Name, @JsonProperty("shoes_Price") int shoes_Price) {
+        this.shoes_name = shoes_Name;
+        this.shoes_price = shoes_Price;
+    }
+
 	public String getShoes_Id() {
 		return shoes_Id;
 	}
+
 	public void setShoes_Id(String shoes_Id) {
 		this.shoes_Id = shoes_Id;
 	}
+
 	public String getShoes_Name() {
-		return shoes_Name;
+		return shoes_name;
 	}
-	public void setShoes_Name(String shoes_Name) {
-		this.shoes_Name = shoes_Name;
+
+	public void setShoes_Name(String shoes_name) {
+		this.shoes_name = shoes_name;
 	}
-	public Long getShoes_Price() {
-		return shoes_Price;
+
+	public int getShoes_Price() {
+		return shoes_price;
 	}
-	public void setShoes_Price(Long shoes_Price) {
-		this.shoes_Price = shoes_Price;
+
+	public void setShoes_Price(int shoes_price) {
+		this.shoes_price = shoes_price;
 	}
-	public Long getNum_Like() {
+
+	public int getSales() {
+		return sales;
+	}
+
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
+
+	public int getFinal_price() {
+		return final_price;
+	}
+
+	public void setFinal_price(int final_price) {
+		this.final_price = final_price;
+	}
+
+	public int getNum_Like() {
 		return num_Like;
 	}
-	public void setNum_Like(Long num_Like) {
+
+	public void setNum_Like(int num_Like) {
 		this.num_Like = num_Like;
 	}
-	public String getCate_Name() {
-		return cate_Name;
-	}
-	public void setCate_Name(String cate_Name) {
-		this.cate_Name = cate_Name;
-	}
-	public Date getRevise_Date() {
-		return revise_Date;
-	}
-	public void setRevise_Date(Date revise_Date) {
-		this.revise_Date = revise_Date;
-	}
-	public Long getIs_Like() {
+
+	public int getIs_Like() {
 		return is_Like;
 	}
-	public void setIs_Like(Long is_Like) {
+
+	public void setIs_Like(int is_Like) {
 		this.is_Like = is_Like;
 	}
-	public String getBrand_Name() {
-		return brand_Name;
+
+	public int getIs_delete() {
+		return is_delete;
 	}
-	public void setBrand_Name(String brnad_Name) {
-		this.brand_Name = brnad_Name;
+
+	public void setIs_delete(int is_delete) {
+		this.is_delete = is_delete;
 	}
-	public String getColor_Code() {
-		return color_Code;
+
+	@Override
+	public String toString() {
+		return "Shoes [shoes_Id=" + shoes_Id + ", shoes_Name=" + shoes_name + ", shoes_Price=" + shoes_price
+				+ ", sales=" + sales + ", final_price=" + final_price + ", num_Like=" + num_Like + ", is_Like="
+				+ is_Like + ", is_delete=" + is_delete + "]";
 	}
-	public void setColor_Code(String color_Code) {
-		this.color_Code = color_Code;
-	}
+	
 }

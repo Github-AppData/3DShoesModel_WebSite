@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Paging;
+import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.mapper.TotalMapper;
 import com.example.rubypaper.mapper.UserMapper;
 
@@ -21,6 +22,7 @@ public interface TotalService {
 	public  List<Map<String, Object>> boardIdxData(int idx) throws Exception;
 	public  List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_ids) throws Exception;
 	public int cartDeleteShoesId() throws Exception;
+	public int adminPageUpdateShoesInfo(Shoes shoes) throws Exception;
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id) throws Exception;
 	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception;
 	public int boardCount() throws Exception;

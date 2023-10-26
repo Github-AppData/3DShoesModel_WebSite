@@ -98,7 +98,6 @@ public class SampleController {
 		int result = 0;
 				
 		try {
-				
 				boardList = totalService.boardFindList(paging);
 				totalService.FindListIsDelete();
 				var boardCount = totalService.boardCount();
