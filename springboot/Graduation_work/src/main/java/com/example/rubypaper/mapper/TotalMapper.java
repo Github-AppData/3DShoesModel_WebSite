@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.rubypaper.dto.Paging;
+import com.example.rubypaper.dto.Shoes;
 
 @Mapper
 public interface TotalMapper {
@@ -17,6 +18,9 @@ public interface TotalMapper {
 	public List<Map<String, Object>> findIsLike();
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id);
 	public int cartDeleteShoesId();
+	
+	public int adminPageUpdateShoesInfo(Shoes shoes) throws Exception;
+	
 	public List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_id);
 	public List<Map<String, Object>> boardIdxData(@Param("idx") int idx);
 	public int numberOfCart();
@@ -31,4 +35,6 @@ public interface TotalMapper {
 	public int noticeBoardIdxResort() throws Exception;
 	public List<Map<String, Object>> adminPageSelectUserList() throws Exception;
 	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
+	public void adminPageDeleteShoesInfo(String shoes_name);
+	public void adminPageShoesInsert(Shoes shoes) throws Exception;
 }

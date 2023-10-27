@@ -75,6 +75,12 @@ body {
   clear: both;
 }
 
+.video {
+    width: 80%;
+    height: 750px;
+    object-fit: fill;
+}
+
 h1,
 h2,
 h3,
@@ -442,7 +448,7 @@ ol {
 }
 
 .header__logo {
-	padding: 30px 0;
+	padding: 10px 0;
 }
 
 .header__logo a {
@@ -2854,6 +2860,7 @@ ol {
 	-webkit-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
+	
 }
 
 .blog__item__text span {

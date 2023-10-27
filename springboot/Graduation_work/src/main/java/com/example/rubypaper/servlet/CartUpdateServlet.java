@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.service.CartService;
 import com.example.rubypaper.service.TotalService;
 import com.fasterxml.jackson.databind.ObjectMapper;

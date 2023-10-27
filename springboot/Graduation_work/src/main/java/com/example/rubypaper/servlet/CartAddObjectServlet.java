@@ -37,7 +37,6 @@ public class CartAddObjectServlet extends HttpServlet{
 		// 장바구니에 들어갈 신발 정보 
 		HttpSession session2 = request.getSession();
 		String jsonData_cart = (String) session2.getAttribute("jsonArrayString"); // 로그인 아이디가 checkLogin에 들어가 있다.
-		
 
 		// JSON 문자열을 Java 객체로 변환
 		ObjectMapper objectMapper = new ObjectMapper();

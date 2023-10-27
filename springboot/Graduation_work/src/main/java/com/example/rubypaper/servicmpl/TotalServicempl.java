@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Paging;
+import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.mapper.TotalMapper;
 import com.example.rubypaper.service.TotalService;
 
@@ -115,6 +116,21 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception {
 		return totalMapper.adminPageSelectShoesList();
+	}
+
+	@Override
+	public int adminPageUpdateShoesInfo(Shoes shoes) throws Exception {
+		return totalMapper.adminPageUpdateShoesInfo(shoes);
+	}
+
+	@Override
+	public void adminPageDeleteShoesInfo(String shoes_name) throws Exception {
+		totalMapper.adminPageDeleteShoesInfo(shoes_name);
+	}
+
+	@Override
+	public void adminPageShoesInsert(Shoes shoes) throws Exception {
+		totalMapper.adminPageShoesInsert(shoes);
 	}
 
 }
