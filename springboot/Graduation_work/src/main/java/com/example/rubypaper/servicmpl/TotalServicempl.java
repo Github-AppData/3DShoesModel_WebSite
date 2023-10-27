@@ -53,8 +53,18 @@ public class TotalServicempl implements TotalService{
 	}
 	
 	@Override
-	public int searchCount(String boards_Name) throws Exception{
-		return totalMapper.searchCount(boards_Name);
+	public int searchBoardCount(String boards_Name) throws Exception{
+		return totalMapper.searchBoardCount(boards_Name);
+	}
+	
+	@Override
+	public int shoesCount() throws Exception{
+		return totalMapper.shoesCount();
+	}
+	
+	@Override
+	public int searchShoesCount(String shoes_Name) throws Exception{
+		return totalMapper.searchShoesCount(shoes_Name);
 	}
 
 	@Override
@@ -73,13 +83,13 @@ public class TotalServicempl implements TotalService{
 	}
 	
 	@Override
-	public List<Map<String, Object>> searchShoes(String shoes_Name) throws Exception {
-		return totalMapper.searchShoes(shoes_Name);
+	public List<Map<String, Object>> searchAdminPageShoes(Paging paging) throws Exception {
+		return totalMapper.searchAdminPageShoes(paging);
 	}
 	
 	@Override
-	public List<Map<String, Object>> searchBoards(String boards_Name) throws Exception {
-		return totalMapper.searchBoards(boards_Name);
+	public List<Map<String, Object>> searchBoards(Paging paging) throws Exception {
+		return totalMapper.searchBoards(paging);
 	}
 
 	@Override
@@ -114,8 +124,8 @@ public class TotalServicempl implements TotalService{
 	}
 
 	@Override
-	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception {
-		return totalMapper.adminPageSelectShoesList();
+	public List<Map<String, Object>> adminPageSelectShoesList(Paging paging) throws Exception {
+		return totalMapper.adminPageSelectShoesList(paging);
 	}
 
 	@Override

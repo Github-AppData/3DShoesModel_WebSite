@@ -102,15 +102,11 @@ public class SampleController {
 		//사용자 총 수 
 		int result = 0;
 				
-		try {/*
-			boardList = serviceList.getBoardList(paging);
-			result = serviceList.getBoardValue();
-			paging.setTotalArticle(result);
-			serviceList.FindListIsDelete();
-			*/
+		try {
 			if(search != null) {
-				boardList = totalService.searchBoards(search);
-				var searchCount = totalService.searchCount(search);
+				paging.setSearchWord(search);
+				boardList = totalService.searchBoards(paging);
+				var searchCount = totalService.searchBoardCount(search);
 				System.out.println(searchCount);
 				paging.setTotalArticle(searchCount);
 				paging.setTotalPage(searchCount);
@@ -367,18 +363,43 @@ public class SampleController {
 	}
 	
 	@GetMapping("/adminOrders")
-	public String adminOrders(Model model)
+	public String adminOrders(Model model,
+			@RequestParam(value="search", required = false) String search,
+			@RequestParam(value="page", defaultValue = "1") int page)
 	{
 		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
 		
+		//페이징 객체 생성
+		Paging paging = new Paging();
+				
+		paging.setPage(page);
+		var startRow = 10 * (page - 1);
+		paging.setStartRow(startRow);
+		
 		try {
-			shoesList = totalService.adminPageSelectShoesList();
+			if(search != null) {
+				paging.setSearchWord(search);
+				shoesList = totalService.searchAdminPageShoes(paging);
+				var searchCount = totalService.searchShoesCount(search);
+				System.out.println(searchCount);
+				paging.setTotalArticle(searchCount);
+				paging.setTotalPage(searchCount);
+				System.out.println(search);
+			} else {
+				shoesList = totalService.adminPageSelectShoesList(paging);
+				var shoesCount = totalService.shoesCount();
+				System.out.println(shoesCount);
+				paging.setTotalArticle(shoesCount);
+				paging.setTotalPage(shoesCount);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("shoesList", shoesList);
+		model.addAttribute("paging",paging);
 		return "test/adminOrders";
 	}
 	

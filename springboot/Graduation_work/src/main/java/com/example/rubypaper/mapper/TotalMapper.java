@@ -25,16 +25,19 @@ public interface TotalMapper {
 	public List<Map<String, Object>> boardIdxData(@Param("idx") int idx);
 	public int numberOfCart();
 	public List<Map<String, Object>> boardFindList(Paging paging);
-	public List<Map<String, Object>> searchBoards(String boards_Name);
+	public List<Map<String, Object>> searchBoards(Paging paging);
+	public List<Map<String, Object>> searchAdminPageShoes(Paging paging);
 	public int boardCount() throws Exception;
-	public int searchCount(String boards_Name) throws Exception;
+	public int searchBoardCount(String boards_Name) throws Exception;
+	public int shoesCount() throws Exception;
+	public int searchShoesCount(String shoes_Name) throws Exception;
 	public List<Map<String, Object>> cartFindList();
 	public void FindListIsDelete() throws Exception;
 	public int cartUpdateIsDelete(@Param("shoes_id") String shoes_id) throws Exception;
 	public String cartFindShoesId(@Param("shoes_id") String shoes_id) throws Exception;
 	public int noticeBoardIdxResort() throws Exception;
 	public List<Map<String, Object>> adminPageSelectUserList() throws Exception;
-	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
+	public List<Map<String, Object>> adminPageSelectShoesList(Paging paging) throws Exception;
 	public void adminPageDeleteShoesInfo(String shoes_name);
 	public void adminPageShoesInsert(Shoes shoes) throws Exception;
 }
