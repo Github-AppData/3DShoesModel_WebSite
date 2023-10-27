@@ -38,5 +38,6 @@ public interface TotalService {
 	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception;
 	public void adminPageDeleteShoesInfo(@Param("shoes_name") String shoes_name) throws Exception;
 	public void adminPageShoesInsert(Shoes shoes) throws Exception;
+	public List<Map<String, Object>> adminPageSelectAdminAccount() throws Exception;
 
 }

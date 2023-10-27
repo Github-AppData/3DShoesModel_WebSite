@@ -20,6 +20,39 @@
     <!-- App CSS -->  
     <link id="theme-style" rel="stylesheet" href="css/portal.css">
     <style>
+		#delete-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+		
+		#Revise-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+		
+		#insert-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: orangered; /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+		
 		/* CSS 스타일 */
 	    .pretty-deletebutton {
 	        background-color: orangered; /* 배경색 */
@@ -347,10 +380,12 @@
 			    <div class="row g-3 mb-4 align-items-center justify-content-between">
 				    <div class="col-auto">
 			            <h1 class="app-page-title mb-0">상품 관리</h1>
+			            <div id="insert-message" class="hidden"></div>
 				    </div>
 				    <div class="col-auto">
 					     <div class="page-utilities">
 						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+								
 							    <div class="col-auto">
 					                    <div class="col-auto">
 					                        &nbsp;&nbsp;<button onclick="addRow()"  style="background-color: orangered; color: white;" type="submit" class="btn app-btn-secondary"><b>등록하기</b></button>
@@ -375,6 +410,8 @@
 					    <div class="app-card app-card-orders-table shadow-sm mb-5">
 						    <div class="app-card-body">
 							    <div class="table-responsive">
+									<div id="delete-message" class="hidden"></div>
+									<div id="Revise-message" class="hidden"></div>
 								        <table class="table app-table-hover ml-10" id="myTable">
 											<thead>
 												<tr>
@@ -536,10 +573,16 @@
 			data_array.push(shoes_name);
 			data_array.push(shoes_price);
 			
-			console.log(data_array);
 			// POST 요청 설정
 			xhr3.open("POST", "/AdminPageShoesInsertServlet", true);
 			xhr3.setRequestHeader("Content-Type", "application/json");
+			
+			xhr3.addEventListener("load", function() {
+			    // 요청이 완료된 후에 실행할 코드
+			    if (xhr3.status === 200) { // 요청이 성공했을 때
+			    	showInsertToast("등록 되었습니다.");
+			    }
+			});
 			
 			xhr3.send(data_array);
 			
@@ -572,11 +615,16 @@
 			var shoes_name = document.getElementById(shoes_name_id).textContent;
 			real.push(shoes_name);
 			real.push(total_price);
-			console.log(real);
 			
 			// POST 요청 설정
 			xhr.open("POST", "/AdminShoesInfoUpdateServlet", true);
 			xhr.setRequestHeader("Content-Type", "application/json");
+			
+			xhr.addEventListener("load", function(){ 
+				if(xhr.status === 200){
+					showReviseToast("수정 되었습니다.");				
+				}
+			});
 			
 			// 배열 데이터를 JSON 문자열로 변환하여 요청 본문에 추가
 			var data = JSON.stringify(real);
@@ -599,7 +647,7 @@
 			
 			if(confirm(shoes_name2 + "를 정말 삭제 하시겠습니까 ?"))
 			{
-				alert("삭제 되었습니다.");
+				showDeleteToast("삭제 되었습니다.");
 				
 				// POST 요청 설정
 				xhr2.open("POST", "/ShoesDeleteServlet", true);
@@ -608,8 +656,42 @@
 			} else {
 				location.reload();
 			}
+		}
+		
+		function showDeleteToast(message) {
 			
+		  var toast = document.getElementById("delete-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.reload();
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showReviseToast(message) {
 			
+		  var toast = document.getElementById("Revise-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.reload();
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showInsertToast(message) {
+			
+		  var toast = document.getElementById("insert-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.reload();
+		  }, 2000); // 3초 후 메시지가 사라집니다.
 		}
 		
 			

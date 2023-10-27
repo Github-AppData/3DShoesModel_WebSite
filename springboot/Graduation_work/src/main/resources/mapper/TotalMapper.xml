@@ -8,13 +8,21 @@
 		FROM shoes;
 	</select>
 	
+	
+	
+	<!-- 관리자 페이지 신발 정보 업데이트 -->
 	<select id="adminPageSelectShoesList" resultType="Map">
 		select shoes_id, shoes_name, shoes_price, sales, num_like, final_price
 		from shoes
 		where is_delete = 0;
 	</select>
 	
-	<!-- 관리자 페이지 신발 정보 업데이트 -->
+	<select id="adminPageSelectAdminAccount" resultType="Map">
+		select user_id, name, email
+		from user
+		where user_id = "admin";
+	</select>
+	
 	<update id="adminPageUpdateShoesInfo">
 		update shoes
 		set shoes_price = #{shoes_price}, sales = #{sales}, final_price = #{final_price}
@@ -43,14 +51,12 @@
 		from User 
 		where user_id = #{user_id};
 	</select>
+	
 	<select id="adminPageSelectUserList" resultType="Map">
 		SELECT user_id, name, adress, birthday, phone
 		FROM user
 		WHERE user_id != "admin";
 	</select>
-	
-	
-	
 	
 	<select id="boardCheckIdFindList" resultType="Map" parameterType="String">
 		SELECT idx, title, write_date
