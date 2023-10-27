@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
@@ -145,10 +146,10 @@
 				  <div id="board-search">
 					  <div class="container">
 						  <div class="search-window">
-							  <form action="">
+							  <form action="SearchServlet" method="post">
 								  <div class="search-wrap">
 									  <label for="search" class="blind">공지사항 내용 검색</label>
-									  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요.">
+									  <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요.">
 									  <button type="submit" class="btn btn-dark">검색</button>
 								  </div>
 							  </form>
@@ -186,29 +187,22 @@
 					  </div>
 				  </div>
 
-				  <!--type1-->
-				  <div class="center" >
-				<a href  = "#">◀ 이전</a> 
-				<a href  = "#">1</a>  
-				<a href  = "#">2</a>  
-				<a href  = "#">3</a> 
-				<a href  = "#">4</a>  
-				<a href  = "#">5</a>   
-				<a href  = "#">다음 ▶</a>
-					</div>
+				  <!--type1 pageButtons-->
+				  <li class="center" id="pageButtons2">
+					</li>
 				<!--type2-->
 				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
+					<ul class="pagination justify-content-center" id="pageButtons">
 					  <li class="page-item">
 						<a class="page-link" href="#" aria-label="Previous">
 						  <span aria-hidden="true">&laquo;</span>
 						</a>
 					  </li>
-					  <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
-					  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-					  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-					  <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
-					  <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
+					  	<li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+					  	<li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+					  	<li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+					 	<li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+					 	<li class="page-item"><a class="page-link" href="?page=5">5</a></li>
 					  <li class="page-item">
 						<a class="page-link" href="#" aria-label="Next">
 						  <span aria-hidden="true">&raquo;</span>
@@ -303,10 +297,11 @@
 		
 	</script>
 		<!-- Js Plugins -->
-		<script>
+		<script type="text/javascript" th:inline="javascript">
 			var xhr = new XMLHttpRequest();
 			var xhr2 = new XMLHttpRequest();
 			var object;
+			var paging = [[${paging}]];
 			
 			window.onload = pageLoad;
 			function pageLoad()
@@ -320,6 +315,19 @@
 						console.log(object);
 					}
 				}
+				
+				var pagebuttons = document.getElementById("pageButtons");
+				pagebuttons.innerHTML = '';
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+						
+				for(var i = 1; i <= paging.totalPage; i++){
+					console.log(paging.totalPage);
+					pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+				}
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+				
 				
 				for(var i = 0; i < object; i++)
 				{
@@ -348,6 +356,16 @@
 				xhr2.open("GET", "/BoardDetailPageSetServlet?linkId=" + linkId, true);
 				xhr2.send(null);
 				
+			}
+			
+			function movePage(page){
+				console.log(location.search);
+				const url = new URL(location.href);
+				const urlParams = url.searchParams;
+				var pagenum = page.getAttribute('id');
+				
+				urlParams.set('page',pagenum);
+				location.replace(url);
 			}
 			
 		</script>

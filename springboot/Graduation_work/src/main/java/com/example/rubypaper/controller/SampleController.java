@@ -113,12 +113,14 @@ public class SampleController {
 				var searchCount = totalService.searchCount(search);
 				System.out.println(searchCount);
 				paging.setTotalArticle(searchCount);
+				paging.setTotalPage(searchCount);
 				System.out.println(search);
 			} else {
 				boardList = totalService.boardFindList(paging);
 				var boardCount = totalService.boardCount();
 				System.out.println(boardCount);
 				paging.setTotalArticle(boardCount);
+				paging.setTotalPage(boardCount);
 			}
 			//var boardCount = totalService.boardCount();
 			totalService.FindListIsDelete();
@@ -137,6 +139,7 @@ public class SampleController {
 						
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
+		System.out.println(paging.getTotalPage());
 		
 		return "test/noticdBoard";
 	}
