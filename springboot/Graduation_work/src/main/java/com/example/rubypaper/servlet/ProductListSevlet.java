@@ -28,13 +28,17 @@ public class ProductListSevlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("ProductListSevlet 실행 되었습니다." );
-		
-		
+		System.out.println(request.getRequestURI());
+		System.out.println(request.getParameter("search"));
 		// 신발 목록 가져오기 
 		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
 				
 		try {
-			shoesList = totalService.randSelectShoesId();
+			if(request.getParameter("search") != null) {
+				shoesList = totalService.searchsMain(request.getParameter("search"));
+			}else {
+				shoesList = totalService.randSelectShoesId();
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

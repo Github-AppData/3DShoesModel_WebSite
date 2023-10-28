@@ -180,9 +180,9 @@
 				<div class="col-lg-3">
 					<div class="shop__sidebar">
 						<div class="shop__sidebar__search">
-							<form action="SearchServlet" method="post">
-								<input type="text" name="shoes_Name" placeholder="검색어">
-								<button type="submit" onclick="sendHttpRequest()"><span class="icon_search"></span></button>
+							<form action="">
+								<input type="text" name="search" placeholder="검색어">
+								<button type="submit" onclick="search(this)"><span class="icon_search"></span></button>
 							</form>
 						</div>
 						<div class="shop__sidebar__accordion">
@@ -255,7 +255,7 @@
 					<!-- 상품 영역 -->
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale">
+							<div class="product__item sale" id="item_1">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-1" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
@@ -292,7 +292,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale">
+							<div class="product__item sale" id="item_2">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-2" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
@@ -309,7 +309,7 @@
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
-</div>
+								</div>
 									<h5 id="shoes2_price">105,000원</h5>
 									</div>
 									<div class="col">
@@ -326,7 +326,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale">
+							<div class="product__item sale" id="item_3">
 								<div class="product__item__pic set-bg">
 									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
 									<iframe id="api-frame-3" width="260" height="260" style="border:none"
@@ -339,13 +339,13 @@
 									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="3"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
+										<i class="fa fa-star-0"></i>
+										<i class="fa fa-star-0"></i>
+										<i class="fa fa-star-0"></i>
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
 									</div>
-									<h5 id="shoes3_price">105,000원</h5>
+									<h5 id="shoes3_price"></h5>
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
@@ -361,7 +361,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale">
+							<div class="product__item sale" id="itme_4">
 								<div class="product__item__pic set-bg">
 									<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
 									<iframe id="api-frame-4" width="260" height="260" style="border:none"
@@ -396,7 +396,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale">
+							<div class="product__item sale" id="item_5">
 								<div class="product__item__pic set-bg">
 									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
 									<iframe id="api-frame-5" width="260" height="260" style="border:none"
@@ -431,7 +431,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale">
+							<div class="product__item sale" id="itme_6">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-6" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
@@ -572,6 +572,11 @@
 
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
+		
+		//현재 url
+		const url = new URL(location.href);
+		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+		const urlParams = url.searchParams;
 
 
 		window.onload = pageLoad;
@@ -605,17 +610,11 @@
 					var pagebuttons = document.getElementById("pagebuttons");
 					//초기화
 					pagebuttons.innerHTML = '';
+					
 					//페이지 버튼 제작
 					for (var i = 0; i < pageLength; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
-					/*
-					for (var i = 0; i < objLength; i++) {
-						shoes_id = object[i].shoes_id;
-						shoes_name = object[i].shoes_name;
-						shoes_price = object[i].shoes_price;
-					}
-					*/
 					//필요한 것만 불러오도록 변경
 					for(var i = first; i <= last; i++){
 						if (page != 1) {
@@ -646,8 +645,11 @@
 						} else {
 							var num = i;
 						}
+						
 						document.getElementById(article_id[num]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
 						document.getElementById(article_price_id[num]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+						
+						//document.getElementById(item_[num]).innerHTML = '';
 					}
 
 					imageToModelMapping_real.forEach(function (mapping) {
@@ -657,9 +659,17 @@
 				} // if (xhr.readyState === 4 && xhr.status === 200) 
 
 			}; // xhr.onreadystatechange 끝
-
-			xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
-			xhr.send(null); // ProductListSevlet에 보낼 요청
+			
+			if(urlParams.get('search') != null){
+				var url = "/ProductListSevlet?search=" + urlParams.get('search');
+				console.log(url);
+				xhr.open("GET", url, true); // 비동기 요청 시작.
+				xhr.send(null); // ProductListSevlet에 보낼 요청
+			} else {
+				xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
+				xhr.send(null); // ProductListSevlet에 보낼 요청
+			}
+			
 
 		}; // pageLoad
 
@@ -671,9 +681,30 @@
 			console.log(pageId);
 			setPagenum(pageId);
 			
-			xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
-			xhr.send(null);
+			if(urlParams.get('search') != null){
+				var url = "/ProductListSevlet?search=" + urlParams.get('search');
+				console.log(url);
+				xhr.open("GET", url, true); // 비동기 요청 시작.
+				xhr.send(null); // ProductListSevlet에 보낼 요청
+			} else {
+				xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
+				xhr.send(null); // ProductListSevlet에 보낼 요청
+			}
 		}
+		
+		function search(search){
+				console.log(location.search);
+				//현재 url을 가져옴
+				const url = new URL(location.href);
+				//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+				const urlParams = url.searchParams;
+				var searchWord = search.getAttribute('search');
+				
+				//현재 받아온 것들중 page의 값을 pagenum으로 변경
+				urlParams.set('search',searchWord);
+				//url에 해당되는 것으로 이동
+				location.replace(url);
+			}
 
 		function setPagenum(num) {
 			page = num;

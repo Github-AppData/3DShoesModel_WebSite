@@ -9,6 +9,12 @@
 		FROM shoes;
 	</select>
 	
+	<select id="searchsMain"  resultType="Map">
+		SELECT shoes_id, shoes_name, final_price
+		FROM shoes
+		WHERE shoes_Name Like CONCAT('%',#{shoes_Name},'%');
+	</select>
+	
 	<select id="searchAdminPageShoes"  resultType="Map">
 		SELECT shoes_id, shoes_name, shoes_price, sales, num_like, final_price
 		FROM shoes

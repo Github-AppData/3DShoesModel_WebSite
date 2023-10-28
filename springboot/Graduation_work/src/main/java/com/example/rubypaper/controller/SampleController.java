@@ -107,14 +107,11 @@ public class SampleController {
 				paging.setSearchWord(search);
 				boardList = totalService.searchBoards(paging);
 				var searchCount = totalService.searchBoardCount(search);
-				System.out.println(searchCount);
 				paging.setTotalArticle(searchCount);
 				paging.setTotalPage(searchCount);
-				System.out.println(search);
-			} else {
+				} else {
 				boardList = totalService.boardFindList(paging);
 				var boardCount = totalService.boardCount();
-				System.out.println(boardCount);
 				paging.setTotalArticle(boardCount);
 				paging.setTotalPage(boardCount);
 			}
@@ -214,7 +211,9 @@ public class SampleController {
 	}
 	
 	@GetMapping("/sMain")
-	public String sMain(Model model,HttpServletRequest request, HttpSession session)
+	public String sMain(@RequestParam(value="page", defaultValue = "1") int page ,
+			@RequestParam(value="search", required = false) String search,
+			Model model,HttpServletRequest request, HttpSession session)
 	{
 		// user_id 구하는 것.
 		session = request.getSession();
@@ -378,17 +377,13 @@ public class SampleController {
 		
 		try {
 			if(search != null) {
-				paging.setSearchWord(search);
 				shoesList = totalService.searchAdminPageShoes(paging);
 				var searchCount = totalService.searchShoesCount(search);
-				System.out.println(searchCount);
 				paging.setTotalArticle(searchCount);
 				paging.setTotalPage(searchCount);
-				System.out.println(search);
 			} else {
 				shoesList = totalService.adminPageSelectShoesList(paging);
 				var shoesCount = totalService.shoesCount();
-				System.out.println(shoesCount);
 				paging.setTotalArticle(shoesCount);
 				paging.setTotalPage(shoesCount);
 			}

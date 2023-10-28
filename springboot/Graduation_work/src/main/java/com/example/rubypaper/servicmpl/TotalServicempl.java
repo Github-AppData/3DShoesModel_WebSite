@@ -83,6 +83,11 @@ public class TotalServicempl implements TotalService{
 	}
 	
 	@Override
+	public List<Map<String, Object>> searchsMain(String shoes_Name) throws Exception {
+		return totalMapper.searchsMain(shoes_Name);
+	}
+	
+	@Override
 	public List<Map<String, Object>> searchAdminPageShoes(Paging paging) throws Exception {
 		return totalMapper.searchAdminPageShoes(paging);
 	}
