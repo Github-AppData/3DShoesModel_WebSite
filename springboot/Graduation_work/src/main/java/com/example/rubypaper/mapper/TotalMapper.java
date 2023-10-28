@@ -13,8 +13,8 @@ import com.example.rubypaper.dto.Shoes;
 public interface TotalMapper {
 
 	public int getBoardValue();
-	public List<Map<String, Object>> randSelectShoesId();
-	public List<Map<String, Object>> searchsMain(String shoes_Name);
+	public List<Map<String, Object>> randSelectShoesId(Paging paging);
+	public List<Map<String, Object>> searchsMain(Paging paging);
 	public List<Map<String, Object>> findIsLike();
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id);
 	public int cartDeleteShoesId();

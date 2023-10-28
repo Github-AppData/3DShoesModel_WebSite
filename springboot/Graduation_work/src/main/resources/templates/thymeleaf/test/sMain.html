@@ -587,36 +587,19 @@
 					object = JSON.parse(xhr.responseText);
 					objLength = Object.keys(object).length;
 					console.log("objLength : ", objLength);
-					console.log("page : ",page);
-					
-					pageLength = Math.ceil(objLength / 6);
-					console.log("pageLength : ",pageLength);
-					
-					if (pageLength <= 0) {
-						pageLength = 1;
-					}
-					
-					var last = page * 6 - 1;
-					//if (last > objLength) last = objLength;
-					var first = last - (6 - 1);
-					
-					if(first <= 0){
-						fitst = last - (6-1);
-					}
-					
-					console.log("first : ",first);
-					console.log("last : ",last);
 					
 					var pagebuttons = document.getElementById("pagebuttons");
 					//초기화
 					pagebuttons.innerHTML = '';
 					
+					//document.getElementById("item_2").innerHTML = " ";
+					
 					//페이지 버튼 제작
-					for (var i = 0; i < pageLength; i++) {
+					for (var i = 0; i < 6; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
 					//필요한 것만 불러오도록 변경
-					for(var i = first; i <= last; i++){
+					for(var i = 0; i < 6; i++){
 						if (page != 1) {
 							var num = i - first;
 						} else {
@@ -635,19 +618,13 @@
 					var price_sum = 0;  // 상품 총 금액 
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
-
-					for (var i = first; i <= last; i++) {
+					
+					for (var i = 0; i < 6; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
 						var shoes_info_price = imageToModelMapping_real[i].final_price;
-						price_sum += shoes_info_price;
-						if (page != 1) {
-							var num = i - first;
-						} else {
-							var num = i;
-						}
-						
-						document.getElementById(article_id[num]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
-						document.getElementById(article_price_id[num]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+						price_sum += shoes_info_price;						
+						document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
+						document.getElementById(article_price_id[i]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
 						
 						//document.getElementById(item_[num]).innerHTML = '';
 					}
@@ -660,55 +637,38 @@
 
 			}; // xhr.onreadystatechange 끝
 			
-			if(urlParams.get('search') != null){
-				var url = "/ProductListSevlet?search=" + urlParams.get('search');
-				console.log(url);
-				xhr.open("GET", url, true); // 비동기 요청 시작.
-				xhr.send(null); // ProductListSevlet에 보낼 요청
-			} else {
-				xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
-				xhr.send(null); // ProductListSevlet에 보낼 요청
-			}
+			var link = "/ProductListSevlet";
 			
-
+			if(urlParams.get('search')){
+				link = link + "?search=" + urlParams.get('search');
+				if(urlParams.get('page')){
+					link = link + "&page=" + urlParams.get('page');
+				}
+			}else if(urlParams.get('page')){
+				link = link + "?page" + urlParams.get('page');
+			}
+			xhr.open("GET", link, true); // 비동기 요청 시작.
+			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}; // pageLoad
 
 		function setPage(link) {
-			var pageId = null;
-
-			pageId = link.getAttribute("data-link-id");
-
-			console.log(pageId);
-			setPagenum(pageId);
-			
-			if(urlParams.get('search') != null){
-				var url = "/ProductListSevlet?search=" + urlParams.get('search');
-				console.log(url);
-				xhr.open("GET", url, true); // 비동기 요청 시작.
-				xhr.send(null); // ProductListSevlet에 보낼 요청
-			} else {
-				xhr.open("GET", "/ProductListSevlet", true); // 비동기 요청 시작.
-				xhr.send(null); // ProductListSevlet에 보낼 요청
-			}
+			var pageId = link.getAttribute("data-link-id");
+			urlParams.set('page',pageId);
+			location.replace(url);
+			xhr.open("GET", url, true); // 비동기 요청 시작.
+			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}
 		
 		function search(search){
 				console.log(location.search);
-				//현재 url을 가져옴
-				const url = new URL(location.href);
-				//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
-				const urlParams = url.searchParams;
 				var searchWord = search.getAttribute('search');
-				
 				//현재 받아온 것들중 page의 값을 pagenum으로 변경
 				urlParams.set('search',searchWord);
 				//url에 해당되는 것으로 이동
 				location.replace(url);
+				xhr.open("GET", url, true); // 비동기 요청 시작.
+				xhr.send(null); // ProductListSevlet에 보낼 요청
 			}
-
-		function setPagenum(num) {
-			page = num;
-		}
 
 		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
 		function handleLinkClick(link) {

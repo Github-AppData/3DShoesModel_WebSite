@@ -78,13 +78,13 @@ public class TotalServicempl implements TotalService{
 	}
 
 	@Override
-	public List<Map<String, Object>> randSelectShoesId() throws Exception {
-		return totalMapper.randSelectShoesId();
+	public List<Map<String, Object>> randSelectShoesId(Paging paging) throws Exception {
+		return totalMapper.randSelectShoesId(paging);
 	}
 	
 	@Override
-	public List<Map<String, Object>> searchsMain(String shoes_Name) throws Exception {
-		return totalMapper.searchsMain(shoes_Name);
+	public List<Map<String, Object>> searchsMain(Paging paging) throws Exception {
+		return totalMapper.searchsMain(paging);
 	}
 	
 	@Override

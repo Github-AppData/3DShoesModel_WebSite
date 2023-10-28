@@ -6,13 +6,15 @@
 	
 	<select id="randSelectShoesId"  resultType="Map">
 		SELECT shoes_id, shoes_name, final_price
-		FROM shoes;
+		FROM shoes
+		LIMIT #{startRow},#{pageSize};
 	</select>
 	
 	<select id="searchsMain"  resultType="Map">
 		SELECT shoes_id, shoes_name, final_price
 		FROM shoes
-		WHERE shoes_Name Like CONCAT('%',#{shoes_Name},'%');
+		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
+		LIMIT #{startRow},#{pageSize};
 	</select>
 	
 	<select id="searchAdminPageShoes"  resultType="Map">

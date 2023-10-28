@@ -32,8 +32,8 @@ public interface TotalService {
 	public int searchShoesCount(String shoes_Name) throws Exception;
 	public List<Map<String, Object>> cartFindList() throws Exception;
 	public List<Map<String, Object>> findIsLike() throws Exception;
-	public List<Map<String, Object>> randSelectShoesId() throws Exception;
-	public List<Map<String, Object>> searchsMain(String shoes_Name) throws Exception;
+	public List<Map<String, Object>> randSelectShoesId(Paging paging) throws Exception;
+	public List<Map<String, Object>> searchsMain(Paging paging) throws Exception;
 	public List<Map<String, Object>> searchAdminPageShoes(Paging paging) throws Exception;
 	public void FindListIsDelete() throws Exception;
 	public int getBoardValue() throws Exception;
