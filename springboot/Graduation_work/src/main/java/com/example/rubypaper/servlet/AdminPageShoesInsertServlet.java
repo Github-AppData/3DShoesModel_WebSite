@@ -54,12 +54,13 @@ public class AdminPageShoesInsertServlet extends HttpServlet{
         
         try {
 			totalService.adminPageShoesInsert(shoes);
+			response.setStatus(HttpServletResponse.SC_OK);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
-        response.sendRedirect(request.getContextPath() + "/adminOrders");
+        
 	}
 
 }

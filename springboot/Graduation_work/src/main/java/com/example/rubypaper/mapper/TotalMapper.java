@@ -40,4 +40,5 @@ public interface TotalMapper {
 	public List<Map<String, Object>> adminPageSelectShoesList(Paging paging) throws Exception;
 	public void adminPageDeleteShoesInfo(String shoes_name);
 	public void adminPageShoesInsert(Shoes shoes) throws Exception;
+	public List<Map<String, Object>> adminPageSelectAdminAccount() throws Exception;
 }

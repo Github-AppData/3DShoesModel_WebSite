@@ -326,8 +326,18 @@ public class SampleController {
 	}
 	
 	@GetMapping("/adminAccount")
-	public String adminAccount()
+	public String adminAccount(Model model)
 	{
+		List<Map<String, Object>> list2 = new ArrayList<Map<String, Object>>();
+		try {
+			list2 = totalService.adminPageSelectAdminAccount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("list", list2);
+		
 		return "test/adminAccount";
 	}
 	

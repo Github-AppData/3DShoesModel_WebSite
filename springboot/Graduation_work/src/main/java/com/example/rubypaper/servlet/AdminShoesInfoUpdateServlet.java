@@ -65,6 +65,7 @@ public class AdminShoesInfoUpdateServlet  extends HttpServlet{
         
         try {
 			totalService.adminPageUpdateShoesInfo(shoes);
+			response.setStatus(HttpServletResponse.SC_OK);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

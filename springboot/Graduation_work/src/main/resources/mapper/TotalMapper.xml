@@ -42,7 +42,12 @@
 		LIMIT #{startRow},#{pageSize};
 	</select>
 	
-	<!-- 관리자 페이지 신발 정보 업데이트 -->
+	<select id="adminPageSelectAdminAccount" resultType="Map">
+		select user_id, name, email
+		from user
+		where user_id = "admin";
+	</select>
+	
 	<update id="adminPageUpdateShoesInfo">
 		update shoes
 		set shoes_price = #{shoes_price}, sales = #{sales}, final_price = #{final_price}
@@ -77,9 +82,6 @@
 		FROM user
 		WHERE user_id != "admin";
 	</select>
-	
-	
-	
 	
 	<select id="boardCheckIdFindList" resultType="Map" parameterType="String">
 		SELECT idx, title, write_date

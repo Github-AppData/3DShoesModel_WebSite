@@ -148,4 +148,9 @@ public class TotalServicempl implements TotalService{
 		totalMapper.adminPageShoesInsert(shoes);
 	}
 
+	@Override
+	public List<Map<String, Object>> adminPageSelectAdminAccount() throws Exception {
+		return totalMapper.adminPageSelectAdminAccount();
+	}
+
 }
