@@ -573,6 +573,11 @@
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
 		
+		//현재 url
+		const url = new URL(location.href);
+		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+		const urlParams = url.searchParams;
+		
 		function onoff(element){
 			var linkId = null;
 
