@@ -30,6 +30,7 @@ public class ProductListSevlet extends HttpServlet{
 		
 		System.out.println("ProductListSevlet 실행 되었습니다." );
 		System.out.println(request.getRequestURI());
+		System.out.println(request.getQueryString());
 		System.out.println(request.getParameter("search"));
 		System.out.println(request.getParameter("page"));
 		

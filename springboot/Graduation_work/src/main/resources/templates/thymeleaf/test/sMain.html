@@ -339,9 +339,9 @@
 									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="3"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<div class="rating">
-										<i class="fa fa-star-0"></i>
-										<i class="fa fa-star-0"></i>
-										<i class="fa fa-star-0"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
 										<i class="fa fa-star-o"></i>
 										<i class="fa fa-star-o"></i>
 									</div>
@@ -550,7 +550,7 @@
 	<!-- Search End -->
 
 
-	<script type="text/javascript">
+	<script type="text/javascript" th:inline="javascript">
 
 		// 전역변수 공간 입니다만.
 
@@ -569,6 +569,8 @@
 		var objLength = null;
 
 		var dataToSend = null;
+		
+		var paging = [[${paging}]];
 
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
@@ -595,17 +597,12 @@
 					//document.getElementById("item_2").innerHTML = " ";
 					
 					//페이지 버튼 제작
-					for (var i = 0; i < 6; i++) {
+					for (var i = 0; i < paging.totalPage; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
 					//필요한 것만 불러오도록 변경
-					for(var i = 0; i < 6; i++){
-						if (page != 1) {
-							var num = i - first;
-						} else {
-							var num = i;
-						}
-						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (num + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
+					for(var i = 0; i < objLength; i++){
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
 					}
 
@@ -619,7 +616,7 @@
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
 					
-					for (var i = 0; i < 6; i++) {
+					for (var i = 0; i < objLength; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
 						var shoes_info_price = imageToModelMapping_real[i].final_price;
 						price_sum += shoes_info_price;						
@@ -639,13 +636,13 @@
 			
 			var link = "/ProductListSevlet";
 			
-			if(urlParams.get('search')){
+			if(urlParams.get('search') != null){
 				link = link + "?search=" + urlParams.get('search');
-				if(urlParams.get('page')){
+				if(urlParams.get('page') != null){
 					link = link + "&page=" + urlParams.get('page');
 				}
-			}else if(urlParams.get('page')){
-				link = link + "?page" + urlParams.get('page');
+			}else if(urlParams.get('page') != null){
+				link = link + "?page=" + urlParams.get('page');
 			}
 			xhr.open("GET", link, true); // 비동기 요청 시작.
 			xhr.send(null); // ProductListSevlet에 보낼 요청

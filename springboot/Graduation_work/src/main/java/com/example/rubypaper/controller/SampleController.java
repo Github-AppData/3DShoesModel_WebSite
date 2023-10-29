@@ -215,6 +215,34 @@ public class SampleController {
 			@RequestParam(value="search", required = false) String search,
 			Model model,HttpServletRequest request, HttpSession session)
 	{
+		Paging paging = new Paging();
+		int totalArticle = 0;
+		
+		paging.setPage(page);
+		paging.setPageSize(6);
+		paging.setSearchWord(search);
+		if(search != null) {
+			try {
+				totalArticle = totalService.searchShoesCount(search);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				totalArticle = totalService.shoesCount();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		paging.setTotalArticle(totalArticle);
+		paging.setTotalPage(totalArticle);
+		model.addAttribute("paging", paging);
+		var startRow = paging.getPageSize() * (page - 1);
+		paging.setStartRow(startRow);
+		paging.setEndRow();
+		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
@@ -384,6 +412,7 @@ public class SampleController {
 		paging.setPage(page);
 		var startRow = 10 * (page - 1);
 		paging.setStartRow(startRow);
+		paging.setSearchWord(search);
 		
 		try {
 			if(search != null) {
@@ -404,6 +433,7 @@ public class SampleController {
 		}
 		
 		model.addAttribute("shoesList", shoesList);
+		System.out.println(shoesList);
 		model.addAttribute("paging",paging);
 		return "test/adminOrders";
 	}

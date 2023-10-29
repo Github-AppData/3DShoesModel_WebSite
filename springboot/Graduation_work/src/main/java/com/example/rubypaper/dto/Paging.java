@@ -77,8 +77,8 @@ public class Paging {
 		return endRow;
 	}
 
-	public void setEndRow(int endRow) {
+	public void setEndRow() {
 		this.endRow = page * pageSize;
-		if(endRow > this.totalArticle) endRow = this.totalArticle;
+		if(this.endRow > this.totalArticle) this.endRow = this.totalArticle;
 	}
 }
