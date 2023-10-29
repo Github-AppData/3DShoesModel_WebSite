@@ -573,23 +573,7 @@
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
 		
-		//현재 url
-		const url = new URL(location.href);
-		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
-		const urlParams = url.searchParams;
 		
-		function onoff(element){
-			var linkId = null;
-
-			linkId = element.getAttribute("btn-link-id");
-			console.log("linkId : ", linkId);
-		  currentvalue = document.getElementById('onoff').value;
-		  if(currentvalue == "Off"){
-		    document.getElementById("onoff").value="On";
-		  }else{
-		    document.getElementById("onoff").value="Off";
-		  }
-		}
 
 
 		window.onload = pageLoad;
@@ -695,6 +679,19 @@
 
 		function setPagenum(num) {
 			page = num;
+		}
+		
+		function onoff(element){
+			var linkId = null;
+
+			linkId = element.getAttribute("btn-link-id");
+			console.log("linkId : ", linkId);
+		  currentvalue = document.getElementById('onoff').value;
+		  if(currentvalue == "Off"){
+		    document.getElementById("onoff").value="On";
+		  }else{
+		    document.getElementById("onoff").value="Off";
+		  }
 		}
 
 		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
