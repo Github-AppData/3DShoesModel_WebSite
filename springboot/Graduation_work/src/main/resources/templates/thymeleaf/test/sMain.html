@@ -276,11 +276,11 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star-0"></i>
 									</div>
-									<h5 id="shoes1_price">105,000원</h5>
+									<h5 id="shoes1_price"></h5>
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="0" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -314,7 +314,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="1" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -349,7 +349,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="2" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -384,7 +384,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="3" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -419,7 +419,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="4" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -453,7 +453,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="5" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -666,6 +666,18 @@
 				xhr.open("GET", url, true); // 비동기 요청 시작.
 				xhr.send(null); // ProductListSevlet에 보낼 요청
 			}
+		function onoff(element){
+			var linkId = null;
+
+			linkId = element.getAttribute("btn-link-id");
+			console.log("linkId : ", linkId);
+		  currentvalue = document.getElementById('onoff').value;
+		  if(currentvalue == "Off"){
+		    document.getElementById("onoff").value="On";
+		  }else{
+		    document.getElementById("onoff").value="Off";
+		  }
+		}
 
 		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
 		function handleLinkClick(link) {

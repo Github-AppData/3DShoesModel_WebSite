@@ -2590,14 +2590,14 @@ ol {
 }
 
 .cart__total ul {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .cart__total ul li {
 	list-style: none;
 	font-size: 16px;
 	color: #444444;
-	line-height: 40px;
+	line-height: 35px;
 	overflow: hidden;
 }
 
@@ -2613,6 +2613,14 @@ ol {
 	text-align: center;
 	letter-spacing: 2px;
 }
+
+/* 별도의 CSS 파일이나 <style> 태그 안에 작성 가능 */
+.my-custom-col {
+	margin-left: 50px;
+    width: 25%; /* 너비 설정, 여기서는 25%로 설정하였습니다. */
+    /* 다른 스타일들 */
+}
+
 
 /*---------------------
   Checkout
@@ -3466,7 +3474,7 @@ ol {
 
 @media only screen and (min-width: 1200px) {
 	.container {
-		max-width: 1170px;
+		max-width: 1270px;
 	}
 }
 

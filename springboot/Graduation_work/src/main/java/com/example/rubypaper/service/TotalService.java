@@ -39,7 +39,7 @@ public interface TotalService {
 	public int getBoardValue() throws Exception;
 	public int noticeBoardIdxResort() throws Exception;
 	public List<Map<String, Object>> adminPageSelectUserList() throws Exception;
-	public int cartUpdateIsDelete(String sa) throws Exception;
+	public int cartUpdateIsDelete(@Param("shoes_id") String shoes_id) throws Exception;
 	public String cartFindShoesId(String shoes_id) throws Exception;
 	public List<Map<String, Object>> adminPageSelectShoesList(Paging paging) throws Exception;
 	public void adminPageDeleteShoesInfo(@Param("shoes_name") String shoes_name) throws Exception;

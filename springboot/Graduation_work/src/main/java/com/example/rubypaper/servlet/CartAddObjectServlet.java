@@ -49,7 +49,7 @@ public class CartAddObjectServlet extends HttpServlet{
 		if (yourObjects.length > 0) {
 		    DetailShoes shoes = yourObjects[0];
 		    shoes_name = shoes.getShoes_name();
-		    shoes_price = shoes.getShoes_price();
+		    shoes_price = shoes.getFinal_price();
 		    shoes_id = shoes.getUid();
 		}
 		
