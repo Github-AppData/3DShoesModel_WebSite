@@ -66,7 +66,7 @@
 	</select>
 	
 	<select id="cartFindList" resultType="Map">
-		SELECT cart.shoes_id, cart.quantity, shoes.shoes_price, cart.size, shoes.shoes_name
+		SELECT cart.shoes_id, cart.quantity, shoes.final_price, cart.size, shoes.shoes_name
 		FROM cart, shoes
 		WHERE cart.is_delete = 0 and cart.shoes_id = shoes.shoes_id
 		ORDER BY cart.cart_id ASC

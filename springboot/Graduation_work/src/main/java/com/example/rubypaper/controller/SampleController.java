@@ -172,6 +172,12 @@ public class SampleController {
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		
+		try {
+			totalService.cartDeleteShoesId();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int numberOfCart = totalService.numberOfCart();
 		
 		model.addAttribute("numberOfCart", numberOfCart);

@@ -155,7 +155,7 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
-                    		<iframe src="" id="api-frame-1" width="550" height="600" style="border:none"
+                    		<iframe src="" id="api-frame-1" width="600" height="500" style="border:none"
     									allow="autoplay; fullscreen; xr-spatial-tracking" 
     									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
     									webkitallowfullscreen="true">
@@ -233,7 +233,7 @@
 	                         	<div class="product__details__cart__option">
 	                                <div class="quantity">
 	                                    <div class="pro-qty">
-	                                        <input type="text" value="1" name="quantityInput">                        
+	                                        <input type="text"  value="1" name="quantityInput">                        
 	                                    </div>
 	                                </div>
 	                                <button type="submit" onclick="noticeMessage()" class="primary-btn">장바구니</button>
@@ -499,9 +499,6 @@
     </div>
     <!-- Search End -->
     
-    
-    
-    
     <script type="text/javascript">
 		
 		// 전역변수 공간 입니다만.
@@ -533,8 +530,8 @@
 		            
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
-					shoes_price = object[0].shoes_price;
-					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, shoes_price:shoes_price });
+					final_price = object[0].final_price;
+					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, final_price:final_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
 					
 		            
@@ -546,8 +543,8 @@
 					
 					
 					
-					var shoes_info_price = imageToModelMapping_real[0].shoes_price;
-		    		document.getElementById("shoes_price").innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
+		    		document.getElementById("shoes_price").innerHTML = "<h5>" + shoes_info_final_price + "원 </h5>";
 					
 					
 					imageToModelMapping_real.forEach(function(mapping) 
@@ -587,7 +584,6 @@
 					
 				}
 			}
-			
 			xhr2.open("POST", "/CartAddObjectServlet", true);
 			xhr2.send(null);
 		}

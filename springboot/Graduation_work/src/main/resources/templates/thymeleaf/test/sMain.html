@@ -276,11 +276,11 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star-0"></i>
 									</div>
-									<h5 id="shoes1_price">105,000원</h5>
+									<h5 id="shoes1_price"></h5>
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="0" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -314,7 +314,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="1" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -349,7 +349,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="2" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -384,7 +384,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="3" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -419,7 +419,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="4" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -453,7 +453,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button class='like-button'>
+    										<button btn-link-id="5" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -572,6 +572,19 @@
 
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
+		
+		function onoff(element){
+			var linkId = null;
+
+			linkId = element.getAttribute("btn-link-id");
+			console.log("linkId : ", linkId);
+		  currentvalue = document.getElementById('onoff').value;
+		  if(currentvalue == "Off"){
+		    document.getElementById("onoff").value="On";
+		  }else{
+		    document.getElementById("onoff").value="Off";
+		  }
+		}
 
 
 		window.onload = pageLoad;

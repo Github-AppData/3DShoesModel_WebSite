@@ -16,7 +16,7 @@ public interface TotalMapper {
 	public List<Map<String, Object>> randSelectShoesId();
 	public List<Map<String, Object>> findIsLike();
 	public List<Map<String, Object>> boardCheckIdFindList(@Param("user_id") String user_id);
-	public int cartDeleteShoesId();
+	public int cartDeleteShoesId() throws Exception;
 	
 	public int adminPageUpdateShoesInfo(Shoes shoes) throws Exception;
 	

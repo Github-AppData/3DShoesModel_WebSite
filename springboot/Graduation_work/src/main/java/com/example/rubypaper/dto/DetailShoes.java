@@ -5,7 +5,7 @@ public class DetailShoes {
 	private String uid;
 	private String iframeId;
 	private String shoes_name;
-    private int shoes_price;
+    private int final_price;
 	public String getUid() {
 		return uid;
 	}
@@ -24,17 +24,18 @@ public class DetailShoes {
 	public void setShoes_name(String shoes_name) {
 		this.shoes_name = shoes_name;
 	}
-	public int getShoes_price() {
-		return shoes_price;
+	public int getFinal_price() {
+		return final_price;
 	}
-	public void setShoes_price(int shoes_price) {
-		this.shoes_price = shoes_price;
+	public void setFinal_price(int final_price) {
+		this.final_price = final_price;
 	}
 	@Override
 	public String toString() {
-		return "DetailShoes [uid=" + uid + ", iframeId=" + iframeId + ", shoes_name=" + shoes_name + ", shoes_price="
-				+ shoes_price + "]";
+		return "DetailShoes [uid=" + uid + ", iframeId=" + iframeId + ", shoes_name=" + shoes_name + ", final_price="
+				+ final_price + "]";
 	}
-    
+	
+	
     
 }
