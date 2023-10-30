@@ -4,10 +4,16 @@
 
 <mapper namespace="com.example.rubypaper.mapper.UserMapper">
 	<insert id="userInsert">
-		INSERT INTO User (idx, user_id, birthday, pw, adress, detail_adress, email, salt, phone, is_Status)
-		SELECT COALESCE(MAX(idx) + 1, 1), #{id}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
 		FROM User
 	</insert>
+	
+	<update id="userInfoUpdate">
+		update user
+		set name = #{name}, birthday = #{birthday}, email = #{email}, adress = #{adress}, detail_adress = #{detail_adress}
+		where user_id = #{user_id}
+	</update>
 	
 	<select id="findAll">
 		select *

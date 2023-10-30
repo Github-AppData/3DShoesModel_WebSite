@@ -2,18 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>5조 신발점 상품목록</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Male_Fashion Template">
+	<meta name="keywords" content="Male_Fashion, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>5조 신발점 상품목록</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
-
-
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+		rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -37,29 +35,24 @@
 <body>
 	<script src="js/viewer-api.js"></script>
 	<script>
-        window.addEventListener('load', function() {
-            var allElements = document.getElementsByTagName('*');
-            Array.prototype.forEach.call(allElements, function(el) {
-                var includePath = el.dataset.includePath;
-                if (includePath) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            el.outerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open('GET', includePath, true);
-                    xhttp.send();
-                }
-            });
-        });
-        
-    </script>
+		window.addEventListener('load', function () {
+			var allElements = document.getElementsByTagName('*');
+			Array.prototype.forEach.call(allElements, function (el) {
+				var includePath = el.dataset.includePath;
+				if (includePath) {
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function () {
+						if (this.readyState == 4 && this.status == 200) {
+							el.outerHTML = this.responseText;
+						}
+					};
+					xhttp.open('GET', includePath, true);
+					xhttp.send();
+				}
+			});
+		});
 
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+	</script>
 
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -84,25 +77,49 @@
     </div>
     <!-- Offcanvas Menu End -->
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-7">
-                        <div class="header__top__left">
-                            
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-5">
-                        <div class="header__top__right">
-                            <div class="header__top__links">
-                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
-                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
-                            </div>
-                            <div class="header__top__hover">
-                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+	<!-- Offcanvas Menu Begin -->
+	<div class="offcanvas-menu-overlay"></div>
+	<div class="offcanvas-menu-wrapper">
+		<div class="offcanvas__option">
+			<div class="offcanvas__links">
+				<a href="sLogin">로그인</a>
+				<a href="#">FAQ</a>
+			</div>
+			<div class="offcanvas__top__hover">
+				<span></span>
+			</div>
+		</div>
+		<div class="offcanvas__nav__option">
+			<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+			<a href="#"><img src="img/icon/heart.png" alt=""></a>
+		</div>
+		<div id="mobile-menu-wrap"></div>
+		<div class="offcanvas__text">
+			<p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+		</div>
+	</div>
+	<!-- Offcanvas Menu End -->
+
+	<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-7">
+						<div class="header__top__left">
+
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-5">
+						<div class="header__top__right">
+							<div class="header__top__links">
+								<a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a>
+								<!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+								<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+								<a href="#">FAQ</a>
+							</div>
+							<div class="header__top__hover">
+								<!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
                                 <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
     							<span th:unless="${userID}" th:text="어서오세요"></span>
@@ -125,7 +142,7 @@
                             <li><a href="main">메인화면</a></li>
                             <li class="active"><a href="sMain">신발</a>
                             <li><a href="noticdBoard">게시판 </a></li>
-                            <li><a href="sBlog">런칭캘린더</a></li>
+                            <li><a href="sBlog">관리자 페이지</a></li>
                             <li><a href="sContact">매장찾기</a></li>
                         </ul>
                     </nav>
@@ -143,334 +160,347 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option" style="background-image: url(img/bgsnow.png)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>신발</h4>
-                        <div class="breadcrumb__links">
-                            <a href="main">메인화면</a>
-                            <span>신발</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-option" style="background-image: url(img/bgsnow.png)">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb__text">
+						<h4>신발</h4>
+						<div class="breadcrumb__links">
+							<a href="main">메인화면</a>
+							<span>신발</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
 
-    <!-- Shop Section Begin -->
-    <section class="shop spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="shop__sidebar">
-                        <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="검색어">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
-                        <div class="shop__sidebar__accordion">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    
-                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+	<!-- Shop Section Begin -->
+	<section class="shop spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="shop__sidebar">
+						<div class="shop__sidebar__search">
+							<form action="SearchServlet" method="post">
+								<input type="text" name="shoes_Name" placeholder="검색어">
+								<button type="submit" onclick="sendHttpRequest()"><span class="icon_search"></span></button>
+							</form>
+						</div>
+						<div class="shop__sidebar__accordion">
+							<div class="accordion" id="accordionExample">
+								<div class="card">
+									<div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+										<div class="card-body">
 
-                                <div class="card">
-                                    
-                                </div>
+										</div>
+									</div>
+								</div>
 
-                                <div class="card">
-                                    
-                                </div>
-                                
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">가격</a>
-                                    </div>
-                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__price">
-                                                
-                                                <ul>
-                                                    <li><label for="5만원 미만">5만원 미만
-                                                        <input type="radio" id="5만원 미만" name="a">
-                                                    </label></li>
-                                                    <li><label for="5만원 - 10만원 미만">5만원 - 10만원 미만
-                                                        <input type="radio" id="5만원 - 10만원 미만" name="a">
-                                                    </label></li>
-                                                    <li><label for="10만원 - 15만원 미만">10만원 - 15만원 미만
-                                                        <input type="radio" id="10만원 - 15만원 미만" name="a">
-                                                    </label></li>
-                                                    <li><label for="15만원 - 20만원 미만">15만원 - 20만원 미만
-                                                        <input type="radio" id="15만원 - 20만원 미만" name="a">
-                                                    </label></li>
-                                                    <li><label for="20만원 이상">20만원 이상
-                                                        <input type="radio" id="20만원 이상" name="a">
-                                                    </label></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br>
-                            <button type="button" class="btn btn-dark btn-block float-right text-white" style="background-image: url(img/bg2.png)"> 검색</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="shop__product__option">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__left">
-                                    <p th:text="'총 6개의 상품'"></p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 상품 영역 -->
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg">
-                                    <iframe id="api-frame-1" width="270" height="260" style="border:none" class="d-inline-block align-text-top">
-    								</iframe>
-    							</div>
-     						
-                                <div class="product__item__text">
-									
-                                <!-- 상품 이름 -->
-                                    <h6 id="shoes1_name"></h6>
-                                    <a id="shoes1_page" th:href="@{sDetails}" class="add-cart" data-link-id="1" onclick="handleLinkClick(this)">상품 페이지</a>
-                                    <!-- 별점 -->
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-0"></i>
-                                    </div>
-                                    <h5 id="shoes1_price">105,000원</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg">
-                                    <iframe id="api-frame-2" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
-    								</iframe>
-    							</div>
-                            <div class="product__item__text">
-                                    <h6 id="shoes2_name"></h6>
-                                    <a id="shoes2_page" th:href="@{sDetails}" class="add-cart" data-link-id="2" onclick="handleLinkClick(this)">상품 페이지</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                            
-                                    </div>
-                                    <h5 id="shoes2_price">105,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg">
-                                    <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                    <iframe id="api-frame-3" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
-    								</iframe>
-    							</div>
-                            <div class="product__item__text">
-                                    <h6 id="shoes3_name"></h6>
-                                    <a id="shoes3_page" th:href="@{sDetails}" class="add-cart" data-link-id="3" onclick="handleLinkClick(this)">상품 페이지</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5 id="shoes3_price">105,000원</h5>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg">
-                                   	<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
-                                    <iframe id="api-frame-4" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
-    								</iframe>
-    							</div>
-                            <div class="product__item__text">
-                                    <h6 id="shoes4_name"></h6>
-                                    <a id="shoes4_page" th:href="@{sDetails}" class="add-cart" data-link-id="4" onclick="handleLinkClick(this)">상품 페이지</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5 id="shoes4_price">105,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg">
-                                   <span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-                                    <iframe id="api-frame-5" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
-    								</iframe>
-    							</div>
-                            <div class="product__item__text">
-                                    <h6 id="shoes5_name"></h6>
-                                    <a id="shoes5_page" th:href="@{sDetails}" class="add-cart" data-link-id="5" onclick="handleLinkClick(this)">상품 페이지</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5 id="shoes5_price">105,000원</h5>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg">
-                                    <iframe id="api-frame-6" width="260" height="260" style="border:none" class="d-inline-block align-text-top">
-    								</iframe>
-    							</div>
-                            <div class="product__item__text">
-                                <h6 id="shoes6_name"></h6>
-                                    <a id="shoes6_page" th:href="@{sDetails}" class="add-cart" data-link-id="6" onclick="handleLinkClick(this)">상품 페이지</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5 id="shoes6_price">105,000원</h5>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="product__pagination" id="pagebuttons">
+								<div class="card">
+
+								</div>
+
+								<div class="card">
+
+								</div>
+
+								<div class="card">
+									<div class="card-heading">
+										<a data-toggle="collapse" data-target="#collapseThree">가격</a>
+									</div>
+									<div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+										<div class="card-body">
+											<div class="shop__sidebar__price">
+
+												<ul>
+													<li><label for="5만원 미만">5만원 미만
+															<input type="radio" id="5만원 미만" name="a">
+														</label></li>
+													<li><label for="5만원 - 10만원 미만">5만원 - 10만원 미만
+															<input type="radio" id="5만원 - 10만원 미만" name="a">
+														</label></li>
+													<li><label for="10만원 - 15만원 미만">10만원 - 15만원 미만
+															<input type="radio" id="10만원 - 15만원 미만" name="a">
+														</label></li>
+													<li><label for="15만원 - 20만원 미만">15만원 - 20만원 미만
+															<input type="radio" id="15만원 - 20만원 미만" name="a">
+														</label></li>
+													<li><label for="20만원 이상">20만원 이상
+															<input type="radio" id="20만원 이상" name="a">
+														</label></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><br>
+							<button type="button" class="btn btn-dark btn-block float-right text-white"
+								style="background-image: url(img/bg2.png)"> 검색</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="shop__product__option">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6">
+								<div class="shop__product__option__left">
+									<p th:text="'총 6개의 상품'"></p>
+								</div>
 							</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Shop Section End -->
+							<div class="col-lg-6 col-md-6 col-sm-6">
 
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="img/logo2.png" alt=""></a>
-                        </div>
-                        <p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>상품목록</h6>
-                        <ul>
-                            <li><a href="#">남성 신발</a></li>
-                            <li><a href="#">여성 신발</a></li>
-                            <li><a href="#">유아용 신발</a></li>
-                            <li><a href="#">할인 제품</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>본사정책</h6>
-                        <ul>
-                            <li><a href="sContact">Contact Us</a></li>
-                            <li><a href="#">결제 수단</a></li>
-                            <li><a href="#">배송 정책</a></li>
-                            <li><a href="#">반품 및 교환</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>구독</h6>
-                        <div class="footer__newslatter">
-                            <p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
-                            <form action="#">
-                                <input type="text" placeholder="이메일">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="footer__copyright__text">
-                        <p>Copyright ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>2020
-                            All rights reserved | 5조신발점 <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">ih</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+							</div>
+						</div>
+					</div>
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="검색">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
-    
-    
-    <script type="text/javascript">
-		
+					<!-- 상품 영역 -->
+					<div class="row">
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-1" width="270" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+
+								<div class="product__item__text">
+
+									<!-- 상품 이름 -->
+									<h6 id="shoes1_name"></h6>
+									<a id="shoes1_page" th:href="@{sDetails}" class="add-cart" data-link-id="1"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<!-- 별점 -->
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-0"></i>
+									</div>
+									<h5 id="shoes1_price">105,000원</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-2" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="product__item__text">
+									<h6 id="shoes2_name"></h6>
+									<a id="shoes2_page" th:href="@{sDetails}" class="add-cart" data-link-id="2"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+
+									</div>
+									<h5 id="shoes2_price">105,000원</h5>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale">
+								<div class="product__item__pic set-bg">
+									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+									<iframe id="api-frame-3" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="product__item__text">
+									<h6 id="shoes3_name"></h6>
+									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart" data-link-id="3"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+									</div>
+									<h5 id="shoes3_price">105,000원</h5>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale">
+								<div class="product__item__pic set-bg">
+									<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
+									<iframe id="api-frame-4" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="product__item__text">
+									<h6 id="shoes4_name"></h6>
+									<a id="shoes4_page" th:href="@{sDetails}" class="add-cart" data-link-id="4"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+									</div>
+									<h5 id="shoes4_price">105,000원</h5>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale">
+								<div class="product__item__pic set-bg">
+									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
+									<iframe id="api-frame-5" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="product__item__text">
+									<h6 id="shoes5_name"></h6>
+									<a id="shoes5_page" th:href="@{sDetails}" class="add-cart" data-link-id="5"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+									</div>
+									<h5 id="shoes5_price">105,000원</h5>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-6" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="product__item__text">
+									<h6 id="shoes6_name"></h6>
+									<a id="shoes6_page" th:href="@{sDetails}" class="add-cart" data-link-id="6"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div class="rating">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+									</div>
+									<h5 id="shoes6_price">105,000원</h5>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="product__pagination" id="pagebuttons">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!-- Shop Section End -->
+
+	<!-- Footer Section Begin -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__logo">
+							<a href="#"><img src="img/logo2.png" alt=""></a>
+						</div>
+						<p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
+
+					</div>
+				</div>
+				<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+					<div class="footer__widget">
+						<h6>상품목록</h6>
+						<ul>
+							<li><a href="#">남성 신발</a></li>
+							<li><a href="#">여성 신발</a></li>
+							<li><a href="#">유아용 신발</a></li>
+							<li><a href="#">할인 제품</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<div class="footer__widget">
+						<h6>본사정책</h6>
+						<ul>
+							<li><a href="sContact">Contact Us</a></li>
+							<li><a href="#">결제 수단</a></li>
+							<li><a href="#">배송 정책</a></li>
+							<li><a href="#">반품 및 교환</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+					<div class="footer__widget">
+						<h6>구독</h6>
+						<div class="footer__newslatter">
+							<p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span
+									style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
+							<form action="#">
+								<input type="text" placeholder="이메일">
+								<button type="submit"><span class="icon_mail_alt"></span></button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="footer__copyright__text">
+						<p>Copyright ©
+							<script>
+								document.write(new Date().getFullYear());
+							</script>2020
+							All rights reserved | 5조신발점 <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+								href="https://colorlib.com" target="_blank">ih</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Search Begin -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="검색">
+			</form>
+		</div>
+	</div>
+	<!-- Search End -->
+
+
+	<script type="text/javascript">
+
 		// 전역변수 공간 입니다만.
-		
+
 		var imageToModelMapping_real = [];
 		var iframe_clicked = [];
 		var shoes_selected = ["shoes1_page", "shoes2_page", "shoes3_page", "shoes4_page", "shoes5_page", "shoes6_page"];
@@ -664,95 +694,94 @@
 
 		}
 
-				
-   
-    function replaceWith3DModel(uid, iframeId) {
-        return new Promise(function(resolve, reject) {
-            var iframe = document.getElementById(iframeId);
-            var client = new Sketchfab(iframe);
 
-            client.init(uid, {
-                success: function onSuccess(api) {
-                    api.start();
-                    api.addEventListener('viewerready', function() {
-                        console.log(iframeId + ' 3D 모델이 준비되었습니다.');
-                        resolve(); // Promise가 성공했음을 알립니다.
-                    });
-                },
-                error: function onError() {
-                    console.log(iframeId + ' 3D 모델 초기화 오류');
-                    reject(); // Promise가 실패했음을 알립니다.
-                },
-                // 초기화 매개변수 설정
-                graph_optimizer: 1, //그래프
-                merge_materials: 1, //재질 병합
-                material_packing: 1 //재질 패킹
-            });
-        });
-    }
-    
-    
-    function loadModels() {
-        // 모든 모델을 비동기식으로 로드합니다.
-        Promise.all(imageToModelMapping_real.map(function(mapping) {
-            return replaceWith3DModel(mapping.uid, mapping.iframeId);
-        })).then(function() {
-            // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
-            console.log('모든 3D 모델이 로드되었습니다.');
-        }).catch(function() {
-            // 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
-            console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
-        });
-    }
+		function replaceWith3DModel(uid, iframeId) {
+			return new Promise(function (resolve, reject) {
+				var iframe = document.getElementById(iframeId);
+				var client = new Sketchfab(iframe);
 
-    // 모든 모델을 한꺼번에 로드합니다.
-    loadModels();
-    
-    /*
-    //하나씩 로드
-    function loadModels() {
-        var index = 0;
+				client.init(uid, {
+					success: function onSuccess(api) {
+						api.start();
+						api.addEventListener('viewerready', function () {
+							console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+							resolve(); // Promise가 성공했음을 알립니다.
+						});
+					},
+					error: function onError() {
+						console.log(iframeId + ' 3D 모델 초기화 오류');
+						reject(); // Promise가 실패했음을 알립니다.
+					},
+					// 초기화 매개변수 설정
+					graph_optimizer: 1, //그래프
+					merge_materials: 1, //재질 병합
+					material_packing: 1 //재질 패킹
+				});
+			});
+		}
 
-        function loadNextModel() {
-            if (index < imageToModelMapping_real.length) {
-                replaceWith3DModel(imageToModelMapping_real[index].uid, imageToModelMapping_real[index].iframeId)
-                    .then(function() {
-                        // 다음 모델을 로드합니다.
-                        index++;
-                        loadNextModel();
-                    })
-                    .catch(function() {
-                        // 모델 로딩에 실패하더라도 다음 모델을 로드합니다.
-                        index++;
-                        loadNextModel();
-                    });
-            } else {
-                // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
-                console.log('모든 3D 모델이 로드되었습니다.');
-            }
-        }
 
-        // 첫 번째 모델 로드를 시작합니다.
-        loadNextModel();
-    }*/
+		function loadModels() {
+			// 모든 모델을 비동기식으로 로드합니다.
+			Promise.all(imageToModelMapping_real.map(function (mapping) {
+				return replaceWith3DModel(mapping.uid, mapping.iframeId);
+			})).then(function () {
+				// 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+				console.log('모든 3D 모델이 로드되었습니다.');
+			}).catch(function () {
+				// 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
+				console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
+			});
+		}
+
+		// 모든 모델을 한꺼번에 로드합니다.
+		loadModels();
+
+		/*
+		//하나씩 로드
+		function loadModels() {
+			var index = 0;
+	
+			function loadNextModel() {
+				if (index < imageToModelMapping_real.length) {
+					replaceWith3DModel(imageToModelMapping_real[index].uid, imageToModelMapping_real[index].iframeId)
+						.then(function() {
+							// 다음 모델을 로드합니다.
+							index++;
+							loadNextModel();
+						})
+						.catch(function() {
+							// 모델 로딩에 실패하더라도 다음 모델을 로드합니다.
+							index++;
+							loadNextModel();
+						});
+				} else {
+					// 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+					console.log('모든 3D 모델이 로드되었습니다.');
+				}
+			}
+	
+			// 첫 번째 모델 로드를 시작합니다.
+			loadNextModel();
+		}*/
 
     // 모든 모델을 비동기식으로 로드합니다.
     // loadModels();
 
-    </script>
+	</script>
 
-    <!-- Js Plugins -->
-    
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+	<!-- Js Plugins -->
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.slicknav.js"></script>
+	<script src="js/mixitup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 
 </html>

@@ -73,25 +73,21 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-md-7">
-						<div class="header__top__left">
-							<p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
-						</div>
 					</div>
 					<div class="col-lg-6 col-md-5">
 						<div class="header__top__right">
-							<div class="header__top__links">
-								<a href="#">로그인</a>
-								<a href="#">FAQ</a>
-							</div>
-							<div class="header__top__hover">
-								<span>KRW <i class="arrow_carrot-down"></i></span>
-								<ul>
-									<li>USD</li>
-									<li>EUR</li>
-									<li>KRW</li>
-								</ul>
-							</div>
-						</div>
+                            <div class="header__top__links">
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+                                <a href="#">FAQ</a>
+                            </div>
+                            <div class="header__top__hover">
+                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -106,34 +102,21 @@
 				<div class="col-lg-6 col-md-6">
 					<nav class="header__menu mobile-menu">
 						<ul>
-							<li><a href="./index.html">메인화면</a></li>
-							<li><a href="./shop.html">신발</a>
-								<ul class="dropdown">
-									<li><a href="#">나이키</a></li>
-									<li><a href="#">뉴발란스</a></li>
-									<li><a href="#">컨버스</a></li>
-									<li><a href="#">아디다스</a></li>
-								</ul></li></li>
-							<li><a href="#">고객센터</a>
-								<ul class="dropdown">
-									<li><a href="#">본사정책</a></li>
-									<li><a href="./shop-details.html">상세화면</a></li>
-									<li><a href="#">장바구니</a></li>
-									<li><a href="#">결제하기</a></li>
-								</ul>
-							</li>
-							<li class="active"><a href="./blog.html">런칭캘린더</a></li>
-							<li><a href="./contact.html">매장찾기</a></li>
+							<li><a href="main">메인화면</a></li>
+	                            <li><a href="sMain">신발</a>
+	                            <li class="active"><a href="noticdBoard">게시판 </a></li>
+	                            <li><a href="sBlog">관리자 페이지</a></li>
+	                            <li><a href="sContact">매장찾기</a></li>
 						</ul>
 					</nav>
 				</div>
 				<div class="col-lg-3 col-md-3">
 					<div class="header__nav__option">
-						<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-						<a href="#"><img src="img/icon/heart.png" alt=""></a>
-						<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-						<div class="price">0 원</div>
-					</div>
+							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+						</div>
 				</div>
 			</div>
 			<div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -161,12 +144,7 @@
 				  <h3>고객 게시판 - 글쓰기</h3>
 			  </div>
 		  </div>
-		  <select class="form-select mt-5 ml-5" aria-label="Default select example">
-			<option selected>게시판을 선택해주세요</option>
-			<option name="qna">질문 게시판</option>
-			<option name="forum">자유 게시판</option>
-			<option name="inform">공지 게시판</option>
-		  </select>
+		  
 		  
 
 			<main role="main" class="container mt-5">
