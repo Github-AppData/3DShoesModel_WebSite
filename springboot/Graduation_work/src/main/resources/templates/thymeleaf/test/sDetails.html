@@ -128,7 +128,6 @@
                            <li><a href="main">메인화면</a></li>
                             <li class="active"><a href="sMain">신발</a>
                             <li><a href="noticdBoard">게시판 </a></li>
-                            <li><a href="sBlog">관리자 페이지</a></li>
                             <li><a href="sContact">매장찾기</a></li>
                         </ul>
                     </nav>
@@ -563,29 +562,16 @@
 		}; // pageLoad  
 		
 		function noticeMessage(){
-			
-			xhr2.onreadystatechange = function () 
+			if (xhr2.status === 200)
 			{
-				if (xhr2.readyState === 4 && xhr2.status === 200)
-				{
-					if(cnt == 0)
-					{
-						console.log(xhr2.responseText);
-						alert("상품이 추가 되었습니다.");
-						cnt++;
-					} 
-				} else {
-					if(cnt == 0)
-					{
-						console.log(xhr2.responseText);
-						alert("이미 장바구니에 있습니다.");
-						cnt++;
-					} 
-					
-				}
+				alert("상품이 추가 되었습니다.");
+				xhr2.open("POST", "/CartAddObjectServlet", true);
+				xhr2.send(null);
+			} else {
+				alert("이미 장바구니에 있습니다.");
+				location.reload();
 			}
-			xhr2.open("POST", "/CartAddObjectServlet", true);
-			xhr2.send(null);
+			
 		}
 		
 	    

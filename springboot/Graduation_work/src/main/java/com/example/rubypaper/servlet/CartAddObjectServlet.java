@@ -75,7 +75,7 @@ public class CartAddObjectServlet extends HttpServlet{
 		    	// 신발 아이디가 검색된 게 없다면, 
 				if(cartService.cartCheckShoesId(shoes_id) == null)
 				{
-					response.setStatus(HttpServletResponse.SC_OK);
+					
 					cart.setQuantity(quantity);
 				    cart.setSize(size);
 				    cart.setShoes_name(shoes_name);
@@ -87,15 +87,10 @@ public class CartAddObjectServlet extends HttpServlet{
 					HttpSession session3 = request.getSession();
 					session3.setAttribute("cart", cart);
 					
-					System.out.println("추가 됨");
-					
-					response.sendRedirect(request.getContextPath() + "/sDetails");
-
+					response.setStatus(HttpServletResponse.SC_OK);
 				} else {
 					// 신발이 고른 것이 이미 장바구니에 있다면, 
-					System.out.println("이미 장바구니에 있습니다.");
 					response.setStatus(HttpServletResponse.SC_GONE);
-					response.sendRedirect(request.getContextPath() + "/sDetails");
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
