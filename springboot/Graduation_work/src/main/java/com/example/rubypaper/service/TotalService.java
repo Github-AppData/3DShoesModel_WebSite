@@ -47,6 +47,9 @@ public interface TotalService {
 	public void adminPageShoesInsert(Shoes shoes) throws Exception;
 	public List<Map<String, Object>> adminPageSelectAdminAccount() throws Exception;
 	public Shoes shoesIdCheckLike (@Param("shoes_id") String shoes_id) throws Exception;
-
+	public int isLikeUpdate(@Param("shoes_id") String shoes_id) throws Exception;
 	public void isLikeInfoInsert(Like_tb like_tb) throws Exception;
+	
+	public List<Map<String, Object>> isLikeSelect() throws Exception;
+	public List<Map<String, Object>> linkIdSelectLike() throws Exception;
 }

@@ -24,6 +24,20 @@
     <link rel="stylesheet" href="css/hearts.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
    
+   	<style>
+		#info-message {
+		    display: none;
+		    position: fixed;
+		    top: 75px;
+		    right: 180px;
+		    background-color: orangered;
+		    color: #fff;
+		    padding: 10px 20px;
+		    border-radius: 5px;
+		    z-index: 9999; /* 임의의 큰 값 설정 - 우선순위 설정 */
+		}
+
+	</style>
 </head>
 
 <body>
@@ -117,6 +131,7 @@
                             	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
                                 <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
     							<span th:unless="${userID}" th:text="어서오세요"></span>
+    							<div id="info-message" class="hidden"></div>
                             </div>
                         </div>
                     </div>
@@ -574,6 +589,7 @@
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
 		var xhr3 = new XMLHttpRequest();
+		var xhr4 = new XMLHttpRequest(); // 좋아요 버튼 load시 state config
 		
 		//현재 url
 		const url = new URL(location.href);
@@ -583,6 +599,8 @@
 
 		window.onload = pageLoad;
 		function pageLoad() {
+			
+			
 			xhr.onreadystatechange = function () {
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) {
@@ -647,6 +665,8 @@
 			xhr.open("GET", link, true); // 비동기 요청 시작.
 			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}; // pageLoad
+		
+		
 
 		function setPage(link) {
 			var pageId = link.getAttribute("data-link-id");
@@ -666,6 +686,19 @@
 				xhr.open("GET", url, true); // 비동기 요청 시작.
 				xhr.send(null); // ProductListSevlet에 보낼 요청
 			}
+			
+			
+		function showInfoToast(message) {
+			
+		  var toast = document.getElementById("info-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
 		function onoff(element){
 			var linkId = 0;
 
@@ -674,30 +707,41 @@
 			
 			var whoLikeButton = 'onoff' + linkId;
 			currentvalue = document.getElementById(whoLikeButton).value;
+			var likeData = [];
 			
-		  	if(currentvalue == "Off")
-		  	{
-				// State Change ON 
-			    document.getElementById(whoLikeButton).value="On";
-			    
-			    var likeData = [];
-			    var shoes_id = imageToModelMapping_real[linkId].uid;
-				var shoes_name = imageToModelMapping_real[linkId].shoes_name;
-				var shoes_price = imageToModelMapping_real[linkId].final_price;
-				
-			    likeData.push(shoes_id);
-			    likeData.push(shoes_name);
-			    likeData.push(shoes_price);
-			    likeData.push(linkId);
-			    
-			    
-			    xhr3.open("POST", "/LikePageDataSetServlet", false);
-			    xhr3.send(likeData);
-		  	}
-		  	else
-		  	{
-		    	document.getElementById("onoff").value="Off";
-		  	}
+			xhr3.onreadystatechange = function () {
+				// 응답이 되었으면,
+				if (xhr3.readyState === 4 && xhr3.status === 200) {
+					if(currentvalue == "Off")
+		  			{
+						// State Change ON 
+					    document.getElementById(whoLikeButton).value="On";
+					    
+					    
+					    var shoes_id = imageToModelMapping_real[linkId].uid;
+						var shoes_name = imageToModelMapping_real[linkId].shoes_name;
+						var shoes_price = imageToModelMapping_real[linkId].final_price;
+						
+					    likeData.push(shoes_id);
+					    likeData.push(shoes_name);
+					    likeData.push(shoes_price);
+					    likeData.push(linkId);
+					    showInfoToast("등록 되었습니다.");
+		  			} // if(currentvalue == "Off")
+				  	else
+				  	{
+				    	document.getElementById("onoff").value="Off";
+				    	showInfoToast("해제 되었습니다.");
+				  	}
+				} // if (xhr3.readyState === 4 && xhr3.status === 200)
+				else if(xhr3.readyState === 4 && xhr3.status !== 200)
+				{
+					showInfoToast("이미 상품이 있습니다. ");
+				}
+			}
+		  
+		  	xhr3.open("POST", "/LikePageDataSetServlet", false);
+			xhr3.send(likeData);
 		}
 
 		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.

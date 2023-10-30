@@ -3,6 +3,7 @@ package com.example.rubypaper.servicmpl;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -163,6 +164,23 @@ public class TotalServicempl implements TotalService{
 	public Shoes shoesIdCheckLike(String shoes_id) throws Exception {
 		return totalMapper.shoesIdCheckLike(shoes_id);
 		
+	}
+
+	@Override
+	public int isLikeUpdate(String shoes_id) throws Exception {
+		return totalMapper.isLikeUpdate(shoes_id);
+		
+	}
+
+	@Override
+	public List<Map<String, Object>> linkIdSelectLike() throws Exception {
+		return totalMapper.linkIdSelectLike();
+		
+	}
+
+	@Override
+	public List<Map<String, Object>> isLikeSelect() throws Exception {
+		return totalMapper.isLikeSelect();
 	}
 
 }
