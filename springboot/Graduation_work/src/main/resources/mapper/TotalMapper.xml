@@ -3,11 +3,19 @@
 
 
 <mapper namespace="com.example.rubypaper.mapper.TotalMapper">
+	
 	<select id="randSelectShoesId"  resultType="Map">
 		SELECT shoes_id, shoes_name, final_price
-		FROM shoes;
+		FROM shoes
+		LIMIT #{startRow},#{pageSize};
 	</select>
 	
+	<select id="searchsMain"  resultType="Map">
+		SELECT shoes_id, shoes_name, final_price
+		FROM shoes
+		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
+		LIMIT #{startRow},#{pageSize};
+	</select>
 	<update id="isLikeUpdate">
 		update shoes
 		set is_like = 1
@@ -35,12 +43,31 @@
 		from user	 
 		where user_id = #{id} -->
 	
+	<select id="searchAdminPageShoes"  resultType="Map">
+		SELECT shoes_id, shoes_name, shoes_price, sales, num_like, final_price
+		FROM shoes
+		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
+		LIMIT #{startRow},#{pageSize};
+	</select>
 	
-	<!-- 관리자 페이지 신발 정보 업데이트 -->
+	<select id="shoesCount" resultType="Integer">
+		SELECT count(*) 
+		FROM shoes 
+		where is_delete = 0;
+	</select>
+	
+	<select id="searchShoesCount" resultType="Integer" parameterType="String">
+		SELECT count(*) 
+		FROM shoes 
+		where is_delete = 0 and
+		shoes_Name LIKE CONCAT('%',#{shoes_Name},'%');
+	</select>
+
 	<select id="adminPageSelectShoesList" resultType="Map">
 		select shoes_id, shoes_name, shoes_price, sales, num_like, final_price
 		from shoes
-		where is_delete = 0;
+		where is_delete = 0
+		LIMIT #{startRow},#{pageSize};
 	</select>
 	
 	<select id="adminPageSelectAdminAccount" resultType="Map">
@@ -90,6 +117,23 @@
 		WHERE user_id = #{user_id} and is_delete = 0 
 		ORDER BY idx ASC;
 	</select>
+	
+	<select id="searchBoards"  resultType="Map">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE title LIKE CONCAT('%',#{searchWord},'%')
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<select id="searchBoardCount" resultType="Integer" parameterType="String">
+		SELECT count(*) 
+		FROM notice_board 
+		where is_delete = 0 and
+		title LIKE CONCAT('%',#{boards_Name},'%');
+	</select>
+	
+	
 	
 	<select id="cartFindList" resultType="Map">
 		SELECT cart.shoes_id, cart.quantity, shoes.final_price, cart.size, shoes.shoes_name

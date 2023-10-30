@@ -7,6 +7,15 @@ public class Paging {
 	private int totalArticle; // 전체 객체 개수
 	private int startRow; // 한 페이지에 객체 시작 행
 	private int endRow; // 한 페이지에 객체 끝 행
+	private String searchWord;
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
 
 	public Paging() {
 		super();
@@ -30,11 +39,13 @@ public class Paging {
 	}
 
 	public void setTotalPage(int totalPage) {
-		this.totalPage = this.totalArticle/this.pageSize + (this.totalArticle%this.pageSize==0?0:1);
-		
-		if(this.page <=0 || this.page > totalPage)
-		{
-			this.page = 1;
+		var num = totalPage % this.pageSize;
+		if(num != 0) {
+			num = 1;
+		}
+		this.totalPage = totalPage/this.pageSize + num;
+		if(this.totalPage == 0) {
+			this.totalPage = 1;
 		}
 	}
 
@@ -66,8 +77,8 @@ public class Paging {
 		return endRow;
 	}
 
-	public void setEndRow(int endRow) {
+	public void setEndRow() {
 		this.endRow = page * pageSize;
-		if(endRow > this.totalArticle) endRow = this.totalArticle;
+		if(this.endRow > this.totalArticle) this.endRow = this.totalArticle;
 	}
 }

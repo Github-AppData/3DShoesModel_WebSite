@@ -1,5 +1,6 @@
 package com.example.rubypaper.controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.rubypaper.dto.NoticeBoard;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.User;
 import com.example.rubypaper.service.TotalService;
@@ -82,8 +84,11 @@ public class SampleController {
 	}	
 	
 	@GetMapping("/noticdBoard")
-	public String noticdBoard(@RequestParam(value="page", defaultValue = "1") int page ,Model model, HttpServletRequest request, HttpSession session)
-	{
+	public String noticdBoard(@RequestParam(value="page", defaultValue = "1") int page ,
+							@RequestParam(value="search", required = false) String search,
+							Model model, 
+							HttpServletRequest request, 
+							HttpSession session){
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
 		
@@ -98,13 +103,20 @@ public class SampleController {
 		int result = 0;
 				
 		try {
+			if(search != null) {
+				paging.setSearchWord(search);
+				boardList = totalService.searchBoards(paging);
+				var searchCount = totalService.searchBoardCount(search);
+				paging.setTotalArticle(searchCount);
+				paging.setTotalPage(searchCount);
+				} else {
 				boardList = totalService.boardFindList(paging);
-				totalService.FindListIsDelete();
 				var boardCount = totalService.boardCount();
-				
-				System.out.println("boardCount : "+boardCount);
 				paging.setTotalArticle(boardCount);
-				
+				paging.setTotalPage(boardCount);
+			}
+			//var boardCount = totalService.boardCount();
+			totalService.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,6 +132,7 @@ public class SampleController {
 						
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
+		System.out.println(paging.getTotalPage());
 		
 		return "test/noticdBoard";
 	}
@@ -204,8 +217,38 @@ public class SampleController {
 	}
 	
 	@GetMapping("/sMain")
-	public String sMain(Model model,HttpServletRequest request, HttpSession session)
+	public String sMain(@RequestParam(value="page", defaultValue = "1") int page ,
+			@RequestParam(value="search", required = false) String search,
+			Model model,HttpServletRequest request, HttpSession session)
 	{
+		Paging paging = new Paging();
+		int totalArticle = 0;
+		
+		paging.setPage(page);
+		paging.setPageSize(6);
+		paging.setSearchWord(search);
+		if(search != null) {
+			try {
+				totalArticle = totalService.searchShoesCount(search);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				totalArticle = totalService.shoesCount();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		paging.setTotalArticle(totalArticle);
+		paging.setTotalPage(totalArticle);
+		model.addAttribute("paging", paging);
+		var startRow = paging.getPageSize() * (page - 1);
+		paging.setStartRow(startRow);
+		paging.setEndRow();
+		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
@@ -363,18 +406,41 @@ public class SampleController {
 	}
 	
 	@GetMapping("/adminOrders")
-	public String adminOrders(Model model)
+	public String adminOrders(Model model,
+			@RequestParam(value="search", required = false) String search,
+			@RequestParam(value="page", defaultValue = "1") int page)
 	{
 		List<Map<String, Object>> shoesList = new ArrayList<Map<String, Object>>();
 		
+		//페이징 객체 생성
+		Paging paging = new Paging();
+				
+		paging.setPage(page);
+		var startRow = 10 * (page - 1);
+		paging.setStartRow(startRow);
+		paging.setSearchWord(search);
+		
 		try {
-			shoesList = totalService.adminPageSelectShoesList();
+			if(search != null) {
+				shoesList = totalService.searchAdminPageShoes(paging);
+				var searchCount = totalService.searchShoesCount(search);
+				paging.setTotalArticle(searchCount);
+				paging.setTotalPage(searchCount);
+			} else {
+				shoesList = totalService.adminPageSelectShoesList(paging);
+				var shoesCount = totalService.shoesCount();
+				paging.setTotalArticle(shoesCount);
+				paging.setTotalPage(shoesCount);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("shoesList", shoesList);
+		System.out.println(shoesList);
+		model.addAttribute("paging",paging);
 		return "test/adminOrders";
 	}
 	

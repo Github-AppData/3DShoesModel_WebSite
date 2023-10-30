@@ -52,6 +52,21 @@ public class TotalServicempl implements TotalService{
 	public int  boardCount() throws Exception{
 		return totalMapper.boardCount();
 	}
+	
+	@Override
+	public int searchBoardCount(String boards_Name) throws Exception{
+		return totalMapper.searchBoardCount(boards_Name);
+	}
+	
+	@Override
+	public int shoesCount() throws Exception{
+		return totalMapper.shoesCount();
+	}
+	
+	@Override
+	public int searchShoesCount(String shoes_Name) throws Exception{
+		return totalMapper.searchShoesCount(shoes_Name);
+	}
 
 	@Override
 	public List<Map<String, Object>> cartFindList() throws Exception {
@@ -64,8 +79,23 @@ public class TotalServicempl implements TotalService{
 	}
 
 	@Override
-	public List<Map<String, Object>> randSelectShoesId() throws Exception {
-		return totalMapper.randSelectShoesId();
+	public List<Map<String, Object>> randSelectShoesId(Paging paging) throws Exception {
+		return totalMapper.randSelectShoesId(paging);
+	}
+	
+	@Override
+	public List<Map<String, Object>> searchsMain(Paging paging) throws Exception {
+		return totalMapper.searchsMain(paging);
+	}
+	
+	@Override
+	public List<Map<String, Object>> searchAdminPageShoes(Paging paging) throws Exception {
+		return totalMapper.searchAdminPageShoes(paging);
+	}
+	
+	@Override
+	public List<Map<String, Object>> searchBoards(Paging paging) throws Exception {
+		return totalMapper.searchBoards(paging);
 	}
 
 	@Override
@@ -100,8 +130,8 @@ public class TotalServicempl implements TotalService{
 	}
 
 	@Override
-	public List<Map<String, Object>> adminPageSelectShoesList() throws Exception {
-		return totalMapper.adminPageSelectShoesList();
+	public List<Map<String, Object>> adminPageSelectShoesList(Paging paging) throws Exception {
+		return totalMapper.adminPageSelectShoesList(paging);
 	}
 
 	@Override
