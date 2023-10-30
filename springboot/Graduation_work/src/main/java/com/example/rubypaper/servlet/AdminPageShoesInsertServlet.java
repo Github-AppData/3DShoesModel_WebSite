@@ -36,10 +36,6 @@ public class AdminPageShoesInsertServlet extends HttpServlet{
         
         String [] parts = str.split(",");
         
-        /*for(int i = 0; i < parts.length; i++)
-        {
-        	System.out.println(parts[i]);
-        }*/
         
         String shoes_id = parts[0];
         String shoes_name = parts[1];

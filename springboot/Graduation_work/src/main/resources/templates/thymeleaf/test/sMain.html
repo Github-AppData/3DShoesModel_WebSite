@@ -279,7 +279,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="0" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
+    										<button btn-link-id="0" class='like-button' value="Off" id="onoff0" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -313,7 +313,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="1" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
+    										<button btn-link-id="1" class='like-button' value="Off" id="onoff1" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -348,7 +348,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="2" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
+    										<button btn-link-id="2" class='like-button' value="Off" id="onoff2" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -383,7 +383,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="3" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
+    										<button btn-link-id="3" class='like-button' value="Off" id="onoff3" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -418,7 +418,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="4" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
+    										<button btn-link-id="4" class='like-button' value="Off" id="onoff4" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -452,7 +452,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="5" class='like-button' value="Off" id="onoff" onclick="onoff(this);">
+    										<button btn-link-id="5" class='like-button' value="Off" id="onoff5" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -573,6 +573,7 @@
 
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
+		var xhr3 = new XMLHttpRequest();
 		
 		//현재 url
 		const url = new URL(location.href);
@@ -666,16 +667,37 @@
 				xhr.send(null); // ProductListSevlet에 보낼 요청
 			}
 		function onoff(element){
-			var linkId = null;
+			var linkId = 0;
 
 			linkId = element.getAttribute("btn-link-id");
 			console.log("linkId : ", linkId);
-		  currentvalue = document.getElementById('onoff').value;
-		  if(currentvalue == "Off"){
-		    document.getElementById("onoff").value="On";
-		  }else{
-		    document.getElementById("onoff").value="Off";
-		  }
+			
+			var whoLikeButton = 'onoff' + linkId;
+			currentvalue = document.getElementById(whoLikeButton).value;
+			
+		  	if(currentvalue == "Off")
+		  	{
+				// State Change ON 
+			    document.getElementById(whoLikeButton).value="On";
+			    
+			    var likeData = [];
+			    var shoes_id = imageToModelMapping_real[linkId].uid;
+				var shoes_name = imageToModelMapping_real[linkId].shoes_name;
+				var shoes_price = imageToModelMapping_real[linkId].final_price;
+				
+			    likeData.push(shoes_id);
+			    likeData.push(shoes_name);
+			    likeData.push(shoes_price);
+			    likeData.push(linkId);
+			    
+			    
+			    xhr3.open("POST", "/LikePageDataSetServlet", false);
+			    xhr3.send(likeData);
+		  	}
+		  	else
+		  	{
+		    	document.getElementById("onoff").value="Off";
+		  	}
 		}
 
 		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.

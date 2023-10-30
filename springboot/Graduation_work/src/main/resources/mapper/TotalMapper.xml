@@ -16,6 +16,32 @@
 		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
 		LIMIT #{startRow},#{pageSize};
 	</select>
+	<update id="isLikeUpdate">
+		update shoes
+		set is_like = 1
+		where shoes_id = #{shoes_id};
+	</update>
+	
+	<select id="isLikeSelect">
+		select shoes.shoes_name, shoes.final_price, like_tb.shoes_id
+		from shoes, like_tb
+		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1;
+	</select>
+	
+	<insert id="isLikeInfoInsert">
+		insert into like_tb(shoes_id, link_id)
+		values (#{shoes_id}, #{link_id})
+	</insert>
+	
+	<select id="shoesIdCheckLike">
+		select shoes_id
+		from like_tb
+		where shoes_id = #{shoes_id};
+	</select>
+	
+	<!--  select user_id
+		from user	 
+		where user_id = #{id} -->
 	
 	<select id="searchAdminPageShoes"  resultType="Map">
 		SELECT shoes_id, shoes_name, shoes_price, sales, num_like, final_price
