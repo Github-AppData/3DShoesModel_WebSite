@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.rubypaper.dto.Like_tb;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.mapper.TotalMapper;
@@ -121,6 +122,17 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public List<Map<String, Object>> adminPageSelectAdminAccount() throws Exception {
 		return totalMapper.adminPageSelectAdminAccount();
+	}
+
+	@Override
+	public void isLikeInfoInsert(Like_tb like_tb) throws Exception {
+		totalMapper.isLikeInfoInsert(like_tb);
+	}
+
+	@Override
+	public Shoes shoesIdCheckLike(String shoes_id) throws Exception {
+		return totalMapper.shoesIdCheckLike(shoes_id);
+		
 	}
 
 }

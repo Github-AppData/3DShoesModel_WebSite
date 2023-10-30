@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.rubypaper.dto.Like_tb;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.mapper.TotalMapper;
@@ -39,5 +40,7 @@ public interface TotalService {
 	public void adminPageDeleteShoesInfo(@Param("shoes_name") String shoes_name) throws Exception;
 	public void adminPageShoesInsert(Shoes shoes) throws Exception;
 	public List<Map<String, Object>> adminPageSelectAdminAccount() throws Exception;
+	public Shoes shoesIdCheckLike (@Param("shoes_id") String shoes_id) throws Exception;
 
+	public void isLikeInfoInsert(Like_tb like_tb) throws Exception;
 }
