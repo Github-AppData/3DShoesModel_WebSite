@@ -108,7 +108,29 @@
 	<select id="adminPageSelectUserList" resultType="Map">
 		SELECT user_id, name, adress, birthday, phone
 		FROM user
-		WHERE user_id != "admin";
+		WHERE user_id != "admin"
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<select id="searchAdminPageUser"  resultType="Map">
+		SELECT user_id, name, adress, birthday, phone
+		FROM user
+		WHERE user_id != "admin"
+		and name Like CONCAT('%',#{searchWord},'%')
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<select id="userCount" resultType="Integer">
+		SELECT count(*) 
+		FROM user 
+		where user_id != "admin";
+	</select>
+	
+	<select id="searchUserCount" resultType="Integer" parameterType="String">
+		SELECT count(*) 
+		FROM user
+		WHERE user_id != "admin"
+		and name Like CONCAT('%',#{searchWord},'%');
 	</select>
 	
 	<select id="boardCheckIdFindList" resultType="Map" parameterType="String">
