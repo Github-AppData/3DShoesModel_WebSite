@@ -76,7 +76,13 @@ public class LikePageDataSetServlet extends HttpServlet{
         {
         	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         	System.out.println("이미 상품이 있습니다.");
+        		
         }
+        
+     // Content-Type 설정 (JSON으로 응답)
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("sasdda");
         
         
 	}

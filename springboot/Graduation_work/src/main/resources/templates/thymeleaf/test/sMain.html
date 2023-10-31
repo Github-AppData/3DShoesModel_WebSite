@@ -643,7 +643,7 @@
 						
 						//document.getElementById(item_[num]).innerHTML = '';
 					}
-
+					
 					imageToModelMapping_real.forEach(function (mapping) {
 						replaceWith3DModel(mapping.uid, mapping.iframeId);
 					});
@@ -707,7 +707,18 @@
 			
 			var whoLikeButton = 'onoff' + linkId;
 			currentvalue = document.getElementById(whoLikeButton).value;
+			console.log(currentvalue);
 			var likeData = [];
+			var likeSendData = [];
+			
+			var shoes_id = imageToModelMapping_real[linkId].uid;
+			var shoes_name = imageToModelMapping_real[linkId].shoes_name;
+			var shoes_price = imageToModelMapping_real[linkId].final_price;
+						
+			likeData.push(shoes_id);
+			likeData.push(shoes_name);
+			likeData.push(shoes_price);
+			likeData.push(linkId);
 			
 			xhr3.onreadystatechange = function () {
 				// 응답이 되었으면,
@@ -716,17 +727,8 @@
 		  			{
 						// State Change ON 
 					    document.getElementById(whoLikeButton).value="On";
-					    
-					    
-					    var shoes_id = imageToModelMapping_real[linkId].uid;
-						var shoes_name = imageToModelMapping_real[linkId].shoes_name;
-						var shoes_price = imageToModelMapping_real[linkId].final_price;
-						
-					    likeData.push(shoes_id);
-					    likeData.push(shoes_name);
-					    likeData.push(shoes_price);
-					    likeData.push(linkId);
 					    showInfoToast("등록 되었습니다.");
+					    
 		  			} // if(currentvalue == "Off")
 				  	else
 				  	{
@@ -739,10 +741,10 @@
 					showInfoToast("이미 상품이 있습니다. ");
 				}
 			}
-		  
-		  	xhr3.open("POST", "/LikePageDataSetServlet", false);
+		  	xhr3.open("POST", "/LikePageDataSetServlet", true);
 			xhr3.send(likeData);
 		}
+
 
 		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
 		function handleLinkClick(link) {
