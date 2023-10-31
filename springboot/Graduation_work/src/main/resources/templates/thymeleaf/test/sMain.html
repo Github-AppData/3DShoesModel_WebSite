@@ -256,7 +256,7 @@
 					<div class="shop__product__option">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="shop__product__option__left">
+								<div class="shop__product__option__left" id = 'total'>
 									<p th:text="'총 6개의 상품'"></p>
 								</div>
 							</div>
@@ -676,9 +676,7 @@
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
 					
-					
-					
-					
+					document.getElementById("total").innerHTML = '총' + paging.totalArticle + '개의 상품'; 
 					
 					for (var i = 0; i < objLength; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
