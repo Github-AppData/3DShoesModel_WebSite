@@ -62,7 +62,11 @@ public class LikePageDataSetServlet extends HttpServlet{
 	        try {
 	        	like_tb.setLink_id(link_id);
 	        	like_tb.setShoes_id(shoes_id);
+	        	
+	        	totalService.isLikeUpdate(shoes_id);
 				totalService.isLikeInfoInsert(like_tb);
+				
+				response.setStatus(HttpServletResponse.SC_OK);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,6 +74,7 @@ public class LikePageDataSetServlet extends HttpServlet{
         } 
         else 
         {
+        	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         	System.out.println("이미 상품이 있습니다.");
         }
         

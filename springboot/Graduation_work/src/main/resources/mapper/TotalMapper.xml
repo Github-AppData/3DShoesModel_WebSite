@@ -13,7 +13,7 @@
 	<select id="searchsMain"  resultType="Map">
 		SELECT shoes_id, shoes_name, final_price
 		FROM shoes
-		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
+		WHERE shoes_name Like CONCAT('%',#{searchWord},'%')
 		LIMIT #{startRow},#{pageSize};
 	</select>
 	<update id="isLikeUpdate">
@@ -26,6 +26,11 @@
 		select shoes.shoes_name, shoes.final_price, like_tb.shoes_id
 		from shoes, like_tb
 		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1;
+	</select>
+	
+	<select id="linkIdSelectLike">
+		select link_id
+		from like_tb;
 	</select>
 	
 	<insert id="isLikeInfoInsert">
@@ -50,7 +55,7 @@
 		LIMIT #{startRow},#{pageSize};
 	</select>
 	
-	<select id="shoesCount" resultType="Integer">
+	<select id="shoesCount">
 		SELECT count(*) 
 		FROM shoes 
 		where is_delete = 0;
@@ -61,6 +66,21 @@
 		FROM shoes 
 		where is_delete = 0 and
 		shoes_Name LIKE CONCAT('%',#{shoes_Name},'%');
+	</select>
+	
+	<select id="searchBoards"  resultType="Map">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE title LIKE CONCAT('%',#{searchWord},'%')
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<select id="searchBoardCount" resultType="Integer" parameterType="String">
+		SELECT count(*) 
+		FROM notice_board 
+		where is_delete = 0 and
+		title LIKE CONCAT('%',#{boards_Name},'%');
 	</select>
 
 	<select id="adminPageSelectShoesList" resultType="Map">
@@ -140,20 +160,7 @@
 		ORDER BY idx ASC;
 	</select>
 	
-	<select id="searchBoards"  resultType="Map">
-		SELECT idx, title, write_date
-		FROM notice_board
-		WHERE title LIKE CONCAT('%',#{searchWord},'%')
-		ORDER BY idx ASC
-		LIMIT #{startRow},#{pageSize};
-	</select>
 	
-	<select id="searchBoardCount" resultType="Integer" parameterType="String">
-		SELECT count(*) 
-		FROM notice_board 
-		where is_delete = 0 and
-		title LIKE CONCAT('%',#{boards_Name},'%');
-	</select>
 	
 	
 	
