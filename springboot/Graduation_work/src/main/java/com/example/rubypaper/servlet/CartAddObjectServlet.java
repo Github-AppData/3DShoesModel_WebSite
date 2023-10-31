@@ -1,5 +1,6 @@
 package com.example.rubypaper.servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 import org.json.simple.JSONObject;
@@ -34,44 +35,42 @@ public class CartAddObjectServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		String checkLogin = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		
-		// 장바구니에 들어갈 신발 정보 
-		HttpSession session2 = request.getSession();
-		String jsonData_cart = (String) session2.getAttribute("jsonArrayString"); // 로그인 아이디가 checkLogin에 들어가 있다.
-
-		// JSON 문자열을 Java 객체로 변환
-		ObjectMapper objectMapper = new ObjectMapper();
-		DetailShoes[] yourObjects = objectMapper.readValue(jsonData_cart, DetailShoes[].class);	
 		
-		int shoes_price = 0;
-		String shoes_name = null;
-		String shoes_id = null;
+		System.out.println("CartAddObjectServlet");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
-		if (yourObjects.length > 0) {
-		    DetailShoes shoes = yourObjects[0];
-		    shoes_name = shoes.getShoes_name();
-		    shoes_price = shoes.getFinal_price();
-		    shoes_id = shoes.getUid();
-		}
+        BufferedReader reader = request.getReader();
+        StringBuilder CartSetInfo = new StringBuilder();
+        
+        String line;
+        while ((line = reader.readLine()) != null) {
+        	CartSetInfo.append(line);
+        }
+        System.out.println("CartSetInfo2 : "+CartSetInfo.toString());
+        
+        String str = CartSetInfo.toString();
+        
+        String [] parts = str.split(",");
+        
+        String shoes_id = parts[0];
+        String shoes_name = parts[1];
+        int final_price = Integer.parseInt(parts[2]);
+        int quantity = Integer.parseInt(parts[3]);
+        int size = Integer.parseInt(parts[4]);
+        
+		
 		
 		if(checkLogin != null) {
 			// 사용자는 로그인 상태
 			System.out.println("--------- checkLogin --------- :"+checkLogin);
 			
-			// 값 추출 - 사이즈, 수량, 3D Model Id, 신발 이름
-		    String selectedSize = request.getParameter("selectedSize");
-		    String quantityInput = request.getParameter("quantityInput");
-		    
-		    int quantity = Integer.parseInt(quantityInput);
-		    int size = Integer.parseInt(selectedSize);
-		    
 		    
 		    System.out.println("--------- size --------- :"+size);
 		    System.out.println("--------- quantity --------- :"+quantity);
-		    
 		 
 		    
 		    try {
-		    	
 		    	// 신발 아이디가 검색된 게 없다면, 
 				if(cartService.cartCheckShoesId(shoes_id) == null)
 				{
@@ -80,7 +79,7 @@ public class CartAddObjectServlet extends HttpServlet{
 				    cart.setSize(size);
 				    cart.setShoes_name(shoes_name);
 				    cart.setShoes_id(shoes_id);
-				    cart.setShoes_price(shoes_price);
+				    cart.setShoes_price(final_price);
 				    cart.setUser_id(checkLogin);
 					cartService.cartInsert(cart);
 					
