@@ -371,6 +371,14 @@
 				location.replace(url);
 			}
 			
+			window.onkeydown = refresh;
+			function refresh(){
+				var kcode = event.keyCode;
+				if(kcode == 116) {
+				history.replaceState({}, null, location.pathname);
+				}	
+			}
+			
 		</script>
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
