@@ -294,7 +294,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="0" class='like-button' value="Off" id="onoff0" onclick="onoff(this);">
+    										<button btn-link-id="0" class='like-button' value="On" id="onoff0" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -328,7 +328,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="1" class='like-button' value="Off" id="onoff1" onclick="onoff(this);">
+    										<button btn-link-id="1" class='like-button' value="On" id="onoff1" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -363,7 +363,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="2" class='like-button' value="Off" id="onoff2" onclick="onoff(this);">
+    										<button btn-link-id="2" class='like-button' value="On" id="onoff2" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -398,7 +398,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="3" class='like-button' value="Off" id="onoff3" onclick="onoff(this);">
+    										<button btn-link-id="3" class='like-button' value="On" id="onoff3" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -433,7 +433,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="4" class='like-button' value="Off" id="onoff4" onclick="onoff(this);">
+    										<button btn-link-id="4" class='like-button' value="On" id="onoff4" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -467,7 +467,7 @@
 									</div>
 									<div class="col">
 										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="5" class='like-button' value="Off" id="onoff5" onclick="onoff(this);">
+    										<button btn-link-id="5" class='like-button' value="On" id="onoff5" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -706,41 +706,49 @@
 			console.log("linkId : ", linkId);
 			
 			var whoLikeButton = 'onoff' + linkId;
-			currentvalue = document.getElementById(whoLikeButton).value;
-			console.log(currentvalue);
+			
+			
 			var likeData = [];
 			var likeSendData = [];
 			
 			var shoes_id = imageToModelMapping_real[linkId].uid;
 			var shoes_name = imageToModelMapping_real[linkId].shoes_name;
 			var shoes_price = imageToModelMapping_real[linkId].final_price;
+			var currentvalue;
 						
 			likeData.push(shoes_id);
 			likeData.push(shoes_name);
 			likeData.push(shoes_price);
 			likeData.push(linkId);
 			
+			currentvalue = document.getElementById(whoLikeButton).value;
+			console.log("currentvalue : "+linkId,currentvalue);
+			console.log(likeData);
+			
+			
+			
 			xhr3.onreadystatechange = function () {
-				// 응답이 되었으면,
-				if (xhr3.readyState === 4 && xhr3.status === 200) {
-					if(currentvalue == "Off")
-		  			{
-						// State Change ON 
-					    document.getElementById(whoLikeButton).value="On";
-					    showInfoToast("등록 되었습니다.");
-					    
-		  			} // if(currentvalue == "Off")
-				  	else
-				  	{
-				    	document.getElementById("onoff").value="Off";
-				    	showInfoToast("해제 되었습니다.");
-				  	}
-				} // if (xhr3.readyState === 4 && xhr3.status === 200)
-				else if(xhr3.readyState === 4 && xhr3.status !== 200)
+					
+				// shoes_id가 null 일 때 xhr3.status가 200이다.
+				// 그 말인 즉슨, 
+				console.log("xhr3.readyState : ", xhr3.readyState);
+				console.log("xhr3.status : ", xhr3.status);
+				if (xhr3.readyState === 4 && xhr3.status === 200) 
 				{
-					showInfoToast("이미 상품이 있습니다. ");
+					// State Change ON 
+					document.getElementById(whoLikeButton).value="On";
+					showInfoToast("등록 되었습니다.");
+					
+				} 
+				else if(xhr3.readyState === 4 && xhr3.status === 400 && currentvalue == 'On')
+				{
+					document.getElementById(whoLikeButton).value="Off";
+					showInfoToast("해제 되었습니다.");
 				}
 			}
+			likeData.push(currentvalue);
+			
+			console.log("likeData : ",likeData);
 		  	xhr3.open("POST", "/LikePageDataSetServlet", true);
 			xhr3.send(likeData);
 		}

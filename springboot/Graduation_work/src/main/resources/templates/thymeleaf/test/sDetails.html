@@ -629,12 +629,12 @@
 				// 응답이 되었으면,
 				if (xhr2.readyState === 4 && xhr2.status === 200) 
 				{
-					alert("상품이 추가 되었습니다.");
-					location.reload();
+					showclickToast("상품이 추가 되었습니다.");
 				}
-				else if(xhr2.readyState === 4 && xhr2.status !== 200){
-				  	alert("이미 장바구니에 있습니다.");
-					location.reload();
+				else if(xhr2.readyState === 4 && xhr2.status === 410){
+				  	showclickToast("이미 장바구니에 있습니다.");
+				} else if(xhr2.readyState === 4 && xhr2.status === 202){
+				  	showLoginToast("로그인하고 오세요.");
 				}
 			}
 			
@@ -652,6 +652,19 @@
 		    toast.style.display = "none";
 		  }, 6000); // 3초 후 메시지가 사라집니다.
 		}
+		
+		function showLoginToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
+		  }, 3000); // 3초 후 메시지가 사라집니다.
+		}
+		
 		
 	    
 	    function replaceWith3DModel(uid, iframeId) {

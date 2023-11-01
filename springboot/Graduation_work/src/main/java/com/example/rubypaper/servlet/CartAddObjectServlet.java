@@ -59,17 +59,16 @@ public class CartAddObjectServlet extends HttpServlet{
         int quantity = Integer.parseInt(parts[3]);
         int size = Integer.parseInt(parts[4]);
         
-		
+        System.out.println(shoes_id);
+        System.out.println(checkLogin);
 		
 		if(checkLogin != null) {
+			
 			// 사용자는 로그인 상태
 			System.out.println("--------- checkLogin --------- :"+checkLogin);
-			
-		    
 		    System.out.println("--------- size --------- :"+size);
 		    System.out.println("--------- quantity --------- :"+quantity);
 		 
-		    
 		    try {
 		    	// 신발 아이디가 검색된 게 없다면, 
 				if(cartService.cartCheckShoesId(shoes_id) == null)
@@ -99,12 +98,8 @@ public class CartAddObjectServlet extends HttpServlet{
 		} else {
 			// No Login 
 			System.out.println("로그인 하시고 다시 돌아와");
+			response.setStatus(HttpServletResponse.SC_ACCEPTED);
 			response.sendRedirect(request.getContextPath() + "/sLogin");
 		}
-		// Content-Type 설정 (JSON으로 응답)
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        response.getWriter().write("ㅁㄴㅇㅁㄴ");
-		
 	}
 }
