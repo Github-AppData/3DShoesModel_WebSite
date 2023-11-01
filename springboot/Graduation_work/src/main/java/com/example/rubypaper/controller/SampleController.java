@@ -101,21 +101,21 @@ public class SampleController {
 		
 		//사용자 총 수 
 		int result = 0;
+		
+		var totalArticle = 0;
 				
 		try {
 			if(search != null) {
 				paging.setSearchWord(search);
 				boardList = totalService.searchBoards(paging);
-				var searchCount = totalService.searchBoardCount(search);
-				paging.setTotalArticle(searchCount);
-				paging.setTotalPage(searchCount);
+				totalArticle = totalService.searchBoardCount(search);	
 				} else {
 				boardList = totalService.boardFindList(paging);
-				var boardCount = totalService.boardCount();
-				paging.setTotalArticle(boardCount);
-				paging.setTotalPage(boardCount);
+				totalArticle = totalService.boardCount();
 			}
 			//var boardCount = totalService.boardCount();
+			paging.setTotalArticle(totalArticle);
+			paging.setTotalPage(totalArticle);
 			totalService.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -223,6 +223,8 @@ public class SampleController {
 	{
 		Paging paging = new Paging();
 		int totalArticle = 0;
+		
+		System.out.println(search);
 		
 		paging.setPage(page);
 		paging.setPageSize(6);

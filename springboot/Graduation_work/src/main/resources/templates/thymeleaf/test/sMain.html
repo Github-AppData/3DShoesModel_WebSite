@@ -387,6 +387,7 @@
 
 		window.onload = pageLoad;
 		window.onkeydown = refresh;
+		window.onbeforeunload = refresh;
 		
 		function pageLoad() {
 			xhr.onreadystatechange = function () {
@@ -502,8 +503,6 @@
 			var pageId = link.getAttribute("data-link-id");
 			urlParams.set('page',pageId);
 			location.replace(url);
-			xhr.open("GET", url, true); // 비동기 요청 시작.
-			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}
 		
 		function search(search){
@@ -513,8 +512,10 @@
 				urlParams.set('search',searchWord);
 				//url에 해당되는 것으로 이동
 				location.replace(url);
+				/*
 				xhr.open("GET", url, true); // 비동기 요청 시작.
 				xhr.send(null); // ProductListSevlet에 보낼 요청
+				*/
 			}
 			
 			
@@ -672,6 +673,11 @@
 		
 		function refresh(){
 				var kcode = event.keyCode;
+				/*
+				if(document.readyState == "complete"){
+            	alert('새로고침');  // 새로고침
+            	history.replaceState({}, null, location.pathname);
+        		}*/
 				if(kcode == 116) {
 				history.replaceState({}, null, location.pathname);
 				}	

@@ -51,8 +51,7 @@ public class ProductListSevlet extends HttpServlet{
 		paging.setSearchWord(request.getParameter("search"));
 		var startRow = paging.getPageSize() * (page - 1);
 		paging.setStartRow(startRow);
-		
-				
+			
 		try {
 			if(request.getParameter("search") != null) {
 				shoesList = totalService.searchsMain(paging);
@@ -69,7 +68,6 @@ public class ProductListSevlet extends HttpServlet{
 
         // List<Map<String, Object>>를 JSON으로 변환
         String shoes_id = objectMapper.writeValueAsString(shoesList);
-        
         System.out.println("shoes_id : " + shoes_id.toString());
         
         // JSON 출력

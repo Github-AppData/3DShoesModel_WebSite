@@ -148,7 +148,7 @@
 							  <form action="SearchBoardServlet" method="post">
 								  <div class="search-wrap">
 									  <label for="search" class="blind">공지사항 내용 검색</label>
-									  <input id="search" type="search" name="search" placeholder="검색어를 입력해주세요.">
+									  <input id="search" type="text" name="search" placeholder="검색어를 입력해주세요.">
 									  <button type="submit" class="btn btn-dark">검색</button>
 								  </div>
 							  </form>
@@ -298,7 +298,15 @@
 			var object;
 			var paging = [[${paging}]];
 			
+			//현재 url을 가져옴
+			const url = new URL(location.href);
+			//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+			const urlParams = url.searchParams;
+			
 			window.onload = pageLoad;
+			window.onkeydown = refresh;
+
+			
 			function pageLoad()
 			{
 				xhr.onreadystatechange = function () 
@@ -359,19 +367,13 @@
 			
 			function movePage(page){
 				console.log(location.search);
-				//현재 url을 가져옴
-				const url = new URL(location.href);
-				//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
-				const urlParams = url.searchParams;
 				var pagenum = page.getAttribute('id');
-				
 				//현재 받아온 것들중 page의 값을 pagenum으로 변경
 				urlParams.set('page',pagenum);
 				//url에 해당되는 것으로 이동
 				location.replace(url);
 			}
 			
-			window.onkeydown = refresh;
 			function refresh(){
 				var kcode = event.keyCode;
 				if(kcode == 116) {
