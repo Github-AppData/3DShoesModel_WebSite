@@ -56,6 +56,15 @@ public class SampleController {
 		
 		return "test/mypage";
 	}
+	
+	
+	
+	@GetMapping("/ratingPopUp")
+	public String ratingPopUp()
+	{
+		
+		return "test/ratingPopUp";
+	}
 
 	@GetMapping("/main")
 	public String main(Model model, HttpServletRequest request, HttpSession session)
