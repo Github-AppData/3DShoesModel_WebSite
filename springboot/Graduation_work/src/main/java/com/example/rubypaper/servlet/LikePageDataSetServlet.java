@@ -59,10 +59,11 @@ public class LikePageDataSetServlet extends HttpServlet{
         
         if(shoes == null)
         {
+        	// 좋아요 DB에 shoes_id가 없을 경우 
 	        try {
 	        	like_tb.setLink_id(link_id);
 	        	like_tb.setShoes_id(shoes_id);
-	        	
+	        	like_tb.setShoes_name(shoes_name);
 	        	totalService.isLikeUpdate(shoes_id);
 				totalService.isLikeInfoInsert(like_tb);
 				
@@ -74,9 +75,23 @@ public class LikePageDataSetServlet extends HttpServlet{
         } 
         else 
         {
+        	// 좋아요 테이블에서 삭제 하는 거를 해야된다.
+        	try {
+        		
+        		// 신발 테이블에 is_Like 값 업데이트 
+        		totalService.isDisableLikeUpdate(shoes_id);
+				totalService.likeDeleteShoesId(shoes_id);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        	System.out.println("이미 상품이 있습니다.");
         }
+        
+     // Content-Type 설정 (JSON으로 응답)
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("sasdda");
         
         
 	}

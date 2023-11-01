@@ -22,11 +22,22 @@
 		where shoes_id = #{shoes_id};
 	</update>
 	
+	<update id="isDisableLikeUpdate">
+		update shoes
+		set is_like = 0
+		where shoes_id = #{shoes_id};
+	</update>
+	
 	<select id="isLikeSelect">
 		select shoes.shoes_name, shoes.final_price, like_tb.shoes_id
 		from shoes, like_tb
 		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1;
 	</select>
+	
+	<delete id="likeDeleteShoesId">
+		delete from like_tb
+		where shoes_id = #{shoes_id}
+	</delete>
 	
 	<select id="linkIdSelectLike">
 		select link_id
@@ -34,8 +45,8 @@
 	</select>
 	
 	<insert id="isLikeInfoInsert">
-		insert into like_tb(shoes_id, link_id)
-		values (#{shoes_id}, #{link_id})
+		insert into like_tb(shoes_id, link_id, shoes_name)
+		values (#{shoes_id}, #{link_id}, #{shoes_name})
 	</insert>
 	
 	<select id="shoesIdCheckLike">

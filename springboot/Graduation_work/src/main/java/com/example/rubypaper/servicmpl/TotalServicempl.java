@@ -198,4 +198,14 @@ public class TotalServicempl implements TotalService{
 		return totalMapper.isLikeSelect();
 	}
 
+	@Override
+	public int likeDeleteShoesId(String shoes_id) throws Exception {
+		return totalMapper.likeDeleteShoesId(shoes_id);
+	}
+
+	@Override
+	public int isDisableLikeUpdate(String shoes_id) throws Exception {
+		return totalMapper.isDisableLikeUpdate(shoes_id);
+	}	
+
 }

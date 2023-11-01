@@ -50,4 +50,6 @@ public interface TotalMapper {
 	public int isLikeUpdate(@Param("shoes_id") String shoes_id) throws Exception;
 	public List<Map<String, Object>> linkIdSelectLike() throws Exception;
 	public List<Map<String, Object>> isLikeSelect() throws Exception;
+	public int likeDeleteShoesId(String shoes_id) throws Exception;
+	public int isDisableLikeUpdate(String shoes_id) throws Exception;
 }
