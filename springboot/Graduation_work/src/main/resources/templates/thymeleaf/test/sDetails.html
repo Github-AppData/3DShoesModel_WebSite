@@ -200,7 +200,7 @@
                        		<!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
                             <h6 id="shoes_name"></h6>
                         <div class="mt-2">
-                            <h5 id="shoes_price">105,000원</h5>
+                            <h5 id="total_cost">105,000원</h5>
                         </div>
                         <div class="product__details__text mb-5 " style="text-align: left" >
                         <span class="rating"  >
@@ -530,7 +530,7 @@
 		var iframe_clicked = [];
 		
 		var shoes_id;
-	    var shoes_price;
+	    var total_cost;
 	    var cnt = 0;
 	    
 	    var xhr = new XMLHttpRequest();
@@ -562,7 +562,7 @@
 	    window.onload = pageLoad;
 		function pageLoad()
 		{
-			showclickToast("화면 속 여백을 더블 클릭 해 보세요 !");
+			showclickToast("신발을 드래그하여 이리저리 움직여보세요 !");
 			cnt = 0;
 			xhr.onreadystatechange = function () 
 			{
@@ -578,6 +578,8 @@
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
 					final_price = object[0].final_price;
+					
+					
 					
 					imageToModelMapping_real2.push(shoes_id);
 					imageToModelMapping_real2.push(shoes_name);
@@ -597,7 +599,7 @@
 					
 					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
 					var format_price_real = numeral(shoes_info_final_price).format('0,0');
-		    		document.getElementById("shoes_price").innerHTML = "<h5>" + format_price_real + "원 </h5>";
+		    		document.getElementById("total_cost").innerHTML = "<h5>" + format_price_real + "원 </h5>";
 					
 					
 					imageToModelMapping_real.forEach(function(mapping) 

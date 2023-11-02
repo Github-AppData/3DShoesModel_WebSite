@@ -1,22 +1,27 @@
 
 	function pop()
 		{
-			window.open("ratingPopUp", "pop", "width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+			
+			var leftPosition = (window.screen.width / 2) - (400 / 2);
+			var topPosition = (window.screen.height / 2) - (500 / 2);
+			var windowFeatures = 'width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no,left=' + leftPosition + ',top=' + topPosition;
+			window.open("ratingPopUp", "pop", windowFeatures);
 		}
     const userCode = "imp62443370";
     IMP.init(userCode);
     function requestPay(){
                 //class가 btn_payment인 태그를 선택했을 때 작동한다.       
-                  var shoesPriceElement = document.getElementById("shoes_price");
+                  var shoesPriceElement = document.getElementById("total_cost");
+                  var shoes_name = document.getElementById("shoes_name").textContent;
                   var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
-                  
+                  console.log(shoes_name);
                   pop();
                     //결제시 전달되는 정보
                   IMP.request_pay({
                               pg : 'html5_inicis', 
                               pay_method : 'card',
                               merchant_uid : 'merchant_' + new Date().getTime(),
-                              name : '주문명:결제테스트'/*상품명*/,
+                              name : shoes_name/*상품명*/,
                               amount : shoesPrice/*상품 가격*/, 
                               buyer_email : 'dlfheks@naver.com'/*구매자 이메일*/,
                               buyer_name : '테스터',
@@ -49,7 +54,7 @@
     
     function requestPay2() {
 		
-		var shoesPriceElement = document.getElementById("shoes_price");
+		var shoesPriceElement = document.getElementById("total_cost");
         var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
 
         IMP.request_pay({
