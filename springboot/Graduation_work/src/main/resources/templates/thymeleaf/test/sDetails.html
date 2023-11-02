@@ -56,6 +56,7 @@
 <body>
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="js/viewer-api.js"></script>
+	<script src="js/numeral.js"></script>
 	
 	<script>
         window.addEventListener('load', function() {
@@ -595,7 +596,8 @@
 					
 					
 					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
-		    		document.getElementById("shoes_price").innerHTML = "<h5>" + shoes_info_final_price + "원 </h5>";
+					var format_price_real = numeral(shoes_info_final_price).format('0,0');
+		    		document.getElementById("shoes_price").innerHTML = "<h5>" + format_price_real + "원 </h5>";
 					
 					
 					imageToModelMapping_real.forEach(function(mapping) 
