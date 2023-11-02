@@ -257,233 +257,21 @@
 					<div class="shop__product__option">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-6">
-								<div class="shop__product__option__left">
+								<div class="shop__product__option__left" id = 'total'>
 									<p th:text="'총 6개의 상품'"></p>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6">
-
 							</div>
 						</div>
 					</div>
 
 					<!-- 상품 영역 -->
+					<div class="row" id="shoes">
+					</div>
 					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale" id="item_1">
-								<div class="product__item__pic set-bg">
-									<iframe id="api-frame-1" width="260" height="260" style="border:none"
-										class="d-inline-block align-text-top">
-									</iframe>
-								</div>
-								<div class="row">
-								<div class="col product__item__text">
-									<!-- 상품 이름 -->
-									<h6 id="shoes1_name"></h6>
-									<a id="shoes1_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="1"
-										onclick="handleLinkClick(this)">상품 페이지</a>
-									<!-- 별점 -->
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-0"></i>
-									</div>
-									<h5 id="shoes1_price"></h5>
-									</div>
-									<div class="col">
-										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="0" class='like-button' value="On" id="onoff0" onclick="onoff(this);">
-      											<span class='like-icon'>							
-        											<div class='heart-animation-1'></div>
-        											<div class='heart-animation-2'></div>
-      											</span>
-      										</button>
-  										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale" id="item_2">
-								<div class="product__item__pic set-bg">
-									<iframe id="api-frame-2" width="260" height="260" style="border:none"
-										class="d-inline-block align-text-top">
-									</iframe>
-								</div>
-								<div class="row">
-								<div class="col product__item__text">
-									<h6 id="shoes2_name"></h6>
-									<a id="shoes2_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="2"
-										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-								</div>
-									<h5 id="shoes2_price">105,000원</h5>
-									</div>
-									<div class="col">
-										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="1" class='like-button' value="On" id="onoff1" onclick="onoff(this);">
-      											<span class='like-icon'>							
-        											<div class='heart-animation-1'></div>
-        											<div class='heart-animation-2'></div>
-      											</span>
-      										</button>
-  										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale" id="item_3">
-								<div class="product__item__pic set-bg">
-									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-									<iframe id="api-frame-3" width="260" height="260" style="border:none"
-										class="d-inline-block align-text-top">
-									</iframe>
-								</div>
-								<div class="row">
-								<div class="col product__item__text">
-									<h6 id="shoes3_name"></h6>
-									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="3"
-										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-									<h5 id="shoes3_price"></h5>
-									</div>
-									<div class="col">
-										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="2" class='like-button' value="On" id="onoff2" onclick="onoff(this);">
-      											<span class='like-icon'>							
-        											<div class='heart-animation-1'></div>
-        											<div class='heart-animation-2'></div>
-      											</span>
-      										</button>
-  										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale" id="itme_4">
-								<div class="product__item__pic set-bg">
-									<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
-									<iframe id="api-frame-4" width="260" height="260" style="border:none"
-										class="d-inline-block align-text-top">
-									</iframe>
-								</div>
-								<div class="row">
-								<div class="col product__item__text">
-									<h6 id="shoes4_name"></h6>
-									<a id="shoes4_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="4"
-										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-									<h5 id="shoes4_price">105,000원</h5>
-									</div>
-									<div class="col">
-										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="3" class='like-button' value="On" id="onoff3" onclick="onoff(this);">
-      											<span class='like-icon'>							
-        											<div class='heart-animation-1'></div>
-        											<div class='heart-animation-2'></div>
-      											</span>
-      										</button>
-  										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale" id="item_5">
-								<div class="product__item__pic set-bg">
-									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
-									<iframe id="api-frame-5" width="260" height="260" style="border:none"
-										class="d-inline-block align-text-top">
-									</iframe>
-								</div>
-								<div class="row">
-								<div class="col product__item__text">
-									<h6 id="shoes5_name"></h6>
-									<a id="shoes5_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="5"
-										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-									<h5 id="shoes5_price">105,000원</h5>
-									</div>
-									<div class="col">
-										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="4" class='like-button' value="On" id="onoff4" onclick="onoff(this);">
-      											<span class='like-icon'>							
-        											<div class='heart-animation-1'></div>
-        											<div class='heart-animation-2'></div>
-      											</span>
-      										</button>
-  										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item sale" id="itme_6">
-								<div class="product__item__pic set-bg">
-									<iframe id="api-frame-6" width="260" height="260" style="border:none"
-										class="d-inline-block align-text-top">
-									</iframe>
-								</div>
-								<div class="row">
-								<div class="col product__item__text">
-									<h6 id="shoes6_name"></h6>
-									<a id="shoes6_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="6"
-										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-									</div>
-									<h5 id="shoes6_price">105,000원</h5>
-									</div>
-									<div class="col">
-										<div class='like-wrapper mt-5 ml-5'>
-    										<button btn-link-id="5" class='like-button' value="On" id="onoff5" onclick="onoff(this);">
-      											<span class='like-icon'>							
-        											<div class='heart-animation-1'></div>
-        											<div class='heart-animation-2'></div>
-      											</span>
-      										</button>
-  										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="product__pagination" id="pagebuttons">
-								</div>
+						<div class="col-lg-12">
+							<div class="product__pagination" id="pagebuttons">
 							</div>
 						</div>
 					</div>
@@ -599,9 +387,10 @@
 
 
 		window.onload = pageLoad;
+		window.onkeydown = refresh;
+		window.onbeforeunload = refresh;
+		
 		function pageLoad() {
-			
-			
 			xhr.onreadystatechange = function () {
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) {
@@ -609,22 +398,62 @@
 					objLength = Object.keys(object).length;
 					console.log("objLength : ", objLength);
 					
+					var newitems = '';
+					
+					//iframe 제작
+					for(var i = 0; i < objLength; i++){
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
+						var newitem = '<div class="col-lg-4 col-md-6 col-sm-6">' +
+							'<div class="product__item sale" id="item_'+ (i + 1) +'">' +
+								'<div class="product__item__pic set-bg">' +
+									'<iframe id="api-frame-'+ (i + 1) +'" width="260" height="260" style="border:none"' +
+										'class="d-inline-block align-text-top">' +
+									'</iframe>' +
+								'</div>' +
+								'<div class="row">' +
+								'<div class="col product__item__text">' +
+									'<!-- 상품 이름 -->' +
+									'<h6 id="shoes' + (i + 1) +'_name"></h6>' +
+									'<a id="shoes' + (i + 1) + '_page" href="http://localhost:8025/sDetails" class="add-cart ml-3" data-link-id="'+ ( i + 1 ) +'" onclick="handleLinkClick(this)">상품 페이지</a>' +
+									'<!-- 별점 -->' +
+									'<div class="rating">' +
+										'<i class="fa fa-star"></i>' +
+										'<i class="fa fa-star"></i>' +
+										'<i class="fa fa-star"></i>' +
+										'<i class="fa fa-star"></i>' +
+										'<i class="fa fa-star"></i>' +
+										'<i class="fa fa-star-0"></i>' +
+									'</div>' +
+									'<h5 id="shoes'+ (i +1) +'_price"></h5>' +
+									'</div>' +
+									'<div class="col">' +
+										'<div class="like-wrapper mt-5 ml-5"">' +
+    										'<button btn-link-id="'+ (i + 1) +'" class="like-button" value="Off" id="onoff0" onclick="onoff(this);">' +
+      											'<span class="like-icon">' +							
+        											'<div class="heart-animation-1"></div>' +
+        											'<div class="heart-animation-2"></div>' +
+      											'</span>' +
+      										'</button>' +
+  										'</div>' +
+									'</div>' +
+								'</div>' +
+							'</div>' +
+						'</div>';
+						newitems = newitems + newitem;
+						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+					}
+					
+					document.getElementById("shoes").innerHTML = newitems;
+					
+					//페이지 버튼 제작
 					var pagebuttons = document.getElementById("pagebuttons");
 					//초기화
 					pagebuttons.innerHTML = '';
 					
-					//document.getElementById("item_2").innerHTML = " ";
-					
-					//페이지 버튼 제작
 					for (var i = 0; i < paging.totalPage; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
-					//필요한 것만 불러오도록 변경
-					for(var i = 0; i < objLength; i++){
-						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
-						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
-					}
-
+					
 					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					// 신발 이름 
 					var article_id = ["shoes1_name", "shoes2_name", "shoes3_name", "shoes4_name", "shoes5_name", "shoes6_name"];
@@ -635,7 +464,7 @@
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
 					
-					
+					document.getElementById("total").innerHTML = '총' + paging.totalArticle + '개의 상품'; 
 					
 					for (var i = 0; i < objLength; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
@@ -676,8 +505,6 @@
 			var pageId = link.getAttribute("data-link-id");
 			urlParams.set('page',pageId);
 			location.replace(url);
-			xhr.open("GET", url, true); // 비동기 요청 시작.
-			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}
 		
 		function search(search){
@@ -687,8 +514,10 @@
 				urlParams.set('search',searchWord);
 				//url에 해당되는 것으로 이동
 				location.replace(url);
+				/*
 				xhr.open("GET", url, true); // 비동기 요청 시작.
 				xhr.send(null); // ProductListSevlet에 보낼 요청
+				*/
 			}
 			
 			
@@ -765,43 +594,35 @@
 
 			linkId = link.getAttribute("data-link-id");
 
-
-
 			switch (linkId) {
 
 				case "1":
-					var num = 0 + page * 6 - 6;
-					dataToSend = imageToModelMapping_real[num];
+					dataToSend = imageToModelMapping_real[0];
 					console.log(dataToSend);
 					break;
 
 				case "2":
-					var num = 1 + page * 6 - 6;
-					dataToSend = imageToModelMapping_real[num];
+					dataToSend = imageToModelMapping_real[1];
 					console.log(dataToSend);
 					break;
 
 				case "3":
-					var num = 2 + page * 6 - 6;
-					dataToSend = imageToModelMapping_real[num];
+					dataToSend = imageToModelMapping_real[2];
 					console.log(dataToSend);
 					break;
 
 				case "4":
-					var num = 3 + page * 6 - 6;
-					dataToSend = imageToModelMapping_real[num];
+					dataToSend = imageToModelMapping_real[3];
 					console.log(dataToSend);
 					break;
 
 				case "5":
-					var num = 4 + page * 6 - 6;
-					dataToSend = imageToModelMapping_real[num];
+					dataToSend = imageToModelMapping_real[4];
 					console.log(dataToSend);
 					break;
 
 				case "6":
-					var num = 5 + page * 6 - 6;
-					dataToSend = imageToModelMapping_real[num];
+					dataToSend = imageToModelMapping_real[5];
 					console.log(dataToSend);
 					break;
 
@@ -813,17 +634,14 @@
 
 			if (dataToSend != null) {
 				console.log("dataToSend NOT NULL");
-
 				jsonData = JSON.stringify(dataToSend);
-
-			} else {
+			} else {  
 				console.log("dataToSend NULL");
 			}
 
 
 			xhr2.open("POST", "/ProductDetailPageServlet", true);
 			xhr2.send(jsonData); // ProductDetailPageServlet 보낼 요청
-
 		}
 
 
@@ -865,6 +683,18 @@
 				console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
 			});
 		}
+		
+		function refresh(){
+				var kcode = event.keyCode;
+				/*
+				if(document.readyState == "complete"){
+            	alert('새로고침');  // 새로고침
+            	history.replaceState({}, null, location.pathname);
+        		}*/
+				if(kcode == 116) {
+				history.replaceState({}, null, location.pathname);
+				}	
+			}
 
 		// 모든 모델을 한꺼번에 로드합니다.
 		loadModels();

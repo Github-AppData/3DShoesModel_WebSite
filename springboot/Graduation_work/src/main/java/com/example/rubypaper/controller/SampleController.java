@@ -110,21 +110,21 @@ public class SampleController {
 		
 		//사용자 총 수 
 		int result = 0;
+		
+		var totalArticle = 0;
 				
 		try {
 			if(search != null) {
 				paging.setSearchWord(search);
 				boardList = totalService.searchBoards(paging);
-				var searchCount = totalService.searchBoardCount(search);
-				paging.setTotalArticle(searchCount);
-				paging.setTotalPage(searchCount);
+				totalArticle = totalService.searchBoardCount(search);	
 				} else {
 				boardList = totalService.boardFindList(paging);
-				var boardCount = totalService.boardCount();
-				paging.setTotalArticle(boardCount);
-				paging.setTotalPage(boardCount);
+				totalArticle = totalService.boardCount();
 			}
 			//var boardCount = totalService.boardCount();
+			paging.setTotalArticle(totalArticle);
+			paging.setTotalPage(totalArticle);
 			totalService.FindListIsDelete();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -233,6 +233,8 @@ public class SampleController {
 		Paging paging = new Paging();
 		int totalArticle = 0;
 		
+		System.out.println(search);
+		
 		paging.setPage(page);
 		paging.setPageSize(6);
 		paging.setSearchWord(search);
@@ -253,7 +255,7 @@ public class SampleController {
 		}
 		paging.setTotalArticle(totalArticle);
 		paging.setTotalPage(totalArticle);
-		model.addAttribute("paging", paging);
+		
 		var startRow = paging.getPageSize() * (page - 1);
 		paging.setStartRow(startRow);
 		paging.setEndRow();
@@ -262,6 +264,7 @@ public class SampleController {
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 								
+		model.addAttribute("paging", paging); // paging객체 전달
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		
@@ -352,8 +355,10 @@ public class SampleController {
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
 		
+		Paging paging = new Paging();
+		
 		try {
-			userList = totalService.adminPageSelectUserList();
+			userList = totalService.adminPageSelectUserList(paging);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -391,18 +396,38 @@ public class SampleController {
 	}
 	
 	@GetMapping("/adminDocs")
-	public String adminDocs(Model model)
+	public String adminDocs(Model model,
+			@RequestParam(value="search", required = false) String search,
+			@RequestParam(value="page", defaultValue = "1") int page)
 	{
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
 		
+		Paging paging = new Paging();
+		int totalArticle;
+		
+		paging.setPage(page);
+		var startRow = 10 * (page - 1);
+		paging.setStartRow(startRow);
+		paging.setSearchWord(search);
+		
 		try {
-			userList = totalService.adminPageSelectUserList();
+			if(search != null) {
+				userList = totalService.searchAdminPageUser(paging);
+				totalArticle = totalService.searchUserCount(search);
+			} else {
+				userList = totalService.adminPageSelectUserList(paging);
+				totalArticle = totalService.userCount();
+			}
+			paging.setTotalArticle(totalArticle);
+			paging.setTotalPage(totalArticle);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		model.addAttribute("userList", userList);
+		model.addAttribute("paging", paging);
 		return "test/adminDocs";
 	}
 	
@@ -423,6 +448,7 @@ public class SampleController {
 		
 		//페이징 객체 생성
 		Paging paging = new Paging();
+		int totalArticle;
 				
 		paging.setPage(page);
 		var startRow = 10 * (page - 1);
@@ -432,15 +458,13 @@ public class SampleController {
 		try {
 			if(search != null) {
 				shoesList = totalService.searchAdminPageShoes(paging);
-				var searchCount = totalService.searchShoesCount(search);
-				paging.setTotalArticle(searchCount);
-				paging.setTotalPage(searchCount);
+				totalArticle = totalService.searchShoesCount(search);
 			} else {
 				shoesList = totalService.adminPageSelectShoesList(paging);
-				var shoesCount = totalService.shoesCount();
-				paging.setTotalArticle(shoesCount);
-				paging.setTotalPage(shoesCount);
+				totalArticle = totalService.shoesCount();
 			}
+			paging.setTotalArticle(totalArticle);
+			paging.setTotalPage(totalArticle);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

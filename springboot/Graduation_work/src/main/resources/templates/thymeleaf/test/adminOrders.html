@@ -433,6 +433,7 @@
 		var paging = [[${paging}]];
 		
 		window.onload = pageLoad;
+		window.onkeydown = refresh;
 		
 		function pageLoad()
 			{	
@@ -696,6 +697,13 @@
 		  document.getElementById(so).innerHTML = total_price_real + " 원";
 		}
 		
+		
+			function refresh(){
+				var kcode = event.keyCode;
+				if(kcode == 116) {
+				history.replaceState({}, null, location.pathname);
+				}	
+			}
 			
 	</script>
     <script src="assets/plugins/popper.min.js"></script>

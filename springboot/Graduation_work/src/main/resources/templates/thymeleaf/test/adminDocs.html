@@ -274,7 +274,7 @@
 					     <div class="page-utilities">
 						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
 							    <div class="col-auto">
-								    <form class="table-search-form row gx-1 align-items-center">
+								    <form class="table-search-form row gx-1 align-items-center" action="AdminSearchUser" method="post">
 					                    <div class="col-auto">
 					                        <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="입력바람">
 					                    </div>
@@ -338,7 +338,7 @@
 						    </div><!--//app-card-body-->		
 						</div><!--//app-card-->
 						<nav class="app-pagination">
-							<ul class="pagination justify-content-center">
+							<ul class="pagination justify-content-center" id = "pageButtons">
 								<li class="page-item disabled">
 									<a class="page-link" href="#" tabindex="-1" aria-disabled="true"><- 이전</a>
 							    </li>
@@ -483,6 +483,57 @@
 
  
     <!-- Javascript -->          
+    <script th:inline="javascript">
+		var paging = [[${paging}]];
+		//현재 url을 가져옴
+		const url = new URL(location.href);
+		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+		const urlParams = url.searchParams;
+		
+		window.onload = pageLoad;
+		window.onkeydown = refresh;
+		
+
+
+		
+		function pageLoad()
+			{	
+				var pagebuttons = document.getElementById("pageButtons");
+				pagebuttons.innerHTML = '';
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+						
+				for(var i = 1; i <= paging.totalPage; i++){
+					console.log(paging.totalPage);
+					if(paging.page == i){
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item active"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+					}else{
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+					}
+				}
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';	
+			}
+		
+		function movePage(page){
+				console.log(location.search);
+				
+				var pagenum = page.getAttribute('id');
+				//현재 받아온 것들중 page의 값을 pagenum으로 변경
+				urlParams.set('page',pagenum);
+				//url에 해당되는 것으로 이동
+				location.replace(url);
+			}
+		
+		function refresh(){
+				var kcode = event.keyCode;
+				if(kcode == 116) {
+				history.replaceState({}, null, location.pathname);
+				}	
+			}
+		
+	</script>
+    
     <script src="assets/plugins/popper.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
     

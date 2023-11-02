@@ -2,6 +2,7 @@ package com.example.rubypaper.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SearchBoardServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String searchWord = request.getParameter("search");
-		response.sendRedirect(request.getContextPath() + "/noticdBoard" + "?search=" + searchWord);
+		request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+		String searchWord = URLEncoder.encode(request.getParameter("search"),"UTF-8");
+		String url = request.getContextPath() + "/noticdBoard?search=" + searchWord;
+		System.out.println(url);
+		response.sendRedirect(url);
 	}
 }
