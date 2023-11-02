@@ -11,7 +11,7 @@ public class Shoes {
 	private int shoes_price;
 	private int sales;
 	private int final_price;
-	private int num_Like;
+	private int review_stars;
 	private int is_Like;	
 	private int is_delete;	
 	
@@ -56,12 +56,14 @@ public class Shoes {
 		this.final_price = final_price;
 	}
 
-	public int getNum_Like() {
-		return num_Like;
+	
+
+	public int getReview_stars() {
+		return review_stars;
 	}
 
-	public void setNum_Like(int num_Like) {
-		this.num_Like = num_Like;
+	public void setReview_stars(int review_stars) {
+		this.review_stars = review_stars;
 	}
 
 	public int getIs_Like() {
@@ -83,9 +85,10 @@ public class Shoes {
 	@Override
 	public String toString() {
 		return "Shoes [shoes_id=" + shoes_id + ", shoes_name=" + shoes_name + ", shoes_price=" + shoes_price
-				+ ", sales=" + sales + ", final_price=" + final_price + ", num_Like=" + num_Like + ", is_Like="
+				+ ", sales=" + sales + ", final_price=" + final_price + ", review_stars=" + review_stars + ", is_Like="
 				+ is_Like + ", is_delete=" + is_delete + "]";
 	}
+
 
 	
 	

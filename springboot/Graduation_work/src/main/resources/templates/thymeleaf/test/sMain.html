@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
    
    	<style>
+		   /* 주황색 별의 스타일을 정의 */
+			.orange-star {
+			    color: orange;
+			}
+
 		#info-message {
 		    display: none;
 		    position: fixed;
@@ -391,6 +396,7 @@
 		window.onbeforeunload = refresh;
 		
 		function pageLoad() {
+			
 			xhr.onreadystatechange = function () {
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) {
@@ -398,11 +404,34 @@
 					objLength = Object.keys(object).length;
 					console.log("objLength : ", objLength);
 					
+					var numberOfTotalStars = 5; // 전체 별의 수
+					var numberOfOrangeStars = [];
+					
+					for(var i = 0; i < objLength; i++)
+					{
+						numberOfOrangeStars.push(object[i].review_stars); // 주황색으로 표시할 별의 수
+					}
+					
+					console.log("numberOfOrangeStars : ", numberOfOrangeStars);
+					
 					var newitems = '';
 					
 					//iframe 제작
 					for(var i = 0; i < objLength; i++){
-						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price, review_stars: object[i].review_stars});
+						console.log("imageToModelMapping_real12321 : ", imageToModelMapping_real);
+						// rating 
+						var starRatingHTML = '<div class="rating">';
+						for (var s = 0; s < numberOfTotalStars; s++) {
+						    if (i < numberOfOrangeStars[s]) {
+						        starRatingHTML += '<i class="fa fa-star" style="color: orange;"></i>';
+						    } else {
+						        starRatingHTML += '<i class="fa fa-star"></i>';
+						    }
+						}
+						
+						starRatingHTML += '</div>';
+						
 						var newitem = '<div class="col-lg-4 col-md-6 col-sm-6">' +
 							'<div class="product__item sale" id="item_'+ (i + 1) +'">' +
 								'<div class="product__item__pic set-bg">' +
@@ -416,14 +445,7 @@
 									'<h6 id="shoes' + (i + 1) +'_name"></h6>' +
 									'<a id="shoes' + (i + 1) + '_page" href="http://localhost:8025/sDetails" class="add-cart ml-3" data-link-id="'+ ( i + 1 ) +'" onclick="handleLinkClick(this)">상품 페이지</a>' +
 									'<!-- 별점 -->' +
-									'<div class="rating">' +
-										'<i class="fa fa-star"></i>' +
-										'<i class="fa fa-star"></i>' +
-										'<i class="fa fa-star"></i>' +
-										'<i class="fa fa-star"></i>' +
-										'<i class="fa fa-star"></i>' +
-										'<i class="fa fa-star-0"></i>' +
-									'</div>' +
+									starRatingHTML +
 									'<h5 id="shoes'+ (i +1) +'_price"></h5>' +
 									'</div>' +
 									'<div class="col">' +
@@ -440,7 +462,8 @@
 							'</div>' +
 						'</div>';
 						newitems = newitems + newitem;
-						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+						
+						console.log("imageToModelMapping_real : ", imageToModelMapping_real);
 					}
 					
 					document.getElementById("shoes").innerHTML = newitems;
@@ -698,6 +721,9 @@
 
 		// 모든 모델을 한꺼번에 로드합니다.
 		loadModels();
+		
+		
+
 
 	</script>
 

@@ -39,18 +39,17 @@ public class DetailPageSetServlet extends HttpServlet {
 		jsonArray.add(obj);
 		
 		
-		String jsonArrayString = jsonArray.toJSONString();
+		String DetailPageInfo = jsonArray.toJSONString();
 		
 		HttpSession session = request.getSession();
+		session.setAttribute("DetailPageInfo", DetailPageInfo);
 		
-		session.setAttribute("jsonArrayString", jsonArrayString);
-		System.out.println("jsonArrayString :" + jsonArrayString);
-		
+		System.out.println("DetailPageInfo :" + DetailPageInfo);
 		
 		// Content-Type 설정 (JSON으로 응답)
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        response.getWriter().write(jsonArrayString);
+        response.getWriter().write(DetailPageInfo);
 	}
 
 }

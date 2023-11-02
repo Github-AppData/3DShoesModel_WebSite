@@ -5,7 +5,7 @@
 <mapper namespace="com.example.rubypaper.mapper.TotalMapper">
 	
 	<select id="randSelectShoesId"  resultType="Map">
-		SELECT shoes_id, shoes_name, final_price
+		SELECT shoes_id, shoes_name, final_price, review_stars
 		FROM shoes
 		LIMIT #{startRow},#{pageSize};
 	</select>
@@ -54,6 +54,29 @@
 		from like_tb
 		where shoes_id = #{shoes_id};
 	</select>
+	
+	<insert id="reviewInfoInsert">
+		insert into review(review_id, shoes_id, rating, reviewText)
+		values (#{review_id}, #{shoes_id}, #{rating}, #{reviewText})
+	</insert>
+	
+	<select id="reviewRatingAvgSelect">
+		SELECT ROUND(SUM(rating) / COUNT(shoes_id)) AS average_rating
+		FROM review
+		WHERE shoes_id = #{shoes_id};
+	</select>
+	
+	<update id="shoesRatingStarsUpdate">
+		update shoes
+		set review_stars = #{review_stars}
+		where shoes_id = #{shoes_id};
+	</update>
+	
+	<!--
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User  
+	-->
 	
 	<!--  select user_id
 		from user	 

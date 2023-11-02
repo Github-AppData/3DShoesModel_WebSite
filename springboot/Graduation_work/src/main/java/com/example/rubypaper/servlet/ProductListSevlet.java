@@ -65,6 +65,8 @@ public class ProductListSevlet extends HttpServlet{
 		
 		// ObjectMapper 생성
         ObjectMapper objectMapper = new ObjectMapper();
+        
+        System.out.println("shoesList : "+shoesList);
 
         // List<Map<String, Object>>를 JSON으로 변환
         String shoes_id = objectMapper.writeValueAsString(shoesList);

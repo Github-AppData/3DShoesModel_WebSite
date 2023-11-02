@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Like_tb;
 import com.example.rubypaper.dto.Paging;
+import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.mapper.TotalMapper;
 import com.example.rubypaper.service.TotalService;
@@ -206,6 +207,21 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public int isDisableLikeUpdate(String shoes_id) throws Exception {
 		return totalMapper.isDisableLikeUpdate(shoes_id);
+	}
+
+	@Override
+	public void reviewInfoInsert(Review review) throws Exception {
+		totalMapper.reviewInfoInsert(review);
+	}
+
+	@Override
+	public int reviewRatingAvgSelect(String shoes_id) throws Exception {
+		return totalMapper.reviewRatingAvgSelect(shoes_id);
+	}
+
+	@Override
+	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception {
+		totalMapper.shoesRatingStarsUpdate(shoes);
 	}	
 
 }

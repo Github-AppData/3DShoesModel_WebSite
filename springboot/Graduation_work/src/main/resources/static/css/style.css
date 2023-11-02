@@ -989,13 +989,14 @@ ol {
 	background: #111111;
 }
 
-.product__item.sale .product__item__text .rating i {
+/*.product__item.sale .product__item__text .rating i {
 	color: #f7941d;
+}*/
+
+.product__item.sale .product__item__text .rating i:nth-last-child(-n+2) {
+    color: #b7b7b7;
 }
 
-.product__item.sale .product__item__text .rating i:nth-last-child(1) {
-	color: #b7b7b7;
-}
 
 .product__item:hover .product__item__pic .product__hover {
 	right: 20px;

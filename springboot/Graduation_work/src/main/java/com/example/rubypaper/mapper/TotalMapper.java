@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.rubypaper.dto.Paging;
+import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.dto.Like_tb;
 
@@ -52,4 +53,7 @@ public interface TotalMapper {
 	public List<Map<String, Object>> isLikeSelect() throws Exception;
 	public int likeDeleteShoesId(String shoes_id) throws Exception;
 	public int isDisableLikeUpdate(String shoes_id) throws Exception;
+	public void reviewInfoInsert(Review review) throws Exception;
+	public int reviewRatingAvgSelect(String shoes_id) throws Exception;
+	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;
 }
