@@ -192,13 +192,8 @@
 									<a id="shoes1_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="1"
 										onclick="handleLinkClick(this)">상품 페이지</a>
 									<!-- 별점 -->
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-0"></i>
+									<div id="rating0">
+										
 									</div>
 									<h5 id="shoes1_price">105,000원</h5>
 									</div>
@@ -227,12 +222,7 @@
 									<h6 id="shoes2_name"></h6>
 									<a id="shoes2_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="2"
 										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
+									<div id="rating1">
 									</div>
 									<h5 id="shoes2_price">105,000원</h5>
 									</div>
@@ -261,12 +251,7 @@
 									<h6 id="shoes3_name"></h6>
 									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="3"
 										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
+									<div id="rating2">
 									</div>
 									<h5 id="shoes3_price">105,000원</h5>
 									</div>
@@ -295,13 +280,10 @@
 									<h6 id="shoes4_name"></h6>
 									<a id="shoes4_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="4"
 										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
+									<div id="rating3">
+										
 									</div>
+										
 									<h5 id="shoes4_price">105,000원</h5>
 									</div>
 									<div class="col-2">
@@ -329,12 +311,7 @@
 									<h6 id="shoes5_name"></h6>
 									<a id="shoes5_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="5"
 										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
-										<i class="fa fa-star-o"></i>
+									<div id="rating4">
 									</div>
 									<h5 id="shoes5_price">105,000원</h5>
 									</div>
@@ -363,12 +340,7 @@
 									<h6 id="shoes6_name"></h6>
 									<a id="shoes6_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="6"
 										onclick="handleLinkClick(this)">상품 페이지</a>
-									<div class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-o"></i>
+									<div id="rating5">
 									</div>
 									<h5 id="shoes6_price">105,000원</h5>
 									</div>
@@ -530,6 +502,8 @@
 					for(var i = 0; i < objLength; i++){
 						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+						
+						
 					}
 					
 					var real = objLength;
