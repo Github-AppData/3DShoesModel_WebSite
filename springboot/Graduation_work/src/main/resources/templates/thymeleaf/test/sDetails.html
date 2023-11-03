@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    
+    <link rel="stylesheet" href="css/hearts.css" type="text/css">
     <link rel="stylesheet" href="css/search.css" type="text/css">
     
 </head>
@@ -203,14 +203,9 @@
                             <h5 id="total_cost">105,000원</h5>
                         </div>
                         <div class="product__details__text mb-5 " style="text-align: left" >
-                        <span class="rating"  >
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span> - 구매:429</span>
-                         </span>
+						<span id="ratingPlace">
+							
+                        </span>
                          
                          <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
@@ -563,6 +558,8 @@
 		function pageLoad()
 		{
 			showclickToast("신발을 드래그하여 이리저리 움직여보세요 !");
+			
+			
 			cnt = 0;
 			xhr.onreadystatechange = function () 
 			{
@@ -578,8 +575,27 @@
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
 					final_price = object[0].final_price;
+					review_stars = object[0].review_stars;
+					
+					var RatingInnerHTML = '<div class="rating">';
+						
+					var graystars = 5 - review_stars;
+						
+					// 주황색 별을 먼저 찍고, 그 다음에 회색을 찍는다.
+					console.log("graystars : ", graystars);
+					for(var sh = 0; sh < review_stars; sh++)
+					{ 
+						RatingInnerHTML += '<i class="fa fa-star" style="color: orange;"></i>';
+					}
 					
 					
+					for(var h = 0; h < graystars; h++)
+					{
+						RatingInnerHTML += '<i class="fa fa-star" style="color: gray;"></i>';
+					}
+					
+					RatingInnerHTML += '</div>';
+					document.getElementById("ratingPlace").innerHTML = RatingInnerHTML;
 					
 					imageToModelMapping_real2.push(shoes_id);
 					imageToModelMapping_real2.push(shoes_name);
@@ -589,14 +605,13 @@
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
 					
 		            
-					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
-					// 신발 이름 
+					/// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					
+					// 신발 이름 
 					var shoes_info_name = imageToModelMapping_real[0].shoes_name;
 		    		document.getElementById("shoes_name").innerHTML = "<h6>" + shoes_info_name + "</h6>";
 					
-					
-					
+					// 신발 가격 
 					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
 					var format_price_real = numeral(shoes_info_final_price).format('0,0');
 		    		document.getElementById("total_cost").innerHTML = "<h5>" + format_price_real + "원 </h5>";
@@ -711,6 +726,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    
     <script src="js/import.js"></script>
     
 </body>

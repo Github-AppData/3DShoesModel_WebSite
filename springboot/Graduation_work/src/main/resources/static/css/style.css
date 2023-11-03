@@ -991,7 +991,7 @@ ol {
 
 /*.product__item.sale .product__item__text .rating i {
 	color: #f7941d;
-}*/
+}*/	
 
 .product__item.sale .product__item__text .rating i:nth-last-child(-n+2) {
     color: #b7b7b7;

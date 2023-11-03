@@ -42,11 +42,6 @@
                                   msg += '에러내용 : ' + rsp.error_msg;
                                  // result ='1';
                               }
-                              /*
-                              if(result=='0') {
-                                  location.href= $.getContextPath()+"/Cart/Success";
-                                  
-                              }*/
                               alert(msg);
                           });
                            

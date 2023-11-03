@@ -216,14 +216,6 @@
 								</div>
 
 								<div class="card">
-
-								</div>
-
-								<div class="card">
-
-								</div>
-
-								<div class="card">
 									<div class="card-heading">
 										<a data-toggle="collapse" data-target="#collapseThree">가격</a>
 									</div>
@@ -407,27 +399,40 @@
 					var numberOfTotalStars = 5; // 전체 별의 수
 					var numberOfOrangeStars = [];
 					
+					
+					// numberOfOrangeStars = 사용자 매긴 평점의 수
 					for(var i = 0; i < objLength; i++)
 					{
 						numberOfOrangeStars.push(object[i].review_stars); // 주황색으로 표시할 별의 수
 					}
 					
-					console.log("numberOfOrangeStars : ", numberOfOrangeStars);
-					
+					// numberOfTotalStars - numberOfOrangeStars[i] = graystarsArray (회색으로 칠해야 할.)
+					var graystarsArray = [];
 					var newitems = '';
 					
 					//iframe 제작
+					
+					// objLength 6 이고,
 					for(var i = 0; i < objLength; i++){
 						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price, review_stars: object[i].review_stars});
 						console.log("imageToModelMapping_real12321 : ", imageToModelMapping_real);
+						
+						var grayStars = numberOfTotalStars - numberOfOrangeStars[i];
+						graystarsArray.push(grayStars);
+						
+						console.log("graystarsArray : ", graystarsArray[i]);			
 						// rating 
 						var starRatingHTML = '<div class="rating">';
-						for (var s = 0; s < numberOfTotalStars; s++) {
-						    if (i < numberOfOrangeStars[s]) {
-						        starRatingHTML += '<i class="fa fa-star" style="color: orange;"></i>';
-						    } else {
-						        starRatingHTML += '<i class="fa fa-star"></i>';
-						    }
+						
+						// 주황색 별을 먼저 찍고, 그 다음에 회색을 찍는다.
+						for(var sh = 0; sh < numberOfOrangeStars[i]; sh++)
+						{ 
+							starRatingHTML += '<i class="fa fa-star" style="color: orange;"></i>';
+						}
+						
+						for(var h = 0; h < graystarsArray[i]; h++)
+						{
+							starRatingHTML += '<i class="fa fa-star"></i>';
 						}
 						
 						starRatingHTML += '</div>';
@@ -450,11 +455,11 @@
 									'</div>' +
 									'<div class="col">' +
 										'<div class="like-wrapper mt-5 ml-5"">' +
-    										'<button btn-link-id="'+ (i + 1) +'" class="like-button" value="Off" id="onoff0" onclick="onoff(this);">' +
+    										'<button btn-link-id="'+ i +'" class="like-button" value="Off" id="onoff'+i+'" onclick="onoff(this);">' +
       											'<span class="like-icon">' +							
-        											'<div class="heart-animation-1"></div>' +
-        											'<div class="heart-animation-2"></div>' +
-      											'</span>' +
+					        						'<div class="heart-animation-1"></div>' +
+					        						'<div class="heart-animation-2"></div>' +
+					      						'</span>'  +
       										'</button>' +
   										'</div>' +
 									'</div>' +
@@ -477,7 +482,8 @@
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
 					
-					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
+					/// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
+					
 					// 신발 이름 
 					var article_id = ["shoes1_name", "shoes2_name", "shoes3_name", "shoes4_name", "shoes5_name", "shoes6_name"];
 					// 신발 가격을 표시하는 부분의 id
@@ -563,6 +569,9 @@
 			
 			var whoLikeButton = 'onoff' + linkId;
 			
+			var mybtnstylechange = document.getElementById(whoLikeButton);
+			
+			
 			
 			var likeData = [];
 			var likeSendData = [];
@@ -581,8 +590,6 @@
 			console.log("currentvalue : "+linkId,currentvalue);
 			console.log(likeData);
 			
-			
-			
 			xhr3.onreadystatechange = function () {
 					
 				// shoes_id가 null 일 때 xhr3.status가 200이다.
@@ -593,12 +600,14 @@
 				{
 					// State Change ON 
 					document.getElementById(whoLikeButton).value="On";
+					mybtnstylechange.style.border = "4px solid black";
 					showInfoToast("등록 되었습니다.");
 					
 				} 
 				else if(xhr3.readyState === 4 && xhr3.status === 400 && currentvalue == 'On')
 				{
 					document.getElementById(whoLikeButton).value="Off";
+					mybtnstylechange.style.border = "4px solid #c7c7c7";
 					showInfoToast("해제 되었습니다.");
 				}
 			}

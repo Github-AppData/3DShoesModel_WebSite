@@ -8,6 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>5조신발점 좋아요 페이지(런칭캘린더 페이지 사용)</title>
+    
+    	<style>
+		   /* 주황색 별의 스타일을 정의 */
+			.orange-star {
+			    color: orange;
+			}
+
+		#info-message {
+		    display: none;
+		    position: fixed;
+		    top: 75px;
+		    right: 180px;
+		    background-color: orangered;
+		    color: #fff;
+		    padding: 10px 20px;
+		    border-radius: 5px;
+		    z-index: 9999; /* 임의의 큰 값 설정 - 우선순위 설정 */
+		}
+
+	</style>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -157,7 +177,8 @@
 		<div class="container">
 					<!-- 상품 영역 -->
 					<div class="row ml-3">
-						<div class="col-lg-4 col-md-6 col-sm-6">
+						<div id="info-message" class="hidden"></div>
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div0">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-1" width="360" height="260" style="border:none"
@@ -183,7 +204,7 @@
 									</div>
 									<div class="col-2">
 										<div class='like-wrapper mt-5 ml-4'>
-    										<button class='like-button'>
+    										<button btn-link-id="0" class='like-button' value="On" id="onoff0" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -194,7 +215,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div1">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-2" width="360" height="260" style="border:none"
@@ -217,7 +238,7 @@
 									</div>
 									<div class="col-2">
 										<div class='like-wrapper mt-5 ml-4'>
-    										<button class='like-button'>
+    										<button btn-link-id="1" class='like-button' value="On" id="onoff1" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -228,7 +249,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div2">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-3" width="360" height="260" style="border:none"
@@ -251,7 +272,7 @@
 									</div>
 									<div class="col-2">
 										<div class='like-wrapper mt-5 ml-4'>
-    										<button class='like-button'>
+    										<button btn-link-id="2" class='like-button' value="On" id="onoff2" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -262,7 +283,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div3">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-4" width="360" height="260" style="border:none"
@@ -285,7 +306,7 @@
 									</div>
 									<div class="col-2">
 										<div class='like-wrapper mt-5 ml-4'>
-    										<button class='like-button'>
+    										<button btn-link-id="3" class='like-button' value="On" id="onoff3" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -296,7 +317,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div4">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-5" width="360" height="260" style="border:none"
@@ -319,7 +340,7 @@
 									</div>
 									<div class="col-2">
 										<div class='like-wrapper mt-5 ml-4'>
-    										<button class='like-button'>
+    										<button btn-link-id="4" class='like-button' value="On" id="onoff4" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -330,7 +351,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div5">
 							<div class="product__item sale">
 								<div class="product__item__pic set-bg">
 									<iframe id="api-frame-6" width="360" height="260" style="border:none"
@@ -353,7 +374,7 @@
 									</div>
 									<div class="col-2">
 										<div class='like-wrapper mt-5 ml-4'>
-    										<button class='like-button'>
+    										<button btn-link-id="5" class='like-button' value="On" id="onoff5" onclick="onoff(this);">
       											<span class='like-icon'>							
         											<div class='heart-animation-1'></div>
         											<div class='heart-animation-2'></div>
@@ -450,64 +471,7 @@
             </form>
         </div>
     </div>
-    <!-- Search End -->
-    <!-- 
-    <script type="text/javascript">
     
-    function replaceWith3DModel(uid, iframeId) {
-        return new Promise(function(resolve, reject) {
-            var iframe = document.getElementById(iframeId);
-            var client = new Sketchfab(iframe);
-
-            client.init(uid, {
-                success: function onSuccess(api) {
-                    api.start();
-                    api.addEventListener('viewerready', function() {
-                        console.log(iframeId + ' 3D 모델이 준비되었습니다.');
-                        resolve(); // Promise가 성공했음을 알립니다.
-                    });
-                },
-                error: function onError() {
-                    console.log(iframeId + ' 3D 모델 초기화 오류');
-                    reject(); // Promise가 실패했음을 알립니다.
-                },
-                // 초기화 매개변수 설정
-                graph_optimizer: 1, //그래프
-                merge_materials: 1, //재질 병합
-                material_packing: 1 //재질 패킹
-            });
-        });
-    }
-    
-    function loadModels() {
-        // 모든 모델을 비동기식으로 로드합니다.
-        Promise.all(imageToModelMapping.map(function(mapping) {
-            return replaceWith3DModel(mapping.uid, mapping.iframeId);
-        })).then(function() {
-            // 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
-            console.log('모든 3D 모델이 로드되었습니다.');
-        }).catch(function() {
-            // 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
-            console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
-        });
-    }
-    
-    
-    var imageToModelMapping = [
-        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-1' },
-        { uid: 'faef9fe5ace445e7b2989d1c1ece361c', iframeId: 'api-frame-2' },
-        { uid: 'c00345fd64414c4e8895c6aaa262e4d5', iframeId: 'api-frame-3' },
-        { uid: '7afcec9329d54afe99b6db2e30346642', iframeId: 'api-frame-4' },
-        { uid: 'b404398cf8ab4773b4b15230a2f7c292', iframeId: 'api-frame-5' },
-        { uid: '9c1f56ac53524da09673ce46c8410ac9', iframeId: 'api-frame-6' },
-        
-    ];
-
-    // 모든 모델을 한꺼번에 로드합니다.
-    loadModels();
-    
-    </script>
-    -->
     <script type="text/javascript" th:inline="javascript">
 
 		// 전역변수 공간 입니다만.
@@ -528,7 +492,7 @@
 
 		var dataToSend = null;
 		
-		var paging = [[${paging}]];
+		var paging = [[${paging}]];	
 
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
@@ -559,13 +523,22 @@
 					//document.getElementById("item_2").innerHTML = " ";
 					
 					//페이지 버튼 제작
-					for (var i = 0; i < paging.totalPage; i++) {
+					for (var i = 0; i < 1; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
 					//필요한 것만 불러오도록 변경
 					for(var i = 0; i < objLength; i++){
 						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+					}
+					
+					var real = objLength;
+					for(var i = real; i < 6; i++)
+					{
+						var div_ids = 'div' + i;
+						console.log("div_ids : ", div_ids);
+						var div_ele = document.getElementById(div_ids);
+						div_ele.style.display = "none";
 					}
 
 					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
@@ -596,7 +569,7 @@
 
 			}; // xhr.onreadystatechange 끝
 			
-			var link = "/ProductListSevlet";
+			var link = "/LikePageServlet";
 			
 			if(urlParams.get('search') != null){
 				link = link + "?search=" + urlParams.get('search');
@@ -633,13 +606,13 @@
 			
 			
 		function showInfoToast(message) {
-			
 		  var toast = document.getElementById("info-message");
 		  toast.innerText = message;
 		  toast.style.display = "block";
 		  
 		  setTimeout(function() {
 		    toast.style.display = "none";
+		    location.reload();
 		  }, 2000); // 3초 후 메시지가 사라집니다.
 		}
 		
@@ -650,7 +623,7 @@
 			console.log("linkId : ", linkId);
 			
 			var whoLikeButton = 'onoff' + linkId;
-			
+			console.log("whoLikeButton : ", whoLikeButton);
 			
 			var likeData = [];
 			var likeSendData = [];
