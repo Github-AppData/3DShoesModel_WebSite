@@ -195,8 +195,13 @@ public class TotalServicempl implements TotalService{
 	}
 
 	@Override
-	public List<Map<String, Object>> isLikeSelect() throws Exception {
-		return totalMapper.isLikeSelect();
+	public List<Map<String, Object>> isLikeSelect(Paging paging) throws Exception {
+		return totalMapper.isLikeSelect(paging);
+	}
+	
+	@Override
+	public int isLikeCount() throws Exception{
+		return totalMapper.isLikeCount();
 	}
 
 	@Override

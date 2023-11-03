@@ -357,14 +357,13 @@
 								</div>
 							</div>
 						</div>
-
-						<div class="row">
+					</div>
+					<div class="row">
 							<div class="col-lg-12">
 								<div class="product__pagination" id="pagebuttons">
 								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 	</section>
 	<!-- Shop Section End -->
@@ -495,7 +494,7 @@
 					//document.getElementById("item_2").innerHTML = " ";
 					
 					//페이지 버튼 제작
-					for (var i = 0; i < 1; i++) {
+					for (var i = 0; i < paging.totalPage; i++) {
 						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
 					}
 					//필요한 것만 불러오도록 변경

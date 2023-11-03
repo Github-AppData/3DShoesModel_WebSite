@@ -317,12 +317,38 @@ public class SampleController {
 	
 	
 	@GetMapping("/like")
-	public String like(Model model,HttpServletRequest request, HttpSession session)
+	public String like(@RequestParam(value="page", defaultValue = "1") int page ,
+						@RequestParam(value="search", required = false) String search,
+						Model model,HttpServletRequest request, HttpSession session)
 	{
+		Paging paging = new Paging();
+		int totalArticle = 0;
+		
+		System.out.println(search);
+		
+		paging.setPage(page);
+		paging.setPageSize(6);
+		paging.setSearchWord(search);
+		
+		try {
+			totalArticle = totalService.isLikeCount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		paging.setTotalArticle(totalArticle);
+		paging.setTotalPage(totalArticle);
+		
+		var startRow = paging.getPageSize() * (page - 1);
+		paging.setStartRow(startRow);
+		paging.setEndRow();
+		
 		// user_id 구하는 것.
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 						
+		model.addAttribute("paging", paging); // paging객체 전달
 		model.addAttribute("userID", userID); // userID를 전한다.
 		System.out.println("userID : " + userID);
 		

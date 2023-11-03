@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.service.TotalService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,9 +26,23 @@ public class LikePageServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int page;
 		List<Map<String, Object>> likeList = new ArrayList<Map<String, Object>>();
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		} else {
+			page = 1;
+		}
+		
+		Paging paging = new Paging();
+		System.out.println(paging.getPage());
+		paging.setPageSize(6);
+		var startRow = paging.getPageSize() * (page - 1);
+		paging.setStartRow(startRow);
+		
 		try {
-			likeList = totalService.isLikeSelect();
+			likeList = totalService.isLikeSelect(paging);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
