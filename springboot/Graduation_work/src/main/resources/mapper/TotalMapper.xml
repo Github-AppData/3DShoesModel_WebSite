@@ -31,6 +31,13 @@
 	<select id="isLikeSelect">
 		select shoes.shoes_name, shoes.final_price, like_tb.shoes_id
 		from shoes, like_tb
+		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<select id="isLikeCount" resultType="Integer">
+		select count(*)
+		from shoes, like_tb
 		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1;
 	</select>
 	
