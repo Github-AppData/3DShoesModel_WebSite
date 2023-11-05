@@ -156,18 +156,6 @@
                   <div class="tab-content">
                     <div class="tab-pane fade active show" id="account-general">
         			<form action="MypageInfoUpdateServlet" method="POST">
-                      <div class="card-body media align-items-center">
-                        <img id="selected-image" src="img/banner/banner-2.jpg" alt="" class="d-block ui-w-80">
-                        <div class="media-body ml-4">
-                          <label class="btn btn-outline-success">
-                            이미지 선택
-                            <input type="file" id="image-input" class="account-settings-fileinput" onchange="updateImage()">
-                          </label> &nbsp;
-                          <button type="button" class="btn btn-default md-btn-flat" onclick="resetImage()">초기화</button>
-        
-                          <div class="text-light small mt-1">타인에게 공개되는 사진이므로 신중하게 선택해주세요.</div>
-                        </div>
-                      </div>
                       <hr class="border-light m-0">
         
                       <div class="card-body">
@@ -226,20 +214,6 @@
 							  </div>
 				  		 </div>
 			  
-				  <!-- board seach area -->
-					  <div id="board-search">
-						  <div class="container">
-							  <div class="search-window">
-								  <form action="">
-									  <div class="search-wrap">
-										  <label for="search" class="blind">공지사항 내용 검색</label>
-										  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요.">
-										  <button type="submit" class="btn btn-dark">검색</button>
-									  </div>
-								  </form>
-							  </div>
-						  </div>
-					  </div>
 					 
 					<!-- board list area -->
 					  <div id="board-list">
@@ -272,25 +246,6 @@
 	
 					  <!--type1-->
 					<!--type2-->
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-						  <li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-							  <span aria-hidden="true">&laquo;</span>
-							</a>
-						  </li>
-						  <li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
-						  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-						  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-						  <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
-						  <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
-						  <li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-							  <span aria-hidden="true">&raquo;</span>
-							</a>
-						  </li>
-						</ul>
-					  </nav>
 			
 
 			  </section>

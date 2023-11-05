@@ -41,6 +41,7 @@
 </head>
 
 <body>
+	<script src="js/numeral.js"></script>
 	<script src="js/viewer-api.js"></script>
 	<script>
 		window.addEventListener('load', function () {
@@ -655,12 +656,16 @@
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
 					
+					
+					
 					for (var i = 0; i < objLength; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
 						var shoes_info_price = imageToModelMapping_real[i].final_price;
+						
+						var format_shoes_price = numeral(shoes_info_price).format('0,0');
 						price_sum += shoes_info_price;						
 						document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
-						document.getElementById(article_price_id[i]).innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+						document.getElementById(article_price_id[i]).innerHTML = "<h5>" + format_shoes_price + "원 </h5>";
 						
 						//document.getElementById(item_[num]).innerHTML = '';
 					}
