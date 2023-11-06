@@ -19,7 +19,8 @@
 ## :star: 프로젝트 설명
 제작기간 2023/03/17 ~ 2023/11/11 <br/>
 팀장 : 김태욱(BE) / 팀원 : 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
-![순서1](https://github.com/Github-AppData/Graduation_work/assets/100830409/9ac1f413-e93a-4ce5-a912-d5d0e362f796)
+![순서1](https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3)
+
  <br/>
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
 | 기술스택 | 상세 |
