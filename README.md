@@ -3,7 +3,7 @@
 
  <div align=center>
   
-### Preview...
+## :stars: 소개 및 시연영상
 ![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
 
  
@@ -23,14 +23,12 @@
 | 웹 애플리케이션 | <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"> |
 | 데이터베이스 | <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> |
 | 웹 호스팅 |  | <br/>
-## :eye_speech_bubble: 주요기능
+## :eye_speech_bubble: 페이지 구성
 <img src = "https://user-images.githubusercontent.com/100830409/231042686-0a185190-c858-4e47-bef1-198aecc68022.png" width = " 660 " height = " 330 " >
 
 ## :page_with_curl: 진행과정
 
-## :stars: 완성화면 / 시연영상
+## :grey_question: 트러블슈팅
 
-## :grey_question: 트러블슈팅 (문제해결로그)
-
-## :heavy_check_mark: 본 프로젝트 제작을 통하여 배운점 ( learning 주제 몇가지 )
+## :heavy_check_mark: 본 프로젝트 제작을 통하여 배운점
 
