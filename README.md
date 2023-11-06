@@ -17,12 +17,11 @@
 <br/>
 
 ## :star: 프로젝트 설명
-제작기간 : 2023/03/17 ~ 2023/11/14 <br/>
-개발일정 : 하단 이미지 참조 <br/>
+제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
+개발 일정 : 하단 페이지 구성 상세 <br/>
 Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
 <br/>
-![순서1](https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3)
- <br/>
+
  
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
 
