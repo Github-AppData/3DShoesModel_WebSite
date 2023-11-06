@@ -28,7 +28,7 @@ public interface TotalService {
 	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception;
 	public List<Map<String, Object>> searchBoards(Paging paging) throws Exception;
 	public int boardCount() throws Exception;
-	public int shoesCount() throws Exception;
+	public int shoesCount(Paging paging) throws Exception;
 	public int userCount() throws Exception;
 	public int searchBoardCount(String boards_Name) throws Exception;
 	public int searchUserCount(String name) throws Exception;

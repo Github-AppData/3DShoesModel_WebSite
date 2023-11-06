@@ -249,7 +249,7 @@ public class SampleController {
 			}
 		}else {
 			try {
-				totalArticle = totalService.shoesCount();
+				totalArticle = totalService.shoesCount(paging);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -489,7 +489,7 @@ public class SampleController {
 				totalArticle = totalService.searchShoesCount(paging);
 			} else {
 				shoesList = totalService.adminPageSelectShoesList(paging);
-				totalArticle = totalService.shoesCount();
+				totalArticle = totalService.shoesCount(paging);
 			}
 			paging.setTotalArticle(totalArticle);
 			paging.setTotalPage(totalArticle);

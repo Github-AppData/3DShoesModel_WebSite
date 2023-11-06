@@ -677,8 +677,21 @@
 			}; // xhr.onreadystatechange 끝
 			
 			var link = "/ProductListSevlet";
+			var search;
+			var page;
+			var tag;
 			
-			link = link + "?search=" + urlParams.get('search') + "&page" + urlParams.get('page=') + "&tag=" + urlParams.get('tag');
+			if(urlParams.get('search') != null){
+				search = "search=" + urlParams.get('search');
+			}
+			if(urlParams.get('page') != null){
+				page = "page=" + urlParams.get('page');
+			}
+			if(urlParams.get('tag') != null){
+				tag = "tag=" + urlParams.get('tag');
+			}
+			
+			link = link + '?' + search + '&' + page + '&' + tag;
 			/*
 			if(urlParams.get('search') != null){
 				link = link + "?search=" + urlParams.get('search');

@@ -7,12 +7,35 @@
 	<select id="randSelectShoesId" resultType="Map">
 		SELECT shoes_id, shoes_name, final_price, review_stars
 		FROM shoes
+		<choose>
+			<when test="searchTag == 'price_1'">
+				WHERE final_price <![CDATA[<]]> 50000
+			</when>
+			<when test="searchTag == 'price_2'">
+				WHERE final_price >= 50000
+				AND final_price <![CDATA[<]]> 100000
+			</when>
+			<when test="searchTag == 'price_3'">
+				WHERE final_price >= 100000
+				AND final_price <![CDATA[<]]> 150000
+			</when>
+			<when test="searchTag == 'price_4'">
+				WHERE final_price >= 150000
+				AND final_price <![CDATA[<]]> 200000
+			</when>
+			<when test="searchTag == 'price_5'">
+				WHERE final_price >= 200000
+			</when>
+			<otherwise>
+				
+			</otherwise>
+		</choose>		
 		LIMIT #{startRow},#{pageSize};
 	</select>
 
 	<select id="searchsMain" resultType="Map"> 
 		SELECT shoes_id, shoes_name, final_price 
-		FROM shoes 
+		FROM shoes
 		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
 		<choose>
 			<when test="searchTag == 'price_1'">
@@ -125,7 +148,30 @@
 	<select id="shoesCount">
 		SELECT count(*)
 		FROM shoes
-		where is_delete = 0;
+		where is_delete = 0
+		<choose>
+			<when test="searchTag == 'price_1'">
+				AND final_price <![CDATA[<]]> 50000;
+			</when>
+			<when test="searchTag == 'price_2'">
+				AND final_price >= 50000
+				AND final_price <![CDATA[<]]> 100000;
+			</when>
+			<when test="searchTag == 'price_3'">
+				AND final_price >= 100000
+				AND final_price <![CDATA[<]]> 150000;
+			</when>
+			<when test="searchTag == 'price_4'">
+				AND final_price >= 150000
+				AND final_price <![CDATA[<]]> 200000;
+			</when>
+			<when test="searchTag == 'price_5'">
+				AND final_price >= 200000;
+			</when>
+			<otherwise>
+				;
+			</otherwise>
+		</choose>
 	</select>
 
 	<select id="searchShoesCount" resultType="Integer">
