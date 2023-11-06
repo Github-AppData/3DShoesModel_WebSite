@@ -20,6 +20,7 @@
 제작기간 2023/03/17 ~ 2023/11/14 <br/>
 개발일정 : 하단 이미지 참조
 팀장 : 김태욱(BE) / 팀원 : 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
+<br/>
 ![순서1](https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3)
  <br/>
  
