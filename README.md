@@ -18,7 +18,7 @@
 
 ## :star: 프로젝트 설명
 제작기간 2023/03/17 ~ 2023/11/11 <br/>
-팀장 : 김태욱 / 팀원 : 노일환, 강준성, 박종현, 박형근 <br/>
+팀장 : 김태욱(BE) / 팀원 : 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
 프론트 / 백 <br/>
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
 | 기술스택 | 상세 |
