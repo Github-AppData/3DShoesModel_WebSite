@@ -20,9 +20,7 @@
 제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
 개발 일정 : 하단 페이지 구성 상세 <br/>
 Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
-<br/>
 
- 
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
 
 | 기술스택 | 상세 |
