@@ -245,6 +245,7 @@
 											</div>
 										</div>
 									</div>
+									<button type="button" onclick="tagReset()">초기화</button>
 								</div>
 							</div><br>
 							<button type="button" class="btn btn-dark btn-block float-right text-white"
@@ -722,6 +723,11 @@
 					urlParams.set('tag',elem.value);
 				}
 			});
+			location.replace(url);
+		}
+		
+		function tagReset(){
+			urlParams.set('tag','');
 			location.replace(url);
 		}
 			
