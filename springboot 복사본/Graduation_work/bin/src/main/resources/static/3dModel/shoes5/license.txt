@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nike Defy All Day walking sneakers shoes
+* source:	https://sketchfab.com/3d-models/nike-defy-all-day-walking-sneakers-shoes-b404398cf8ab4773b4b15230a2f7c292
+* author:	CookieCake (https://sketchfab.com/cookiecake250)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nike Defy All Day walking sneakers shoes" (https://sketchfab.com/3d-models/nike-defy-all-day-walking-sneakers-shoes-b404398cf8ab4773b4b15230a2f7c292) by CookieCake (https://sketchfab.com/cookiecake250) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

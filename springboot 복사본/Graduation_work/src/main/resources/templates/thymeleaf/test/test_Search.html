@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th></th>
+  </tr>
+  <tr th:each="shoes: ${result}">
+    <td th:text="${shoes.shoes_Id}"></td>
+    <td th:text="${shoes.shoes_Name}"></td>
+    <td th:text="${shoes.shoes_Price}"></td>
+  </tr>
+</body>
+</html>
