@@ -34,9 +34,9 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
 | 웹 호스팅 |  | <br/>
  
 ## :eye_speech_bubble: 페이지 구성
-![순서1](https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3)
- <br/>
-<img src = "![순서1](https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3)" width = " 660 " height = " 330 " >
+<img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3" width = " 660 " height = " 330 " >
+<img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/26c45174-5f77-47dd-9244-2936bfb60a43" width = " 660 " height = " 330 " >
+
 
 ## :page_with_curl: 진행과정
 
