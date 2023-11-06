@@ -8,6 +8,7 @@ public class Paging {
 	private int startRow; // 한 페이지에 객체 시작 행
 	private int endRow; // 한 페이지에 객체 끝 행
 	private String searchWord;
+	private String searchTag;
 
 	public String getSearchWord() {
 		return searchWord;
@@ -80,5 +81,13 @@ public class Paging {
 	public void setEndRow() {
 		this.endRow = page * pageSize;
 		if(this.endRow > this.totalArticle) this.endRow = this.totalArticle;
+	}
+
+	public String getSearchTag() {
+		return searchTag;
+	}
+
+	public void setSearchTag(String searchTag) {
+		this.searchTag = searchTag;
 	}
 }

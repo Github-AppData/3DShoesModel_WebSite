@@ -228,6 +228,7 @@ public class SampleController {
 	@GetMapping("/sMain")
 	public String sMain(@RequestParam(value="page", defaultValue = "1") int page ,
 			@RequestParam(value="search", required = false) String search,
+			@RequestParam(value="tag", required = false) String tag,
 			Model model,HttpServletRequest request, HttpSession session)
 	{
 		Paging paging = new Paging();
@@ -238,9 +239,10 @@ public class SampleController {
 		paging.setPage(page);
 		paging.setPageSize(6);
 		paging.setSearchWord(search);
+		paging.setSearchTag(tag);
 		if(search != null) {
 			try {
-				totalArticle = totalService.searchShoesCount(search);
+				totalArticle = totalService.searchShoesCount(paging);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -484,7 +486,7 @@ public class SampleController {
 		try {
 			if(search != null) {
 				shoesList = totalService.searchAdminPageShoes(paging);
-				totalArticle = totalService.searchShoesCount(search);
+				totalArticle = totalService.searchShoesCount(paging);
 			} else {
 				shoesList = totalService.adminPageSelectShoesList(paging);
 				totalArticle = totalService.shoesCount();

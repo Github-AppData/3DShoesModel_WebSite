@@ -205,7 +205,6 @@
 								<div class="card">
 									<div id="collapseOne" class="collapse show" data-parent="#accordionExample">
 										<div class="card-body">
-
 										</div>
 									</div>
 								</div>
@@ -228,19 +227,19 @@
 
 												<ul>
 													<li><label for="5만원 미만">5만원 미만
-															<input type="radio" id="5만원 미만" name="a">
+															<input type="radio" id="_5만원 미만" name="radioPri" value ="price_1">
 														</label></li>
 													<li><label for="5만원 - 10만원 미만">5만원 - 10만원 미만
-															<input type="radio" id="5만원 - 10만원 미만" name="a">
+															<input type="radio" id="_5만원 - 10만원 미만" name="radioPri" value ="price_2">
 														</label></li>
 													<li><label for="10만원 - 15만원 미만">10만원 - 15만원 미만
-															<input type="radio" id="10만원 - 15만원 미만" name="a">
+															<input type="radio" id="_10만원 - 15만원 미만" name="radioPri" value ="price_3">
 														</label></li>
 													<li><label for="15만원 - 20만원 미만">15만원 - 20만원 미만
-															<input type="radio" id="15만원 - 20만원 미만" name="a">
+															<input type="radio" id="_15만원 - 20만원 미만" name="radioPri" value ="price_4">
 														</label></li>
 													<li><label for="20만원 이상">20만원 이상
-															<input type="radio" id="20만원 이상" name="a">
+															<input type="radio" id="_20만원 이상" name="radioPri" value ="price_5">
 														</label></li>
 												</ul>
 											</div>
@@ -249,7 +248,7 @@
 								</div>
 							</div><br>
 							<button type="button" class="btn btn-dark btn-block float-right text-white"
-								style="background-image: url(img/bg2.png)"> 검색</button>
+								onclick="radioTest()" style="background-image: url(img/bg2.png)">검색</button>
 						</div>
 					</div>
 				</div>
@@ -453,14 +452,13 @@
 								</div>
 							</div>
 						</div>
-
+					</div>
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="product__pagination" id="pagebuttons">
 								</div>
 							</div>
 						</div>
-					</div>
 				</div>
 			</div>
 	</section>
@@ -560,6 +558,7 @@
 		var dataToSend = null;
 		
 		var paging = [[${paging}]];
+		var radioval;
 
 		var xhr = new XMLHttpRequest();
 		var xhr2 = new XMLHttpRequest();
@@ -656,8 +655,6 @@
 					var delivery_cost = 3000; // 배송비 
 					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
 					
-					
-					
 					for (var i = 0; i < objLength; i++) {
 						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
 						var shoes_info_price = imageToModelMapping_real[i].final_price;
@@ -680,14 +677,22 @@
 			
 			var link = "/ProductListSevlet";
 			
+			link = link + "?search=" + urlParams.get('search') + "&page" + urlParams.get('page=') + "&tag=" + urlParams.get('tag');
+			/*
 			if(urlParams.get('search') != null){
 				link = link + "?search=" + urlParams.get('search');
 				if(urlParams.get('page') != null){
 					link = link + "&page=" + urlParams.get('page');
 				}
+				if(urlParams.get('tag') != null){
+					link = link + "&tag=" + urlParams.get('tag');
+				}
 			}else if(urlParams.get('page') != null){
 				link = link + "?page=" + urlParams.get('page');
-			}
+				if(urlParams.get('tag') != null){
+					link = link + "&tag=" + urlParams.get('tag');
+				}
+			}*/
 			xhr.open("GET", link, true); // 비동기 요청 시작.
 			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}; // pageLoad
@@ -698,20 +703,27 @@
 			var pageId = link.getAttribute("data-link-id");
 			urlParams.set('page',pageId);
 			location.replace(url);
-			xhr.open("GET", url, true); // 비동기 요청 시작.
-			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}
 		
 		function search(search){
-				console.log(location.search);
-				var searchWord = search.getAttribute('search');
-				//현재 받아온 것들중 page의 값을 pagenum으로 변경
-				urlParams.set('search',searchWord);
-				//url에 해당되는 것으로 이동
-				location.replace(url);
-				xhr.open("GET", url, true); // 비동기 요청 시작.
-				xhr.send(null); // ProductListSevlet에 보낼 요청
-			}
+			console.log(location.search);				
+			var searchWord = search.getAttribute('search');
+			urlParams.set('search',searchWord);
+			//url에 해당되는 것으로 이동
+			location.replace(url);
+		}
+			
+		function radioTest(){
+			var radioTest = document.getElementsByName('radioPri');
+			radioTest.forEach(elem => {
+				if(elem.checked)
+				{
+					console.log(elem.value);
+					urlParams.set('tag',elem.value);
+				}
+			});
+			location.replace(url);
+		}
 			
 			
 		function showInfoToast(message) {

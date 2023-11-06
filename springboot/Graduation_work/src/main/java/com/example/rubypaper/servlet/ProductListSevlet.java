@@ -51,6 +51,7 @@ public class ProductListSevlet extends HttpServlet{
 		paging.setSearchWord(request.getParameter("search"));
 		var startRow = paging.getPageSize() * (page - 1);
 		paging.setStartRow(startRow);
+		paging.setSearchTag(request.getParameter("tag"));
 			
 		try {
 			if(request.getParameter("search") != null) {
