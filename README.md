@@ -4,7 +4,7 @@
  <div align=center>
   
 ### Preview...
-![TalkMedia_talkv_high23-11-07-02-24-08 gif23-11-07-02-24-08](https://github.com/Github-AppData/Graduation_work/assets/100830409/a347acaa-7041-4bc5-8a26-4596a917bd1c)
+![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
 
  
 <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
