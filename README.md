@@ -1,9 +1,10 @@
-
+<div align=center>
+ 
 # 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
 
 <br/>
 
- <div align=center>
+ 
   
 ## :stars: 소개 및 시연영상
 ![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
