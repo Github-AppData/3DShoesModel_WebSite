@@ -9,7 +9,12 @@
 		FROM shoes
 		ORDER BY idx ASC
 		LIMIT #{startRow}, #{pageSize};
-
+	</select>
+	
+	<select id="myPageNoticeBoardSelect"  resultType="Map">
+		select title, write_date, idx
+		from notice_board
+		where user_id = #{user_id};
 	</select>
 	
 	<select id="searchsMain"  resultType="Map">

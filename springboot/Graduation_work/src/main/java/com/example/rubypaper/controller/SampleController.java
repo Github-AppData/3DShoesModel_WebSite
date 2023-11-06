@@ -35,6 +35,7 @@ public class SampleController {
 	public String mypage(Model model, HttpServletRequest request, HttpSession session)
 	{
 		//사용자 목록 가져오기 
+		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
 				
 		//사용자 총 수 
@@ -45,13 +46,17 @@ public class SampleController {
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		System.out.println(userID);
 		try {
-			boardList = totalService.myPageUserDataSet(userID);
+			userList = totalService.myPageUserDataSet(userID);
+			boardList = totalService.myPageNoticeBoardSelect(userID);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("boardList"+boardList.toString());
+		System.out.println("userList : "+userList.toString());
+		System.out.println("boardList : "+boardList.toString());
 						
-		model.addAttribute("list", boardList);
+		model.addAttribute("list", userList);
+		model.addAttribute("boardList", boardList);
+			
 		model.addAttribute("userID", userID); // userID를 전한다.
 		
 		return "test/mypage";

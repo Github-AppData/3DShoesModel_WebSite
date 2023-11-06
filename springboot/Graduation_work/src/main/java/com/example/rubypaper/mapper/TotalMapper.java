@@ -58,4 +58,5 @@ public interface TotalMapper {
 	public int reviewRatingAvgSelect(String shoes_id) throws Exception;
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;
 	public List<Map<String, Object>> selectMain() throws Exception;
+	public List<Map<String, Object>> myPageNoticeBoardSelect(@Param("user_id") String user_id) throws Exception;
 }

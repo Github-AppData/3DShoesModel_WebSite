@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Like_tb;
+import com.example.rubypaper.dto.NoticeBoard;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
@@ -20,7 +21,7 @@ public interface TotalService {
 	
 	
 	public int numberOfCart();
-	
+	public  List<Map<String, Object>> myPageNoticeBoardSelect (@Param("user_id") String user_id) throws Exception;
 	public  List<Map<String, Object>> boardIdxData(int idx) throws Exception;
 	public  List<Map<String, Object>> myPageUserDataSet(@Param("user_id") String user_ids) throws Exception;
 	public int cartDeleteShoesId() throws Exception;
