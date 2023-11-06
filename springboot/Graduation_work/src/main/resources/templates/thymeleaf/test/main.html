@@ -27,6 +27,7 @@
 </head>
 
 <body>
+	
 	<script type="importmap">
     {
       "imports": {
@@ -37,6 +38,7 @@
     }
   </script>
   <script type="module" src="js/3dmodel.js"></script>
+  <script src="js/numeral.js"></script>
 
     <!-- Page Preloder -->
     <div id="preloder">
@@ -146,60 +148,55 @@
 	<div class="container3d">
 	<div class="products3d">
 	<div class="h1s">Our new Products</div>
-      <a>
+      <a onclick="DetailPageSet(this)" data-link-id="0" th:href="@{sDetails}"> 
         <canvas id="canvas1" style="margin-right: 20px;
   					margin-bottom: 20px;" width="225" height="225">
   		</canvas>
-        <h6 style="font-weight:bold;">Nike Air Force Fresh</h6>
-        <p class="price3d">169,000</p>
+        <h6 style="font-weight:bold;" id="shoes1_name"></h6>
+        <p class="price3d" id="shoes1_price"></p>
         
       </a>
-      <a>
+      <a onclick="DetailPageSet(this)" data-link-id="1" th:href="@{sDetails}"> 
         <canvas id="canvas2" style="margin-right: 20px;
   					margin-bottom: 20px;" width="225" height="225">
   		</canvas>
-        <h6 style="font-weight:bold;">Nike Air Vapor Max 2023</h6>
-        <p class="price3d">228,000</p>
+        <h6 style="font-weight:bold;" id="shoes2_name">	</h6>
+        <p class="price3d" id="shoes2_price"></p>
       </a>
-      <a>
+      <a onclick="DetailPageSet(this)" data-link-id="2" th:href="@{sDetails}">
         <canvas id="canvas3" style="margin-right: 20px;
   					margin-bottom: 20px;" width="225" height="225">
   		</canvas>
-        <h6 style="font-weight:bold;">Niki Romo 4</h6>
-        <p class="price3d">249,000</p>
+        <h6 style="font-weight:bold;" id="shoes3_name"></h6>
+        <p class="price3d" id="shoes3_price"></p>
       </a>
-      <a>
+      <a onclick="DetailPageSet(this)" data-link-id="3" th:href="@{sDetails}"> 
         <canvas id="canvas4" style="margin-right: 20px;
   					margin-bottom: 20px;" width="225" height="225">
   		</canvas>
-        <h6 style="font-weight:bold;">Nike Pegasus 40</h6>
-        <p class="price3d">139,000</p>
+        <h6 style="font-weight:bold;" id="shoes4_name"></h6>
+        <p class="price3d" id="shoes4_price"></p>
       </a>
-      <a>
+      <a onclick="DetailPageSet(this)" data-link-id="4" th:href="@{sDetails}"> 
         <canvas id="canvas5" style="margin-right: 20px;
   					margin-bottom: 20px;" width="225" height="225">
   		</canvas>
-        <h6 style="font-weight:bold;">Nike Blazer </h6>
-        <p class="price3d">99,000</p>
+        <h6 style="font-weight:bold;" id="shoes5_name"> </h6>
+        <p class="price3d" id="shoes5_price"></p>
       </a>
-      <a>
+      <a onclick="DetailPageSet(this)" data-link-id="5" th:href="@{sDetails}"> 
         <canvas id="canvas6" style="margin-right: 20px;
   					margin-bottom: 20px;" width="225" height="225">
   		</canvas>
-        <h6 style="font-weight:bold;">Jordan No Retro 1 Low</h6>
-        <p class="price3d">129,000</p>
+        <h6 style="font-weight:bold;" id="shoes6_name"></h6>
+        <p class="price3d" id="shoes6_price"></p>
       </a>
       <div class="clearfix"></div>
     </div>
 	</div>
 	
-	<!-- 메인 화면에 있는 신발 아이디 순서대로. -->
-	<!-- 562be2471d5b45e8a6946fbbcc7c0f04 -->
-	<!-- 00fd99e778c244c3bd3b65f99dad7cb2 -->
-	<!-- 17f21b0a2515455f96ad194ad5be9142 -->
-	<!-- 348c77822bff4de3b6df59839b2fd201 -->
-	<!-- b404398cf8ab4773b4b15230a2f7c292 -->
-	<!-- 3d8b49d8fdd54ef8afb69735fa452ee2 -->
+	
+	
 	
 
     <!-- Categories Section Begin -->
@@ -327,6 +324,85 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
+    <script>
+		/* 메인 화면에 있는 신발 아이디 순서대로. -->
+		<!-- 562be2471d5b45e8a6946fbbcc7c0f04 -->
+		<!-- 00fd99e778c244c3bd3b65f99dad7cb2 -->
+		<!-- 17f21b0a2515455f96ad194ad5be9142 -->
+		<!-- 348c77822bff4de3b6df59839b2fd201
+		<!-- b404398cf8ab4773b4b15230a2f7c292 
+		<!-- 3d8b49d8fdd54ef8afb69735fa452ee2 */
+		
+		var xhr = new XMLHttpRequest();
+		var xhr2 = new XMLHttpRequest();
+		var object = null;
+		var imageToModelMapping_real = [];
+		
+		window.onload= pageLoad;
+		
+		var ary_shoes_name = ["shoes1_name", "shoes2_name", "shoes3_name", "shoes4_name"
+		, "shoes5_name", "shoes6_name"];
+		
+		var ary_shoes_price = ["shoes1_price", "shoes2_price", "shoes3_price", "shoes4_price"
+		, "shoes5_price", "shoes6_price"];
+		
+		// main 페이지에 정보를 set하는 
+		function pageLoad()
+		{
+			xhr.onreadystatechange = function()
+			{
+				console.log("xhr.readyState : ", xhr.readyState);
+				console.log("xhr.status : ", xhr.status);
+				if(xhr.readyState === 4 && xhr.status === 200)
+				{
+					object = JSON.parse(xhr.responseText);
+					objLength = Object.keys(object).length;
+					
+					for(var i = 0; i < objLength; i++){
+						imageToModelMapping_real.push({uid: object[i].shoes_id, shoes_name: object[i].shoes_name, final_price: object[i].final_price});
+						console.log("imageToModelMapping_real : "+i, imageToModelMapping_real[i]);
+						
+						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
+						var shoes_info_price = imageToModelMapping_real[i].final_price;
+						
+						var format_shoes_price = numeral(shoes_info_price).format('0,0');
+						document.getElementById(ary_shoes_name[i]).innerHTML = "<h5>" + shoes_info_name + "</h5>";
+						document.getElementById(ary_shoes_price[i]).innerHTML = "<h6>" + format_shoes_price + "원 </h6>";
+					}
+				}
+			}
+			xhr.open("POST", "/MainPageSetServlet", true);
+			xhr.send(null);
+		}
+		
+		function DetailPageSet(element)
+		{
+			var link_id = null;
+			var jsonData = null;
+			link_id = element.getAttribute("data-link-id");
+			console.log("link_id : ", link_id);
+			
+			var send_ary = [];
+			
+			var dataToSend = imageToModelMapping_real[link_id];
+			
+			if (dataToSend != null) {
+				console.log("dataToSend NOT NULL");
+				jsonData = JSON.stringify(dataToSend);
+
+			} else {
+				console.log("dataToSend NULL");
+			}
+
+			console.log("jsonData : ", jsonData);
+			
+			xhr2.open("POST", "/ProductDetailPageServlet", true);
+			xhr2.send(jsonData);
+		}
+		
+		
+		
+	</script>
     
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

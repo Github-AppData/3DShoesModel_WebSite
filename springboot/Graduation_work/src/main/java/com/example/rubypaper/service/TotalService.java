@@ -58,7 +58,7 @@ public interface TotalService {
 	public int isLikeCount() throws Exception;
 	public List<Map<String, Object>> linkIdSelectLike() throws Exception;	
 	public int likeDeleteShoesId(@Param("shoes_id") String shoes_id) throws Exception;
-	
+	public List<Map<String, Object>> selectMain() throws Exception;
 	public void reviewInfoInsert(Review review) throws Exception;
 	
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;

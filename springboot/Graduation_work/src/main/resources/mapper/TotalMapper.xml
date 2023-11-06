@@ -7,7 +7,9 @@
 	<select id="randSelectShoesId"  resultType="Map">
 		SELECT shoes_id, shoes_name, final_price, review_stars
 		FROM shoes
-		LIMIT #{startRow},#{pageSize};
+		ORDER BY idx ASC
+		LIMIT #{startRow}, #{pageSize};
+
 	</select>
 	
 	<select id="searchsMain"  resultType="Map">
@@ -16,6 +18,13 @@
 		WHERE shoes_name Like CONCAT('%',#{searchWord},'%')
 		LIMIT #{startRow},#{pageSize};
 	</select>
+	
+	<select id="selectMain" resultType="Map">
+		select shoes_id, shoes_name, final_price
+		from main
+		order by idx asc;
+	</select>
+	
 	<update id="isLikeUpdate">
 		update shoes
 		set is_like = 1
@@ -125,9 +134,10 @@
 	</select>
 
 	<select id="adminPageSelectShoesList" resultType="Map">
-		select shoes_id, shoes_name, shoes_price, sales, num_like, final_price
+		select shoes_id, shoes_name, shoes_price, sales, final_price
 		from shoes
 		where is_delete = 0
+		order by idx asc
 		LIMIT #{startRow},#{pageSize};
 	</select>
 	

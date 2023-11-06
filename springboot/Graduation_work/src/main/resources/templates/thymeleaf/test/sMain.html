@@ -334,7 +334,6 @@
 						<div class="col-lg-4 col-md-6 col-sm-6" id="div2">
 							<div class="product__item sale" id="item_3">
 								<div class="product__item__pic set-bg">
-									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
 									<iframe id="api-frame-3" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
 									</iframe>
@@ -365,7 +364,6 @@
 						<div class="col-lg-4 col-md-6 col-sm-6" id="div3">
 							<div class="product__item sale" id="itme_4">
 								<div class="product__item__pic set-bg">
-									<span class="label text-white" style="background-color: black;">온라인 전용 상품</span>
 									<iframe id="api-frame-4" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
 									</iframe>
@@ -396,7 +394,6 @@
 						<div class="col-lg-4 col-md-6 col-sm-6" id="div4">
 							<div class="product__item sale" id="item_5">
 								<div class="product__item__pic set-bg">
-									<span class="label text-white" style="background-color: rgb(0, 145, 0);">세일</span>
 									<iframe id="api-frame-5" width="260" height="260" style="border:none"
 										class="d-inline-block align-text-top">
 									</iframe>
@@ -578,6 +575,8 @@
 			
 			xhr.onreadystatechange = function () {
 				// 응답이 되었으면,
+				console.log("xhr.readyState : ", xhr.readyState);
+				console.log("xhr.status : ", xhr.status);
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					object = JSON.parse(xhr.responseText);
 					objLength = Object.keys(object).length;
