@@ -52,9 +52,7 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/4e304ac0-8f9e-4e23-ad17-4a922ad49d56" align="center"> 
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/c368380e-9d79-40ad-9381-bd2ab16dc738" align="center" width = " 500 " height = " 300 "> 
  </p>
-
-<img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3" width = " 660 " height = " 330 " >
-<figcaption align="center">ㅁㄴㅇ</figcaption>
+ 
 
 ## :page_with_curl: 진행과정
 
