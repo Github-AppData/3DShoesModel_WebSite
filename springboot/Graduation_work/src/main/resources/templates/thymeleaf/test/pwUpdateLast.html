@@ -14,9 +14,7 @@
 	
 	<!-- TODO : 새로운 Pw를 실제 DB에 update 해야 하는 부분 -->
 
-	<div id="passwordRequirements">
-		
-	</div>
+	
 
 
 	<section class="ftco-section" style="background-image: url(img/bg-2.jpg);">
@@ -33,10 +31,11 @@
 				<div class="col-md-5"> 
 						<form action="NewPwEqualsServlet" method="post">
 			      			<div class="form-group mb-3">
-			      				 <label class="label" for="input_id">아이디</label>
-			      				<input type="text" class="form-control" name="input_id" id="input_id" placeholder="회원님의 아이디를 입력해주세요">
 								  <label class="label" for="input_new_pw">비밀번호</label>
-			      				<input type="text" class="form-control" name="input_new_pw" id="input_new_pw" placeholder="새로운 비밀번호를 입력해주세요">
+			      				<input type="password" class="form-control" name="input_new_pw" id="input_new_pw" placeholder="새로운 비밀번호를 입력해주세요">
+			      				<div id="passwordRequirements">
+		
+								</div>
 								  <label class="label" for="input_new_pw_same">비밀번호 확인</label>
 			      				<input type="text" class="form-control" id="input_new_pw_same" name="input_new_pw_same" placeholder="변경하실 비밀번호를 한번 더 입력해주세요">
 			      			</div>
