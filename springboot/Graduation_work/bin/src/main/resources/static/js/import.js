@@ -1,16 +1,28 @@
 
+	function pop()
+		{
+			
+			var leftPosition = (window.screen.width / 2) - (400 / 2);
+			var topPosition = (window.screen.height / 2) - (500 / 2);
+			var windowFeatures = 'width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no,left=' + leftPosition + ',top=' + topPosition;
+			window.open("ratingPopUp", "pop", windowFeatures);
+		}
     const userCode = "imp62443370";
     IMP.init(userCode);
     function requestPay(){
                 //class가 btn_payment인 태그를 선택했을 때 작동한다.       
-                  
+                  var shoesPriceElement = document.getElementById("total_cost");
+                  var shoes_name = document.getElementById("shoes_name").textContent;
+                  var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
+                  console.log(shoes_name);
+                  pop();
                     //결제시 전달되는 정보
                   IMP.request_pay({
                               pg : 'html5_inicis', 
                               pay_method : 'card',
                               merchant_uid : 'merchant_' + new Date().getTime(),
-                              name : '주문명:결제테스트'/*상품명*/,
-                              amount : 10/*상품 가격*/, 
+                              name : shoes_name/*상품명*/,
+                              amount : shoesPrice/*상품 가격*/, 
                               buyer_email : 'dlfheks@naver.com'/*구매자 이메일*/,
                               buyer_name : '테스터',
                               buyer_tel : '010-3061-3357'/*구매자 연락처*/,
@@ -30,16 +42,15 @@
                                   msg += '에러내용 : ' + rsp.error_msg;
                                  // result ='1';
                               }
-                              /*
-                              if(result=='0') {
-                                  location.href= $.getContextPath()+"/Cart/Success";
-                                  
-                              }*/
                               alert(msg);
                           });
+                           
                       }
     
     function requestPay2() {
+		
+		var shoesPriceElement = document.getElementById("total_cost");
+        var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
 
         IMP.request_pay({
 
@@ -48,7 +59,7 @@
             merchant_uid: 'merchant_' + new Date().getTime(),
             name : '주문명:결제테스트'/*상품명*/,
             name: "테스트",
-            amount: 10,
+            amount: shoesPrice,
             buyer_name : '테스터',
             buyer_tel: "010-3061-3357",
 
@@ -66,4 +77,5 @@
                       }
                       alert(msg);
                   });
+                 
     }

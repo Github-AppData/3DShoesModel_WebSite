@@ -2,6 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+	<style>
+		/* 디자인된 div 스타일 */
+	    .styled-button {
+			color: black;
+    		background-color: #ccc;
+	        /* 디자인 요소 */
+	        border: none;
+	        background: none;
+	        padding: 0;
+	        border-radius: 5px;
+	        padding: 5px 10px;
+	        cursor: pointer;
+	        /* 기타 스타일 요소를 여기에 추가할 수 있습니다 */
+	    }
+	    
+	    #click-message {
+		  display: none;
+		  position: fixed;
+		  top: 250px;
+		  left: 430px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+	</style>
     <meta charset="UTF-8">
     <meta name="description" content="5JO">
     <meta name="keywords" content="5JO, unica, creative, html">
@@ -22,7 +48,7 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    
+    <link rel="stylesheet" href="css/hearts.css" type="text/css">
     <link rel="stylesheet" href="css/search.css" type="text/css">
     
 </head>
@@ -30,6 +56,7 @@
 <body>
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="js/viewer-api.js"></script>
+	<script src="js/numeral.js"></script>
 	
 	<script>
         window.addEventListener('load', function() {
@@ -128,7 +155,6 @@
                            <li><a href="main">메인화면</a></li>
                             <li class="active"><a href="sMain">신발</a>
                             <li><a href="noticdBoard">게시판 </a></li>
-                            <li><a href="sBlog">관리자 페이지</a></li>
                             <li><a href="sContact">매장찾기</a></li>
                         </ul>
                     </nav>
@@ -155,87 +181,80 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                 
                     <div class="col-md-6">
-                    	<!--<iframe src="" id="api-frame-1" width="550" height="600" style="border:none"
+                    		<iframe src="" id="api-frame-1" width="600" height="500" style="border:none"
     									allow="autoplay; fullscreen; xr-spatial-tracking" 
     									xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen mozallowfullscreen="true"
-    									webkitallowfullscreen="true">-->
+    									webkitallowfullscreen="true">
     					</iframe>
+    				</div>
+    					<!--
     					<div class="sketchfab-embed-wrapper"> 
 							<iframe id="sketchfab-iframe" width="550" height="600" title="Shoe" frameborder="0" allowfullscreen mozallowfullscreen="true" 
 								webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" 
 								xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered 
 								web-share src="https://sketchfab.com/models/578c885c820544359969facae168c529/embed\"> 
 						  	</iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/shoe-578c885c820544359969facae168c529?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Shoe </a> by <a href="https://sketchfab.com/pierzcd13?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Chris Pierz </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=578c885c820544359969facae168c529" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div>
-    				</div>
+    				</div>-->
                     <div class="col-md-5 ms-4 ml-5" ><br>
                         	<!-- 제품 이름 --> 
                        		<!-- 아직 만들지 않은 DTO라서 존재하지 않기에 오류가 나 조건식으로 주어 임시 로 쓰는 중 DTO가 만들어지면 삭제후  th:text="${productDTO.shoesname}" 만 쓰면 됨-->
                             <h6 id="shoes_name"></h6>
                         <div class="mt-2">
-                            <h5 id="shoes_price">105,000원</h5>
+                            <h5 id="total_cost">105,000원</h5>
                         </div>
                         <div class="product__details__text mb-5 " style="text-align: left" >
-                        <span class="rating"  >
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span> - 구매:429</span>
-                         </span>
+						<span id="ratingPlace">
+							
+                        </span>
                          
                          <div class="product__details__option mt-2">
                                 <div class="product__details__option__size">
-									<form method="post" action="CartAddObjectServlet">
-                                    
+									<div id="click-message" class="hidden"></div>
 	                                    <br><span class="mb-2">사이즈 선택:</span><br>
-	                                    
-	                                    <label for="210" class="mb-2">210
-	                                        <input type="radio" id="210" name="selectedSize" value="210">
+	                                    <label>
+	                                        <button class="styled-button" input-link-id="0" id="selectSize0" onclick="size(this);">210</button>
+	                                    </label>
+	                                    <label>
+	                                        <button class="styled-button" input-link-id="1" id="selectSize1" onclick="size(this);">220</button>
 	                                    </label>
 	                                    
-	                                    <label for="220">220
-	                                        <input type="radio" id="220" name="selectedSize" value="220">
-	                                    </label>
-	                                    
-	                                    <label for="230">230
-	                                        <input type="radio" id="230" name="selectedSize" value="230">
-	                                    </label>
-	                                    
-	                                    <label class="active" for="240">240
-	                                        <input type="radio" id="240" name="selectedSize" value="240" checked>
-	                                    </label>
-	                                    
-	                                    <label for="250">250
-	                                        <input type="radio" id="250" name="selectedSize" value="250">
-	                                    </label>
-	                                    
-	                                    <label for="260">260
-	                                        <input type="radio" id="260" name="selectedSize" value="260">
-	                                    </label>
-	                                    
-	                                    <label for="270">270
-	                                        <input type="radio" id="270" name="selectedSize" value="270">
-	                                    </label>
-	                                    
-	                                    <label for="280">280
-	                                        <input type="radio" id="280" name="selectedSize" value="280">
-	                                    </label>
-	                                    
-	                                    <label for="290">290
-	                                        <input type="radio" id="290" name="selectedSize" value="290">
-	                                    </label>
+	                                    <label>
+	                                        <button class="styled-button" input-link-id="2" id="selectSize2" onclick="size(this);">230</button>
+	                                     </label>
+	                                     
+	                                     <label>
+	                                        <button class="styled-button" input-link-id="3" id="selectSize3" onclick="size(this);">240</button>
+	                                     </label>
+	                                     
+	                                     <label>
+	                                        <button class="styled-button" input-link-id="4" id="selectSize4" onclick="size(this);">250</button><br>
+	                                     </label>
+	                                     
+	                                     <label>
+	                                        <button class="styled-button" input-link-id="5" id="selectSize5" onclick="size(this);">260</button>
+	                                     </label>
+	                                     
+	                                     <label>   
+	                                        <button class="styled-button" input-link-id="6" id="selectSize6" onclick="size(this);">270</button>
+	                                     </label>
+	                                     
+	                                     <label>
+	                                        <button class="styled-button" input-link-id="7" id="selectSize7" onclick="size(this);">280</button>
+	                                     </label>
+	                                     
+	                                     <label>
+	                                        <button class="styled-button" input-link-id="8" id="selectSize8" onclick="size(this);">290</button>
+	                                     </label>
 	                                </div>
 	                            </div>
 	                            
 	                         	<div class="product__details__cart__option">
 	                                <div class="quantity">
 	                                    <div class="pro-qty">
-	                                        <input type="text" value="1" name="quantityInput">                        
+	                                        <input type="text" id="quantity" value="1" name="quantityInput">                        
 	                                    </div>
 	                                </div>
-	                                <button type="submit" onclick="noticeMessage()" class="primary-btn">장바구니</button>
-	                                </form>
+	                                <button onclick="noticeMessage()" class="primary-btn">장바구니</button>
 	                            </div>
 	                            
 	                            </div>
@@ -388,10 +407,6 @@
                         <h6>구독</h6>
                         <div class="footer__newslatter">
                             <p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
-                            <form action="#">
-                                <input type="text" placeholder="이메일">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -404,7 +419,7 @@
                                 document.write(new Date().getFullYear());
                             </script>2020
                             All rights reserved | 5조신발점 <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">ih</a>
+                            aria-hidden="true"></i>
                         </p>
                     </div>
                 </div>
@@ -428,18 +443,18 @@
 					  <div class="search"> 
 						  <input type="text" class="search-input" list="datalistOptions" placeholder="ex) 나이키, 뉴발란스 ..." name=""> 
 						  <datalist id="datalistOptions">
-  <option value="나이키">
-  <option value="잭퍼셀">
-  <option value="남성">
-		  <option value="as">
-			  <option value="질문">
-				  <option value="게시판">
-					  <option value="배송">
-						  <option value="고객센터">
-								  <option value="black">
-									  <option value="검정">
-										  <option value="255">
-</datalist>
+			  					<option value="나이키">
+							 	 <option value="잭퍼셀">
+							  	<option value="남성">
+					  			<option value="as">
+						  		<option value="질문">
+							  	<option value="게시판">
+								<option value="배송">
+								<option value="고객센터">
+								<option value="black">
+								 <option value="검정">
+								<option value="255">
+							</datalist>
 						  <a href="#" class="search-icon"> <i class="fa fa-search"></i> </a> 
 						  </div>
 						   </div>
@@ -495,32 +510,56 @@
 																											   </div> 
 																											   </div>
 																											    </div>
-</form>
+				</form>
             </form>
         </div>
     </div>
     <!-- Search End -->
-    
-    
-    
     
     <script type="text/javascript">
 		
 		// 전역변수 공간 입니다만.
 		
 		var imageToModelMapping_real = [];
+		var imageToModelMapping_real2 = [];
 		var iframe_clicked = [];
 		
 		var shoes_id;
-	    var shoes_price;
+	    var total_cost;
 	    var cnt = 0;
 	    
 	    var xhr = new XMLHttpRequest();
 	    var xhr2 = new XMLHttpRequest();
 	    
+	    var selected_size = 0;
+	    function size(element){
+			
+			var linkId = 0;
+			
+			const buttons = document.querySelectorAll('.styled-button');
+		    buttons.forEach(btn => {
+		        if (btn === element) {
+		            btn.style.color = "white";
+		        } else {
+		            btn.style.color = "black"; // 다른 버튼의 색 초기화
+		        }
+		    });
+			
+
+			linkId = element.getAttribute("input-link-id");
+			
+			var size_id = 'selectSize' + linkId;
+			selected_size = document.getElementById(size_id).textContent;
+			
+			console.log("selected_size : ", selected_size);
+		}
+	    
 	    window.onload = pageLoad;
 		function pageLoad()
 		{
+			showclickToast("신발을 드래그하여 이리저리 움직여보세요 !");
+			
+			
 			cnt = 0;
 			xhr.onreadystatechange = function () 
 			{
@@ -535,21 +574,47 @@
 		            
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
-					shoes_price = object[0].shoes_price;
-					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, shoes_price:shoes_price });
+					final_price = object[0].final_price;
+					review_stars = object[0].review_stars;
+					
+					var RatingInnerHTML = '<div class="rating">';
+						
+					var graystars = 5 - review_stars;
+						
+					// 주황색 별을 먼저 찍고, 그 다음에 회색을 찍는다.
+					console.log("graystars : ", graystars);
+					for(var sh = 0; sh < review_stars; sh++)
+					{ 
+						RatingInnerHTML += '<i class="fa fa-star" style="color: orange;"></i>';
+					}
+					
+					
+					for(var h = 0; h < graystars; h++)
+					{
+						RatingInnerHTML += '<i class="fa fa-star" style="color: gray;"></i>';
+					}
+					
+					RatingInnerHTML += '</div>';
+					document.getElementById("ratingPlace").innerHTML = RatingInnerHTML;
+					
+					imageToModelMapping_real2.push(shoes_id);
+					imageToModelMapping_real2.push(shoes_name);
+					imageToModelMapping_real2.push(final_price);
+					
+					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, final_price:final_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
 					
 		            
-					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
-					// 신발 이름 
+					/// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
 					
+					// 신발 이름 
 					var shoes_info_name = imageToModelMapping_real[0].shoes_name;
 		    		document.getElementById("shoes_name").innerHTML = "<h6>" + shoes_info_name + "</h6>";
 					
-					
-					
-					var shoes_info_price = imageToModelMapping_real[0].shoes_price;
-		    		document.getElementById("shoes_price").innerHTML = "<h5>" + shoes_info_price + "원 </h5>";
+					// 신발 가격 
+					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
+					var format_price_real = numeral(shoes_info_final_price).format('0,0');
+		    		document.getElementById("total_cost").innerHTML = "<h5>" + format_price_real + "원 </h5>";
 					
 					
 					imageToModelMapping_real.forEach(function(mapping) 
@@ -568,31 +633,57 @@
 		}; // pageLoad  
 		
 		function noticeMessage(){
+			var quantity = document.getElementById("quantity").value;
+			
+			console.log("quantity : ",quantity);
+			console.log("selected_size : ", selected_size);
+			imageToModelMapping_real2.push(quantity);
+			imageToModelMapping_real2.push(selected_size);
 			
 			xhr2.onreadystatechange = function () 
 			{
-				if (xhr2.readyState === 4 && xhr2.status === 200)
+				console.log("imageToModelMapping_real2 : ", imageToModelMapping_real2);
+				console.log("xhr2.readyState : ", xhr2.readyState);
+				console.log("xhr2.status : ", xhr2.status);
+				// 응답이 되었으면,
+				if (xhr2.readyState === 4 && xhr2.status === 200) 
 				{
-					if(cnt == 0)
-					{
-						console.log(xhr2.responseText);
-						alert("상품이 추가 되었습니다.");
-						cnt++;
-					} 
-				} else {
-					if(cnt == 0)
-					{
-						console.log(xhr2.responseText);
-						alert("이미 장바구니에 있습니다.");
-						cnt++;
-					} 
-					
+					showclickToast("상품이 추가 되었습니다.");
+				}
+				else if(xhr2.readyState === 4 && xhr2.status === 410){
+				  	showclickToast("이미 장바구니에 있습니다.");
+				} else if(xhr2.readyState === 4 && xhr2.status === 202){
+				  	showLoginToast("로그인하고 오세요.");
 				}
 			}
 			
 			xhr2.open("POST", "/CartAddObjectServlet", true);
-			xhr2.send(null);
+			xhr2.send(imageToModelMapping_real2); // sDetails에 있는 정보를 보낸다.
 		}
+		
+		function showclickToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		  }, 6000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showLoginToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
+		  }, 3000); // 3초 후 메시지가 사라집니다.
+		}
+		
 		
 	    
 	    function replaceWith3DModel(uid, iframeId) {
@@ -635,6 +726,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    
     <script src="js/import.js"></script>
     
 </body>

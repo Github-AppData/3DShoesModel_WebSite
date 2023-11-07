@@ -19,7 +19,6 @@ import com.example.rubypaper.mapper.UserMapper;
 
 public interface TotalService {
 	
-	
 	public int numberOfCart();
 	public  List<Map<String, Object>> myPageNoticeBoardSelect (@Param("user_id") String user_id) throws Exception;
 	public  List<Map<String, Object>> boardIdxData(int idx) throws Exception;

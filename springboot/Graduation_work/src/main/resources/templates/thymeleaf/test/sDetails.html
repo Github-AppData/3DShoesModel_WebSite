@@ -121,7 +121,6 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
@@ -129,7 +128,6 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -161,7 +159,6 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
 							<a href="like"><img src="img/icon/heart.png" alt=""></a>
 							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
 							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
