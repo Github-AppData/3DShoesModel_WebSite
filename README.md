@@ -33,22 +33,22 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
  
 ## :eye_speech_bubble: 페이지 구성
 <p align="center">  
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/571c0380-fb15-46d5-a0d4-a49ab20823d3" align="center" width = " 500 " height = " 300 ">  
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/b256aaf6-019c-4e83-bcf8-1d94d29fa99f" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/7627ef95-29e1-44f4-b1a4-3c71bb60d127" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ff4b2416-de0d-46c5-9c24-e728399a7c80" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/da178664-251a-4a71-9640-0f9625936618" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/7dad0bd3-1f79-44ef-846d-c2d63df68dfa" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/54c19027-7f6c-492e-8f14-dc0d7eaad6f7" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/f33848d9-853b-4ec2-aa67-42a9ced473cb" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/8a233d14-fcf2-4daa-ba83-928aaf85c96c" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/f905fe3f-9807-40b2-a6bb-398367675027" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/9686eb3c-9961-492c-87f8-6edad5e22ea9" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/01a18c50-4dfa-4872-af60-1c0e4b10f480" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/20b6ac2d-7d73-4847-98e7-23f57c5878c1" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/e550dae8-47fc-4bf1-9314-16d36a111c78" align="center" width = " 500 " height = " 300 "> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/4e304ac0-8f9e-4e23-ad17-4a922ad49d56" align="center"> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/c368380e-9d79-40ad-9381-bd2ab16dc738" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/fa3c04ab-cfcd-4b9a-8d05-4c9fceaa4d00" align="center" width = " 500 " height = " 300 ">  
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/daac7195-d3ba-4046-b208-097ca76d5b93" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/4f956eeb-57cb-4268-9b61-4e8b6fea62cf" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/b300b153-e021-48f5-9078-7317ac543dae" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/e7d47bc4-4a2d-417d-bddd-b6dac528028a" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/12bbfbc7-67ff-4f39-bdae-a3ebe0104daa" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/bfefc64b-fca7-4e5e-85f9-57938bcd992f" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/415eb41e-f76f-4b7c-93ac-02735f546a4e" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/1fe56208-d9aa-4a7c-b04a-2f24d0f154d2" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/3e5e7398-70fb-4527-bf48-3e4c30064961" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/d8fab06f-b333-4b64-8faa-84b46a0b4715" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/fcdb2473-a82e-4070-9da2-8fd35830eaaa" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ad59a3b6-d5f7-408e-857e-f24bc79cfb06" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/1e61dae9-db78-4d2f-bac5-20cc8a58bfa9" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/61da1c0b-fc52-44a5-9e9f-ada8cfd58353" align="center"> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ac7db0af-745b-4bda-bd6e-491c52a5c1f9" align="center" width = " 500 " height = " 300 "> 
  </p>
  
 
