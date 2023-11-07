@@ -75,6 +75,12 @@ body {
   clear: both;
 }
 
+.video {
+    width: 80%;
+    height: 750px;
+    object-fit: fill;
+}
+
 h1,
 h2,
 h3,
@@ -442,7 +448,7 @@ ol {
 }
 
 .header__logo {
-	padding: 30px 0;
+	padding: 10px 0;
 }
 
 .header__logo a {
@@ -983,13 +989,14 @@ ol {
 	background: #111111;
 }
 
-.product__item.sale .product__item__text .rating i {
+/*.product__item.sale .product__item__text .rating i {
 	color: #f7941d;
+}*/	
+
+.product__item.sale .product__item__text .rating i:nth-last-child(-n+2) {
+    color: #b7b7b7;
 }
 
-.product__item.sale .product__item__text .rating i:nth-last-child(1) {
-	color: #b7b7b7;
-}
 
 .product__item:hover .product__item__pic .product__hover {
 	right: 20px;
@@ -2194,13 +2201,28 @@ ol {
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-	height: 350px;
+	height: 100px;
+	background-color : white;
 }
 
 .breadcrumb-blog h2 {
 	color: #ffffff;
 	font-size: 60px;
 	font-weight: 700;
+}
+.breadcrumb-blog h3 {
+	color: black;
+	font-size: 30px;
+	font-weight: 600;
+	text-align: left;
+	padding-left: 40px;
+	padding-top: 20px;
+	color : #373737;
+}
+
+.breadcrumb-blog hr {
+	height : 3px;
+	background-color : #555555;
 }
 
 /*---------------------
@@ -2584,14 +2606,14 @@ ol {
 }
 
 .cart__total ul {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .cart__total ul li {
 	list-style: none;
 	font-size: 16px;
 	color: #444444;
-	line-height: 40px;
+	line-height: 35px;
 	overflow: hidden;
 }
 
@@ -2607,6 +2629,14 @@ ol {
 	text-align: center;
 	letter-spacing: 2px;
 }
+
+/* 별도의 CSS 파일이나 <style> 태그 안에 작성 가능 */
+.my-custom-col {
+	margin-left: 50px;
+    width: 25%; /* 너비 설정, 여기서는 25%로 설정하였습니다. */
+    /* 다른 스타일들 */
+}
+
 
 /*---------------------
   Checkout
@@ -2854,6 +2884,7 @@ ol {
 	-webkit-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
+	
 }
 
 .blog__item__text span {
@@ -3459,7 +3490,7 @@ ol {
 
 @media only screen and (min-width: 1200px) {
 	.container {
-		max-width: 1170px;
+		max-width: 1270px;
 	}
 }
 

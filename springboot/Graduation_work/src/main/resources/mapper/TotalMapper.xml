@@ -111,8 +111,8 @@
 	</select>
 
 	<insert id="isLikeInfoInsert">
-		insert into like_tb(shoes_id, link_id, shoes_name)
-		values (#{shoes_id}, #{link_id}, #{shoes_name})
+		insert into like_tb(shoes_id, link_id, shoes_name, user_id)
+		values (#{shoes_id}, #{link_id}, #{shoes_name}, #{user_id})
 	</insert>
 
 	<select id="shoesIdCheckLike">

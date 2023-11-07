@@ -10,6 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import com.example.rubypaper.service.TotalService;
 import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.dto.Like_tb;
@@ -24,14 +26,24 @@ public class LikePageDataSetServlet extends HttpServlet{
 	Shoes shoes2 = new Shoes();
 	Like_tb like_tb = new Like_tb();
 	
+	HttpSession session;
+	
+	
+			
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("LikePageDataSetServlet");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+		
+		session = request.getSession();
+		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		
         BufferedReader reader = request.getReader();
         StringBuilder AddInfo = new StringBuilder();
+        
         
         String line;
         while ((line = reader.readLine()) != null) {
@@ -57,13 +69,16 @@ public class LikePageDataSetServlet extends HttpServlet{
 			e.printStackTrace();
 		}
         
-        if(shoes == null)
+        
+        // 같은 신발이 좋아요 테이블에 없고, 로그인이 되어 있을 때, 
+        if(shoes == null && userID != null)
         {
         	// 좋아요 DB에 shoes_id가 없을 경우 
 	        try {
 	        	like_tb.setLink_id(link_id);
 	        	like_tb.setShoes_id(shoes_id);
 	        	like_tb.setShoes_name(shoes_name);
+	        	like_tb.setUser_id(userID);
 	        	totalService.isLikeUpdate(shoes_id);
 				totalService.isLikeInfoInsert(like_tb);
 				
