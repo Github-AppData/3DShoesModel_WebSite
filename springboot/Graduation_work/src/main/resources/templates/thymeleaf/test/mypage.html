@@ -57,7 +57,6 @@
 				<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
 				<a href="#"><img src="img/icon/heart.png" alt=""></a>
 				<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""></a>
-				
 				<div class="price">0 원</div>
 			</div>
 			<div id="mobile-menu-wrap"></div>
@@ -99,14 +98,14 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3">
 						<div class="header__logo">
-							<a href="./index.html"><img src="img/logo2.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+							<a th:href="@{main}"><img src="img/logo2.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6">
 						<nav class="header__menu mobile-menu">
 							<ul>
 								<li><a href="main">메인화면</a></li>
-	                            <li class="active"><a href="sMain">신발</a>
+	                            <li><a href="sMain">신발</a>
 	                            <li><a href="noticdBoard">게시판 </a></li>
 	                            <li><a href="sContact">매장찾기</a></li>
 							</ul>
@@ -114,7 +113,6 @@
 					</div>
 					<div class="col-lg-3 col-md-3">
 						<div class="header__nav__option">
-							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
 							<a href="like"><img src="img/icon/heart.png" alt=""></a>
 							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
 							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
@@ -210,7 +208,7 @@
                        <section class="notice">
 						 <div class="page-title">
 							  <div class="container">
-								  <h3>고객 게시판</h3>
+								  <h3>내가 쓴 게시글 </h3>
 							  </div>
 				  		 </div>
 			  
@@ -218,26 +216,21 @@
 					<!-- board list area -->
 					  <div id="board-list">
 						  <div class="container">
-							  <table class="board-table">
+							  <table class="board-table" >
 								  <thead>
 								  <tr>
-									  <th scope="col">번호</th>
-									  <th scope="col">제목</th>&nbsp;
+									  <th scope="col" >제목</th>&nbsp;
 									  <th scope="col">등록일</th>
-									  <th scope="col">조회수</th>
 								  </tr>
 								  </thead>
 								  <tbody>
-									<tr>
-										<td>공지1</td>
-										<td>adsasd</td>
-										<td>2023.10.29</td>
+									<tr th:each="board2 : ${boardList}">
+										<td onClick="submitData(this)" th:text="${board2.title}" th:data-link-id="${board2.idx}">공지1</td>&nbsp;
+										<td th:text="${board2.write_date}">2023.10.29</td>
 									</tr> 
 								  </tbody>
 							  </table>
-							  
 							  <form action="IsLoginCheckServlet" method="post" style="text-align: right;" class="mt-2">
-								<button type="submit" class="btn btn-dark">목록</button>
 								<button type="submit" class="btn btn-dark">글쓰기</button> 
 							  </form>
 							
@@ -350,6 +343,7 @@
 		</div>
 		<!-- Search End -->
 		<script>
+			var xhr2 = new XMLHttpRequest();
 			function updateButton()
 			{
 			    // 수정 버튼을 클릭하면 모든 readonly 속성을 제거합니다.
@@ -362,6 +356,26 @@
 			    
 			    document.getElementById("stored_button_add").innerHTML = '<button type="submit" class="btn btn-default" onclick=“stored()">저장</button>';
 			};
+			
+			function submitData(element){
+				
+				var linkId = element.getAttribute("data-link-id");
+				console.log("linkId : ", linkId);
+				
+				xhr2.onreadystatechange = function () 
+				{
+					// 응답이 되었으면,
+					if (xhr2.readyState === 4) 
+					{
+						object = xhr2.responseText;
+						window.location='wDetails'
+					}
+				}
+					
+				xhr2.open("GET", "/BoardDetailPageSetServlet?linkId=" + linkId, true);
+				xhr2.send(null);
+				
+			}
 			
 			
 		</script>

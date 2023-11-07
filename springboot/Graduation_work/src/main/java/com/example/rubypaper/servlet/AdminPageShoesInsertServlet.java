@@ -1,4 +1,4 @@
-package com.example.rubypaper.servlet;
+	package com.example.rubypaper.servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;

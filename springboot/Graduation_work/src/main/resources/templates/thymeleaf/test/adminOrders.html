@@ -307,14 +307,14 @@
 						    
 						    <li class="nav-item">
 						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-						        <a class="nav-link" href="main">
-							        <span class="nav-icon">
+						        <a class="nav-link" th:href="@{sMain}">
+							        <span class="nav-icon" >
 							            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 	  <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
 	  <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 	</svg>
 							        </span>
-			                        <span class="nav-link-text">사용자 페이지 보기</span>
+			                        <span class="nav-link-text" >사용자 페이지 보기</span>
 						        </a><!--//nav-link-->
 						    </li><!--//nav-item-->
 					    </ul><!--//footer-menu-->
@@ -372,7 +372,6 @@
 													<th class="cell" >신발 가격 </th>
 													<th class="cell">할인</th>
 													<th class="cell">최종 금액</th>
-													<th class="cell	">좋아요 갯수</th>
 													<th class="cell">수정</th>
 													<th class="cell">삭제</th>
 												</tr>
@@ -383,7 +382,6 @@
 													<td th:id="shoes_price + ${rowstat.count}" th:data-id="${rowstat.count}" class="cell" th:text="${shoesList.shoes_price}"></td>
 													<td th:id="shoes_sales + ${rowstat.count}" th:data-id="${rowstat.count}" class="cell" th:text="${shoesList.sales}" ></td>
 													<td th:id="result + ${rowstat.count}" class="cell" th:text="${shoesList.final_price}"></td>
-													<td class="cell" th:text="${shoesList.num_like}"><span class="note text-center"></span></td>
 													<td class="cell"><span th:id="cheangeName+${rowstat.count}"><button type="button" class="pretty-revisebutton" th:data-link-id="${rowstat.count}" th:onclick="changeShoesInfo(this)">수정</button></span></td>
 													<td class="cell"><button class="pretty-deletebutton" onclick="deleteShoesInfo(this)" th:data-link-id="${rowstat.count}">삭제</button></td>
 												</tr>

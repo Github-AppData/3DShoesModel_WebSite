@@ -227,6 +227,16 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception {
 		totalMapper.shoesRatingStarsUpdate(shoes);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectMain() throws Exception {
+		return totalMapper.selectMain();
+	}
+
+	@Override
+	public List<Map<String, Object>> myPageNoticeBoardSelect(String user_id) throws Exception {
+		return totalMapper.myPageNoticeBoardSelect(user_id);
 	}	
 
 }

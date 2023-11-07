@@ -31,6 +31,13 @@
 			</otherwise>
 		</choose>		
 		LIMIT #{startRow},#{pageSize};
+		ORDER BY idx ASC
+	</select>
+	
+	<select id="myPageNoticeBoardSelect"  resultType="Map">
+		select title, write_date, idx
+		from notice_board
+		where user_id = #{user_id};
 	</select>
 
 	<select id="searchsMain" resultType="Map"> 
@@ -62,7 +69,13 @@
 		</choose>		
 		LIMIT #{startRow},#{pageSize}; 
 	</select>
-		
+	
+	<select id="selectMain" resultType="Map">
+		select shoes_id, shoes_name, final_price
+		from main
+		order by idx asc;
+	</select>
+	
 	<update id="isLikeUpdate">
 		update shoes
 		set is_like = 1
@@ -220,9 +233,10 @@
 	</select>
 
 	<select id="adminPageSelectShoesList" resultType="Map">
-		select shoes_id, shoes_name, shoes_price, sales, num_like, final_price
+		select shoes_id, shoes_name, shoes_price, sales, final_price
 		from shoes
 		where is_delete = 0
+		order by idx asc
 		LIMIT #{startRow},#{pageSize};
 	</select>
 
