@@ -31,7 +31,6 @@
 			</otherwise>
 		</choose>		
 		LIMIT #{startRow},#{pageSize};
-		ORDER BY idx ASC
 	</select>
 	
 	<select id="myPageNoticeBoardSelect"  resultType="Map">
