@@ -3,46 +3,30 @@ package com.example.dto;
 
 public class EmailDTO {
 
-	private String to;
-	private String subject;
+	private String address;
+	private String title;
 	private String message;
-	
-	public EmailDTO()
-	{
-		
+	public String getAddress() {
+		return address;
 	}
-	
-	public EmailDTO(String to, String subject, String message)
-	{
-		this.to = to;
-		this.subject = subject;
-		this.message = message;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
-	public String getTo() {
-		return to;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setTo(String to) {
-		this.to = to;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
 	public String getMessage() {
 		return message;
 	}
-
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	
+	@Override
+	public String toString() {
+		return "EmailDTO [address=" + address + ", title=" + title + ", message=" + message + "]";
+	}
 	
 }
