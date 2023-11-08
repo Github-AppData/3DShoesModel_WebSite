@@ -32,8 +32,8 @@ public interface TotalMapper {
 	public List<Map<String, Object>> searchAdminPageUser(Paging paging);
 	public int boardCount() throws Exception;
 	public int searchBoardCount(String boards_Name) throws Exception;
-	public int shoesCount() throws Exception;
-	public int searchShoesCount(String shoes_Name) throws Exception;
+	public int shoesCount(Paging paging) throws Exception;
+	public int searchShoesCount(Paging paging) throws Exception;
 	public int userCount() throws Exception;
 	public int searchUserCount(String name) throws Exception;
 	public List<Map<String, Object>> cartFindList();

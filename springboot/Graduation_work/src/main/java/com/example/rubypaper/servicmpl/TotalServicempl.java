@@ -61,13 +61,13 @@ public class TotalServicempl implements TotalService{
 	}
 	
 	@Override
-	public int shoesCount() throws Exception{
-		return totalMapper.shoesCount();
+	public int shoesCount(Paging paging) throws Exception{
+		return totalMapper.shoesCount(paging);
 	}
 	
 	@Override
-	public int searchShoesCount(String shoes_Name) throws Exception{
-		return totalMapper.searchShoesCount(shoes_Name);
+	public int searchShoesCount(Paging paging) throws Exception{
+		return totalMapper.searchShoesCount(paging);
 	}
 	
 	@Override
