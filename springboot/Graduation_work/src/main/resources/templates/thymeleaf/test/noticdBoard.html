@@ -148,11 +148,13 @@
 									  <label for="search" class="blind">공지사항 내용 검색</label>
 									  <input id="search" type="text" name="search" placeholder="검색어를 입력해주세요.">
 									  <button type="submit" class="btn btn-dark">검색</button>
+									  <div><button type="button" onclick="resetSearch()">초기화</button></div>
 								  </div>
-							  </form>
+							  </form> 						  
 						  </div>
 					  </div>
 				  </div>
+				  
 				 
 				<!-- board list area -->
 				  <div id="board-list">
@@ -376,6 +378,12 @@
 				if(kcode == 116) {
 				history.replaceState({}, null, location.pathname);
 				}	
+			}
+			
+			function resetSearch(){
+				urlParams.set('search','');
+				urlParams.set('page','1');
+				location.replace(url);
 			}
 			
 		</script>

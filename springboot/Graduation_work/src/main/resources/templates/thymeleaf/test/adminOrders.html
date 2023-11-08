@@ -103,6 +103,7 @@
 		                <form class="app-search-form" action="SearchShoesServlet" method="post">   
 							<input type="text" placeholder="검색어를 입력해주세요..." name="search" class="form-control search-input">
 							<button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button> 
+							<button type="button" onclick="resetSearch()">초기화</button>
 				        </form>
 		            </div><!--//app-search-box-->
 		            
@@ -428,7 +429,13 @@
 		var xhr2 = new XMLHttpRequest();
 		var xhr3 = new XMLHttpRequest();
 		var total_price = 0;
+		//Controller에서 보낸 모델을 가져옴
 		var paging = [[${paging}]];
+		
+		//현재 url을 가져옴
+		const url = new URL(location.href);
+		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+		const urlParams = url.searchParams;
 		
 		window.onload = pageLoad;
 		window.onkeydown = refresh;
@@ -450,6 +457,12 @@
 				}
 				
 				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';	
+			}
+		
+		function resetSearch(){
+				urlParams.set('search','');
+				urlParams.set('page','1');
+				location.replace(url);
 			}
 		
 		function movePage(page){

@@ -280,7 +280,11 @@
 					                    </div>
 					                    <div class="col-auto">
 					                        <button type="submit" class="btn app-btn-secondary">검색</button>
+					                        <button type="button" onclick="resetSearch()">초기화</button>
 					                    </div>
+					                    <div>
+											
+										</div>
 					                </form>
 					                
 							    </div><!--//col-->
@@ -531,6 +535,13 @@
 				history.replaceState({}, null, location.pathname);
 				}	
 			}
+			
+		function resetSearch(){
+				urlParams.set('search','');
+				urlParams.set('page','1');
+				location.replace(url);
+			}
+			
 		
 	</script>
     
