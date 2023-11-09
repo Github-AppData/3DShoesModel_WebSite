@@ -690,21 +690,6 @@
 			}
 			
 			link = link + '?' + search + '&' + page + '&' + tag;
-			/*
-			if(urlParams.get('search') != null){
-				link = link + "?search=" + urlParams.get('search');
-				if(urlParams.get('page') != null){
-					link = link + "&page=" + urlParams.get('page');
-				}
-				if(urlParams.get('tag') != null){
-					link = link + "&tag=" + urlParams.get('tag');
-				}
-			}else if(urlParams.get('page') != null){
-				link = link + "?page=" + urlParams.get('page');
-				if(urlParams.get('tag') != null){
-					link = link + "&tag=" + urlParams.get('tag');
-				}
-			}*/
 			xhr.open("GET", link, true); // 비동기 요청 시작.
 			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}; // pageLoad
@@ -745,13 +730,23 @@
 			
 			
 		function showInfoToast(message) {
-			
 		  var toast = document.getElementById("info-message");
 		  toast.innerText = message;
 		  toast.style.display = "block";
 		  
 		  setTimeout(function() {
 		    toast.style.display = "none";
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showLoginToast(message) {
+		  var toast = document.getElementById("info-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
 		  }, 2000); // 3초 후 메시지가 사라집니다.
 		}
 		
@@ -790,19 +785,25 @@
 				// 그 말인 즉슨, 
 				console.log("xhr3.readyState : ", xhr3.readyState);
 				console.log("xhr3.status : ", xhr3.status);
-				if (xhr3.readyState === 4 && xhr3.status === 200) 
+				if(xhr3.readyState === 4)
 				{
-					// State Change ON 
-					document.getElementById(whoLikeButton).value="On";
-					mybtnstylechange.style.border = "4px solid black";
-					showInfoToast("등록 되었습니다.");
-					
-				} 
-				else if(xhr3.readyState === 4 && xhr3.status === 400 && currentvalue == 'On')
-				{
-					document.getElementById(whoLikeButton).value="Off";
-					mybtnstylechange.style.border = "4px solid #c7c7c7";
-					showInfoToast("해제 되었습니다.");
+					if (xhr3.status === 200) 
+					{
+						// State Change ON 
+						document.getElementById(whoLikeButton).value="On";
+						mybtnstylechange.style.border = "4px solid black";
+						showInfoToast("등록 되었습니다.");
+					} 
+					else if(xhr3.status === 400)
+					{
+						showLoginToast("로그인 하고 오세요.");
+					} 
+					else if(xhr3.status === 401 && currentvalue == 'On')
+					{
+						document.getElementById(whoLikeButton).value="Off";
+						mybtnstylechange.style.border = "4px solid #c7c7c7";
+						showInfoToast("해제 되었습니다.");
+					}
 				}
 			}
 			likeData.push(currentvalue);
@@ -819,8 +820,6 @@
 			var jsonData = null;
 
 			linkId = link.getAttribute("data-link-id");
-
-
 
 			switch (linkId) {
 

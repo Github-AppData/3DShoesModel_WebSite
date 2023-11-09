@@ -115,7 +115,6 @@
 				</div>
 				<div class="col-lg-3 col-md-3">
 					<div class="header__nav__option">
-							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
 							<a href="like"><img src="img/icon/heart.png" alt=""></a>
 							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
 							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
@@ -162,14 +161,13 @@
 					<div class="mb-3 row">
 						<label for="statictitle" class="col-sm-3 col-form-label" >등록일 </label>
 						<div class="col-sm-9">
-						<input type="text" readonly class="v-line form-control-sm form-control-plaintext" id="statictitle" th:value="${board.write_date}">
+							<input type="text" readonly class="v-line form-control-sm form-control-plaintext" id="statictitle" th:value="${board.write_date}">
 				    	</div>
 					</div>
 					<hr>
 					<div class="mb-3 row">
-						<!-- <label for="staticmain" class="col-sm-3 col-form-label" >내용 </label> -->
-						<div class="col-sm-12">
-							<br>
+						<label for="staticmain" class="col-sm-3 col-form-label" >내용 </label>
+						<div class="col-sm-9">
 							<input type="text" readonly class="form-control-plaintext pl-5" id="staticmain" th:value="${board.content}">
 			    		</div>
 					</div>

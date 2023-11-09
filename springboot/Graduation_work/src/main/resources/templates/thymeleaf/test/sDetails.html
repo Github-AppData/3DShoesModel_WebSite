@@ -642,14 +642,14 @@
 				console.log("imageToModelMapping_real2 : ", imageToModelMapping_real2);
 				console.log("xhr2.readyState : ", xhr2.readyState);
 				console.log("xhr2.status : ", xhr2.status);
+				
 				// 응답이 되었으면,
 				if (xhr2.readyState === 4 && xhr2.status === 200) 
 				{
 					showclickToast("상품이 추가 되었습니다.");
-				}
-				else if(xhr2.readyState === 4 && xhr2.status === 410){
+				} else if(xhr2.readyState === 4 && xhr2.status === 410){
 				  	showclickToast("이미 장바구니에 있습니다.");
-				} else if(xhr2.readyState === 4 && xhr2.status === 202){
+				} else if(xhr2.readyState === 4 && xhr2.status === 400){
 				  	showLoginToast("로그인하고 오세요.");
 				}
 			}

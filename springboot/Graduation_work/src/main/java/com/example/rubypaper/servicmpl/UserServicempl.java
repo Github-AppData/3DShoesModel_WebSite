@@ -30,8 +30,8 @@ public class UserServicempl implements UserService {
 	}
 
 	@Override
-	public User newPwChange(String pw, String salt, String id) throws Exception {
-		return userMapper.newPwChange(pw, salt, id);
+	public int newPwChange(User user) throws Exception {
+		return userMapper.newPwChange(user);
 	}
 
 	@Override

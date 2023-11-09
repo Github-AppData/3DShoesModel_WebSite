@@ -27,6 +27,17 @@
 		    border-radius: 5px;
 		    z-index: 9999; /* 임의의 큰 값 설정 - 우선순위 설정 */
 		}
+		
+		#click-message {
+		  display: none;
+		  position: fixed;
+		  top: 250px;
+		  left: 430px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
 
 	</style>
 
@@ -161,6 +172,7 @@
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-blog set-bg" data-setbg="img/bglab2.png">
+		<div id="click-message" class="hidden"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -480,6 +492,9 @@
 			
 			
 			xhr.onreadystatechange = function () {
+				console.log("xhr.readyState : ", xhr.readyState);
+				console.log("xhr.status : ", xhr.status);
+				
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					object = JSON.parse(xhr.responseText);
@@ -500,8 +515,6 @@
 					for(var i = 0; i < objLength; i++){
 						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
-						
-						
 					}
 					
 					var real = objLength;
@@ -538,7 +551,11 @@
 						replaceWith3DModel(mapping.uid, mapping.iframeId);
 					});
 
-				} // if (xhr.readyState === 4 && xhr.status === 200) 
+				} else if (xhr.readyState === 4 && xhr.status === 400){
+					showInfoToast("로그인하고 오세요.");
+					
+				}
+				// if (xhr.readyState === 4 && xhr.status === 200) 
 
 			}; // xhr.onreadystatechange 끝
 			
@@ -553,8 +570,19 @@
 				link = link + "?page=" + urlParams.get('page');
 			}
 			xhr.open("GET", link, true); // 비동기 요청 시작.
-			xhr.send(null); // ProductListSevlet에 보낼 요청
+			xhr.send(null); // LikePageServlet에 보낼 요청
 		}; // pageLoad
+		
+		function showclickToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		  }, 6000); // 3초 후 메시지가 사라집니다.
+		}
 		
 		
 
@@ -585,7 +613,7 @@
 		  
 		  setTimeout(function() {
 		    toast.style.display = "none";
-		    location.reload();
+		    location.href="sLogin";
 		  }, 2000); // 3초 후 메시지가 사라집니다.
 		}
 		
@@ -737,6 +765,8 @@
 				});
 			});
 		}
+		
+		
 
 
 		function loadModels() {
