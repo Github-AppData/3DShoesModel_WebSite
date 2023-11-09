@@ -145,6 +145,7 @@
                   <div class="list-group list-group-flush account-settings-links">
                     <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>내 계정</a>
                     <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>작성 글 목록</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-order"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart mr-2"><circle cx="8" cy="21" r="2"></circle><circle cx="20" cy="21" r="2"></circle><path d="M5.67 6H23l-1.68 8.39a2 2 0 0 1-2 1.61H8.75a2 2 0 0 1-2-1.74L5.23 2.74A2 2 0 0 0 3.25 1H1"></path></svg>주문내역</a>
                   </div>
                 </div>
                 <div class="col-md-9">
@@ -205,7 +206,7 @@
                        <section class="notice">
 						 <div class="page-title">
 							  <div class="container">
-								  <h3>내가 쓴 게시글 </h3>
+								  <h3>작성 글 목록</h3>
 							  </div>
 				  		 </div>
 			  
@@ -244,6 +245,51 @@
                       <br><br><br><br><br>
               
                     </div>
+                    
+				<div class="tab-pane fade" id="account-order"> <!-- mypage.css 에 있는 notice 세션 스타일 공유 -->
+                   <div class="card-body pb-2">
+                       <section class="notice">
+						 <div class="page-title">
+							  <div class="container">
+								  <h3>주문내역</h3><br>
+							  </div>
+				  		 </div>
+			  
+					 
+						<!-- board list area -->
+					  	<div id="board-list">
+						  	<div class="container">
+							  	<table class="board-table">
+								  <thead>
+								  	<tr>
+									 	<th class="col-4">상품명</th>
+									  	<th class="col-2">가격</th>
+									  	<th class="col-1">수량</th>
+									  	<th class="col-3">총 금액</th>
+									  	<th class="col-2">후기작성</th>
+								  	</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+										<td>제품</td>
+										<td>가격</td>
+										<td>수량</td>
+										<td>총 금액</td>
+										<td><button class="btn btn-outline-dark btn-sm" onclick="pop()">후기작성</button></td> <!-- 따로 ratingpopup.js 에 pop 으로 분리 -->
+									</tr> 
+								  </tbody>
+							  	</table>
+						  	</div>
+					  	</div>
+	
+					  <!--type1-->
+					<!--type2-->
+			  		  </section>
+                     </div>
+                      <hr class="border-light m-0">
+                      <br><br><br><br><br>
+                    </div>
+                    
                     <div class="tab-pane fade" id="account-social-links">
                       <div class="card-body pb-2">
         
@@ -390,6 +436,7 @@
 		<script src="js/mixitup.min.js"></script>
 		<script src="js/owl.carousel.min.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/ratingpopup.js"></script>
 	</body>
 
 </body>

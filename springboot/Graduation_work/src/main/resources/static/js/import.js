@@ -1,12 +1,4 @@
 
-	function pop()
-		{
-			
-			var leftPosition = (window.screen.width / 2) - (400 / 2);
-			var topPosition = (window.screen.height / 2) - (500 / 2);
-			var windowFeatures = 'width=520,height=280,history=no,resizable=no,status=no,scrollbars=yes,menubar=no,left=' + leftPosition + ',top=' + topPosition;
-			window.open("ratingPopUp", "pop", windowFeatures);
-		}
     const userCode = "imp62443370";
     IMP.init(userCode);
     function requestPay(){
@@ -15,7 +7,6 @@
                   var shoes_name = document.getElementById("shoes_name").textContent;
                   var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
                   console.log(shoes_name);
-                  pop();
                     //결제시 전달되는 정보
                   IMP.request_pay({
                               pg : 'html5_inicis', 

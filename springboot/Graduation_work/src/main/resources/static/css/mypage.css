@@ -11,6 +11,13 @@ body{
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
   }
+
+.page-title h3 {
+	font-size: 28px;
+	color: #333333;
+    font-weight: 400;
+    text-align: center;
+}
   
   .board-table a {
     color: #333;
