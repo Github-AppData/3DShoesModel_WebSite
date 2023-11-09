@@ -29,7 +29,8 @@
 			<otherwise>
 				
 			</otherwise>
-		</choose>		
+		</choose>
+		ORDER BY idx ASC		
 		LIMIT #{startRow},#{pageSize};
 	</select>
 	

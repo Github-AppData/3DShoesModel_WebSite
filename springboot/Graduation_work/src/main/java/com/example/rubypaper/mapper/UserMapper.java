@@ -13,7 +13,7 @@ public interface UserMapper {
 	public void userInsert(User user);
 	public void findAll(User user);
 	public User idCheckSelect2(@Param("id") String id);
-	public User newPwChange (@Param("pw") String pw, @Param("salt") String salt, @Param("id") String id);
+	public int newPwChange (User user);
 	public User getSaltSelect(@Param("id") String id);
 	public User getPwSelect(@Param("id") String id);
 	public int userInfoUpdate(User user);

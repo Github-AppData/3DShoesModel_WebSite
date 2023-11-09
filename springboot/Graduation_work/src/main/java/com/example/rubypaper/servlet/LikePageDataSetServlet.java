@@ -49,7 +49,6 @@ public class LikePageDataSetServlet extends HttpServlet{
         while ((line = reader.readLine()) != null) {
         	AddInfo.append(line);
         }
-        System.out.println("AddInfo : "+AddInfo.toString());
         
         String str = AddInfo.toString();
         
@@ -60,9 +59,8 @@ public class LikePageDataSetServlet extends HttpServlet{
         int final_price = Integer.parseInt(parts[2]);
         int link_id = Integer.parseInt(parts[3]);
         
-
-        
         try {
+        	// 좋아요 테이블 같은 신발이 있는가 ?
 			shoes = totalService.shoesIdCheckLike(shoes_id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -70,45 +68,52 @@ public class LikePageDataSetServlet extends HttpServlet{
 		}
         
         
-        // 같은 신발이 좋아요 테이블에 없고, 로그인이 되어 있을 때, 
-        if(shoes == null && userID != null)
+        // 로그인이 되어 있을 때, 
+        if(userID != null)
         {
-        	// 좋아요 DB에 shoes_id가 없을 경우 
-	        try {
-	        	like_tb.setLink_id(link_id);
-	        	like_tb.setShoes_id(shoes_id);
-	        	like_tb.setShoes_name(shoes_name);
-	        	like_tb.setUser_id(userID);
-	        	totalService.isLikeUpdate(shoes_id);
-				totalService.isLikeInfoInsert(like_tb);
-				
-				response.setStatus(HttpServletResponse.SC_OK);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	// 같은 신발이 없을 때,
+        	if(shoes == null)
+        	{
+        		// 좋아요 DB에 shoes_id가 없을 경우 
+    	        try {
+    	        	like_tb.setLink_id(link_id);
+    	        	like_tb.setShoes_id(shoes_id);
+    	        	like_tb.setShoes_name(shoes_name);
+    	        	like_tb.setUser_id(userID);
+    	        	totalService.isLikeUpdate(shoes_id);
+    				totalService.isLikeInfoInsert(like_tb);
+    				
+    				System.out.println("신발 등록 완료");
+    				
+    				// 신발 등록 완료.
+    				response.setStatus(HttpServletResponse.SC_OK); // 200
+    			} catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    	        
+        	 } else {
+        		// 좋아요 DB에 shoes_id가 있는 경우
+        		// - 좋아요 테이블에서 삭제 하는 거를 해야된다.
+            	try {
+            		// 신발 테이블에 is_Like 값 업데이트 
+            		totalService.isDisableLikeUpdate(shoes_id);
+    				totalService.likeDeleteShoesId(shoes_id);
+    				
+    				// 좋아요 DB에 shoes_id가 있는 경우
+    				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
+    			} catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        	}
+        	
         } 
         else 
         {
-        	// 좋아요 테이블에서 삭제 하는 거를 해야된다.
-        	try {
-        		
-        		// 신발 테이블에 is_Like 값 업데이트 
-        		totalService.isDisableLikeUpdate(shoes_id);
-				totalService.likeDeleteShoesId(shoes_id);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        	// 로그인이 되어있지 않는 경우.
+        	response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
         }
-        
-     // Content-Type 설정 (JSON으로 응답)
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        response.getWriter().write("sasdda");
-        
-        
 	}
 
 }

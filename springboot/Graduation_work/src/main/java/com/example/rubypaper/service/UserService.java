@@ -15,7 +15,7 @@ public interface UserService {
 	public void userInsert(User user) throws Exception;
 	public void findAll(User user) throws Exception;
 	public User idCheckSelect2(String id) throws Exception;
-	public User newPwChange(String pw, String salt, String id) throws Exception;
+	public int newPwChange(User user) throws Exception;
 	public User getSaltSelect(String id) throws Exception;
 	public User getPwSelect(String id) throws Exception;
 	public int userInfoUpdate(User user) throws Exception;

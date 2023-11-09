@@ -33,7 +33,8 @@ public class CartAddObjectServlet extends HttpServlet{
 		
 		// 로그인 유무 확인
 		HttpSession session = request.getSession();
-		String checkLogin = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
+		String checkLogin = null;
+		checkLogin = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		
 		
 		System.out.println("CartAddObjectServlet");
@@ -64,6 +65,7 @@ public class CartAddObjectServlet extends HttpServlet{
 		
 		if(checkLogin != null) {
 			
+			System.out.println("if(checkLogin != null) 안 ");
 			// 사용자는 로그인 상태
 			System.out.println("--------- checkLogin --------- :"+checkLogin);
 		    System.out.println("--------- size --------- :"+size);
@@ -85,10 +87,10 @@ public class CartAddObjectServlet extends HttpServlet{
 					HttpSession session3 = request.getSession();
 					session3.setAttribute("cart", cart);
 					
-					response.setStatus(HttpServletResponse.SC_OK);
+					response.setStatus(HttpServletResponse.SC_OK); // 200
 				} else {
 					// 신발이 고른 것이 이미 장바구니에 있다면, 
-					response.setStatus(HttpServletResponse.SC_GONE);
+					response.setStatus(HttpServletResponse.SC_GONE); // 410
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -97,9 +99,8 @@ public class CartAddObjectServlet extends HttpServlet{
 		    
 		} else {
 			// No Login 
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 			System.out.println("로그인 하시고 다시 돌아와");
-			response.setStatus(HttpServletResponse.SC_ACCEPTED);
-			response.sendRedirect(request.getContextPath() + "/sLogin");
 		}
 	}
 }
