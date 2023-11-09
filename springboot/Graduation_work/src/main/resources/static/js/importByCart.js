@@ -1,12 +1,4 @@
 
-	function pop()
-		{
-			
-			var leftPosition = (window.screen.width / 2) - (400 / 2);
-			var topPosition = (window.screen.height / 2) - (500 / 2);
-			var windowFeatures = 'width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no,left=' + leftPosition + ',top=' + topPosition;
-			window.open("ratingPopUp", "pop", windowFeatures);
-		}
     const userCode = "imp62443370";
     IMP.init(userCode);
     function requestPay(){
@@ -15,7 +7,6 @@
                   var shoes_name = document.getElementById("shoes_name").textContent;
                   var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
                   console.log(shoes_name);
-                  pop();
                     //결제시 전달되는 정보
                   IMP.request_pay({
                               pg : 'html5_inicis', 
@@ -49,6 +40,46 @@
     
     function requestPay2() {
 		
+		var xhr_pay2 = new XMLHttpRequest();
+        
+        xhr_pay2.onreadystatechange = function()
+        {
+			if(xhr_pay2.readyState === 4)
+			{
+				if(xhr_pay2.status === 200)
+				{
+					// 결제완료시 
+					alert("결제완료.");
+				}
+			}
+		}
+		
+		
+		
+		const dataWithKeywords = {};
+		for(var i = 0; i < objLength; i++)
+		{
+			var quan = document.getElementById("quantity" + i).value;
+			var shoes_size2 = object[i].size;
+			var shoes_name2 = object[i].shoes_name;
+			var final_price2 = object[i].final_price;
+			
+			var real_price = final_price2 * quan;
+			
+			 var newObject2 = {
+		        shoes_name: shoes_name2,
+		        shoes_quantity: quan,
+		        size: shoes_size2,
+		        final_price: real_price,
+		        way: "KaKao"
+		    };
+		    dataWithKeywords["shoes" + i] = newObject2;
+		}
+		
+		console.log("dataWithKeywords : ", dataWithKeywords);
+		var jsonData = JSON.stringify(dataWithKeywords);
+		console.log("jsonData : ", jsonData);
+		
 		var shoesPriceElement = document.getElementById("total_cost");
         var shoesPrice = parseFloat(shoesPriceElement.textContent.replace("원", "").replace(",", ""));
 
@@ -71,6 +102,8 @@
                           msg += '고유ID : ' + rsp.imp_uid+'\n';
                           msg += '상점 거래ID : ' + rsp.merchant_uid+'\n';
                           msg += '결제 금액 : ' + rsp.paid_amount;
+                          xhr_pay2.open("POST", "/PayCartServlet", true);
+     					  xhr_pay2.send(jsonData);
      
                       } else {
                           msg += '에러내용 : ' + rsp.error_msg;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Like_tb;
+import com.example.rubypaper.dto.Order_List;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
@@ -237,6 +238,11 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public List<Map<String, Object>> myPageNoticeBoardSelect(String user_id) throws Exception {
 		return totalMapper.myPageNoticeBoardSelect(user_id);
+	}
+
+	@Override
+	public void requestPay2InfoInsert(Order_List order_List) throws Exception {
+		totalMapper.requestPay2InfoInsert(order_List);
 	}	
 
 }

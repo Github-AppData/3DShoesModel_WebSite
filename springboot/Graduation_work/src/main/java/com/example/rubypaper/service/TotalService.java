@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Like_tb;
 import com.example.rubypaper.dto.NoticeBoard;
+import com.example.rubypaper.dto.Order_List;
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
@@ -63,4 +64,6 @@ public interface TotalService {
 	
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;
 	public int reviewRatingAvgSelect(@Param("shoes_id") String shoes_id) throws Exception;
+	
+	public void requestPay2InfoInsert(Order_List order_List) throws Exception;
 }

@@ -10,6 +10,7 @@ import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
 import com.example.rubypaper.dto.Like_tb;
+import com.example.rubypaper.dto.Order_List;
 
 @Mapper
 public interface TotalMapper {
@@ -59,4 +60,5 @@ public interface TotalMapper {
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;
 	public List<Map<String, Object>> selectMain() throws Exception;
 	public List<Map<String, Object>> myPageNoticeBoardSelect(@Param("user_id") String user_id) throws Exception;
+	public void requestPay2InfoInsert(Order_List order_List) throws Exception;
 }

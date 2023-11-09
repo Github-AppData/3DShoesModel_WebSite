@@ -521,6 +521,9 @@
 		var imageToModelMapping_real2 = [];
 		var iframe_clicked = [];
 		
+		var shoes_info_final_price;
+		var shoes_id_pay;
+		
 		var shoes_id;
 	    var total_cost;
 	    var cnt = 0;
@@ -609,7 +612,8 @@
 		    		document.getElementById("shoes_name").innerHTML = "<h6>" + shoes_info_name + "</h6>";
 					
 					// 신발 가격 
-					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
+					shoes_info_final_price = imageToModelMapping_real[0].final_price;
+					shoes_id_pay = imageToModelMapping_real[0].uid;
 					var format_price_real = numeral(shoes_info_final_price).format('0,0');
 		    		document.getElementById("total_cost").innerHTML = "<h5>" + format_price_real + "원 </h5>";
 					
@@ -621,7 +625,7 @@
 					
 				} // if (xhr.readyState === 4 && xhr.status === 200) 
 
-			}; // xhr.onreadystatechange 끝 
+			}; // xhr.onreadystatechange 끝 	
 			
 			
 			xhr.open("POST", "/DetailPageSetServlet", true); // 비동기 요청 시작.

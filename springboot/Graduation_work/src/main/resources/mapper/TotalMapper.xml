@@ -4,6 +4,24 @@
 
 <mapper namespace="com.example.rubypaper.mapper.TotalMapper">
 
+	<!-- 결제 - 카카오 -->
+	<insert id="requestPay2InfoInsert">
+		insert into order_List(order_id, shoes_name, quantity, price, size, user_id, order_date, way)
+		SELECT COALESCE(MAX(order_id) + 1, 1), #{shoes_name}, #{quantity}, #{price}, #{size}, #{user_id}, #{order_date}, #{way}
+		FROM order_List
+	</insert>
+	
+	<!--
+		<insert id="userInsert">
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User
+	</insert>
+	  
+	
+	-->
+	
+
 	<select id="randSelectShoesId" resultType="Map">
 		SELECT shoes_id, shoes_name, final_price, review_stars
 		FROM shoes
@@ -32,6 +50,11 @@
 		</choose>
 		ORDER BY idx ASC		
 		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<!-- 마이페이지 주문내역 -->
+	<select id="myPageOrderListSelect" resultType="Map">
+		select sheos_name, price, quantity, 
 	</select>
 	
 	<select id="myPageNoticeBoardSelect"  resultType="Map">

@@ -41,7 +41,7 @@ public class WriteActionServlet extends HttpServlet{
 		
 		// 시간과 날짜 구하기.
 		LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String formatedNow = now.format(formatter);
 		System.out.println(formatedNow);
 		
