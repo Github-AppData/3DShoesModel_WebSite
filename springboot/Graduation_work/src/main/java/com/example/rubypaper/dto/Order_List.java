@@ -9,6 +9,8 @@ public class Order_List {
 	private String shoes_name;
 	private int quantity;
 	private int price;
+	private int sales;
+	private int final_price;
 	private String user_id;
 	private String order_date;
 	private String way;
@@ -62,13 +64,24 @@ public class Order_List {
 	public void setWay(String way) {
 		this.way = way;
 	}
+	public int getSales() {
+		return sales;
+	}
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
+	public int getFinal_price() {
+		return final_price;
+	}
+	public void setFinal_price(int final_price) {
+		this.final_price = final_price;
+	}
 	@Override
 	public String toString() {
 		return "Order_List [oreder_id=" + oreder_id + ", size=" + size + ", shoes_name=" + shoes_name + ", quantity="
-				+ quantity + ", price=" + price + ", user_id=" + user_id + ", order_date=" + order_date + ", way=" + way
-				+ "]";
+				+ quantity + ", price=" + price + ", sales=" + sales + ", final_price=" + final_price + ", user_id="
+				+ user_id + ", order_date=" + order_date + ", way=" + way + "]";
 	}
-	
 	
 	
 

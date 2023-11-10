@@ -527,6 +527,8 @@
 		var shoes_id;
 	    var total_cost;
 	    var cnt = 0;
+	    var shoes_price = 0;
+	    var sales = 0;
 	    
 	    var xhr = new XMLHttpRequest();
 	    var xhr2 = new XMLHttpRequest();
@@ -575,6 +577,8 @@
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
 					final_price = object[0].final_price;
+					sales = object[0].sales;
+					shoes_price = object[0].shoes_price;
 					review_stars = object[0].review_stars;
 					
 					var RatingInnerHTML = '<div class="rating">';
@@ -597,9 +601,13 @@
 					RatingInnerHTML += '</div>';
 					document.getElementById("ratingPlace").innerHTML = RatingInnerHTML;
 					
+					// 장바구니 페이지 갈 정보들 
 					imageToModelMapping_real2.push(shoes_id);
 					imageToModelMapping_real2.push(shoes_name);
 					imageToModelMapping_real2.push(final_price);
+					imageToModelMapping_real2.push(sales);
+					imageToModelMapping_real2.push(shoes_price);
+					
 					
 					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, final_price:final_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);

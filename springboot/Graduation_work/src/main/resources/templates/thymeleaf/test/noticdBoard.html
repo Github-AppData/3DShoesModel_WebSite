@@ -165,16 +165,12 @@
 						  <table class="board-table">
 							  <thead>
 							  <tr>
-								  <th scope="col"></th>
-								  <th scope="col"></th>
 								  <th scope="col">제목</th>
 								  <th scope="col">등록일</th>
 							  </tr>
 							  </thead>
 							  <tbody>
 								<tr th:each="board, iterStat : ${list}">
-									<td></td>
-									<td></td>
 									<td th:data-link-id="${board.idx}" onClick="submitData(this)" th:text="${board.title}"></td>
 									<td th:text="${board.write_date}">2023.10.29</td>
 								</tr> 	

@@ -191,23 +191,16 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="shop.html">쇼핑 계속하기</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
     						<div class="continue__btn update__btn">
-        						<a href="#" onclick="clearCart_real()"><i class="fa fa-spinner"></i> 장바구니 초기화</a>
-    						</div>
+	    						</div>
 						</div>
                     </div>
                 </div>
                 <div class="my-custom-col-3 pl-1">
                     <div class="cart__discount">
-                        <h6>쿠폰 코드</h6>
-                        <form action="#">
-                            <input type="text" placeholder="코드를 입력해주세요.">
-                            <button type="submit">적용</button>
-                        </form>
                     </div>
                     <div class="cart__total">
                     	<form action="/sBuying" method ="POST" target="_blank">
@@ -224,8 +217,6 @@
                                     <button onclick="requestPay2()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">카카오페이</button>
                                 </div>
                             </div>
-                            
-                       <!--  <a href="sBuying" class="primary-btn">구매하기</a> -->
                         </form>
                     </div>
                 </div>
@@ -577,7 +568,6 @@
 		  
 		  setTimeout(function() {
 		    toast.style.display = "none";
-		    location.reload();
 		  }, 2000); // 3초 후 메시지가 사라집니다.
 		}
     
@@ -589,8 +579,7 @@
 		    // td에 상위 인 tr을 찾아서 저장
 		    const trElement = tdElement.parentElement;
 		
-		    // tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
-		    trElement.remove();
+		    
 			
 			linkId = element.getAttribute("data-link-id");
 			
@@ -611,16 +600,19 @@
 			document.getElementById("cost").innerHTML = before_total_cost;
 			//real_array = JSON.stringify(real);
 			
-			if(confirm(delete_shoes_name + "를 정말 삭제 하시겠습니까 ?"))
+			if(confirm(delete_shoes_name + "를 정말 삭제 하시겠습니까 ?") == true)
 			{
+				// tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
+		   	 	trElement.remove();	
+		   	 	
 				showDeleteToast("삭제 되었습니다.");
 				
 				xhr2.open("POST", "/CartUpdateServlet", true); // 비동기 요청 시작.
 				xhr2.send(delete_shoes_id); 
 				
-			} else {
+			} /*else {
 				location.reload();
-			}
+			}*/
 		}
     </script>
     

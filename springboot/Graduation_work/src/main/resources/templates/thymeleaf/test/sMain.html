@@ -615,7 +615,8 @@
 					}
 					//필요한 것만 불러오도록 변경
 					for(var i = 0; i < objLength; i++){
-						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price
+													, sales: object[i].sales, shoes_price: object[i].shoes_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
 						
 						var grayStars = numberOfTotalStars - numberOfOrangeStars[i];

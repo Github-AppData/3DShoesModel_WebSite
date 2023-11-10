@@ -18,7 +18,8 @@
 		       	pay_data.push(shoes_id_pay);
 		       	pay_data.push(shoes_name);
 		       	pay_data.push(quantity);
-		       	pay_data.push(real_price);
+		       	
+		       	pay_data.push(real_price); // 할인까지 한 총 가격.
 		       	pay_data.push("Card");
 		        
 		        // 실제 결제완료시 상품 테이블로 insert 될 수 있도록 서블릿으로 가는 코드.

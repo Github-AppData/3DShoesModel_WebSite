@@ -65,5 +65,7 @@ public interface TotalService {
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;
 	public int reviewRatingAvgSelect(@Param("shoes_id") String shoes_id) throws Exception;
 	
+	
+	public List<Map<String, Object>> myPageOrderListSelect(@Param("user_id") String user_id) throws Exception;
 	public void requestPay2InfoInsert(Order_List order_List) throws Exception;
 }

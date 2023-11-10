@@ -243,6 +243,11 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public void requestPay2InfoInsert(Order_List order_List) throws Exception {
 		totalMapper.requestPay2InfoInsert(order_List);
+	}
+
+	@Override
+	public List<Map<String, Object>> myPageOrderListSelect(String user_id) throws Exception {
+		return totalMapper.myPageOrderListSelect(user_id);
 	}	
 
 }

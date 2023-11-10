@@ -2,6 +2,7 @@ package com.example.rubypaper.controller;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,8 @@ public class SampleController {
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
-				
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		
 		//사용자 총 수 
 		int result = 0;
 		
@@ -47,9 +49,12 @@ public class SampleController {
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		System.out.println(userID);
+		
+		
 		try {
-			userList = totalService.myPageUserDataSet(userID);
-			boardList = totalService.myPageNoticeBoardSelect(userID);
+			userList = totalService.myPageUserDataSet(userID); // 본인 정보 
+			boardList = totalService.myPageNoticeBoardSelect(userID); // 본인이 쓴 게시글 정보 
+			orderList = totalService.myPageOrderListSelect(userID);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,6 +63,7 @@ public class SampleController {
 						
 		model.addAttribute("list", userList);
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("orderList", orderList);
 			
 		model.addAttribute("userID", userID); // userID를 전한다.
 		
