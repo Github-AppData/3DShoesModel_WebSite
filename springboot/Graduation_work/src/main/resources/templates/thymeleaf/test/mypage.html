@@ -274,7 +274,9 @@
 								  </thead>
 								  <tbody >
 									<tr th:each="orderList : ${orderList}">
-										<td th:text="${orderList.shoes_name}">제품</td>
+										<!-- sDetails 페이지 데이터를 셋 하려면, jsonData 라는 이름으로 세션을 
+										     set 하면 된다. - 관리자 페이지도 동일하게 적용하자 ! -->
+										<td onclick="check()" th:text="${orderList.shoes_name}">제품</td>
 										<td th:text="${orderList.quantity}">수량</td>
 										<td th:text="${orderList.size}">사이즈</td>
 										<td th:text="${#numbers.formatInteger(orderList.price, 3, 'COMMA')+' 원'}">가격</td>
@@ -390,6 +392,14 @@
 		</div>
 		<!-- Search End -->
 		<script>
+			
+			function check()
+			{
+				/* 여기에서 서블릿으로 가서, 쿼리를 이용해서 불러온 신발의 정보를
+				 셋 한 다음에, jsonData라는 세션에 담아야 한다.*/
+				console.log("sss");
+			}
+			
 			var xhr2 = new XMLHttpRequest();
 			function updateButton()
 			{
