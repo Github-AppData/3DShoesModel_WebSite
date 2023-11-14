@@ -6,6 +6,7 @@ public class Order_List {
 	
 	private int oreder_id;
 	private int size;
+	private String shoes_id;
 	private String shoes_name;
 	private int quantity;
 	private int price;
@@ -76,13 +77,18 @@ public class Order_List {
 	public void setFinal_price(int final_price) {
 		this.final_price = final_price;
 	}
+	public String getShoes_id() {
+		return shoes_id;
+	}
+	public void setShoes_id(String shoes_id) {
+		this.shoes_id = shoes_id;
+	}
 	@Override
 	public String toString() {
-		return "Order_List [oreder_id=" + oreder_id + ", size=" + size + ", shoes_name=" + shoes_name + ", quantity="
-				+ quantity + ", price=" + price + ", sales=" + sales + ", final_price=" + final_price + ", user_id="
-				+ user_id + ", order_date=" + order_date + ", way=" + way + "]";
+		return "Order_List [oreder_id=" + oreder_id + ", size=" + size + ", shoes_id=" + shoes_id + ", shoes_name="
+				+ shoes_name + ", quantity=" + quantity + ", price=" + price + ", sales=" + sales + ", final_price="
+				+ final_price + ", user_id=" + user_id + ", order_date=" + order_date + ", way=" + way + "]";
 	}
-	
 	
 
 }

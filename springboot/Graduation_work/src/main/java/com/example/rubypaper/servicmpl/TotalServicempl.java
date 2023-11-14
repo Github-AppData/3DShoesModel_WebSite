@@ -248,6 +248,11 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public List<Map<String, Object>> myPageOrderListSelect(String user_id) throws Exception {
 		return totalMapper.myPageOrderListSelect(user_id);
+	}
+
+	@Override
+	public List<Map<String, Object>> myPageToSDetailsSetSelect(int order_id) throws Exception {
+		return totalMapper.myPageToSDetailsSetSelect(order_id);
 	}	
 
 }

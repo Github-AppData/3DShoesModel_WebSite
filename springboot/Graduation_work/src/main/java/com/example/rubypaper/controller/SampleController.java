@@ -60,6 +60,7 @@ public class SampleController {
 		}
 		System.out.println("userList : "+userList.toString());
 		System.out.println("boardList : "+boardList.toString());
+		System.out.println("orderList : "+orderList.toString());
 						
 		model.addAttribute("list", userList);
 		model.addAttribute("boardList", boardList);

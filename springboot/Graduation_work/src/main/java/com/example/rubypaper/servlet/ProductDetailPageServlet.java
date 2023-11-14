@@ -29,6 +29,7 @@ public class ProductDetailPageServlet extends HttpServlet {
         
         System.out.println("jsonBuffer : " + jsonBuffer);
         
+        
         // JSON 데이터를 세션에 저장
         HttpSession session = request.getSession();
         session.setAttribute("jsonData", jsonBuffer.toString());
