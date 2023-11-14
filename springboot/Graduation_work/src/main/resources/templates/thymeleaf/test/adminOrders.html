@@ -99,8 +99,15 @@
 		            <div class="search-mobile-trigger d-sm-none col">
 			            <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
 			        </div><!--//col-->
+			        
 		            <div class="app-search-box col">
+						<form class="app-search-form" action="SearchShoesServlet" method="post">   
+							<input type="text" placeholder="검색어를 입력해주세요..." name="search" class="form-control search-input">
+							<button type="submit" style="right: 60px;" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button> 
+							<button type="button" class="btn search-btn btn-primary" onclick="resetSearch()">초기화</button>
+				        </form>
 		            </div><!--//app-search-box-->
+		            
 		            
 		            <div class="app-utilities col-auto">
 			            <div class="app-utility-item app-user-dropdown dropdown">

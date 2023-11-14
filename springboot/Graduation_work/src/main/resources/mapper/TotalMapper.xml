@@ -180,7 +180,7 @@
 		where user_id = #{id} -->
 
 	<select id="searchAdminPageShoes" resultType="Map">
-		SELECT shoes_id, shoes_name, shoes_price, sales, num_like, final_price
+		SELECT shoes_id, shoes_name, shoes_price, sales, final_price
 		FROM shoes
 		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
 		LIMIT #{startRow},#{pageSize};
