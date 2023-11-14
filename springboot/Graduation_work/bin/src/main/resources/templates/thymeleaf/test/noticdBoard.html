@@ -76,7 +76,6 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -148,12 +147,17 @@
 								  <div class="search-wrap">
 									  <label for="search" class="blind">공지사항 내용 검색</label>
 									  <input id="search" type="text" name="search" placeholder="검색어를 입력해주세요.">
-									  <button type="submit" class="btn btn-dark">검색</button>
+									  <input type="submit" class="btn btn-dark" value="검색"></input>
+									  <input type="button" onclick="resetSearch()" value="초기화"></input>
 								  </div>
-							  </form>
+								  
+							  </form> 						  
+							  
 						  </div>
+						  
 					  </div>
 				  </div>
+				  
 				 
 				<!-- board list area -->
 				  <div id="board-list">
@@ -161,16 +165,12 @@
 						  <table class="board-table">
 							  <thead>
 							  <tr>
-								  <th scope="col"></th>
-								  <th scope="col"></th>
 								  <th scope="col">제목</th>
 								  <th scope="col">등록일</th>
 							  </tr>
 							  </thead>
 							  <tbody>
 								<tr th:each="board, iterStat : ${list}">
-									<td></td>
-									<td></td>
 									<td th:data-link-id="${board.idx}" onClick="submitData(this)" th:text="${board.title}"></td>
 									<td th:text="${board.write_date}">2023.10.29</td>
 								</tr> 	
@@ -377,6 +377,12 @@
 				if(kcode == 116) {
 				history.replaceState({}, null, location.pathname);
 				}	
+			}
+			
+			function resetSearch(){
+				urlParams.set('search','');
+				urlParams.set('page','1');
+				location.replace(url);
 			}
 			
 		</script>

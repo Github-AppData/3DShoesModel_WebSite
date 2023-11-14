@@ -89,7 +89,6 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -240,7 +239,7 @@
                                 <p>초</p>
                             </div>
                         </div>
-                        <a href="sDetails" class="primary-btn">Shop now</a>
+                        <a th:href="@{sMain}" class="primary-btn">Shop now</a>
                     </div>
                 </div>
             </div>
