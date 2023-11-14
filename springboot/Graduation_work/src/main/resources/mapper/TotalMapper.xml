@@ -6,27 +6,27 @@
 
 	<!-- 결제 - 카카오 -->
 	<insert id="requestPay2InfoInsert">
-		insert into order_List(order_id, shoes_name, quantity, price, size, user_id, order_date, way)
-		SELECT COALESCE(MAX(order_id) + 1, 1), #{shoes_name}, #{quantity}, #{price}, #{size}, #{user_id}, #{order_date}, #{way}
+		insert into order_List(order_id, shoes_name, shoes_id, quantity, price, size, user_id, order_date, way)
+		SELECT COALESCE(MAX(order_id) + 1, 1), #{shoes_name}, #{shoes_id}, #{quantity}, #{price}, #{size}, #{user_id}, #{order_date}, #{way}
 		FROM order_List
 	</insert>
 	
 	<select id="myPageOrderListSelect" resultType="Map">
-		select shoes_name, quantity, size, price, order_date
+		select order_id, shoes_name, shoes_id, quantity, size, price, order_date, way
 		from order_List
 		where user_id = #{user_id}
 		order by order_id asc;
 	</select>
 	
-	<!--
-		<insert id="userInsert">
-		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
-		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
-		FROM User
-	</insert>
-	  
+	<select id="myPageToSDetailsSetSelect">
+		select shoes_id, shoes_name, price
+		from order_List
+		where order_id = #{order_id};
+	</select>
 	
-	-->
+	<!-- 마이페이지 주문내역에 있는 정보를 쿼리로 셋하는 거 입니다. -->
+	
+	
 	
 
 	<select id="randSelectShoesId" resultType="Map">

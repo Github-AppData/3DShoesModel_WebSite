@@ -121,7 +121,6 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
@@ -129,7 +128,6 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -161,7 +159,6 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-							<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
 							<a href="like"><img src="img/icon/heart.png" alt=""></a>
 							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
 							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
@@ -524,9 +521,14 @@
 		var imageToModelMapping_real2 = [];
 		var iframe_clicked = [];
 		
+		var shoes_info_final_price;
+		var shoes_id_pay;
+		
 		var shoes_id;
 	    var total_cost;
 	    var cnt = 0;
+	    var shoes_price = 0;
+	    var sales = 0;
 	    
 	    var xhr = new XMLHttpRequest();
 	    var xhr2 = new XMLHttpRequest();
@@ -575,6 +577,8 @@
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
 					final_price = object[0].final_price;
+					sales = object[0].sales;
+					shoes_price = object[0].shoes_price;
 					review_stars = object[0].review_stars;
 					
 					var RatingInnerHTML = '<div class="rating">';
@@ -597,9 +601,11 @@
 					RatingInnerHTML += '</div>';
 					document.getElementById("ratingPlace").innerHTML = RatingInnerHTML;
 					
+					// 장바구니 페이지 갈 정보들 
 					imageToModelMapping_real2.push(shoes_id);
 					imageToModelMapping_real2.push(shoes_name);
 					imageToModelMapping_real2.push(final_price);
+					
 					
 					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, final_price:final_price });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
@@ -612,7 +618,8 @@
 		    		document.getElementById("shoes_name").innerHTML = "<h6>" + shoes_info_name + "</h6>";
 					
 					// 신발 가격 
-					var shoes_info_final_price = imageToModelMapping_real[0].final_price;
+					shoes_info_final_price = imageToModelMapping_real[0].final_price;
+					shoes_id_pay = imageToModelMapping_real[0].uid;
 					var format_price_real = numeral(shoes_info_final_price).format('0,0');
 		    		document.getElementById("total_cost").innerHTML = "<h5>" + format_price_real + "원 </h5>";
 					
@@ -624,7 +631,7 @@
 					
 				} // if (xhr.readyState === 4 && xhr.status === 200) 
 
-			}; // xhr.onreadystatechange 끝 
+			}; // xhr.onreadystatechange 끝 	
 			
 			
 			xhr.open("POST", "/DetailPageSetServlet", true); // 비동기 요청 시작.
@@ -645,14 +652,14 @@
 				console.log("imageToModelMapping_real2 : ", imageToModelMapping_real2);
 				console.log("xhr2.readyState : ", xhr2.readyState);
 				console.log("xhr2.status : ", xhr2.status);
+				
 				// 응답이 되었으면,
 				if (xhr2.readyState === 4 && xhr2.status === 200) 
 				{
 					showclickToast("상품이 추가 되었습니다.");
-				}
-				else if(xhr2.readyState === 4 && xhr2.status === 410){
+				} else if(xhr2.readyState === 4 && xhr2.status === 410){
 				  	showclickToast("이미 장바구니에 있습니다.");
-				} else if(xhr2.readyState === 4 && xhr2.status === 202){
+				} else if(xhr2.readyState === 4 && xhr2.status === 400){
 				  	showLoginToast("로그인하고 오세요.");
 				}
 			}

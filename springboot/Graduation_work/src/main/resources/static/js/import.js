@@ -85,9 +85,12 @@
        	
        	pay2_data.push(selected_size); 
        	pay2_data.push(shoes_name2);
+       	pay2_data.push(shoes_id_pay);
        	pay2_data.push(quantity);
        	pay2_data.push(real_price);
        	pay2_data.push("KaKao");
+       	
+       	
         
         // 실제 결제완료시 상품 테이블로 insert 될 수 있도록 서블릿으로 가는 코드.
         var xhr_pay2 = new XMLHttpRequest();

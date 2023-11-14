@@ -46,7 +46,6 @@
 		<div class="offcanvas__option">
 			<div class="offcanvas__links">
 				<a href="#">로그인</a>
-				<a href="#">FAQ</a>
 			</div>
 			<div class="offcanvas__top__hover">
 				<span>KRW <i class="arrow_carrot-down"></i></span>
@@ -85,7 +84,6 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
-                                <a href="#">FAQ</a>
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -111,7 +109,6 @@
 								<li><a href="main">메인화면</a></li>
 	                            <li><a href="sMain">신발</a>
 	                            <li class="active"><a href="noticdBoard">게시판 </a></li>
-	                            <li><a href="sBlog">관리자 페이지</a></li>
 	                            <li><a href="sContact">매장찾기</a></li>
 							</ul>
 					</nav>
@@ -146,52 +143,41 @@
 
 	<section class="notice mt-5" style="text-align: center;">
 		<div class="page-title">
-			  <div class="container">
-				  <h3>고객 게시판 - 상세화면</h3>
-			  </div>
-		  </div>
-		  <br>
-		
-
-			<main role="main" class="container bootdey.com">
-			  <div class="d-flex align-items-center p-3 my-3  bg-blue rounded box-shadow">
-				  <div th:each="board, iterStat : ${boardIdxDataList}">
-			    <div class="lh-100">
+			<div class="container">
+				<h3>고객 게시판 - 상세화면</h3>
+			</div>
+		</div>
+		<br>
+	<main role="main" class="container d-flex justify-content-center mb-4">
+		<div class="container2 p-3 my-3 border rounded">
+			<div th:each="board, iterStat : ${boardIdxDataList}">
+				<div class="lh-100">		
 					<div class="mb-3 row">
-			    <label for="statictitle" class="col-sm-4 col-form-label" >제목 : </label>
-			    <div class="col-sm-8">
-			      <input type="text" readonly class="form-control" id="statictitle" th:value="${board.title}">
-			    </div>
-			  </div>
-			  <div class="mb-3 row">
-			    <label for="statictitle" class="col-sm-4 col-form-label" >등록일 : </label>
-			    <div class="col-sm-8">
-			      <input type="text" readonly class="form-control-plaintext" id="statictitle" th:value="${board.write_date}">
-			    </div>
-			  </div>
-			  <div class="mb-3 row">
-			    <label for="staticmain" class="col-sm-4 col-form-label" >내용 : </label>
-			    <div class="col-sm-8">
-			      <input type="text" readonly class="form-control" id="staticmain" th:value="${board.content}">
-			    </div>
-			  </div>
-			    </div>
-			    </div>
-			  </div>
-
-  
-    
-    
-  </div>
-  
-  
-  
-	</form>
-</div>
-				<br>
-
-</main>
-
+						<label for="statictitle" class="col-sm-3 col-form-label">제목</label>
+						<div class="col-sm-9">
+							<input type="text" readonly class="form-control-plaintext vr" id="statictitle" th:value="${board.title}">
+						</div>
+					</div>
+					<hr>
+					<div class="mb-3 row">
+						<label for="statictitle" class="col-sm-3 col-form-label" >등록일 </label>
+						<div class="col-sm-9">
+						<input type="text" readonly class="v-line form-control-sm form-control-plaintext" id="statictitle" th:value="${board.write_date}">
+				    	</div>
+					</div>
+					<hr>
+					<div class="mb-3 row">
+						<!-- <label for="staticmain" class="col-sm-3 col-form-label" >내용 </label> -->
+						<div class="col-sm-12">
+							<br>
+							<input type="text" readonly class="form-control-plaintext pl-5" id="staticmain" th:value="${board.content}">
+			    		</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+	</main>
 		<!-- board Section End -->
 
 	</section>
