@@ -38,8 +38,6 @@ public class MypageLinkSDeailsSetServlet extends HttpServlet{
         while ((line = reader.readLine()) != null) {
         	order_id_info.append(line);
         }
-		
-      
         
         System.out.println("order_id_info.toString() : "+order_id_info.toString());
         
@@ -52,13 +50,18 @@ public class MypageLinkSDeailsSetServlet extends HttpServlet{
 			e.printStackTrace();
 		}
         
-        // Jackson ObjectMapper를 사용하여 JSON 문자열로 변환
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonString = objectMapper.writeValueAsString(setData);
-        
-        HttpSession session2 = request.getSession();
-		session2.setAttribute("jsonData", jsonString);
+		System.out.println("setData : "+ setData);
 		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		String setData2 = objectMapper.writeValueAsString(setData);
+		
+		// Content-Type 설정 (JSON으로 응답)
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(setData2);
+		
+        
 	}
 
 }

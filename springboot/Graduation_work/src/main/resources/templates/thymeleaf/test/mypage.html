@@ -394,28 +394,58 @@
 		<script>
 			
 			var xhr = new XMLHttpRequest();
+			var object;
+			var real_array = [];
 			
 			function check(element)
 			{
 				/* 여기에서 서블릿으로 가서, 쿼리를 이용해서 불러온 신발의 정보를
 				 셋 한 다음에, jsonData라는 세션에 담아야 한다.*/
 				var order_id = element.getAttribute("data-link-id");
+				var objLength;
 				
 				xhr.onreadystatechange = function()
 				{
-					console.log("xhr.readyState : ", xhr.readyState);
-					console.log("xhr.status : ", xhr.status);
 					if(xhr.readyState === 4 && xhr.status === 200)
 					{
-						location.href = 'sDetails';
+						object = JSON.parse(xhr.responseText);
+						objLength = Object.keys(object).length;
+						//console.log("object : ", object);	
+						real_array = [];
+						for(var i = 0; i < objLength; i++)
+						{
+							real_array.push({uid: object[i].shoes_id, shoes_name: object[i].shoes_name, final_price: object[i].price});
+						}
+						
+						var jsonData = null;
+				
+						jsonData = JSON.stringify(real_array);
+						console.log("jsonData : ", jsonData);
+						
+						//location.href = "sDetails";
+						//DetailPage(real_array);
+						//console.log("real_array : ", real_array);
 					}
 				}
 				
 				console.log("data-link-id : ", order_id);			
 				xhr.open("POST", "/MypageLinkSDeailsSetServlet", true);
 				xhr.send(order_id);
-				
 			}
+			
+			var xhr3 = new XMLHttpRequest();
+			function DetailPage(real_array)
+			{
+				var jsonData = null;
+				
+				jsonData = JSON.stringify(real_array);
+				console.log("jsonData : ", jsonData);
+				xhr3.open("POST", "/ProductDetailPageServlet", true);
+				xhr3.send(jsonData);
+				
+				//location.href="sDetails";
+			}			
+			
 			
 			var xhr2 = new XMLHttpRequest();
 			function updateButton()
@@ -442,7 +472,6 @@
 					if (xhr2.readyState === 4) 
 					{
 						object = xhr2.responseText;
-						window.location='wDetails'
 					}
 				}
 					

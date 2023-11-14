@@ -36,13 +36,6 @@ public class BoardDetailPageSetServlet extends HttpServlet{
 	        int idx_real = Integer.parseInt(linkId);
 	        
 	        // 여기에서 필요한 로직을 수행
-	        
-	        try {
-	            response.sendRedirect(request.getContextPath() + "/wDetails");
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	        
 	        HttpSession session = request.getSession();
 	        session.setAttribute("idx", idx_real);
 	    }
