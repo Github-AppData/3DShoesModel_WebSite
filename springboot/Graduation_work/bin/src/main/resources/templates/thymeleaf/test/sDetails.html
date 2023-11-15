@@ -577,8 +577,6 @@
 		            shoes_id = object[0].uid;
 					shoes_name = object[0].shoes_name;
 					final_price = object[0].final_price;
-					sales = object[0].sales;
-					shoes_price = object[0].shoes_price;
 					review_stars = object[0].review_stars;
 					
 					var RatingInnerHTML = '<div class="rating">';
@@ -607,7 +605,7 @@
 					imageToModelMapping_real2.push(final_price);
 					
 					
-					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, final_price:final_price });
+					imageToModelMapping_real.push({ uid: shoes_id, iframeId: 'api-frame-1', shoes_name: shoes_name, final_price:final_price, review_stars:review_stars });
 					console.log("imageToModelMapping_real : ", imageToModelMapping_real[0]);
 					
 		            

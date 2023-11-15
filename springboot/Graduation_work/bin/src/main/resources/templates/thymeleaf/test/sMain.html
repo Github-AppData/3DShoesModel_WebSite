@@ -616,7 +616,7 @@
 					//필요한 것만 불러오도록 변경
 					for(var i = 0; i < objLength; i++){
 						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price
-													, sales: object[i].sales, shoes_price: object[i].shoes_price});
+													, shoes_price: object[i].shoes_price, review_stars: object[i].review_stars});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
 						
 						var grayStars = numberOfTotalStars - numberOfOrangeStars[i];
@@ -627,12 +627,13 @@
 						// rating 
 						var starRatingHTML = '<div class="rating">';
 						
-						// 주황색 별을 먼저 찍고, 그 다음에 회색을 찍는다.
+						// 주황색 별을 찍기, 
 						for(var sh = 0; sh < numberOfOrangeStars[i]; sh++)
 						{ 
 							starRatingHTML += '<i class="fa fa-star" style="color: orange;"></i>';
 						}
 						
+						// 그 다음에 회색을 찍는다.
 						for(var h = 0; h < graystarsArray[i]; h++)
 						{
 							starRatingHTML += '<i class="fa fa-star"></i>';

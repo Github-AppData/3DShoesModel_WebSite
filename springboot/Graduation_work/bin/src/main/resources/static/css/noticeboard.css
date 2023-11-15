@@ -55,8 +55,8 @@ table {
     position: relative;
   /*   padding-right: 124px; */
     margin: 0 auto;
-    width: 80%;
-    max-width: 564px;
+    width: 90%;
+    max-width: 600px;
   }
   #board-search .search-window .search-wrap input {
     height: 40px;
@@ -70,9 +70,18 @@ table {
     outline: 0;
     border-width: 1px;
   }
-  #board-search .search-window .search-wrap .btn {
-    position: absolute;
-    right: 0;
+  #board-search .search-window .search-wrap .btn1 {
+	position: absolute;
+    right: 108px;
+    top: 0;
+    bottom: 0;
+    width: 108px;
+    font-size: 16px;
+  }
+  
+   #board-search .search-window .search-wrap .btn2 {
+	position: absolute;
+	right: 0px;
     top: 0;
     bottom: 0;
     width: 108px;
@@ -199,7 +208,7 @@ table {
     margin: 0 auto;
   }
   .blind {
-    position: absolute;
+	position: absolute;
     overflow: hidden;
     clip: rect(0 0 0 0);
     margin: -1px;
