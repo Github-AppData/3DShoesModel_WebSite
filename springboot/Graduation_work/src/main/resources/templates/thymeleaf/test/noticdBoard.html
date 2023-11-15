@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5조 신발점 게시판</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+	<link rel="stylesheet" href="css/noticeboard.css" type="text/css">
+	
+</head>
+
+	<body>
+		<!-- Page Preloder -->
+		<div id="preloder">
+			<div class="loader"></div>
+		</div>
+	
+		<!-- Offcanvas Menu Begin -->
+		<div class="offcanvas-menu-overlay"></div>
+		<div class="offcanvas-menu-wrapper">
+			<div class="offcanvas__option">
+				<div class="offcanvas__links">
+					<a href="#">로그인</a>
+					<a href="#">FAQ</a>
+				</div>
+				<div class="offcanvas__top__hover">
+					<span>KRW <i class="arrow_carrot-down"></i></span>
+					<ul>
+						<li>USD</li>
+						<li>EUR</li>
+						<li>KRW</li>
+					</ul>
+				</div>
+			</div>
+			<div class="offcanvas__nav__option">
+				<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+				<a href="#"><img src="img/icon/heart.png" alt=""></a>
+				<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+				<div class="price">0 원</div>
+			</div>
+			<div id="mobile-menu-wrap"></div>
+			<div class="offcanvas__text">
+				<p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+			</div>
+		</div>
+		<!-- Offcanvas Menu End -->
+	
+		<!-- Header Section Begin -->
+		<header class="header">
+			<div class="header__top">
+				<div class="container" style="width: 1170px;">
+					<div class="row">
+						<div class="col-lg-6 col-md-7">
+							<div class="header__top__left">
+								<p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-5">
+							<div class="header__top__right">
+                            <div class="header__top__links">
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+                            </div>
+                            <div class="header__top__hover">
+                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container" style="width: 1170px;">
+				<div class="row">
+					<div class="col-lg-3 col-md-3">
+						<div class="header__logo">
+							<a href="main"><img src="img/logo.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<nav class="header__menu mobile-menu">
+							<ul>
+								<li><a href="main">메인화면</a></li>
+	                            <li><a href="sMain">신발</a>
+	                            <li class="active"><a href="noticdBoard">게시판 </a></li>
+	                            <li><a href="sContact">매장찾기</a></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="col-lg-3 col-md-3">
+						<div class="header__nav__option">
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+						</div>
+					</div>
+				</div>
+				<div class="canvas__open"><i class="fa fa-bars"></i></div>
+			</div>
+		</header>
+		<!-- Header Section End -->
+	
+		<!-- Breadcrumb Section Begin -->
+		<section class="breadcrumb-blog set-bg" data-setbg="img/conimg2.jpg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<h2>Notice Board</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Breadcrumb Section End -->
+	
+		<!-- board Section Begin -->
+		
+			<section class="notice">
+				<div class="page-title">
+					  <div class="container">
+						  <h3>고객 게시판</h3>
+					  </div>
+				  </div>
+			  
+				  <!-- board seach area -->
+				  <div id="board-search">
+					  <div class="container">
+						  <div class="search-window">
+							  <form action="SearchBoardServlet" method="post">
+								  <div class="search-wrap">
+									  	<label for="search" class="blind">공지사항 내용 검색</label>
+									  	<input id="search" type="text" name="search" placeholder="검색어를 입력해주세요.">
+									  	<input type="submit" class=" btn1 btn-dark" style="background-color: black;" value="검색"></input>
+									  	<input type="button" class=" btn2 btn-danger"style="background-color: red;" onclick="resetSearch()" value="초기화"></input>
+									  						  
+								  </div>
+							  </form> 						  
+							  
+						  </div>
+						  
+					  </div>
+				  </div>
+				  
+				 
+				<!-- board list area -->
+				  <div id="board-list">
+					  <div class="container">
+						  <table class="board-table">
+							  <thead>
+							  <tr>
+								  <th scope="col">제목</th>
+								  <th scope="col">등록일</th>
+							  </tr>
+							  </thead>
+							  <tbody>
+								<tr th:each="board, iterStat : ${list}">
+									<td th:data-link-id="${board.idx}" onClick="submitData(this)" th:text="${board.title}"></td>
+									<td th:text="${board.write_date}">2023.10.29</td>
+								</tr> 	
+							  </tbody>
+						  </table>
+						  
+						  <form action="IsLoginCheckServlet" method="post" style="text-align: right;" class="mt-2">
+							<button type="submit" class="btn btn-dark">글쓰기</button> 
+						  </form>
+						
+					  </div>
+				  </div>
+
+				  <!--type1 pageButtons-->
+				  <li class="center" id="pageButtons2">
+					</li>
+				<!--type2-->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center" id="pageButtons">
+					  <li class="page-item">
+						<a class="page-link" href="#" aria-label="Previous">
+						  <span aria-hidden="true">&laquo;</span>
+						</a>
+					  </li>
+					  	<li class="page-item active"><a class="page-link" href="?page=1">1</a></li>
+					  	<li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+					  	<li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+					 	<li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+					 	<li class="page-item"><a class="page-link" href="?page=5">5</a></li>
+					  <li class="page-item">
+						<a class="page-link" href="#" aria-label="Next">
+						  <span aria-hidden="true">&raquo;</span>
+						</a>
+					  </li>
+					</ul>
+				  </nav>
+			
+
+			  </section>
+		<!-- board Section End -->
+	
+		<!-- Footer Section Begin -->
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="footer__about">
+							<div class="footer__logo">
+								<a href="#"><img src="img/logo2.png" alt=""></a>
+							</div>
+							<p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
+							
+						</div>
+					</div>
+					<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+						<div class="footer__widget">
+							<h6>상품목록</h6>
+							<ul>
+								<li><a href="#">남성 신발</a></li>
+								<li><a href="#">여성 신발</a></li>
+								<li><a href="#">유아용 신발</a></li>
+								<li><a href="#">할인 제품</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="footer__widget">
+							<h6>본사정책</h6>
+							<ul>
+								<li><a href="contact.html">Contact Us</a></li>
+								<li><a href="#">결제 수단</a></li>
+								<li><a href="#">배송 정책</a></li>
+								<li><a href="#">반품 및 교환</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+						<div class="footer__widget">
+							<h6>구독</h6>
+							<div class="footer__newslatter">
+								<p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="footer__copyright__text">
+							<p>Copyright ©
+								<script>
+									document.write(new Date().getFullYear());
+								</script>2020
+								All rights reserved | 5조신발점 <i class="fa fa-heart-o"
+								aria-hidden="true"></i>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Footer Section End -->
+		
+		
+	
+		<!-- Search Begin -->
+		<div class="search-model">
+			<div class="h-100 d-flex align-items-center justify-content-center">
+				<div class="search-close-switch">+</div>
+				<form class="search-model-form">
+					<input type="text" id="search-input" placeholder="검색">
+				</form>
+			</div>
+		</div>
+		<!-- Search End -->
+	
+	<script type="text/javascript">
+		
+	</script>
+		<!-- Js Plugins -->
+		<script type="text/javascript" th:inline="javascript">
+			var xhr = new XMLHttpRequest();
+			var xhr2 = new XMLHttpRequest();
+			var object;
+			var paging = [[${paging}]];
+			
+			//현재 url을 가져옴
+			const url = new URL(location.href);
+			//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+			const urlParams = url.searchParams;
+			
+			window.onload = pageLoad;
+			window.onkeydown = refresh;
+
+			
+			function pageLoad()
+			{
+				xhr.onreadystatechange = function () 
+				{
+					// 응답이 되었으면,
+					if (xhr.readyState === 4 && xhr.status === 200) 
+					{
+						object = xhr.responseText;
+						console.log(object);
+					}
+				}
+				
+				var pagebuttons = document.getElementById("pageButtons");
+				pagebuttons.innerHTML = '';
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+						
+				for(var i = 1; i <= paging.totalPage; i++){
+					console.log(paging.totalPage);
+					if(paging.page == i){
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item active"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+					}else{
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+					}
+				}
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+				
+				
+				for(var i = 0; i < object; i++)
+				{
+					document.getElementById("submitData_td").innerHTML = '<td data-link-id="datas' + i +'" th:text="${board.title}"></td>';
+				}														
+				
+					
+				xhr.open("POST", "/boardCountServlet",true);
+				xhr.send(null)				
+			}
+			function submitData(element){
+				
+				var linkId = element.getAttribute("data-link-id");
+				console.log("linkId : ", linkId);
+				
+				xhr2.onreadystatechange = function () 
+				{
+					// 응답이 되었으면,
+					if (xhr2.readyState === 4) 
+					{
+						object = xhr2.responseText;
+						window.location='wDetails'
+					}
+				}
+					
+				xhr2.open("GET", "/BoardDetailPageSetServlet?linkId=" + linkId, true);
+				xhr2.send(null);
+				
+			}
+			
+			function movePage(page){
+				console.log(location.search);
+				var pagenum = page.getAttribute('id');
+				//현재 받아온 것들중 page의 값을 pagenum으로 변경
+				urlParams.set('page',pagenum);
+				//url에 해당되는 것으로 이동
+				location.replace(url);
+			}
+			
+			function refresh(){
+				var kcode = event.keyCode;
+				if(kcode == 116) {
+				history.replaceState({}, null, location.pathname);
+				}	
+			}
+			
+			function resetSearch(){
+				urlParams.set('search','');
+				urlParams.set('page','1');
+				location.replace(url);
+			}
+			
+		</script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.nice-select.min.js"></script>
+		<script src="js/jquery.nicescroll.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/jquery.countdown.min.js"></script>
+		<script src="js/jquery.slicknav.js"></script>
+		<script src="js/mixitup.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+
+</body>
+</html>

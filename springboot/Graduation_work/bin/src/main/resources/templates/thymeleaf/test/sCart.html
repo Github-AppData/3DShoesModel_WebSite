@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5조신발점 장바구니 파일</title>
+    
+    <style>
+		#delete-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+	</style>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+</head>
+
+<body>
+
+	<script src="js/numeral.js"></script>
+	<script src="js/viewer-api.js"></script>
+	
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
+	<script>
+        window.addEventListener('load', function() {
+            var allElements = document.getElementsByTagName('*');
+            Array.prototype.forEach.call(allElements, function(el) {
+                var includePath = el.dataset.includePath;
+                if (includePath) {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            el.outerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', includePath, true);
+                    xhttp.send();
+                }
+            });
+        });
+        
+        
+    </script>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                <a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+            </div>
+            
+        </div>
+        
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+			<a href="shopping-cart ver.1.html"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+                				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+                            </div>
+                            <div class="header__top__hover">
+                            <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="main"><img src="img/logo.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href="main">메인화면</a></li>
+                            <li><a href="sMain">신발</a>
+                            <li><a href="noticdBoard">게시판 </a></li>
+                            <li><a href="sContact">매장찾기</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a th:href="@{like}"><img src="img/icon/heart.png" alt=""></a>
+                        <a th:href="@{sCart}"><img src="img/icon/cart.png" alt=""> </a>
+                        <a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option" style="background-image: url(img/bgsnow.png)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>장바구니</h4>
+                        <div class="breadcrumb__links">
+                            <a href="main">메인화면</a>
+                            <a href="sMain">신발</a>
+                            <span>장바구니</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+						<h4 id="objLength" th:text="총 + ${objLength} + 개" ></h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>상품</th>
+                                    <th>사이즈</th>
+                                    <th>수량</th>
+                                    <th>합계</th>
+                                </tr>
+                            </thead>
+                            <tbody id="shoes_list">
+								
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+    						<div class="continue__btn update__btn">
+	    						</div>
+						</div>
+                    </div>
+                </div>
+                <div class="my-custom-col-3 pl-1">
+                    <div class="cart__discount">
+                    </div>
+                    <div class="cart__total">
+                    	<form action="/sBuying" method ="POST" target="_blank">
+                        <h4>결제 금액</h4>
+                        <ul>
+                            <li> 총 금액 : <span id="cost"></span></li>
+                            <li>배송비 : <span id="delivery_cost"></span></li>
+                            <li>합계 <span id="total_cost"></span></li>
+                        </ul>
+                        
+                        <div class="row pb-3">
+                                <div class="col d-grid">
+                                    <button onclick="requestPay()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">구매하기</button>
+                                    <button onclick="requestPay2()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">카카오페이</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/logo2.png" alt=""></a>
+                        </div>
+                        <p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+					<div id="delete-message" class="hidden"></div>
+                    <div class="footer__widget">
+                        <h6>상품목록</h6>
+                        <ul>
+                            <li><a href="#">남성 신발</a></li>
+                            <li><a href="#">여성 신발</a></li>
+                            <li><a href="#">유아용 신발</a></li>
+                            <li><a href="#">할인 제품</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>본사정책</h6>
+                        <ul>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">결제 수단</a></li>
+                            <li><a href="#">배송 정책</a></li>
+                            <li><a href="#">반품 및 교환</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>구독</h6>
+                        <div class="footer__newslatter">
+                            <p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
+                            <form action="#">
+                                <input type="text" placeholder="이메일">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | 5조신발점 <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">ih</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="검색">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+    
+
+    <script type="text/javascript">
+		
+		
+		// 전역변수 공간 입니다만.
+		
+		var imageToModelMapping_real = [];
+		var iframe_clicked = [];
+		
+		var shoes_id;
+	    var shoes_price;
+	    var shoes_quantity;
+	    
+	    var xhr = new XMLHttpRequest();
+	    var xhr2 = new XMLHttpRequest();
+	    var cnt2=0;
+	    
+	    var cart_info_id = ["cost", "delivery_cost", "total_cost"]; 
+	    var shoes_real_name = [];
+	    var shoes_real_price = [];
+	    var shoes_real_quanitity = [];
+	    var newItemsHTML = '';
+					
+		var cost = [];
+		var total_cost = 0;
+		var before_total_cost = 0;
+		var delivery_cost = 3000;
+		var all_info = [];
+		var objLength = 0;
+		
+		
+		var cnt = 0;
+		// removeCartItem_real // 
+		var linkId = null;
+	    var jsonData_delete_uid = null;
+		var delete_uid = null;
+		var delete_price = 0;
+		
+		var stored_quantity = 0;
+		var stored_price = 0;
+		var object;
+		
+		var prex_price;
+			var prex_price_real;
+			var prex_price_rreal;
+	    
+	    window.onload = pageLoad;
+		function pageLoad()
+		{
+			xhr.onreadystatechange = function () 
+			{
+				// 응답이 되었으면,
+				if (xhr.readyState === 4 && xhr.status === 200) 
+				{
+		            object = JSON.parse(xhr.responseText);
+		            // DB에 저장된 카트의 갯수 
+		           	objLength = Object.keys(object).length;
+		           	
+		           	document.getElementById("objLength").innerHTML = "총 " + objLength+"개 ";
+		            
+		           	for(var i = 0; i < objLength; i++)
+		           	{
+						shoes_id = object[i].shoes_id;
+						shoes_name = object[i].shoes_name;
+						final_price = object[i].final_price;
+						shoes_quantity = object[i].quantity;
+						
+						imageToModelMapping_real.push({uid: shoes_id,shoes_quantity:shoes_quantity, iframeId: 'api-frame-'+ (i + 1), shoes_name: shoes_name, final_price:final_price});
+						
+					}
+					
+					console.log("objLength : ", objLength);
+					for(var i = 0; i < objLength; i++)
+					{
+						/*
+						var s = i+1; // 원하는 숫자로 대체
+						var content = "asdasdas";
+						var div = document.getElementById("shoes_list");
+						
+						var real_content = '<tr id="shoes' + (i + 1) + '">' + '</tr><br>';
+						div.insertAdjacentHTML("afterend", real_content);
+						*/
+						shoes_real_name[i] = object[i].shoes_name;
+						shoes_real_price[i] = object[i].final_price;
+						shoes_size = object[i].size;
+						var shoes_real_quanitity_real = object[i].quantity;
+						
+						
+						
+						var cal_price = shoes_real_price[i] + (shoes_real_price[i] * (shoes_real_quanitity_real - 1));
+						console.log("cal_price : ", cal_price);
+									
+						cost[i] = cal_price;
+						before_total_cost += cost[i];						
+												
+						var iframeCode = '<iframe id="api-frame-' + (i + 1) + '" width="235" height="250" style="border:none" ' +
+					    'class="d-inline-block align-text-top rounded img-thumbnail" ' +
+					    'allow="autoplay; fullscreen; xr-spatial-tracking" ' +
+					    'xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered ' +
+					    'web-share allowfullscreen mozallowfullscreen="true" ' +
+					    'webkitallowfullscreen="true">' +
+					    '</iframe>';
+					    
+					    var shoes_name_o = '<h4 id="shoes_name">' + shoes_real_name[i] + ' </h4>';
+					    var shoes_real_price_0 = '<h5>' + cal_price + '		</h5>';
+					    var shoes_size_real = '<h6>' + shoes_size + ' </h6>';
+					    
+						var newItem = 
+						'<tr>'+
+					    '<td class="product__cart__item">' +
+					    '<div class="product__cart__item__pic">' + iframeCode + '</div>' +
+					    '<div class="product__cart__item__text">' +  shoes_name_o + '</div>' +
+					    '</td>' +
+					    '<td id="size'+ i +'">' + shoes_size_real + '</td>' +
+					    '<td class="quantity__item">'+ 
+							'<div class="quantity">' +
+								'<div class="pro-qty-2">' +
+									'<span class="fa fa-angle-left dec qtybtn"></span>' +
+									'<input id="quantity'+i+'" data-link-id="'+ i +'" type="number" value="'+shoes_real_quanitity_real+'" onchange="updateSubtotal_real(this)">'+ 
+									'<span class="fa fa-angle-right inc qtybtn"></span>' +
+								'</div>' +
+							'</div>'
+						+'</td>' +
+					    '<td id="price'+ i +'" class="cart__price">' + shoes_real_price_0 + '</td>' +
+					    '<td class="cart__close"><i class="fa fa-close" onclick="removeCartItem_real(this)" data-link-id="'+ i +'"></i></td></tr>';
+					     // 새로운 항목을 저장할 문자열	
+					    newItemsHTML += newItem;
+					    
+					    document.getElementById("shoes_list").innerHTML = newItemsHTML;
+					}
+					
+					imageToModelMapping_real.forEach(function(mapping) 
+						{
+							
+							replaceWith3DModel(mapping.uid, mapping.iframeId);
+						});
+					//document.getElementById("shoes_list").innerHTML += newItemsHTML;
+					
+						
+					all_info.push(before_total_cost);
+					all_info.push(delivery_cost);
+					total_cost = before_total_cost + delivery_cost;
+					all_info.push(total_cost);
+					
+					for(var i = 0; i < cart_info_id.length; i++)
+					{
+						document.getElementById(cart_info_id[i]).innerHTML = all_info[i];
+						
+					}
+					
+					
+					
+				} // if (xhr.readyState === 4 && xhr.status === 200) 
+
+			}; // xhr.onreadystatechange 끝 
+			
+			
+			
+			xhr.open("POST", "/CartPageSetServlet", true); // 비동기 요청 시작.
+		   	xhr.send(null); 
+		   			
+		}; // pageLoad  
+		
+		function clearCart_real(){
+			document.getElementById("shoes_list").innerHTML = "";
+			
+			for(var i = 0; i < cart_info_id.length; i++)
+			{
+				document.getElementById(cart_info_id[i]).innerHTML = 0;
+			}
+			
+			// 전송 보내야됨 - update all -> is_delete = 1; => update가 DB에 적용이 되지를 않는다.
+			
+			document.getElementById("objLength").innerHTML = "총 " + 0+"개 ";
+		}		
+		var o = document.getElementById("objLength").value;
+		console.log("objLengthasdd :", objLength);
+		
+    	function replaceWith3DModel(uid, iframeId) {
+	        var iframe = document.getElementById(iframeId);
+	        var client = new Sketchfab( iframe );
+	
+	        client.init(uid, {
+	            success: function onSuccess(api) {
+	                api.start();
+	                api.addEventListener('viewerready', function() {
+	                    console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+	                });
+	            },
+	            error: function onError() {
+	                console.log(iframeId + ' 3D 모델 초기화 오류');
+	            }
+	        });
+	    }
+	    
+	    function updateSubtotal_real(inputElement) {
+		    const quantity = parseInt(inputElement.value);
+		    
+		    var price_id_array = [];
+		    var price_array = [];
+			console.log("quantity :", quantity);	
+			
+			linkId = inputElement.getAttribute("data-link-id");
+			console.log("linkId : ", linkId);
+			
+			for(var i = 0; i < objLength; i++){
+				price_array[i] = "price" + i;
+			}
+			
+			// up 버튼 클릭한, 가격을 가지고 오는 변수 입니다.
+			var fix_price = imageToModelMapping_real[linkId].final_price;
+			var fix_price_real = parseInt(fix_price);
+			
+			console.log("fix_price_real : ", fix_price_real);
+			
+			console.log("stored_quantity1 : ", stored_quantity);
+			prex_price = document.getElementById(price_array[linkId]).textContent;
+			prex_price_real = parseInt(prex_price);
+			
+			var one_prex_price_real = 0;
+			var two_prex_price_real = 0;
+			
+			if(quantity == 0)
+			{
+				document.getElementById("price"+linkId).innerHTML = 0 + " 원"; 
+			} else if(quantity > stored_quantity){
+				prex_price_rreal = prex_price_real + fix_price_real;
+				document.getElementById("price"+linkId).innerHTML = fix_price_real + (fix_price_real * (quantity - 1));
+				one_prex_price_real = fix_price_real + (fix_price_real * (quantity - 1));
+				console.log("prex_price_rreal : ", prex_price_rreal);
+			} else if (quantity < stored_quantity){
+				prex_price_rreal = prex_price_real;
+				document.getElementById("price"+linkId).innerHTML = prex_price_rreal - fix_price_real;
+				two_prex_price_real = prex_price_rreal - fix_price_real;
+				console.log("prex_price_rreal : ", prex_price_rreal - fix_price_real);
+			}
+			
+			var result_cost = [];
+			var result_cost_real =  0;
+			for(var i = 0; i < objLength; i++)
+			{
+				var g = [];
+				g[i] = document.getElementById(price_array[i]).textContent; 
+				result_cost[i] = parseInt(g[i]);
+				console.log("result_cost[i] : ", result_cost[i]);
+				result_cost_real +=  result_cost[i];
+			}
+			
+			// var format_price_real = numeral(real_price).format('0,0');
+			
+			document.getElementById("cost").innerHTML = result_cost_real;	
+			document.getElementById("total_cost").innerHTML = result_cost_real + delivery_cost;
+			
+			stored_quantity = quantity;
+			console.log("stored_quantity2 : ", stored_quantity);
+			
+		}
+		
+		function showDeleteToast(message) {
+			
+		  var toast = document.getElementById("delete-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+    
+    
+	    function removeCartItem_real(element, itemPrice) {
+			// 클릭된 td 를 찾아서 저장
+		    const tdElement = element.parentElement;
+		
+		    // td에 상위 인 tr을 찾아서 저장
+		    const trElement = tdElement.parentElement;
+		
+		    
+			
+			linkId = element.getAttribute("data-link-id");
+			
+			var real = [];
+			delete_shoes_name = imageToModelMapping_real[linkId].shoes_name;
+			delete_shoes_id = imageToModelMapping_real[linkId].uid;
+			delete_price = imageToModelMapping_real[linkId].final_price;
+			
+			real.push(delete_shoes_name);
+			real.push(delete_shoes_id);
+			
+			// 총 cost에서 삭제된 상품의 액수만큼 빼준다. - 브라우저에 표시되는 금액 
+			total_cost -= delete_price;
+			before_total_cost -= delete_price; 
+			console.log("total_cost- : ",total_cost);
+			
+			document.getElementById("total_cost").innerHTML = total_cost;
+			document.getElementById("cost").innerHTML = before_total_cost;
+			//real_array = JSON.stringify(real);
+			
+			if(confirm(delete_shoes_name + "를 정말 삭제 하시겠습니까 ?") == true)
+			{
+				// tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
+		   	 	trElement.remove();	
+		   	 	
+				showDeleteToast("삭제 되었습니다.");
+				
+				xhr2.open("POST", "/CartUpdateServlet", true); // 비동기 요청 시작.
+				xhr2.send(delete_shoes_id); 
+				
+			} /*else {
+				location.reload();
+			}*/
+		}
+    </script>
+    
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/importByCart.js"></script>
+</body>
+
+</html>

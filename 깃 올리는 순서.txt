@@ -1,0 +1,11 @@
+깃 올리는 순서
+
+작업 하기 전,
+0. git checkout dev-본인이름
+1.  git pull origin develop
+
+작업한 후
+2. git add .
+3. git commit -m "Create: asd.txt"
+4. git push
+5. 깃 허브 본인 브랜치로 이동한 후에, base branch를 develop로 바꾼다음에 Create pull request 한다.

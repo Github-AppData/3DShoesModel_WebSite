@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>관리자 페이지 - 주문관리</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" >
+    <meta name="author" >    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="js/numeral.js"></script>
+    
+    
+    <!-- App CSS -->  
+    <link id="theme-style" rel="stylesheet" href="css/portal.css">
+    <style>
+		#delete-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+		
+		#Revise-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+		
+		#insert-message {
+		  display: none;
+		  position: fixed;
+		  top: 75px;
+		  right: 180px;
+		  background-color: orangered; /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+		
+		/* CSS 스타일 */
+	    .pretty-deletebutton {
+	        background-color: orangered; /* 배경색 */
+	        color: #ffffff; /* 텍스트 색상 */
+	        border: none; /* 테두리 없음 */
+	        padding: 5px 10px; /* 내부 여백 */
+	        border-radius: 5px; /* 둥근 모서리 */
+	        box-shadow: 2px 2px 4px #888888; /* 그림자 효과 */
+	        cursor: pointer; /* 포인터 커서 */
+	    }
+	    .pretty-revisebutton {
+	        background-color: royalblue; /* 배경색 */
+	        color: #ffffff; /* 텍스트 색상 */
+	        border: none; /* 테두리 없음 */
+	        padding: 5px 10px; /* 내부 여백 */
+	        border-radius: 5px; /* 둥근 모서리 */
+	        box-shadow: 2px 2px 4px #888888; /* 그림자 효과 */
+	        cursor: pointer; /* 포인터 커서 */
+	    }
+	
+	    /* 호버(마우스 오버) 효과 */
+	    .pretty-deletebutton:hover {
+	        background-color: palevioletred; /* 호버 시 배경색 변경 */
+	    }
+	    .pretty-revisebutton:hover{
+	        background-color: #2980b9; /* 호버 시 배경색 변경 */
+	    }
+	</style>
+
+</head> 
+
+<body class="app">   	
+    <header class="app-header fixed-top">	   	            
+        <div class="app-header-inner">  
+	        <div class="container-fluid py-2">
+		        <div class="app-header-content"> 
+		            <div class="row justify-content-between align-items-center">
+			        
+				    <div class="col-auto">
+					    <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
+						    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+					    </a>
+				    </div><!--//col-->
+		            <div class="search-mobile-trigger d-sm-none col">
+			            <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
+			        </div><!--//col-->
+			        
+		            <div class="app-search-box col">
+						<form class="app-search-form" action="SearchShoesServlet" method="post">   
+							<input type="text" placeholder="검색어를 입력해주세요..." name="search" class="form-control search-input">
+							<button type="submit" style="right: 60px;" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button> 
+							<button type="button" class="btn search-btn btn-primary" onclick="resetSearch()">초기화</button>
+				        </form>
+		            </div><!--//app-search-box-->
+		            
+		            
+		            <div class="app-utilities col-auto">
+			            <div class="app-utility-item app-user-dropdown dropdown">
+				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
+				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
+								<li><a class="dropdown-item" href="adminAccount">관리자(내) 계정</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="sLogin">로그아웃</a></li>
+							</ul>
+			            </div><!--//app-user-dropdown--> 
+		            </div><!--//app-utilities-->
+		        </div><!--//row-->
+	            </div><!--//app-header-content-->
+	        </div><!--//container-fluid-->
+        </div><!--//app-header-inner-->
+        <div id="app-sidepanel" class="app-sidepanel"> 
+	        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+	        <div class="sidepanel-inner d-flex flex-column">
+		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+		        <div class="app-branding">
+		            <a class="app-logo" href="adminMain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/logo2.png" width="130" alt="logo"><span class="logo-text"></span></a>
+	
+		        </div><!--//app-branding-->  
+		        
+			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
+					    <li class="nav-item">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link" href="adminMain">
+						        <span class="nav-icon">
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		  <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+		  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+		</svg>
+						         </span>
+		                         <span class="nav-link-text">홈</span>
+					        </a><!--//nav-link-->
+					    </li><!--//nav-item-->
+					    <li class="nav-item">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link" href="adminDocs">
+						        <span class="nav-icon">
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+  <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+</svg>
+						         </span>
+		                         <span class="nav-link-text">사용자 목록</span>
+					        </a><!--//nav-link-->
+					    </li><!--//nav-item-->
+					    <li class="nav-item">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link active" href="adminOrders">
+						        <span class="nav-icon">
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+  <path fill-rule="evenodd" d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z"/>
+  <circle cx="3.5" cy="5.5" r=".5"/>
+  <circle cx="3.5" cy="8" r=".5"/>
+  <circle cx="3.5" cy="10.5" r=".5"/>
+</svg>
+						         </span>
+		                         <span class="nav-link-text">상품 관리</span>
+					        </a><!--//nav-link-->
+					    </li><!--//nav-item-->
+					    <li class="nav-item has-submenu">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+						        <span class="nav-icon">
+						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  <path fill-rule="evenodd" d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z"/>
+	  <path d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z"/>
+	</svg>
+						         </span>
+		                         <span class="nav-link-text">페이지</span>
+		                         <span class="submenu-arrow">
+		                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+	</svg>
+	                             </span><!--//submenu-arrow-->
+					        </a><!--//nav-link-->
+					        <div id="submenu-1" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+						        <ul class="submenu-list list-unstyled">
+							        <li class="submenu-item"><a class="submenu-link" href="adminAccount">관리자 계정</a></li>
+						        </ul>
+					        </div>
+					    </li><!--//nav-item-->
+
+					   
+					    <li class="nav-item">
+					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+					        <a class="nav-link" href="adminCharts">
+						        <span class="nav-icon">
+						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  <path fill-rule="evenodd" d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+	</svg>
+						         </span>
+		                         <span class="nav-link-text">통계</span>
+					        </a><!--//nav-link-->
+					    </li><!--//nav-item-->
+					    
+					    				    
+				    </ul><!--//app-menu-->
+			    </nav><!--//app-nav-->
+			    <div class="app-sidepanel-footer">
+				    <nav class="app-nav app-nav-footer">
+					    <ul class="app-menu footer-menu list-unstyled">
+						    
+						    <li class="nav-item">
+						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+						        <a class="nav-link" th:href="@{sMain}">
+							        <span class="nav-icon" >
+							            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	  <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+	  <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+	</svg>
+							        </span>
+			                        <span class="nav-link-text" >사용자 페이지 보기</span>
+						        </a><!--//nav-link-->
+						    </li><!--//nav-item-->
+					    </ul><!--//footer-menu-->
+				    </nav>
+			    </div><!--//app-sidepanel-footer-->
+		       
+	        </div><!--//sidepanel-inner-->
+	    </div><!--//app-sidepanel-->
+    </header><!--//app-header-->
+    
+    <div class="app-wrapper">
+	    
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+		    <div class="container-xl">
+			    
+			    <div class="row g-3 mb-4 align-items-center justify-content-between">
+				    <div class="col-auto">
+			            <h1 class="app-page-title mb-0">상품 관리</h1>
+			            <div id="insert-message" class="hidden"></div>
+				    </div>
+				    <div class="col-auto">
+					     <div class="page-utilities">
+						    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+								
+							    <div class="col-auto">
+					                    <div class="col-auto">
+					                        &nbsp;&nbsp;<button onclick="addRow()"  style="background-color: orangered; color: white;" type="submit" class="btn app-btn-secondary"><b>등록하기</b></button>
+					                    </div>
+							    </div><!--//col-->
+							    <div class="col-auto">						    
+								    
+							    </div>
+						    </div><!--//row-->
+					    </div><!--//table-utilities-->
+				    </div><!--//col-auto-->
+			    </div><!--//row-->
+			   
+			    
+			    <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+				    <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">상품 리스트</a>
+				</nav>
+				
+				
+				<div class="tab-content" id="orders-table-tab-content">
+			        <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+					    <div class="app-card app-card-orders-table shadow-sm mb-5">
+						    <div class="app-card-body">
+							    <div class="table-responsive">
+									<div id="delete-message" class="hidden"></div>
+									<div id="Revise-message" class="hidden"></div>
+								        <table class="table app-table-hover ml-10" id="myTable">
+											<thead>
+												<tr>
+													<th class="cell" >신발 이름</th>
+													<th class="cell" >신발 가격 </th>
+													<th class="cell">할인</th>
+													<th class="cell">최종 금액</th>
+													<th class="cell">수정</th>
+													<th class="cell">삭제</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="shoesList, rowstat : ${shoesList}">
+													<td th:id="shoes_name + ${rowstat.count}" class="cell" th:text="${shoesList.shoes_name}"><span class="truncate"></span></td>
+													<td th:id="shoes_price + ${rowstat.count}" th:data-id="${rowstat.count}" class="cell" th:text="${shoesList.shoes_price}"></td>
+													<td th:id="shoes_sales + ${rowstat.count}" th:data-id="${rowstat.count}" class="cell" th:text="${shoesList.sales}" ></td>
+													<td th:id="result + ${rowstat.count}" class="cell" th:text="${shoesList.final_price}"></td>
+													<td class="cell"><span th:id="cheangeName+${rowstat.count}"><button type="button" class="pretty-revisebutton" th:data-link-id="${rowstat.count}" th:onclick="changeShoesInfo(this)">수정</button></span></td>
+													<td class="cell"><button class="pretty-deletebutton" onclick="deleteShoesInfo(this)" th:data-link-id="${rowstat.count}">삭제</button></td>
+												</tr>
+											</tbody>
+										</table>
+						        </div><!--//table-responsive-->
+						       
+						    </div><!--//app-card-body-->		
+						</div><!--//app-card-->
+						<nav class="app-pagination">
+							<ul class="pagination justify-content-center" id = "pageButtons">
+								<li class="page-item disabled">
+									<a class="page-link" href="#" tabindex="-1" aria-disabled="true"><- 이전</a>
+							    </li>
+								<li class="page-item active"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+								    <a class="page-link" href="#">다음 -></a>
+								</li>
+							</ul>
+						</nav><!--//app-pagination-->
+			        </div><!--//tab-pane-->
+		    </div><!--//container-fluid-->
+	    </div><!--//app-content-->
+	    
+	    <footer class="app-footer">
+			
+		    <div class="container text-center py-3">
+		         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+            <small class="copyright">Designed with <span class="sr-only">yuhan</span><i class="fas fa-star" style="color: rgb(255, 0, 0);"></i> by <a class="app-link" href="main" target="_blank">5조신발점</a> admin</small>
+		       
+		    </div>
+	    </footer><!--//app-footer-->
+	    
+    </div><!--//app-wrapper-->    					
+
+ 
+    <!-- Javascript -->          
+    <script th:inline="javascript">
+		
+		var linkId;
+		var xhr = new XMLHttpRequest();
+		var xhr2 = new XMLHttpRequest();
+		var xhr3 = new XMLHttpRequest();
+		var total_price = 0;
+		//Controller에서 보낸 모델을 가져옴
+		var paging = [[${paging}]];
+		
+		//현재 url을 가져옴
+		const url = new URL(location.href);
+		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+		const urlParams = url.searchParams;
+		
+		window.onload = pageLoad;
+		window.onkeydown = refresh;
+		
+		function pageLoad()
+			{	
+				var pagebuttons = document.getElementById("pageButtons");
+				pagebuttons.innerHTML = '';
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>';
+						
+				for(var i = 1; i <= paging.totalPage; i++){
+					console.log(paging.totalPage);
+					if(paging.page == i){
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item active"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+					}else{
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" id = '+ i +' onclick=movePage(this)> '+ i +'</a></li>';
+					}
+				}
+				
+				pagebuttons.innerHTML = pagebuttons.innerHTML + '<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';	
+			}
+		
+		function resetSearch(){
+				urlParams.set('search','');
+				urlParams.set('page','1');
+				location.replace(url);
+			}
+		
+		function movePage(page){
+				console.log(location.search);
+				//현재 url을 가져옴
+				const url = new URL(location.href);
+				//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+				const urlParams = url.searchParams;
+				var pagenum = page.getAttribute('id');
+				
+				//현재 받아온 것들중 page의 값을 pagenum으로 변경
+				urlParams.set('page',pagenum);
+				//url에 해당되는 것으로 이동
+				location.replace(url);
+			}
+		
+		function changeShoesInfo(element) 
+		{
+			// 사용자 정의한 속성 data-link-id 값을 얻어와. 바꿀 열 체크 
+			linkId = element.getAttribute("data-link-id");
+			var selectRows = document.querySelectorAll('[data-id="' + linkId + '"]');
+			console.log(selectRows);
+			
+			// shoes_price
+			var shoes_price_sales = 'shoes_sales' + linkId;
+			var shoes_price_sales_real = document.getElementById(shoes_price_sales).textContent;
+			console.log(shoes_price_sales_real);
+			
+			// shoes_price
+			var shoes_price = 'shoes_price' + linkId;
+			var shoes_price_real = document.getElementById(shoes_price).textContent;
+			console.log(shoes_price_real);
+			
+			
+			// textContent 한 값을 배열에 저장 
+			var s = [shoes_price_real, shoes_price_sales_real];
+			
+			// input 태그의 width 사이즈 저장.
+			var input_size = [66, 25];
+			var str = [" 원", " %"];
+			
+			 // 모든 수정 버튼을 비활성화
+		    const allEditButtons = document.querySelectorAll('.pretty-revisebutton');
+		    allEditButtons.forEach((editButton) => {
+		        editButton.disabled = true;
+		    });
+		    
+		    // 현재 클릭한 수정 버튼을 활성화
+    		element.disabled = false;
+    		
+    		const td = element.parentElement;
+    		const tr_current = td.parentElement;
+    		
+    		// 현재 편집 중인 tr 태그의 모든 하위 요소를 활성화
+		    tr_current.querySelectorAll('input, button').forEach((element) => {
+		        element.disabled = false;
+		    });
+    		
+    		// 나머지 tr 태그의 입력 요소나 버튼 등을 disable 처리
+		    const allTRs = document.querySelectorAll('tr');
+		    allTRs.forEach((tr) => {
+		        if (tr !== tr_current) { // 현재 클릭한 수정 버튼을 제외한 나머지 tr 태그
+		            tr.querySelectorAll('input, button').forEach((element) => {
+		                element.disabled = true;
+		            });
+		        }
+		    });
+			
+			// 수정할 수 있는 정보를 input 태그로 바꾸는 코드 
+			for (var i = 0; i < selectRows.length; i++) {
+				selectRows[i].innerHTML = '<td th:data-id="${rowstat.count}" class="cell"><input onchange="printTotalPrice()" id="myInput'+ i+'" style="width: ' + input_size[i] + 'px;"  value="' + s[i] + '">'+ str[i]+' </input></td>';
+			}
+			
+			var name = "cheangeName" + linkId;
+			document.getElementById(name).innerHTML = '<button onclick="updateInfo(this)" class="pretty-revisebutton">저장</button>';
+
+		}
+		
+		function addRow() {
+            // 1. table 요소 선택
+            var table = document.getElementById("myTable");
+
+            // 2. 새로운 행 추가
+            var newRow = table.insertRow(1); // 0은 맨 첫 번째 위치를 나타냅니다.
+
+            // 3. 새로운 행에 데이터 셀 추가 (이 예제에서는 3개의 셀을 추가합니다)
+            var cell0 = newRow.insertCell(0);
+            var cell1 = newRow.insertCell(1);
+            var cell2 = newRow.insertCell(2);
+            var cell3 = newRow.insertCell(3);
+
+            // 각 셀에 내용을 추가 - 최종가격은 나중에 서블릿에서 추가하자 
+            cell0.innerHTML = '신발 아이디 : <input type="text" id="shoes_id"></input>';
+            cell1.innerHTML = '신발 이름 : <input type="text" id="shoes_name"></input>';
+            cell2.innerHTML = '신발 가격 : <input type="number" id="shoes_price"></input>';
+            cell3.innerHTML = '<button onclick="adminPageInsert(this)" class="pretty-revisebutton">저장</button>';
+        }
+        
+        function adminPageInsert(element)
+        {
+			var data_array = [];
+			
+			var shoes_id = document.getElementById("shoes_id").value;
+			var shoes_name = document.getElementById("shoes_name").value;
+			var shoes_price = document.getElementById("shoes_price").value;
+			
+			data_array.push(shoes_id);
+			data_array.push(shoes_name);
+			data_array.push(shoes_price);
+			
+			// POST 요청 설정
+			xhr3.open("POST", "/AdminPageShoesInsertServlet", true);
+			xhr3.setRequestHeader("Content-Type", "application/json");
+			
+			xhr3.addEventListener("load", function() {
+			    // 요청이 완료된 후에 실행할 코드
+			    if (xhr3.status === 200) { // 요청이 성공했을 때
+			    	showInsertToast("등록 되었습니다.");
+			    }
+			});
+			
+			xhr3.send(data_array);
+			
+		}
+		
+		function updateInfo(element)
+		{
+			// 나머지 tr 태그의 입력 요소나 버튼 등을 disable 처리
+		    const allTRs = document.querySelectorAll('tr');
+		    allTRs.forEach((tr) => {
+		            tr.querySelectorAll('input, button').forEach((element) => {
+		                element.disabled = false;
+		            });
+		    });
+		    
+			// 사용자 정의한 속성 data-link-id 값을 얻어와. 바꿀 열 체크 
+			
+			var selectRows = document.querySelectorAll('[data-id="' + linkId + '"]');
+			
+			var s = [];
+			var real = [];
+			for(var i = 0; i <= 1; i++)
+			{
+				s[i] = 'myInput' + i;
+				var InputId = document.getElementById(s[i]);
+				real[i] = InputId.value;
+			}	
+			
+			var shoes_name_id = "shoes_name" + linkId;
+			var shoes_name = document.getElementById(shoes_name_id).textContent;
+			real.push(shoes_name);
+			real.push(total_price);
+			
+			// POST 요청 설정
+			xhr.open("POST", "/AdminShoesInfoUpdateServlet", true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			
+			xhr.addEventListener("load", function(){ 
+				if(xhr.status === 200){
+					showReviseToast("수정 되었습니다.");				
+				}
+			});
+			
+			// 배열 데이터를 JSON 문자열로 변환하여 요청 본문에 추가
+			var data = JSON.stringify(real);
+			// JSON 문자열 출력
+			xhr.send(real);	
+		}
+		
+		function deleteShoesInfo(element)
+		{
+			// is_delete를 1로 만들어 주면 DB에서도 삭제가 되게 
+			
+			// 사용자 정의한 속성 data-link-id 값을 얻어와. 바꿀 열 체크 
+			linkId = element.getAttribute("data-link-id");
+			console.log(linkId);
+			
+			var shoes_name_id2 = "shoes_name" + linkId;
+			var shoes_name2 = document.getElementById(shoes_name_id2).textContent;
+			console.log(shoes_name2);
+			
+			
+			if(confirm(shoes_name2 + "를 정말 삭제 하시겠습니까 ?"))
+			{
+				showDeleteToast("삭제 되었습니다.");
+				
+				// POST 요청 설정
+				xhr2.open("POST", "/ShoesDeleteServlet", true);
+				xhr2.send(shoes_name2);
+				
+			} else {
+				location.reload();
+			}
+		}
+		
+		function showDeleteToast(message) {
+			
+		  var toast = document.getElementById("delete-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.reload();
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showReviseToast(message) {
+			
+		  var toast = document.getElementById("Revise-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.reload();
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showInsertToast(message) {
+			
+		  var toast = document.getElementById("insert-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.reload();
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+			
+		function printTotalPrice()  {
+			
+		  const price = document.getElementById('myInput0').value;
+		  const sales = document.getElementById('myInput1').value;
+		  
+		  total_price = price - (price * (sales / 100));
+		  var total_price_real = null;
+		  total_price_real = numeral(total_price).format('0,0');
+		  
+		  var so = "result"+ linkId; // linkId - 전역변수 이다.
+		  document.getElementById(so).innerHTML = total_price_real + " 원";
+		}
+		
+		
+			function refresh(){
+				var kcode = event.keyCode;
+				if(kcode == 116) {
+				history.replaceState({}, null, location.pathname);
+				}	
+			}
+			
+	</script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="js/numeral.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="assets/js/app.js"></script> 
+
+</body>
+</html> 
+

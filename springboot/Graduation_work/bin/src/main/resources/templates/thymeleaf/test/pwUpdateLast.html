@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>비밀번호 변경 절차 2단계? </title>
+    <style>
+		 #click-message {
+		  z-index: 10;
+		  display: none;
+		  position: fixed;
+		  top: 33%; /* 세로 중앙 정렬을 위해 스크린의 중간에 위치시킴 */
+		  left: 50%; /* 가로 중앙 정렬을 위해 스크린의 중간에 위치시킴 */
+		  transform: translate(-50%, -50%); /* 요소의 가로와 세로를 각각 50%만큼 이동하여 정중앙으로 이동시킴 */
+		  background-color: rgb(235, 41, 53);
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	
+	<!-- TODO : 새로운 Pw를 실제 DB에 update 해야 하는 부분 -->
+
+	
+
+
+	<section class="ftco-section" style="background-image: url(img/bg-2.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">비밀번호 변경</h2>
+                    <p>새로운 비밀번호를 설정해주세요.</p>
+				</div>
+			</div>
+			
+			<div id="click-message" class="hidden"></div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> 
+			      			<div class="form-group mb-3">
+								<label class="label" for="input_new_pw">비밀번호</label>
+			      				<input type="password" class="form-control" name="input_new_pw" id="input_new_pw" placeholder="새로운 비밀번호를 입력해주세요">
+			      				<div id="passwordRequirements">
+								</div>
+								
+								  <label class="label" for="input_new_pw_same">비밀번호 확인</label>
+			      				<input type="password" class="form-control" id="input_new_pw_same" name="input_new_pw_same" placeholder="변경하실 비밀번호를 한번 더 입력해주세요">
+			      			</div>
+
+                              <div class="form-group text-right">
+		            			<button class=" btn btn-primary submit px-3" id="signupButton" onclick="checkpw()">비밀번호 변경</button>
+		            	      </div>
+
+		     
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+		        		</div>
+		      		</div>
+				</div>
+	</section>
+
+
+	<script type="text/javascript">
+		var xhr = new XMLHttpRequest();
+		
+		function checkpw()
+		{
+			var input_pw = document.getElementById("input_new_pw").value;
+			var input_pw_same = document.getElementById("input_new_pw_same").value;
+			
+			var ary_pw = [];
+			
+			ary_pw.push(input_pw);
+			ary_pw.push(input_pw_same);
+			
+			xhr.onreadystatechange = function()
+			{
+				console.log("xhr.readyState : ", xhr.readyState);
+				console.log("xhr.status : ", xhr.status);
+				
+				if(xhr.readyState === 4)
+				{
+					if (xhr.status === 200) 
+					{
+						showLoginToast("비밀번호가 변경 되었습니다. 확인 하시기 바랍니다.");
+					} else if(xhr.status === 400){
+						showLoginToast("로그인하고 돌아오세요.");
+					} else if(xhr.status === 401){
+						showReCycleToast("입력된 두 필드의 값이 같지 않습니다.");
+					} else if(xhr.status === 403){
+					  	showReCycleToast("비밀번호 재사용 불가");
+					}
+				}
+			}
+			xhr.open("POST", "/NewPwEqualsServlet", true);
+			xhr.send(ary_pw);
+		}
+		
+		function showLoginToast(message) {
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
+		  }, 3000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showReCycleToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    document.getElementById("input_new_pw").value = "";
+		    document.getElementById("input_new_pw_same").value = "";
+		  }, 3000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showclickToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
+		  }, 3000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		 
+		const passwordField = document.getElementById('input_new_pw');
+	    const passwordRequirements = document.getElementById('passwordRequirements');
+	    const signupButton = document.getElementById('signupButton');
+	    
+	    
+	    passwordField.addEventListener('input', function() {
+			
+	        const password = passwordField.value;
+	        const requirements = [];
+	        
+	        // 비밀번호 조건 검사 및 메시지 추가
+	        if (password.length < 8) {
+				requirements.push('8자 이상 이어야 합니다');
+				
+	        }else if( password.length >= 12){
+					requirements.push('8 ~ 12자 이하 이어야 합니다.');
+			}
+	        if (!/[A-Z]/.test(password)) {
+	            requirements.push('대문자를 포함해야 합니다.');
+	        }
+	        if (!/[a-z]/.test(password)) {
+	            requirements.push('소문자를 포함해야 합니다.');
+	        }
+	        if (!/[0-9]/.test(password)) {
+	            requirements.push('숫자를 포함해야 합니다.');
+	        }
+	        
+	        // 메시지 업데이트
+	        passwordRequirements.innerHTML = requirements.join('<br>');
+	        
+	        // 비밀번호 조건을 충족할 때 버튼 활성화, 그렇지 않으면 비활성화
+	        signupButton.disabled = requirements.length > 0;
+    	});
+	</script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

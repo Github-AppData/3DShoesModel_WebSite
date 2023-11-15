@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nike Air Zoom Pegasus 36
+* source:	https://sketchfab.com/3d-models/nike-air-zoom-pegasus-36-00fd99e778c244c3bd3b65f99dad7cb2
+* author:	quaz30 (https://sketchfab.com/quaz30)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nike Air Zoom Pegasus 36" (https://sketchfab.com/3d-models/nike-air-zoom-pegasus-36-00fd99e778c244c3bd3b65f99dad7cb2) by quaz30 (https://sketchfab.com/quaz30) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

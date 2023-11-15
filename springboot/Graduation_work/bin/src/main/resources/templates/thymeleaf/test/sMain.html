@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Male_Fashion Template">
+	<meta name="keywords" content="Male_Fashion, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>5조 신발점 상품목록</title>
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+		rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/hearts.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+   
+   	<style>
+		#info-message {
+		    display: none;
+		    position: fixed;
+		    top: 75px;
+		    right: 180px;
+		    background-color: orangered;
+		    color: #fff;
+		    padding: 10px 20px;
+		    border-radius: 5px;
+		    z-index: 9999; /* 임의의 큰 값 설정 - 우선순위 설정 */
+		}
+
+	</style>
+</head>
+
+<body>
+	<script src="js/numeral.js"></script>
+	<script src="js/viewer-api.js"></script>
+	<script>
+		window.addEventListener('load', function () {
+			var allElements = document.getElementsByTagName('*');
+			Array.prototype.forEach.call(allElements, function (el) {
+				var includePath = el.dataset.includePath;
+				if (includePath) {
+					var xhttp = new XMLHttpRequest();
+					xhttp.onreadystatechange = function () {
+						if (this.readyState == 4 && this.status == 200) {
+							el.outerHTML = this.responseText;
+						}
+					};
+					xhttp.open('GET', includePath, true);
+					xhttp.send();
+				}
+			});
+		});
+
+	</script>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="sLogin">로그인</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="offcanvas__top__hover">
+                <span></span>
+            </div>
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+            <a href="#"><img src="img/icon/heart.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+	<!-- Offcanvas Menu Begin -->
+	<div class="offcanvas-menu-overlay"></div>
+	<div class="offcanvas-menu-wrapper">
+		<div class="offcanvas__option">
+			<div class="offcanvas__links">
+				<a href="sLogin">로그인</a>
+				<a href="#">FAQ</a>
+			</div>
+			<div class="offcanvas__top__hover">
+				<span></span>
+			</div>
+		</div>
+		<div class="offcanvas__nav__option">
+			<a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+			<a href="#"><img src="img/icon/heart.png" alt=""></a>
+		</div>
+		<div id="mobile-menu-wrap"></div>
+		<div class="offcanvas__text">
+			<p>상품 수령 후, 7일 이내 교환 및 반품이 가능합니다.</p>
+		</div>
+	</div>
+	<!-- Offcanvas Menu End -->
+
+	<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-7">
+						<div class="header__top__left">
+
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-5">
+						<div class="header__top__right">
+							<div class="header__top__links">
+								<a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a>
+								<!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
+								<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+							</div>
+							<div class="header__top__hover">
+								<!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
+                            	login은 컨트롤러 쪽에서 로그인 처리를 할때 모델에 true false 처럼 참 거짓으로 해서 불타임으로 보내주면 될듯 -->
+                                <span th:if="${userID}" th:text="${userID} + '님 어서오세요'"></span>
+    							<span th:unless="${userID}" th:text="어서오세요"></span>
+    							<div id="info-message" class="hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="main"><img src="img/logo.png" alt="" width="140" height="60" class="d-inline-block align-text-top rounded img-thumbnail"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li><a href="main">메인화면</a></li>
+                            <li class="active"><a href="sMain">신발</a>
+                            <li><a href="noticdBoard">게시판 </a></li>
+                            <li><a href="sContact">매장찾기</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+							<a href="like"><img src="img/icon/heart.png" alt=""></a>
+							<a href="sCart"><img src="img/icon/cart.png" alt=""></a>
+							<a href="mypage"><img src="img/icon/my.png" style="width: 20px; height: 20px;"></a>
+						</div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-option" style="background-image: url(img/bgsnow.png)">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="breadcrumb__text">
+						<h4>신발</h4>
+						<div class="breadcrumb__links">
+							<a href="main">메인화면</a>
+							<span>신발</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Breadcrumb Section End -->
+
+	<!-- Shop Section Begin -->
+	<section class="shop spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="shop__sidebar">
+						<div class="shop__sidebar__search">
+							<form action="">
+								<input type="text" name="search" placeholder="검색어">
+								<button type="submit" onclick="search(this)"><span class="icon_search"></span></button>
+							</form>
+						</div>
+						<div class="shop__sidebar__accordion">
+							<div class="accordion" id="accordionExample">
+								<div class="card">
+									<div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+										<div class="card-body">
+										</div>
+									</div>
+								</div>
+
+								<div class="card">
+
+								</div>
+
+								<div class="card">
+
+								</div>
+
+								<div class="card">
+									<div class="card-heading">
+										<a data-toggle="collapse" data-target="#collapseThree">가격</a>
+									</div>
+									<div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+										<div class="card-body">
+											<div class="shop__sidebar__price">
+
+												<ul>
+													<li><label for="5만원 미만">5만원 미만
+															<input type="radio" id="_5만원 미만" name="radioPri" value ="price_1">
+														</label></li>
+													<li><label for="5만원 - 10만원 미만">5만원 - 10만원 미만
+															<input type="radio" id="_5만원 - 10만원 미만" name="radioPri" value ="price_2">
+														</label></li>
+													<li><label for="10만원 - 15만원 미만">10만원 - 15만원 미만
+															<input type="radio" id="_10만원 - 15만원 미만" name="radioPri" value ="price_3">
+														</label></li>
+													<li><label for="15만원 - 20만원 미만">15만원 - 20만원 미만
+															<input type="radio" id="_15만원 - 20만원 미만" name="radioPri" value ="price_4">
+														</label></li>
+													<li><label for="20만원 이상">20만원 이상
+															<input type="radio" id="_20만원 이상" name="radioPri" value ="price_5">
+														</label></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<button type="button" onclick="tagReset()">초기화</button>
+								</div>
+							</div><br>
+							<button type="button" class="btn btn-dark btn-block float-right text-white"
+								onclick="radioTest()" style="background-image: url(img/bg2.png)">검색</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="shop__product__option">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6" id="div0">
+								<div class="shop__product__option__left">
+									<p th:text="'총 6개의 상품'"></p>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6">
+
+							</div>
+						</div>
+					</div>
+
+					<!-- 상품 영역 -->
+					<div class="row">
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item sale" id="item_1">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-1" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="row">
+								<div class="col product__item__text">
+									<!-- 상품 이름 -->
+									<h6 id="shoes1_name"></h6>
+									<a id="shoes1_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="1"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<!-- 별점 -->
+									<div id="rating0">
+										
+									</div>
+									<h5 id="shoes1_price"></h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button btn-link-id="0" class='like-button' value="Off" id="onoff0" onclick="onoff(this);">
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div1">
+							<div class="product__item sale" id="item_2">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-2" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="row">
+								<div class="col product__item__text">
+									<h6 id="shoes2_name"></h6>
+									<a id="shoes2_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="2"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div id="rating1">
+										
+								</div>
+									<h5 id="shoes2_price">105,000원</h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button btn-link-id="1" class='like-button' value="Off" id="onoff1" onclick="onoff(this);">
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div2">
+							<div class="product__item sale" id="item_3">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-3" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="row">
+								<div class="col product__item__text">
+									<h6 id="shoes3_name"></h6>
+									<a id="shoes3_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="3"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div id="rating2">
+										
+									</div>
+									<h5 id="shoes3_price"></h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button btn-link-id="2" class='like-button' value="Off" id="onoff2" onclick="onoff(this);">
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div3">
+							<div class="product__item sale" id="itme_4">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-4" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="row">
+								<div class="col product__item__text">
+									<h6 id="shoes4_name"></h6>
+									<a id="shoes4_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="4"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div id="rating3">
+										
+									</div>
+									<h5 id="shoes4_price">105,000원</h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button btn-link-id="3" class='like-button' value="Off" id="onoff3" onclick="onoff(this);">
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div4">
+							<div class="product__item sale" id="item_5">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-5" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="row">
+								<div class="col product__item__text">
+									<h6 id="shoes5_name"></h6>
+									<a id="shoes5_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="5"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div id="rating4">
+																		</div>
+									<h5 id="shoes5_price">105,000원</h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button btn-link-id="4" class='like-button' value="Off" id="onoff4" onclick="onoff(this);">
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6" id="div5">
+							<div class="product__item sale" id="itme_6">
+								<div class="product__item__pic set-bg">
+									<iframe id="api-frame-6" width="260" height="260" style="border:none"
+										class="d-inline-block align-text-top">
+									</iframe>
+								</div>
+								<div class="row">
+								<div class="col product__item__text">
+									<h6 id="shoes6_name"></h6>
+									<a id="shoes6_page" th:href="@{sDetails}" class="add-cart ml-3" data-link-id="6"
+										onclick="handleLinkClick(this)">상품 페이지</a>
+									<div id="rating5">
+										
+									</div>
+									<h5 id="shoes6_price">105,000원</h5>
+									</div>
+									<div class="col">
+										<div class='like-wrapper mt-5 ml-5'>
+    										<button btn-link-id="5" class='like-button' value="Off" id="onoff5" onclick="onoff(this);">
+      											<span class='like-icon'>							
+        											<div class='heart-animation-1'></div>
+        											<div class='heart-animation-2'></div>
+      											</span>
+      										</button>
+  										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="product__pagination" id="pagebuttons">
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+	</section>
+	<!-- Shop Section End -->
+
+	<!-- Footer Section Begin -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__logo">
+							<a href="#"><img src="img/logo2.png" alt=""></a>
+						</div>
+						<p>5조신발점은 리퍼, 중고제품이 아닌 <br><span style="color:rgb(81, 255, 0)">새상품</span>만을 판매합니다.</p>
+
+					</div>
+				</div>
+				<div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+					<div class="footer__widget">
+						<h6>상품목록</h6>
+						<ul>
+							<li><a href="#">남성 신발</a></li>
+							<li><a href="#">여성 신발</a></li>
+							<li><a href="#">유아용 신발</a></li>
+							<li><a href="#">할인 제품</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-6">
+					<div class="footer__widget">
+						<h6>본사정책</h6>
+						<ul>
+							<li><a href="sContact">Contact Us</a></li>
+							<li><a href="#">결제 수단</a></li>
+							<li><a href="#">배송 정책</a></li>
+							<li><a href="#">반품 및 교환</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+					<div class="footer__widget">
+						<h6>구독</h6>
+						<div class="footer__newslatter">
+							<p>신제품 정보 및 <span style="color:rgb(81, 255, 0)">할인</span>과 <span
+									style="color:rgb(81, 255, 0)">프로모션</span> 등을 빠르게 받아보고 싶으시다면?</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="footer__copyright__text">
+						<p>Copyright ©
+							<script>
+								document.write(new Date().getFullYear());
+							</script>2020
+							All rights reserved | 5조신발점 <i class="fa fa-heart-o" aria-hidden="true"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+
+	<!-- Search Begin -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form">
+				<input type="text" id="search-input" placeholder="검색">
+			</form>
+		</div>
+	</div>
+	<!-- Search End -->
+
+
+	<script type="text/javascript" th:inline="javascript">
+
+		// 전역변수 공간 입니다만.
+
+		var imageToModelMapping_real = [];
+		var iframe_clicked = [];
+		var shoes_selected = ["shoes1_page", "shoes2_page", "shoes3_page", "shoes4_page", "shoes5_page", "shoes6_page"];
+
+		var shoes_id;
+		var shoes1_name;
+		var shoes_price;
+
+		var page = 1;
+		var pageLength;
+
+		var object = null;
+		var objLength = null;
+
+		var dataToSend = null;
+		
+		var paging = [[${paging}]];
+		var radioval;
+
+		var xhr = new XMLHttpRequest();
+		var xhr2 = new XMLHttpRequest();
+		var xhr3 = new XMLHttpRequest();
+		var xhr4 = new XMLHttpRequest(); // 좋아요 버튼 load시 state config
+		
+		//현재 url
+		const url = new URL(location.href);
+		//현재 url에서 ?뒤쪽에 있는 것들을 받아옴 localhost:8023/noticd?search=123&page=2라면 ?search=123&page=2이 값을 가져옴
+		const urlParams = url.searchParams;
+
+
+		window.onload = pageLoad;
+		function pageLoad() {
+			
+			
+			xhr.onreadystatechange = function () {
+				// 응답이 되었으면,
+				console.log("xhr.readyState : ", xhr.readyState);
+				console.log("xhr.status : ", xhr.status);
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					object = JSON.parse(xhr.responseText);
+					objLength = Object.keys(object).length;
+					console.log("objLength : ", objLength);
+					
+					var numberOfTotalStars = 5; // 전체 별의 수
+					var numberOfOrangeStars = [];
+					
+					var real = objLength;
+					for(var i = real; i < 6; i++)
+					{
+						var div_ids = 'div' + i;
+						console.log("div_ids : ", div_ids);
+						var div_ele = document.getElementById(div_ids);
+						div_ele.style.display = "none";
+					}
+					
+					// numberOfOrangeStars = 사용자 매긴 평점의 수
+					for(var i = 0; i < objLength; i++)
+					{
+						numberOfOrangeStars.push(object[i].review_stars); // 주황색으로 표시할 별의 수
+					}
+					
+					// numberOfTotalStars - numberOfOrangeStars[i] = graystarsArray (회색으로 칠해야 할.)
+					var graystarsArray = [];
+					
+					console.log("numberOfOrangeStars : ", numberOfOrangeStars);
+					
+					var pagebuttons = document.getElementById("pagebuttons");
+					//초기화
+					pagebuttons.innerHTML = '';
+					
+					//document.getElementById("item_2").innerHTML = " ";
+					
+					//페이지 버튼 제작
+					for (var i = 0; i < paging.totalPage; i++) {
+						pagebuttons.innerHTML = pagebuttons.innerHTML + '<a href="#" class="page-link" data-link-id = ' + (i + 1) + ' onclick="setPage(this)">' + (i + 1) + '</a>';
+					}
+					//필요한 것만 불러오도록 변경
+					for(var i = 0; i < objLength; i++){
+						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price
+													, sales: object[i].sales, shoes_price: object[i].shoes_price});
+						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+						
+						var grayStars = numberOfTotalStars - numberOfOrangeStars[i];
+						graystarsArray.push(grayStars);
+						
+						console.log("graystarsArray : ", graystarsArray[i]);
+						
+						// rating 
+						var starRatingHTML = '<div class="rating">';
+						
+						// 주황색 별을 먼저 찍고, 그 다음에 회색을 찍는다.
+						for(var sh = 0; sh < numberOfOrangeStars[i]; sh++)
+						{ 
+							starRatingHTML += '<i class="fa fa-star" style="color: orange;"></i>';
+						}
+						
+						for(var h = 0; h < graystarsArray[i]; h++)
+						{
+							starRatingHTML += '<i class="fa fa-star"></i>';
+						}
+						
+						starRatingHTML += '</div>';
+						
+						var isss= "rating"+i;
+						document.getElementById(isss).innerHTML = starRatingHTML;	
+					}
+
+					// Servlet에서 받은 신발의 정보들을 html에다가 set 하는 코드입니다.
+					// 신발 이름 
+					var article_id = ["shoes1_name", "shoes2_name", "shoes3_name", "shoes4_name", "shoes5_name", "shoes6_name"];
+					// 신발 가격을 표시하는 부분의 id
+					var article_price_id = ["shoes1_price", "shoes2_price", "shoes3_price", "shoes4_price", "shoes5_price", "shoes6_price"];
+					// 신발 가격
+					var price_sum = 0;  // 상품 총 금액 
+					var delivery_cost = 3000; // 배송비 
+					var total_cost = 0; // 총 금액 (상품 총 금액 + 배송비)
+					
+					for (var i = 0; i < objLength; i++) {
+						var shoes_info_name = imageToModelMapping_real[i].shoes_name;
+						var shoes_info_price = imageToModelMapping_real[i].final_price;
+						
+						var format_shoes_price = numeral(shoes_info_price).format('0,0');
+						price_sum += shoes_info_price;						
+						document.getElementById(article_id[i]).innerHTML = "<h6>" + shoes_info_name + "</h6>";
+						document.getElementById(article_price_id[i]).innerHTML = "<h5>" + format_shoes_price + "원 </h5>";
+						
+						//document.getElementById(item_[num]).innerHTML = '';
+					}
+					
+					imageToModelMapping_real.forEach(function (mapping) {
+						replaceWith3DModel(mapping.uid, mapping.iframeId);
+					});
+
+				} // if (xhr.readyState === 4 && xhr.status === 200) 
+
+			}; // xhr.onreadystatechange 끝
+			
+			var link = "/ProductListSevlet";
+			var search;
+			var page;
+			var tag;
+			
+			//PagelistServlet에 검색과 페이징 관련 정보 정리
+			if(urlParams.get('search') != null){
+				search = "search=" + urlParams.get('search');
+			}
+			if(urlParams.get('page') != null){
+				page = "page=" + urlParams.get('page');
+			}
+			if(urlParams.get('tag') != null){
+				tag = "tag=" + urlParams.get('tag');
+			}
+			
+			link = link + '?' + search + '&' + page + '&' + tag;
+			xhr.open("GET", link, true); // 비동기 요청 시작.
+			xhr.send(null); // ProductListSevlet에 보낼 요청
+		}; // pageLoad
+		
+		
+
+		function setPage(link) {
+			var pageId = link.getAttribute("data-link-id");
+			urlParams.set('page',pageId);
+			location.replace(url);
+		}
+		
+		function search(search){
+			console.log(location.search);				
+			var searchWord = search.getAttribute('search');
+			urlParams.set('search',searchWord);
+			//url에 해당되는 것으로 이동
+			location.replace(url);
+		}
+			
+		function radioTest(){
+			var radioTest = document.getElementsByName('radioPri');
+			radioTest.forEach(elem => {
+				if(elem.checked)
+				{
+					console.log(elem.value);
+					urlParams.set('tag',elem.value);
+				}
+			});
+			location.replace(url);
+		}
+		
+		function tagReset(){
+			urlParams.set('tag','');
+			urlParams.set('search','')
+			location.replace(url);
+		}
+			
+			
+		function showInfoToast(message) {
+		  var toast = document.getElementById("info-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function showLoginToast(message) {
+		  var toast = document.getElementById("info-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+		function onoff(element){
+			var linkId = 0;
+
+			linkId = element.getAttribute("btn-link-id");
+			console.log("linkId : ", linkId);
+			
+			var whoLikeButton = 'onoff' + linkId;
+			
+			var mybtnstylechange = document.getElementById(whoLikeButton);
+			
+			
+			
+			var likeData = [];
+			var likeSendData = [];
+			
+			var shoes_id = imageToModelMapping_real[linkId].uid;
+			var shoes_name = imageToModelMapping_real[linkId].shoes_name;
+			var shoes_price = imageToModelMapping_real[linkId].final_price;
+			var currentvalue;
+						
+			likeData.push(shoes_id);
+			likeData.push(shoes_name);
+			likeData.push(shoes_price);
+			likeData.push(linkId);
+			
+			currentvalue = document.getElementById(whoLikeButton).value;
+			console.log("currentvalue : "+linkId,currentvalue);
+			console.log(likeData);
+			
+			xhr3.onreadystatechange = function () {
+					
+				// shoes_id가 null 일 때 xhr3.status가 200이다.
+				// 그 말인 즉슨, 
+				console.log("xhr3.readyState : ", xhr3.readyState);
+				console.log("xhr3.status : ", xhr3.status);
+				if(xhr3.readyState === 4)
+				{
+					if (xhr3.status === 200) 
+					{
+						// State Change ON 
+						document.getElementById(whoLikeButton).value="On";
+						mybtnstylechange.style.border = "4px solid black";
+						showInfoToast("등록 되었습니다.");
+					} 
+					else if(xhr3.status === 400)
+					{
+						showLoginToast("로그인 하고 오세요.");
+					} 
+					else if(xhr3.status === 401 && currentvalue == 'On')
+					{
+						document.getElementById(whoLikeButton).value="Off";
+						mybtnstylechange.style.border = "4px solid #c7c7c7";
+						showInfoToast("해제 되었습니다.");
+					}
+				}
+			}
+			likeData.push(currentvalue);
+			
+			console.log("likeData : ",likeData);
+		  	xhr3.open("POST", "/LikePageDataSetServlet", true);
+			xhr3.send(likeData);
+		}
+
+
+		// 상품 페이지 a 태그가 눌렸을 때, 상품 상세 페이지 정보를 set하는 과정.
+		function handleLinkClick(link) {
+			var linkId = null;
+			var jsonData = null;
+
+			linkId = link.getAttribute("data-link-id");
+
+			switch (linkId) {
+
+				case "1":
+					var num = 0 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "2":
+					var num = 1 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "3":
+					var num = 2 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "4":
+					var num = 3 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "5":
+					var num = 4 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				case "6":
+					var num = 5 + page * 6 - 6;
+					dataToSend = imageToModelMapping_real[num];
+					console.log(dataToSend);
+					break;
+
+				default:
+					console.log("아무것도 눌리지 않았습니다.");
+			}
+
+
+
+			if (dataToSend != null) {
+				console.log("dataToSend NOT NULL");
+
+				jsonData = JSON.stringify(dataToSend);
+
+			} else {
+				console.log("dataToSend NULL");
+			}
+
+
+			xhr2.open("POST", "/ProductDetailPageServlet", true);
+			xhr2.send(jsonData); // ProductDetailPageServlet 보낼 요청
+
+		}
+
+
+		function replaceWith3DModel(uid, iframeId) {
+			return new Promise(function (resolve, reject) {
+				var iframe = document.getElementById(iframeId);
+				var client = new Sketchfab(iframe);
+
+				client.init(uid, {
+					success: function onSuccess(api) {
+						api.start();
+						api.addEventListener('viewerready', function () {
+							console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+							resolve(); // Promise가 성공했음을 알립니다.
+						});
+					},
+					error: function onError() {
+						console.log(iframeId + ' 3D 모델 초기화 오류');
+						reject(); // Promise가 실패했음을 알립니다.
+					},
+					// 초기화 매개변수 설정
+					graph_optimizer: 1, //그래프
+					merge_materials: 1, //재질 병합
+					material_packing: 1 //재질 패킹
+				});
+			});
+		}
+
+
+		function loadModels() {
+			// 모든 모델을 비동기식으로 로드합니다.
+			Promise.all(imageToModelMapping_real.map(function (mapping) {
+				return replaceWith3DModel(mapping.uid, mapping.iframeId);
+			})).then(function () {
+				// 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+				console.log('모든 3D 모델이 로드되었습니다.');
+			}).catch(function () {
+				// 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
+				console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
+			});
+		}
+
+		// 모든 모델을 한꺼번에 로드합니다.
+		loadModels();
+
+	</script>
+
+	<!-- Js Plugins -->
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.slicknav.js"></script>
+	<script src="js/mixitup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/hearticon.js"></script>
+	<!--<script src="js/main.js"></script>-->
+</body>
+
+</html>

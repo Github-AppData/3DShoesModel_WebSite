@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>본인인증 페이지</title>
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function sendNumber(){
+		var xhr = new XMLHttpRequest();
+        
+        xhr.onreadystatechange = function () 
+		{
+			console.log("xhr.readyState : ", xhr.readyState);
+			console.log("xhr.status : ", xhr.status);
+			// 응답이 되었으면,
+			if (xhr.readyState === 4 && xhr.status === 200) 
+			{
+				var obj = xhr.responseText;
+				console.log("obj : ", obj);
+				document.getElementById("Confirm").value = obj;
+			}
+		}
+		
+		
+		console.log("실행 ");
+        $("#mail_number").css("display","block");
+        $.ajax({
+            url:"/findPw",
+            type:"post",
+            dataType:"json",
+            data:{"mail" : $("#mail").val()},
+            success: function(data){
+                alert("인증번호 발송");
+                
+                // session의 값을 셋팅 된 다음에 Servlet으로 찾아간다.
+                xhr.open("GET", "/findPwNumberSetServlet", true);
+				xhr.send(null);
+            }
+            
+        });
+    }
+
+    function confirmNumber(){
+        var number1 = $("#number").val();
+        var number2 = $("#Confirm").val();
+        console.log("number : ", number1);
+        console.log("Confirm : ", number2);
+
+        if(number1 == number2){
+            alert("인증되었습니다.");
+            location.href="pwUpdateLast";
+            
+        }else{
+            alert("번호가 다릅니다.");
+            location.href="findPw";
+        }
+    }
+</script>
+
+
+<body>
+	<!-- TODO : 본인인증 박기, 이메일 인증으로 박기 -->
+	
+	<section class="ftco-section" style="background-image: url(img/bg-2.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">본인인증</h2>
+                    <p>이메일 주소를 입력하고 인증 코드를 받으세요.</p>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+					<div class="col-md-5"> 
+						<div class="form-group mb-3">
+							<div id="mail_input" name="mail_input">
+			      				<label class="label">E-mail</label>
+			      				<input type="email" class="form-control" name="mail" id="mail" placeholder="ex)mfua6252@gmail.com">
+	                            <div class="form-group text-right">
+									<!-- 코드 전송 버튼-->
+									<br>
+									<button type="button" id="sendBtn" name="sendBtn" class=" btn btn-primary submit px-3" onclick="sendNumber()">인증 코드 전송</button>
+			            		</div>
+		            		</div>
+		            	  </div>		
+		            		
+		            		
+		            		<div class="form-group mb-3" id="mail_number" name="mail_number" style="display: none">
+		            			<label class="label">인증 코드</label>
+		              			<input name="number" id="number" type="text" class="form-control" placeholder="인증번호 입력">
+	                            <div class="form-group text-right">
+									<!-- 코드 확인 버튼-->
+									<br>
+			            			<button name="confirmBtn" id="confirmBtn"  type="button" class="btn btn-primary submit px-3" onclick="confirmNumber()">인증 확인</button>
+			            		</div>
+		            		</div>
+		            		<br>
+   							 <input type="text" id="Confirm" name="Confirm" style="display: none" value="">
+
+
+
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+
+		          		
+
+						
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		
+		var xhr = new XMLHttpRequest();
+		
+		xhr.onreadystatechange = function () 
+		{
+			// 응답이 되었으면,
+			if (xhr.status === 200) 
+			{
+				var obj = xhr.responseText;
+				console.log("obj :", obj);
+			}
+		}
+		
+	</script>
+
+	<script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원가입</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/memberfont/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/memberstyle.css">
+
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title" style="text-align: center;">회원가입</h2>
+                        <form method="POST" action="/InsertInfoServlet" class="register-form" id="register-form">
+						
+	                            <div class="form-group">
+	                                <label for="id"><i class="zmdi zmdi-account material-icons-name"></i></label>
+	                                <input type="text" name="id" id="id" placeholder="아이디" required/>
+	                            </div>
+                            <div id="pwCheck">
+								
+							</div>
+                            <div class="form-group">
+                                <label for="pw"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pw" id="pw" placeholder="비밀번호"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-email"></i></label>
+                                <input type="text" name="name" id="name" placeholder="이름" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="이메일" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="adress"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="adress" name="adress" id="adress" placeholder="주소" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="detail_adress"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="detail_adress" name="detail_adress" id="detail_adress" placeholder="상세 주소" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="birthday"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="date" name="birthday" id="birthday" placeholder="birthday" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone_number"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="tel" name="phone_number" id="phone_number" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" placeholder="phone number" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span><a href="#" class="term-service">서비스 약관</a> 의 모든 내용에 동의합니다</label>
+                            </div>
+                            <div class="signup-image-link">
+								<div class=" text-md-right" >
+									<a href="sLogin" style="color : rgb(30, 148, 79);">혹시 회원이신가요?<a>
+								</div>
+		            		</div>
+                            <div class="form-group form-button" style="text-align: center;">
+                                <button type="submit" name="signupButton" id="signupButton" class="form-submit btn btn-primary ml-3">회원가입 </button>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+    <script>
+		 
+		const passwordField = document.getElementById('pw');
+	    const passwordRequirements = document.getElementById('pwCheck');
+	    const signupButton = document.getElementById('signupButton');
+	    
+	    
+	    passwordField.addEventListener('input', function() {
+			
+	        const password = passwordField.value;
+	        const requirements = [];
+	        
+	        // 비밀번호 조건 검사 및 메시지 추가
+	         if (password.length < 8) {
+				requirements.push('8자 이상 이어야 합니다');
+				
+	        }else if( password.length >= 12){
+					requirements.push('8 ~ 12자 이하 이어야 합니다.');
+			}
+	        if (!/[A-Z]/.test(password)) {
+	            requirements.push('대문자를 포함해야 합니다.');
+	        }
+	        if (!/[a-z]/.test(password)) {
+	            requirements.push('소문자를 포함해야 합니다.');
+	        }
+	        if (!/[0-9]/.test(password)) {
+	            requirements.push('숫자를 포함해야 합니다.');
+	        }
+	        
+	        // 메시지 업데이트
+	        passwordRequirements.innerHTML = requirements.join('<br>');
+	        
+	        // 비밀번호 조건을 충족할 때 버튼 활성화, 그렇지 않으면 비활성화
+	        signupButton.disabled = requirements.length > 0;
+    	});
+	</script>
+
+    <!-- JS -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.rubypaper.mapper.TotalMapper">
+
+	<!-- 결제 - 카카오 -->
+	<insert id="requestPay2InfoInsert">
+		insert into order_List(order_id, shoes_name, quantity, price, size, user_id, order_date, way)
+		SELECT COALESCE(MAX(order_id) + 1, 1), #{shoes_name}, #{quantity}, #{price}, #{size}, #{user_id}, #{order_date}, #{way}
+		FROM order_List
+	</insert>
+	
+	<select id="myPageOrderListSelect" resultType="Map">
+		select shoes_name, quantity, size, price, order_date
+		from order_List
+		where user_id = #{user_id}
+		order by order_id asc;
+	</select>
+	
+	<!--
+		<insert id="userInsert">
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User
+	</insert>
+	  
+	
+	-->
+	
+
+	<select id="randSelectShoesId" resultType="Map">
+		SELECT shoes_id, shoes_name, final_price, review_stars, sales, shoes_price
+		FROM shoes
+		<choose>
+			<when test="searchTag == 'price_1'">
+				WHERE final_price <![CDATA[<]]> 50000
+			</when>
+			<when test="searchTag == 'price_2'">
+				WHERE final_price >= 50000
+				AND final_price <![CDATA[<]]> 100000
+			</when>
+			<when test="searchTag == 'price_3'">
+				WHERE final_price >= 100000
+				AND final_price <![CDATA[<]]> 150000
+			</when>
+			<when test="searchTag == 'price_4'">
+				WHERE final_price >= 150000
+				AND final_price <![CDATA[<]]> 200000
+			</when>
+			<when test="searchTag == 'price_5'">
+				WHERE final_price >= 200000
+			</when>
+			<otherwise>
+				
+			</otherwise>
+		</choose>
+		ORDER BY idx ASC		
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	<!-- 마이페이지 주문내역 -->
+
+	
+	<select id="myPageNoticeBoardSelect"  resultType="Map">
+		select title, write_date, idx
+		from notice_board
+		where user_id = #{user_id};
+	</select>
+
+	<select id="searchsMain" resultType="Map"> 
+		SELECT shoes_id, shoes_name, final_price 
+		FROM shoes
+		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
+		<choose>
+			<when test="searchTag == 'price_1'">
+				AND final_price <![CDATA[<]]> 50000
+			</when>
+			<when test="searchTag == 'price_2'">
+				AND final_price >= 50000
+				AND final_price <![CDATA[<]]> 100000
+			</when>
+			<when test="searchTag == 'price_3'">
+				AND final_price >= 100000
+				AND final_price <![CDATA[<]]> 150000
+			</when>
+			<when test="searchTag == 'price_4'">
+				AND final_price >= 150000
+				AND final_price <![CDATA[<]]> 200000
+			</when>
+			<when test="searchTag == 'price_5'">
+				AND final_price >= 200000
+			</when>
+			<otherwise>
+				
+			</otherwise>
+		</choose>		
+		LIMIT #{startRow},#{pageSize}; 
+	</select>
+	
+	<select id="selectMain" resultType="Map">
+		select shoes_id, shoes_name, final_price
+		from main
+		order by idx asc;
+	</select>
+	
+	<update id="isLikeUpdate">
+		update shoes
+		set is_like = 1
+		where shoes_id = #{shoes_id};
+	</update>
+
+	<update id="isDisableLikeUpdate">
+		update shoes
+		set is_like = 0
+		where shoes_id = #{shoes_id};
+	</update>
+
+	<select id="isLikeSelect">
+		select shoes.shoes_name, shoes.final_price, like_tb.shoes_id
+		from shoes, like_tb
+		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="isLikeCount" resultType="Integer">
+		select count(*)
+		from shoes, like_tb
+		where shoes.shoes_id = like_tb.shoes_id and shoes.is_like = 1;
+	</select>
+
+	<delete id="likeDeleteShoesId">
+		delete from like_tb
+		where shoes_id = #{shoes_id}
+	</delete>
+
+	<select id="linkIdSelectLike">
+		select link_id
+		from like_tb;
+	</select>
+
+	<insert id="isLikeInfoInsert">
+		insert into like_tb(shoes_id, link_id, shoes_name, user_id)
+		values (#{shoes_id}, #{link_id}, #{shoes_name}, #{user_id})
+	</insert>
+
+	<select id="shoesIdCheckLike">
+		select shoes_id
+		from like_tb
+		where shoes_id = #{shoes_id};
+	</select>
+
+	<insert id="reviewInfoInsert">
+		insert into review(review_id, shoes_id, rating, reviewText)
+		values (#{review_id}, #{shoes_id}, #{rating}, #{reviewText})
+	</insert>
+
+	<select id="reviewRatingAvgSelect">
+		SELECT ROUND(SUM(rating) / COUNT(shoes_id)) AS average_rating
+		FROM review
+		WHERE shoes_id = #{shoes_id};
+	</select>
+
+	<update id="shoesRatingStarsUpdate">
+		update shoes
+		set review_stars = #{review_stars}
+		where shoes_id = #{shoes_id};
+	</update>
+
+	<!--
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress,
+	email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw},
+	#{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User  
+	-->
+
+	<!--  select user_id
+		from user	 
+		where user_id = #{id} -->
+
+	<select id="searchAdminPageShoes" resultType="Map">
+		SELECT shoes_id, shoes_name, shoes_price, sales, num_like, final_price
+		FROM shoes
+		WHERE shoes_Name Like CONCAT('%',#{searchWord},'%')
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="shoesCount">
+		SELECT count(*)
+		FROM shoes
+		where is_delete = 0
+		<choose>
+			<when test="searchTag == 'price_1'">
+				AND final_price <![CDATA[<]]> 50000;
+			</when>
+			<when test="searchTag == 'price_2'">
+				AND final_price >= 50000
+				AND final_price <![CDATA[<]]> 100000;
+			</when>
+			<when test="searchTag == 'price_3'">
+				AND final_price >= 100000
+				AND final_price <![CDATA[<]]> 150000;
+			</when>
+			<when test="searchTag == 'price_4'">
+				AND final_price >= 150000
+				AND final_price <![CDATA[<]]> 200000;
+			</when>
+			<when test="searchTag == 'price_5'">
+				AND final_price >= 200000;
+			</when>
+			<otherwise>
+				;
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="searchShoesCount" resultType="Integer">
+		SELECT count(*)
+		FROM shoes
+		where is_delete = 0 and
+		shoes_Name LIKE CONCAT('%',#{searchWord},'%')
+		<choose>
+			<when test="searchTag == 'price_1'">
+				AND final_price <![CDATA[<]]> 50000;
+			</when>
+			<when test="searchTag == 'price_2'">
+				AND final_price >= 50000
+				AND final_price <![CDATA[<]]> 100000;
+			</when>
+			<when test="searchTag == 'price_3'">
+				AND final_price >= 100000
+				AND final_price <![CDATA[<]]> 150000;
+			</when>
+			<when test="searchTag == 'price_4'">
+				AND final_price >= 150000
+				AND final_price <![CDATA[<]]> 200000;
+			</when>
+			<when test="searchTag == 'price_5'">
+				AND final_price >= 200000;
+			</when>
+			<otherwise>
+				;
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="searchBoards" resultType="Map">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE title LIKE CONCAT('%',#{searchWord},'%')
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="searchBoardCount" resultType="Integer" parameterType="String">
+		SELECT count(*)
+		FROM notice_board
+		where is_delete = 0 and
+		title LIKE CONCAT('%',#{boards_Name},'%');
+	</select>
+
+	<select id="adminPageSelectShoesList" resultType="Map">
+		select shoes_id, shoes_name, shoes_price, sales, final_price
+		from shoes
+		where is_delete = 0
+		order by idx asc
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="adminPageSelectAdminAccount" resultType="Map">
+		select user_id, name, email
+		from user
+		where user_id = "admin";
+	</select>
+
+	<update id="adminPageUpdateShoesInfo">
+		update shoes
+		set shoes_price = #{shoes_price}, sales = #{sales}, final_price =
+		#{final_price}
+		where shoes_name = #{shoes_name};
+	</update>
+
+	<delete id="adminPageDeleteShoesInfo">
+		Delete
+		from shoes
+		where shoes_name = #{shoes_name};
+	</delete>
+
+	<insert id="adminPageShoesInsert">
+		insert into shoes (shoes_id, shoes_name, shoes_price, final_price)
+		values (#{shoes_id}, #{shoes_name}, #{shoes_price}, #{final_price})
+	</insert>
+
+	<!-- <insert id="userInsert">
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress,
+	email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw},
+	#{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User
+	</insert> -->
+
+	<select id="myPageUserDataSet" resultType="Map">
+		select user_id, name, birthday, adress, detail_adress, email, phone
+		from User
+		where user_id = #{user_id};
+	</select>
+
+	<select id="adminPageSelectUserList" resultType="Map">
+		SELECT user_id, name, adress, birthday, phone
+		FROM user
+		WHERE user_id != "admin"
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="searchAdminPageUser" resultType="Map">
+		SELECT user_id, name, adress, birthday, phone
+		FROM user
+		WHERE user_id != "admin"
+		and name Like CONCAT('%',#{searchWord},'%')
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="userCount" resultType="Integer">
+		SELECT count(*)
+		FROM user
+		where user_id != "admin";
+	</select>
+
+	<select id="searchUserCount" resultType="Integer" parameterType="String">
+		SELECT count(*)
+		FROM user
+		WHERE user_id != "admin"
+		and name Like CONCAT('%',#{searchWord},'%');
+	</select>
+
+	<select id="boardCheckIdFindList" resultType="Map" parameterType="String">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE user_id = #{user_id} and is_delete = 0
+		ORDER BY idx ASC;
+	</select>
+
+
+	<select id="cartFindList" resultType="Map">
+		SELECT cart.shoes_id, cart.size, cart.quantity, shoes.final_price, 
+		shoes.shoes_name
+		FROM cart, shoes
+		WHERE cart.is_delete = 0 and cart.shoes_id = shoes.shoes_id
+		ORDER BY cart.cart_id ASC
+	</select>
+
+
+	<select id="boardFindList" resultType="Map">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE is_delete = 0
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
+
+	<select id="boardCount" resultType="Integer">
+		SELECT count(*) FROM Graduation_WorkDB.notice_board where is_delete = 0
+	</select>
+
+	<select id="cartFindShoesId">
+		SELECT shoes_id
+		FROM cart
+		WHERE shoes_id = #{shoes_id}
+	</select>
+
+	<delete id="FindListIsDelete">
+		delete
+		from notice_board
+		where is_delete = 1
+	</delete>
+
+	<!-- MyBatis XML에서 SQL 업데이트 쿼리 정의 -->
+	<update id="cartUpdateIsDelete">
+		update cart
+		set is_delete = 1
+		where shoes_id = #{shoes_id}
+	</update>
+
+	<select id="boardIdxData" resultType="Map">
+		select title, content, write_date
+		from notice_board
+		where idx = #{idx}
+	</select>
+
+	<delete id="cartDeleteShoesId">
+		delete from cart
+		where is_delete = 1
+	</delete>
+
+	<update id="noticeBoardIdxResort">
+		SET @row_number = 0;
+
+		UPDATE notice_board
+		SET idx = (@row_number := @row_number + 1)
+		ORDER BY idx;
+	</update>
+
+	<select id="numberOfCart" resultType="int">
+		select MAX(cart_id)
+		from cart
+	</select>
+</mapper>

@@ -1,0 +1,11 @@
+Model Information:
+* title:	used_nike
+* source:	https://sketchfab.com/3d-models/used-nike-3d8b49d8fdd54ef8afb69735fa452ee2
+* author:	3Dshoot.co (https://sketchfab.com/bugrahansirvanci)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "used_nike" (https://sketchfab.com/3d-models/used-nike-3d8b49d8fdd54ef8afb69735fa452ee2) by 3Dshoot.co (https://sketchfab.com/bugrahansirvanci) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

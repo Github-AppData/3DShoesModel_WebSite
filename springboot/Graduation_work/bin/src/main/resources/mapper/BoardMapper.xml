@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.rubypaper.mapper.BoardMapper">
+
+	<insert id="boardInsert">
+		INSERT INTO notice_board (idx, title, content, write_date, user_id)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{title}, #{content}, #{write_date}, #{user_id}
+		FROM notice_board
+	</insert>
+	
+	<select id="boardFindList" resultType="Map">
+		SELECT idx, title, write_date
+		FROM notice_board
+		WHERE is_delete = 0
+		ORDER BY idx ASC
+		LIMIT #{startRow},#{pageSize};
+	</select>
+	
+	
+	<select id="boardCount" resultType="Integer">
+		SELECT count(*) FROM Graduation_WorkDB.notice_board where is_delete = 0
+	</select>
+</mapper>

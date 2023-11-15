@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.rubypaper.mapper.CartMapper">
+
+	<insert id="cartInsert">
+		INSERT INTO cart (cart_id, user_id, shoes_id, quantity, size)
+		SELECT COALESCE(MAX(cart_id) + 1, 1), #{user_id}, #{shoes_id}, #{quantity}, #{size}
+		FROM cart
+	</insert>
+	
+	
+	
+	<select id="cartCheckShoesId">
+		select shoes_id
+		from cart	 
+		where shoes_id = #{shoes_id}
+	</select>
+	
+</mapper>

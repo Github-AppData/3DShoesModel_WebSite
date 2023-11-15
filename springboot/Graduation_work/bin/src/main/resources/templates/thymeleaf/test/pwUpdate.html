@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+    <title>비밀번호 변경 절차 1단계? </title>
+</head>
+<body>
+
+    		
+	 <section class="ftco-section" style="background-image: url(img/bg-2.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">비밀번호 확인</h2>
+                    <p>개인정보 변경 전 비밀번호 확인이 필요합니다.</p>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> 
+						<form action="ReviseInfoServlet" method="post">
+
+		            		<div class="form-group mb-3">
+		            			<label class="label" for="input_pw">Password</label>
+		              			<input type="password" id="input_pw" name="input_pw" class="form-control" placeholder="비밀번호를 입력해주세요">
+		            		</div>
+
+                            <div class="form-group text-right">
+		            			<button class="btn btn-primary submit px-3" id="signupButton">비밀번호 확인</button>
+		            		</div>
+
+
+		            		<div class="form-group d-flex justify-content-center">
+								<div class=" text-md-right" >
+									<a href="main" style="color : rgb(31, 115, 141);">다음에 할께요!<a>
+								</div>
+		            		</div>
+
+		          		</form>
+
+						
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	 <script>
+		 
+		const passwordField = document.getElementById('input_pw');
+	    const passwordRequirements = document.getElementById('passwordRequirements');
+	    const signupButton = document.getElementById('signupButton');
+	    
+	    
+	    passwordField.addEventListener('input', function() {
+			
+	        const password = passwordField.value;
+	        const requirements = [];
+	        
+	        // 비밀번호 조건 검사 및 메시지 추가
+	         if (password.length < 8) {
+				requirements.push('8자 이상 이어야 합니다');
+				
+	        }else if( password.length >= 12){
+					requirements.push('8 ~ 12자 이하 이어야 합니다.');
+			}
+	        if (!/[A-Z]/.test(password)) {
+	            requirements.push('대문자를 포함해야 합니다.');
+	        }
+	        if (!/[a-z]/.test(password)) {
+	            requirements.push('소문자를 포함해야 합니다.');
+	        }
+	        if (!/[0-9]/.test(password)) {
+	            requirements.push('숫자를 포함해야 합니다.');
+	        }
+	        
+	        // 메시지 업데이트
+	        passwordRequirements.innerHTML = requirements.join('<br>');
+	        
+	        // 비밀번호 조건을 충족할 때 버튼 활성화, 그렇지 않으면 비활성화
+	        signupButton.disabled = requirements.length > 0;
+    	});
+	</script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>로그인 페이지</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/loginstyle.css">
+
+	</head>
+	<body>
+	<section class="ftco-section" style="background-image: url(img/bg-1.jpg);">
+		<div class="container2">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<a href="main"><h2 class="heading-section">로그인</h2></a>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-md-5"> <!-- 크기 5 -->
+						<!-- 폼 에서 id 랑 pw 를 login 쪽으로 post 로 주면 받아서 처리 해줘야함 -->
+						<form action="/LoginCheckServlet" class="signin-form" method="GET">
+			      			<div class="form-group mb-3">
+			      				<label class="label" for="login_id">아이디</label>
+			      				<input type="text" class="form-control" id="login_id" name="login_id" placeholder="아이디를 입력해주세요" required>
+			      			</div>
+		            		<div class="form-group mb-3">
+		            			<label class="label" for="login_pw">비밀번호</label>
+		              			<input type="password" id="login_pw" name="login_pw" class="form-control" placeholder="비밀번호를 입력해주세요" required>
+		            		</div>
+
+							<div class="w-50 text-left mb-3 ml-3"> <!-- 너무 앞에 가있어서 마진 3씩 줫음 바텀 레프트-->
+								<label class="checkbox-wrap checkbox-primary mb-0" >아이디 저장
+									<input type="checkbox" checked>
+									<span class="checkmark"></span>
+								</label>
+							</div>
+							<div id="responseMessage">
+								
+							</div>
+		            		<div class="form-group">
+								<!-- 로그인 버튼-->
+		            			<button type="submit" class="form-control btn btn-primary submit px-3" onclick="sendHttpRequest()">로그인</button>
+		            		</div>
+								<!-- 로그인 버튼 밑에 기능-->
+		            		<div class="form-group d-flex justify-content-center">
+							<!-- 회원가입 과 비밀번호 찾기는 페이지 구현중 되면 추가함 -->
+								<div class=" text-md-right" >
+									<a href="findPw" style="color : rgb(49, 128, 48);">비밀번호 찾기<a>
+								</div>
+								&emsp;
+								<div class=" text-md-right">
+								<!-- 회원가입 쪽은 양식이 없기에 db에서 테스트용으로 쓰던 html 파일 같은거 추가해두면 추후에 수정 -->
+									<a href="SignUp">회원가입</a> 
+								</div>
+		            		</div>
+
+		          		</form>
+
+						  <div class="d-flex">
+								<div class="w-100">
+									<!-- 소셜 페이지 -->
+									<p class="social-media d-flex justify-content-end">
+										<a href="https://www.facebook.com/?locale=ko_KR" target='_blank' class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a href="https://twitter.com/?lang=ko"  target='_blank'class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+									</p>
+								</div>
+						  </div>
+
+		        	</div>
+		      		</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  
+
+	</body>
+</html>
+

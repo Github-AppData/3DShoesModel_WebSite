@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.example.rubypaper.mapper.UserMapper">
+	<insert id="userInsert">
+		INSERT INTO User (idx, user_id, name, birthday,  pw, adress, detail_adress, email, salt, phone, is_Status)
+		SELECT COALESCE(MAX(idx) + 1, 1), #{user_id}, #{name}, #{birthday}, #{pw}, #{adress}, #{detail_adress}, #{email}, #{salt}, #{phone}, #{is_Status}
+		FROM User
+	</insert>
+	
+	<update id="userInfoUpdate">
+		update user
+		set name = #{name}, birthday = #{birthday}, email = #{email}, adress = #{adress}, detail_adress = #{detail_adress}
+		where user_id = #{user_id}
+	</update>
+	
+	<select id="findAll">
+		select *
+		from User order by idx desc
+	</select>
+	
+	<select id="idCheckSelect2">
+		select user_id
+		from user	 
+		where user_id = #{id}
+	</select>
+	
+	<select id="getSaltSelect">
+		select salt
+		from User 
+		where user_id = #{id}
+	</select>
+	
+	<select id="getPwSelect">
+		select pw
+		from User 
+		where user_id = #{id}
+	</select>
+
+	<update id="newPwChange">
+		UPDATE User
+		SET pw = #{pw}, salt = #{salt}
+		WHERE user_id = #{user_id};
+	</update>
+	
+</mapper>

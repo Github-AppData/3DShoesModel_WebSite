@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Rating PopUp</title>    
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/rating.css" type="text/css">
+</head>
+<body>
+	<form id="reviewForm" action="/ReviewInsertServlet" method="POST">
+		<div class="contain">
+			<div><br>
+			<p class="ff">별점 남기기</p>
+			<textarea name="reviewText"cols="61" rows="4" placeholder=" 자유롭게 작성해주세요." required></textarea>
+			</div>
+		<div class="star-rating space-x-4 ml-auto mr-1">
+			<input type="radio" id="5-stars" name="rating" value="5"/>
+			<label for="5-stars" class="star pr-4">★</label>
+			<input type="radio" id="4-stars" name="rating" value="4"/>
+			<label for="4-stars" class="star">★</label>
+			<input type="radio" id="3-stars" name="rating" value="3"/>
+			<label for="3-stars" class="star">★</label>
+			<input type="radio" id="2-stars" name="rating" value="2"/>
+			<label for="2-stars" class="star">★</label>
+			<input type="radio" id="1-star" name="rating" value="1"/>
+			<label for="1-star" class="star">★</label>
+		</div>
+		<div class="text-right mt-1 mr-3">
+		<button class="btn btn-danger"type="reset">취소하기</button>
+		<button class="btn btn-success" type="submit">등록하기</button>
+		</div>
+		</div>
+	</form>
+</body>
+	
+</html>
