@@ -38,10 +38,10 @@
 		where user_id = #{id}
 	</select>
 
-	<select id="newPwChange">
+	<update id="newPwChange">
 		UPDATE User
 		SET pw = #{pw}, salt = #{salt}
-		WHERE user_id IN (SELECT temp.user_id FROM (SELECT user_id FROM User WHERE user_id = #{id}) AS temp);
-	</select>
+		WHERE user_id = #{user_id};
+	</update>
 	
 </mapper>

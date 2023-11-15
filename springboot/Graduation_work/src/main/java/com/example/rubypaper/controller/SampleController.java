@@ -2,6 +2,7 @@ package com.example.rubypaper.controller;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.rubypaper.dto.NoticeBoard;
@@ -31,13 +33,15 @@ public class SampleController {
 	@Autowired
 	TotalService totalService;
 	
+	
 	@GetMapping("/mypage")
 	public String mypage(Model model, HttpServletRequest request, HttpSession session)
 	{
 		//사용자 목록 가져오기 
 		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> boardList = new ArrayList<Map<String, Object>>();
-				
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		
 		//사용자 총 수 
 		int result = 0;
 		
@@ -45,17 +49,33 @@ public class SampleController {
 		session = request.getSession();
 		String userID = (String) session.getAttribute("userID"); // 로그인 아이디가 checkLogin에 들어가 있다.
 		System.out.println(userID);
+		
+		
 		try {
+<<<<<<< HEAD
 			userList = totalService.myPageUserDataSet(userID);
 			boardList = totalService.myPageNoticeBoardSelect(userID);
+=======
+			userList = totalService.myPageUserDataSet(userID); // 본인 정보 
+			boardList = totalService.myPageNoticeBoardSelect(userID); // 본인이 쓴 게시글 정보 
+			orderList = totalService.myPageOrderListSelect(userID);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("userList : "+userList.toString());
 		System.out.println("boardList : "+boardList.toString());
+<<<<<<< HEAD
 						
 		model.addAttribute("list", userList);
 		model.addAttribute("boardList", boardList);
+=======
+		System.out.println("orderList : "+orderList.toString());
+						
+		model.addAttribute("list", userList);
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("orderList", orderList);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 			
 		model.addAttribute("userID", userID); // userID를 전한다.
 		
@@ -233,6 +253,10 @@ public class SampleController {
 	@GetMapping("/sMain")
 	public String sMain(@RequestParam(value="page", defaultValue = "1") int page ,
 			@RequestParam(value="search", required = false) String search,
+<<<<<<< HEAD
+=======
+			@RequestParam(value="tag", required = false) String tag,
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 			Model model,HttpServletRequest request, HttpSession session)
 	{
 		Paging paging = new Paging();
@@ -243,16 +267,27 @@ public class SampleController {
 		paging.setPage(page);
 		paging.setPageSize(6);
 		paging.setSearchWord(search);
+<<<<<<< HEAD
 		if(search != null) {
 			try {
 				totalArticle = totalService.searchShoesCount(search);
+=======
+		paging.setSearchTag(tag);
+		if(search != null) {
+			try {
+				totalArticle = totalService.searchShoesCount(paging);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else {
 			try {
+<<<<<<< HEAD
 				totalArticle = totalService.shoesCount();
+=======
+				totalArticle = totalService.shoesCount(paging);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -489,10 +524,17 @@ public class SampleController {
 		try {
 			if(search != null) {
 				shoesList = totalService.searchAdminPageShoes(paging);
+<<<<<<< HEAD
 				totalArticle = totalService.searchShoesCount(search);
 			} else {
 				shoesList = totalService.adminPageSelectShoesList(paging);
 				totalArticle = totalService.shoesCount();
+=======
+				totalArticle = totalService.searchShoesCount(paging);
+			} else {
+				shoesList = totalService.adminPageSelectShoesList(paging);
+				totalArticle = totalService.shoesCount(paging);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 			}
 			paging.setTotalArticle(totalArticle);
 			paging.setTotalPage(totalArticle);

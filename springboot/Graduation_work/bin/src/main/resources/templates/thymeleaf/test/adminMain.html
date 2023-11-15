@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en"> 
+=======
+<html xmlns:th="http://www.thymeleaf.org">
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 <head>
     <title>관리자 페이지 - 메인</title>
     
@@ -131,6 +135,7 @@
 															
 							</div><!--//dropdown-menu-->					        
 				        </div><!--//app-utility-item-->
+<<<<<<< HEAD
 			            <div class="app-utility-item">
 				            <a href="adminSettings" title="Settings">
 					            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
@@ -140,6 +145,8 @@
 </svg>
 					        </a>
 					    </div><!--//app-utility-item-->
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 			            
 			            <div class="app-utility-item app-user-dropdown dropdown">
 				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile"></a>
@@ -202,7 +209,11 @@
   <circle cx="3.5" cy="10.5" r=".5"/>
 </svg>
 						         </span>
+<<<<<<< HEAD
 		                         <span class="nav-link-text">주문관리</span>
+=======
+		                         <span class="nav-link-text">상품 관리</span>
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 					        </a><!--//nav-link-->
 					    </li><!--//nav-item-->
 					    <li class="nav-item has-submenu">
@@ -226,6 +237,7 @@
 						        <ul class="submenu-list list-unstyled">
 							        <li class="submenu-item"><a class="submenu-link" href="adminNotifications">Notifications</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="adminAccount">Account</a></li>
+<<<<<<< HEAD
 							        <li class="submenu-item"><a class="submenu-link" href="adminSettings">Settings</a></li>
 						        </ul>
 					        </div>
@@ -252,6 +264,8 @@
 							        <li class="submenu-item"><a class="submenu-link" href="SignUp">회원가입</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="pwUpdate">비밀번호 재설정</a></li>
 							        <li class="submenu-item"><a class="submenu-link" href="admin404">404오류</a></li>
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 						        </ul>
 					        </div>
 					    </li><!--//nav-item-->
@@ -277,6 +291,7 @@
 					    <ul class="app-menu footer-menu list-unstyled">
 						    <li class="nav-item">
 						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+<<<<<<< HEAD
 						        <a class="nav-link" href="adminSettings">
 							        <span class="nav-icon">
 							            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -286,6 +301,8 @@
 							        </span>
 			                        <span class="nav-link-text">설정하기</span>
 						        </a><!--//nav-link-->
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 						    </li><!--//nav-item-->
 						    
 						    <li class="nav-item">
@@ -603,13 +620,21 @@
 						                
 							        </div><!--//col-->
 							        <div class="col-auto">
+<<<<<<< HEAD
 								        <h4 class="app-card-title">공지사항(댓글) 작성하기</h4>
+=======
+								        <h4 class="app-card-title">게시판 답변 작성하기</h4>
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 							        </div><!--//col-->
 						        </div><!--//row-->
 						    </div><!--//app-card-header-->
 						    <div class="app-card-body px-4">
 							    
+<<<<<<< HEAD
 							    <div class="intro">관리자 명의로 공지사항과 질문게시판, 댓글을 작성할 수 있다.</div>
+=======
+							    <div class="intro">관리자 명의로 공지사항 댓글을 작성할 수 있습니다.</div>
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 						    </div><!--//app-card-body-->
 						    <div class="app-card-footer p-4 mt-auto">
 							   <a class="btn app-btn-secondary" href="#">GO!</a>
@@ -630,17 +655,35 @@
 						                
 							        </div><!--//col-->
 							        <div class="col-auto">
+<<<<<<< HEAD
 								        <h4 class="app-card-title">고객 목록</h4>
+=======
+								        <h4 class="app-card-title">사용자 목록</h4>
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 							        </div><!--//col-->
 						        </div><!--//row-->
 						    </div><!--//app-card-header-->
 						    <div class="app-card-body px-4">
+<<<<<<< HEAD
 							    
 							    <div class="intro">목록 쫘르르르르륵</div>
 						    </div><!--//app-card-body-->
 						    <div class="app-card-footer p-4 mt-auto">
 							   <a class="btn app-btn-secondary" href="#">GO!</a>
 						    </div><!--//app-card-footer-->
+=======
+								
+							    <!-- 고객 목록 받아오기 -->
+							    <div class="intro" th:each="userList : ${userList}">
+									<b th:text="${userList.user_id}"></b>
+								</div>
+							    	
+							    </div><!--//app-card-body-->
+							    
+							    <div class="app-card-footer p-4 mt-auto">
+								   <a class="btn app-btn-secondary" href="adminDocs">GO!</a>
+							    </div><!--//app-card-footer-->
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 						</div><!--//app-card-->
 				    </div><!--//col-->
 				    <div class="col-12 col-lg-4">

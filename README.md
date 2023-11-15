@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
 
@@ -5,17 +6,41 @@
   
 ### Preview...
 ![ezgif com-crop](https://github.com/Github-AppData/Graduation_work/assets/100830409/877dbe1d-2be7-438d-acbe-c9b47ac1983c)
+=======
+<div align=center>
+ 
+# 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
+
+<br/>
+
+ 
+  
+## :stars: 소개 및 시연영상
+![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 
  
 <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
 
 </div>
+<<<<<<< HEAD
 
 ## :star: 프로젝트 설명
 제작기간 2023/03/17 ~ 2023/11/11 <br/>
 팀장 : 김태욱 / 팀원 : 노일환, 강준성, 박종현, 박형근 <br/>
 프론트 / 백 <br/>
+=======
+
+<br/>
+
+## :star: 프로젝트 설명
+제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
+개발 일정 : 하단 페이지 구성 상세 <br/>
+Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
+
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
+
 | 기술스택 | 상세 |
 | --- | --- |
 | 웹 서버 |  <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"> |
@@ -23,14 +48,36 @@
 | 웹 애플리케이션 | <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"> |
 | 데이터베이스 | <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> |
 | 웹 호스팅 |  | <br/>
-## :eye_speech_bubble: 주요기능
-<img src = "https://user-images.githubusercontent.com/100830409/231042686-0a185190-c858-4e47-bef1-198aecc68022.png" width = " 660 " height = " 330 " >
+ 
+## :eye_speech_bubble: 페이지 구성
+<p align="center">  
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/fa3c04ab-cfcd-4b9a-8d05-4c9fceaa4d00" align="center" width = " 500 " height = " 300 ">  
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/daac7195-d3ba-4046-b208-097ca76d5b93" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/4f956eeb-57cb-4268-9b61-4e8b6fea62cf" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/b300b153-e021-48f5-9078-7317ac543dae" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/e7d47bc4-4a2d-417d-bddd-b6dac528028a" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/12bbfbc7-67ff-4f39-bdae-a3ebe0104daa" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/bfefc64b-fca7-4e5e-85f9-57938bcd992f" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/415eb41e-f76f-4b7c-93ac-02735f546a4e" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/1fe56208-d9aa-4a7c-b04a-2f24d0f154d2" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/3e5e7398-70fb-4527-bf48-3e4c30064961" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/d8fab06f-b333-4b64-8faa-84b46a0b4715" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/fcdb2473-a82e-4070-9da2-8fd35830eaaa" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ad59a3b6-d5f7-408e-857e-f24bc79cfb06" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/1e61dae9-db78-4d2f-bac5-20cc8a58bfa9" align="center" width = " 500 " height = " 300 "> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/61da1c0b-fc52-44a5-9e9f-ada8cfd58353" align="center"> 
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ac7db0af-745b-4bda-bd6e-491c52a5c1f9" align="center" width = " 500 " height = " 300 "> 
+ </p>
+ 
 
 ## :page_with_curl: 진행과정
 
-## :stars: 완성화면 / 시연영상
+## :grey_question: 트러블슈팅
 
-## :grey_question: 트러블슈팅 (문제해결로그)
+## :heavy_check_mark: 본 프로젝트 제작을 통하여 배운점
 
+<<<<<<< HEAD
 ## :heavy_check_mark: 본 프로젝트 제작을 통하여 배운점 ( learning 주제 몇가지 )
 
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c

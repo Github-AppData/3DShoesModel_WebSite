@@ -55,8 +55,13 @@ table {
     position: relative;
   /*   padding-right: 124px; */
     margin: 0 auto;
+<<<<<<< HEAD
     width: 80%;
     max-width: 564px;
+=======
+    width: 90%;
+    max-width: 600px;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
   }
   #board-search .search-window .search-wrap input {
     height: 40px;
@@ -70,9 +75,24 @@ table {
     outline: 0;
     border-width: 1px;
   }
+<<<<<<< HEAD
   #board-search .search-window .search-wrap .btn {
     position: absolute;
     right: 0;
+=======
+  #board-search .search-window .search-wrap .btn1 {
+	position: absolute;
+    right: 108px;
+    top: 0;
+    bottom: 0;
+    width: 108px;
+    font-size: 16px;
+  }
+  
+   #board-search .search-window .search-wrap .btn2 {
+	position: absolute;
+	right: 0px;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
     top: 0;
     bottom: 0;
     width: 108px;
@@ -199,7 +219,11 @@ table {
     margin: 0 auto;
   }
   .blind {
+<<<<<<< HEAD
     position: absolute;
+=======
+	position: absolute;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
     overflow: hidden;
     clip: rect(0 0 0 0);
     margin: -1px;

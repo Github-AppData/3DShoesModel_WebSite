@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Like_tb;
 import com.example.rubypaper.dto.NoticeBoard;
+<<<<<<< HEAD
+=======
+import com.example.rubypaper.dto.Order_List;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
@@ -18,7 +22,6 @@ import com.example.rubypaper.mapper.UserMapper;
 
 
 public interface TotalService {
-	
 	
 	public int numberOfCart();
 	public  List<Map<String, Object>> myPageNoticeBoardSelect (@Param("user_id") String user_id) throws Exception;
@@ -30,11 +33,19 @@ public interface TotalService {
 	public List<Map<String, Object>> boardFindList(Paging paging) throws Exception;
 	public List<Map<String, Object>> searchBoards(Paging paging) throws Exception;
 	public int boardCount() throws Exception;
+<<<<<<< HEAD
 	public int shoesCount() throws Exception;
 	public int userCount() throws Exception;
 	public int searchBoardCount(String boards_Name) throws Exception;
 	public int searchUserCount(String name) throws Exception;
 	public int searchShoesCount(String shoes_Name) throws Exception;
+=======
+	public int shoesCount(Paging paging) throws Exception;
+	public int userCount() throws Exception;
+	public int searchBoardCount(String boards_Name) throws Exception;
+	public int searchUserCount(String name) throws Exception;
+	public int searchShoesCount(Paging paging) throws Exception;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 	public List<Map<String, Object>> cartFindList() throws Exception;
 	public List<Map<String, Object>> findIsLike() throws Exception;
 	public List<Map<String, Object>> randSelectShoesId(Paging paging) throws Exception;
@@ -64,4 +75,13 @@ public interface TotalService {
 	
 	public void shoesRatingStarsUpdate(Shoes shoes) throws Exception;
 	public int reviewRatingAvgSelect(@Param("shoes_id") String shoes_id) throws Exception;
+<<<<<<< HEAD
+=======
+	
+	
+	public List<Map<String, Object>> myPageOrderListSelect(@Param("user_id") String user_id) throws Exception;
+	public void requestPay2InfoInsert(Order_List order_List) throws Exception;
+	
+	public List<Map<String, Object>> myPageToSDetailsSetSelect(@Param("order_id") int order_id) throws Exception;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 }

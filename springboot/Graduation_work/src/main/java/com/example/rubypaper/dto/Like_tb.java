@@ -6,7 +6,18 @@ public class Like_tb {
 	private int link_id;
 	private String shoes_id;
 	private String shoes_name;
+<<<<<<< HEAD
 	
+=======
+	private String user_id;
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 	public String getShoes_name() {
 		return shoes_name;
 	}
@@ -34,7 +45,11 @@ public class Like_tb {
 	@Override
 	public String toString() {
 		return "Like_tb [like_id=" + like_id + ", link_id=" + link_id + ", shoes_id=" + shoes_id + ", shoes_name="
+<<<<<<< HEAD
 				+ shoes_name + "]";
+=======
+				+ shoes_name + ", user_id=" + user_id + "]";
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 	}
 	
 	

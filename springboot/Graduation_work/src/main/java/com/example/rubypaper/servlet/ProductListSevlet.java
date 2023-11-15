@@ -36,6 +36,14 @@ public class ProductListSevlet extends HttpServlet{
 		
 		int page;
 		
+<<<<<<< HEAD
+=======
+		if(request.getParameter("page") == null)
+		{
+			System.out.println("page가 null");
+		}
+		
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		} else {
@@ -51,7 +59,11 @@ public class ProductListSevlet extends HttpServlet{
 		paging.setSearchWord(request.getParameter("search"));
 		var startRow = paging.getPageSize() * (page - 1);
 		paging.setStartRow(startRow);
+<<<<<<< HEAD
 			
+=======
+		paging.setSearchTag(request.getParameter("tag"));
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		try {
 			if(request.getParameter("search") != null) {
 				shoesList = totalService.searchsMain(paging);

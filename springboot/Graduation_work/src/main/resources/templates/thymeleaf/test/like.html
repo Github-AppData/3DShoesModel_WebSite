@@ -27,6 +27,20 @@
 		    border-radius: 5px;
 		    z-index: 9999; /* 임의의 큰 값 설정 - 우선순위 설정 */
 		}
+<<<<<<< HEAD
+=======
+		
+		#click-message {
+		  display: none;
+		  position: fixed;
+		  top: 250px;
+		  left: 430px;
+		  background-color: rgb(235, 41, 53); /* 배경색 */
+		  color: #fff;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		}
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 
 	</style>
 
@@ -80,7 +94,6 @@
         <div class="offcanvas__option">
             <div class="offcanvas__links">
                 <a href="sLogin">로그인</a>
-                <a href="#">FAQ</a>
             </div>
             <div class="offcanvas__top__hover">
                 <span>KRW <i class="arrow_carrot-down"></i></span>
@@ -118,7 +131,10 @@
                             <div class="header__top__links">
                                 <a th:if="${userID}" th:href="@{/LogoutServlet}" id="sendData">로그아웃</a> <!--th:href="@{sLogout} 로그 아웃 서블릿으로-->
                 				<a th:unless="${userID != null}" th:href="@{sLogin}">로그인</a>
+<<<<<<< HEAD
                                 <a href="#">FAQ</a>
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
                             </div>
                             <div class="header__top__hover">
                             <!-- 임의에 dto 객체를 저렇게 줫는데 user.name이 아닌 user.uid 나 userDTO.name 같이 지정해서 백에서 정해주길
@@ -163,6 +179,7 @@
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-blog set-bg" data-setbg="img/bglab2.png">
+		<div id="click-message" class="hidden"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -482,6 +499,12 @@
 			
 			
 			xhr.onreadystatechange = function () {
+<<<<<<< HEAD
+=======
+				console.log("xhr.readyState : ", xhr.readyState);
+				console.log("xhr.status : ", xhr.status);
+				
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 				// 응답이 되었으면,
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					object = JSON.parse(xhr.responseText);
@@ -502,8 +525,11 @@
 					for(var i = 0; i < objLength; i++){
 						imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price});
 						console.log("imageToModelMapping_real : ", imageToModelMapping_real[i]);
+<<<<<<< HEAD
 						
 						
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 					}
 					
 					var real = objLength;
@@ -540,7 +566,15 @@
 						replaceWith3DModel(mapping.uid, mapping.iframeId);
 					});
 
+<<<<<<< HEAD
 				} // if (xhr.readyState === 4 && xhr.status === 200) 
+=======
+				} else if (xhr.readyState === 4 && xhr.status === 400){
+					showLoginToast("로그인하고 오세요.");
+					
+				}
+				// if (xhr.readyState === 4 && xhr.status === 200) 
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 
 			}; // xhr.onreadystatechange 끝
 			
@@ -555,9 +589,27 @@
 				link = link + "?page=" + urlParams.get('page');
 			}
 			xhr.open("GET", link, true); // 비동기 요청 시작.
+<<<<<<< HEAD
 			xhr.send(null); // ProductListSevlet에 보낼 요청
 		}; // pageLoad
 		
+=======
+			xhr.send(null); // LikePageServlet에 보낼 요청
+		}; // pageLoad
+		
+		function showclickToast(message) {
+			
+		  var toast = document.getElementById("click-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    
+		  }, 6000); // 3초 후 메시지가 사라집니다.
+		}
+		
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		
 
 		function setPage(link) {
@@ -580,6 +632,20 @@
 			}
 			
 			
+<<<<<<< HEAD
+=======
+		function showLoginToast(message) {
+		  var toast = document.getElementById("info-message");
+		  toast.innerText = message;
+		  toast.style.display = "block";
+		  
+		  setTimeout(function() {
+		    toast.style.display = "none";
+		    location.href="sLogin";
+		  }, 2000); // 3초 후 메시지가 사라집니다.
+		}
+		
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		function showInfoToast(message) {
 		  var toast = document.getElementById("info-message");
 		  toast.innerText = message;
@@ -632,7 +698,11 @@
 					showInfoToast("등록 되었습니다.");
 					
 				} 
+<<<<<<< HEAD
 				else if(xhr3.readyState === 4 && xhr3.status === 400 && currentvalue == 'On')
+=======
+				else if(xhr3.readyState === 4 && xhr3.status === 401)
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 				{
 					document.getElementById(whoLikeButton).value="Off";
 					showInfoToast("해제 되었습니다.");
@@ -739,6 +809,11 @@
 				});
 			});
 		}
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 
 
 		function loadModels() {

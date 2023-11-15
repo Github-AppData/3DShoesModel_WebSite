@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rubypaper.dto.Like_tb;
+<<<<<<< HEAD
+=======
+import com.example.rubypaper.dto.Order_List;
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 import com.example.rubypaper.dto.Paging;
 import com.example.rubypaper.dto.Review;
 import com.example.rubypaper.dto.Shoes;
@@ -61,6 +65,7 @@ public class TotalServicempl implements TotalService{
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public int shoesCount() throws Exception{
 		return totalMapper.shoesCount();
 	}
@@ -68,6 +73,15 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public int searchShoesCount(String shoes_Name) throws Exception{
 		return totalMapper.searchShoesCount(shoes_Name);
+=======
+	public int shoesCount(Paging paging) throws Exception{
+		return totalMapper.shoesCount(paging);
+	}
+	
+	@Override
+	public int searchShoesCount(Paging paging) throws Exception{
+		return totalMapper.searchShoesCount(paging);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 	}
 	
 	@Override
@@ -237,6 +251,24 @@ public class TotalServicempl implements TotalService{
 	@Override
 	public List<Map<String, Object>> myPageNoticeBoardSelect(String user_id) throws Exception {
 		return totalMapper.myPageNoticeBoardSelect(user_id);
+<<<<<<< HEAD
+=======
+	}
+
+	@Override
+	public void requestPay2InfoInsert(Order_List order_List) throws Exception {
+		totalMapper.requestPay2InfoInsert(order_List);
+	}
+
+	@Override
+	public List<Map<String, Object>> myPageOrderListSelect(String user_id) throws Exception {
+		return totalMapper.myPageOrderListSelect(user_id);
+	}
+
+	@Override
+	public List<Map<String, Object>> myPageToSDetailsSetSelect(int order_id) throws Exception {
+		return totalMapper.myPageToSDetailsSetSelect(order_id);
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 	}	
 
 }

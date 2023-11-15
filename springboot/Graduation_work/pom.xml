@@ -106,6 +106,16 @@
 		    <artifactId>spring-boot-starter-mail</artifactId>
 		    <version>3.1.5</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.15.3</version>
+		</dependency>
+
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 
 
 		

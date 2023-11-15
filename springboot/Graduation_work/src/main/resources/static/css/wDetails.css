@@ -1,5 +1,16 @@
 body{background:#f5f5f5}
+<<<<<<< HEAD
 .text-white-50 { color: rgba(255, 255, 255, .5); }
 .bg-blue { background-color:rgb(222, 230, 235); }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+=======
+
+.text-white-50 { color: rgba(255, 255, 255, .5); }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.box-shadow { box-shadow: 0 .25rem .55rem rgba(0, 0, 0, .05); }
+
+.container2{
+	width:800px;
+}
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c

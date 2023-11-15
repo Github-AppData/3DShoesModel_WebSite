@@ -23,7 +23,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title" style="text-align: center;">회원가입</h2>
-                        <form method="POST" action="InsertInfoServlet" class="register-form" id="register-form">
+                        <form method="POST" action="/InsertInfoServlet" class="register-form" id="register-form">
 						
 	                            <div class="form-group">
 	                                <label for="id"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -36,8 +36,10 @@
                                 <label for="pw"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="pw" id="pw" placeholder="비밀번호"/>
                             </div>
-                            
-                            <br>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-email"></i></label>
+                                <input type="text" name="name" id="name" placeholder="이름" required/>
+                            </div>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-email"></i></label>
                                 <input type="text" name="name" id="name" placeholder="이름" required/>
@@ -46,7 +48,6 @@
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="이메일" required/>
                             </div>
-                            
                             <div class="form-group">
                                 <label for="adress"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="adress" name="adress" id="adress" placeholder="주소" required/>
@@ -66,9 +67,6 @@
                                 <label for="phone_number"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="tel" name="phone_number" id="phone_number" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" placeholder="phone number" required/>
                             </div>
-                            
-                            
-                            
                             
                             <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />

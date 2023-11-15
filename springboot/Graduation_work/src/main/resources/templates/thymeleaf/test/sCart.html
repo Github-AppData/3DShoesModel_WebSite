@@ -191,23 +191,20 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="shop.html">쇼핑 계속하기</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
     						<div class="continue__btn update__btn">
-        						<a href="#" onclick="clearCart_real()"><i class="fa fa-spinner"></i> 장바구니 초기화</a>
-    						</div>
+	    						</div>
 						</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="my-custom-col">
+=======
+                <div class="my-custom-col-3 pl-1">
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
                     <div class="cart__discount">
-                        <h6>쿠폰 코드</h6>
-                        <form action="#">
-                            <input type="text" placeholder="코드를 입력해주세요.">
-                            <button type="submit">적용</button>
-                        </form>
                     </div>
                     <div class="cart__total">
                     	<form action="/sBuying" method ="POST" target="_blank">
@@ -224,8 +221,11 @@
                                     <button onclick="requestPay2()" type="button" class="btn btn-dark btn-lg fw-bold" name="submit" value="buy">카카오페이</button>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             
                        <!--  <a href="sBuying" class="primary-btn">구매하기</a> -->
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
                         </form>
                     </div>
                 </div>
@@ -377,6 +377,10 @@
 						shoes_name = object[i].shoes_name;
 						final_price = object[i].final_price;
 						shoes_quantity = object[i].quantity;
+<<<<<<< HEAD
+=======
+						
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 						imageToModelMapping_real.push({uid: shoes_id,shoes_quantity:shoes_quantity, iframeId: 'api-frame-'+ (i + 1), shoes_name: shoes_name, final_price:final_price});
 						
 					}
@@ -413,7 +417,11 @@
 					    'webkitallowfullscreen="true">' +
 					    '</iframe>';
 					    
+<<<<<<< HEAD
 					    var shoes_name_o = '<h4>' + shoes_real_name[i] + ' </h4>';
+=======
+					    var shoes_name_o = '<h4 id="shoes_name">' + shoes_real_name[i] + ' </h4>';
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 					    var shoes_real_price_0 = '<h5>' + cal_price + '		</h5>';
 					    var shoes_size_real = '<h6>' + shoes_size + ' </h6>';
 					    
@@ -428,7 +436,11 @@
 							'<div class="quantity">' +
 								'<div class="pro-qty-2">' +
 									'<span class="fa fa-angle-left dec qtybtn"></span>' +
+<<<<<<< HEAD
 									'<input data-link-id="'+ i +'" type="number" value="'+shoes_real_quanitity_real+'" onchange="updateSubtotal_real(this)">'+ 
+=======
+									'<input id="quantity'+i+'" data-link-id="'+ i +'" type="number" value="'+shoes_real_quanitity_real+'" onchange="updateSubtotal_real(this)">'+ 
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 									'<span class="fa fa-angle-right inc qtybtn"></span>' +
 								'</div>' +
 							'</div>'
@@ -576,7 +588,10 @@
 		  
 		  setTimeout(function() {
 		    toast.style.display = "none";
+<<<<<<< HEAD
 		    location.reload();
+=======
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		  }, 2000); // 3초 후 메시지가 사라집니다.
 		}
     
@@ -588,8 +603,7 @@
 		    // td에 상위 인 tr을 찾아서 저장
 		    const trElement = tdElement.parentElement;
 		
-		    // tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
-		    trElement.remove();
+		    
 			
 			linkId = element.getAttribute("data-link-id");
 			
@@ -610,16 +624,30 @@
 			document.getElementById("cost").innerHTML = before_total_cost;
 			//real_array = JSON.stringify(real);
 			
+<<<<<<< HEAD
 			if(confirm(delete_shoes_name + "를 정말 삭제 하시겠습니까 ?"))
 			{
+=======
+			if(confirm(delete_shoes_name + "를 정말 삭제 하시겠습니까 ?") == true)
+			{
+				// tr 부분을 장바구니 페이지에서 삭제 브라우저 내에서만 삭제
+		   	 	trElement.remove();	
+		   	 	
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 				showDeleteToast("삭제 되었습니다.");
 				
 				xhr2.open("POST", "/CartUpdateServlet", true); // 비동기 요청 시작.
 				xhr2.send(delete_shoes_id); 
 				
+<<<<<<< HEAD
 			} else {
 				location.reload();
 			}
+=======
+			} /*else {
+				location.reload();
+			}*/
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 		}
     </script>
     
@@ -634,9 +662,13 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+<<<<<<< HEAD
     <script src="js/import.js"></script>
     
     <!--<script src="js/removeCart.js"></script>-->
+=======
+    <script src="js/importByCart.js"></script>
+>>>>>>> 1160fbc76c5d464cdd84a8a0f920ce838f99f87c
 </body>
 
 </html>
