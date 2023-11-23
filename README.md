@@ -1,6 +1,6 @@
 # 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
 
-<br/>
+<br>
   
 ## :stars: 소개 및 시연영상
 ![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
@@ -8,10 +8,8 @@
  
 <!-- summary 아래 한칸 공백 두고 내용 삽입 -->
 
-</div>
 
 <br/>
-# <div align=center>
  
 # 프로젝트 소개
 - 프로젝트 명 : <b>3D Model Shoes WebSite</b>
