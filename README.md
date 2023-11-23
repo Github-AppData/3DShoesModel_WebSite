@@ -21,7 +21,9 @@
 개발 일정 : 하단 페이지 구성 상세 <br/>
 Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br/>
 
+#### API
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
+<img src="https://github.com/Github-AppData/JavaScript_Study/assets/77886661/55bfdfe1-14ca-42ff-ba7e-9c47f7658e8a">
 
 | 기술스택 | 상세 |
 | --- | --- |
@@ -33,9 +35,8 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
  
 ## :eye_speech_bubble: 페이지 구성
 <p align="center">  
-  <img src = "https://github.com/Github-AppData/Graduation_work/assets/77886661/22005b6e-43c9-4816-8a8d-8c4c85e232c6" align="center" width = " 500 " height = " 300 ">
+ <img src = "https://github.com/Github-AppData/Graduation_work/assets/77886661/22005b6e-43c9-4816-8a8d-8c4c85e232c6" align="center" width = " 500 " height = " 300 ">
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/fa3c04ab-cfcd-4b9a-8d05-4c9fceaa4d00" align="center" width = " 500 " height = " 300 ">  
-
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/daac7195-d3ba-4046-b208-097ca76d5b93" align="center" width = " 500 " height = " 300 "> 
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/4f956eeb-57cb-4268-9b61-4e8b6fea62cf" align="center" width = " 500 " height = " 300 "> 
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/b300b153-e021-48f5-9078-7317ac543dae" align="center" width = " 500 " height = " 300 "> 
@@ -50,7 +51,6 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ad59a3b6-d5f7-408e-857e-f24bc79cfb06" align="center" width = " 500 " height = " 300 "> 
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/1e61dae9-db78-4d2f-bac5-20cc8a58bfa9" align="center" width = " 500 " height = " 300 "> 
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/61da1c0b-fc52-44a5-9e9f-ada8cfd58353" align="center"> 
- <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/ac7db0af-745b-4bda-bd6e-491c52a5c1f9" align="center" width = " 500 " height = " 300 "> 
  </p>
  
 
