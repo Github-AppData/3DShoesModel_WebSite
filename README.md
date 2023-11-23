@@ -24,7 +24,7 @@
 
 
 <img width="850" alt="login" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/bc90f961-54ef-4a40-b860-3339bfe11869">
-
+<br>
 <br>
 
 ### 기능 : 1. 해쉬 값을 이용한 비밀번호 암호화
@@ -89,6 +89,8 @@ public class PasswordHashingUtil {
 <h3>4. <b>verifyPassword</b></h3>
 - 사용자가 입력한 비밀번호와 저장된 해시화된 비밀번호를 비교합니다.
 
+<br>
+
 ## 2. Main Page
 ![main](https://github.com/Github-AppData/Graduation_work/assets/77886661/d3c284b2-e94e-41f9-a907-80aed9bbf1ac)
 
@@ -98,6 +100,65 @@ public class PasswordHashingUtil {
 - SketchFab API 뿐만 아니라, Three.js를 이용해서 3D Shoes Model을 띄웠습니다.
 
 
+## 3. 신발 페이지
+
+<img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec">
+
+### 기능 1 : SketchFab API를 이용해서 id 값을 통해 <u>다운로드 없이</u> iframe에 3D Model Display 
+
+```javascript
+// 신발의 정보를 담고 있는 imageToModelMapping_real 배열 
+// iframeId로 SketchFab API를 이용
+imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price, shoes_price: object[i].shoes_price, review_stars: object[i].review_stars});
+
+// API 함수와 배열을 iframeId로 매핑
+imageToModelMapping_real.forEach(function (mapping) {
+	replaceWith3DModel(mapping.uid, mapping.iframeId);
+});
+
+// 3D Model로 대체한다. - iframe에 있는 정보를
+function replaceWith3DModel(uid, iframeId) {
+	return new Promise(function (resolve, reject) {
+		var iframe = document.getElementById(iframeId);
+		var client = new Sketchfab(iframe);
+
+		client.init(uid, {
+        	success: function onSuccess(api) {
+			api.start();
+			    api.addEventListener('viewerready', function () {
+				    console.log(iframeId + ' 3D 모델이 준비되었습니다.');
+				    resolve(); // Promise가 성공했음을 알립니다.
+			    });
+		    },
+			error: function onError() {
+				console.log(iframeId + ' 3D 모델 초기화 오류');
+				reject(); // Promise가 실패했음을 알립니다.
+			},
+			// 초기화 매개변수 설정
+			graph_optimizer: 1, //그래프
+			merge_materials: 1, //재질 병합
+			material_packing: 1 //재질 패킹
+		});
+	});
+}
+
+function loadModels() {
+
+    // 모든 모델을 비동기식으로 로드합니다.                 
+	Promise.all(imageToModelMapping_real.map(function (mapping) {
+		return replaceWith3DModel(mapping.uid, mapping.iframeId);
+	})).then(function () {
+		// 모든 모델이 로드되었을 때 이 부분이 실행됩니다.
+		console.log('모든 3D 모델이 로드되었습니다.');
+	}).catch(function () {
+		// 하나 이상의 모델 로딩에 실패한 경우 이 부분이 실행됩니다.
+		console.log('모든 3D 모델을 로드하는 동안 오류가 발생했습니다.');
+	});
+}
+
+// 모든 모델을 한꺼번에 로드합니다.
+loadModels();
+```
 
 ## 참고자료
 
