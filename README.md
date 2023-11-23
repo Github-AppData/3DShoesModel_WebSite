@@ -30,9 +30,6 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
 | 데이터베이스 | <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> |
 <br>
 
-## 홍보영상
-![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
-
 <img width="850" alt="login" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/bc90f961-54ef-4a40-b860-3339bfe11869">
 <br>
 Login 페이지는 사용자의 아이디와 비밀번호를 통해 로그인 할 수 있는 페이지 입니다.
