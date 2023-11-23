@@ -33,7 +33,7 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
  
 ## :eye_speech_bubble: 페이지 구성
 <p align="center">  
-  <img src = https://github.com/Github-AppData/Graduation_work/assets/77886661/22005b6e-43c9-4816-8a8d-8c4c85e232c6>
+  <img src = "https://github.com/Github-AppData/Graduation_work/assets/77886661/22005b6e-43c9-4816-8a8d-8c4c85e232c6" align="center" width = " 500 " height = " 300 ">
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/fa3c04ab-cfcd-4b9a-8d05-4c9fceaa4d00" align="center" width = " 500 " height = " 300 ">  
 
  <img src = "https://github.com/Github-AppData/Graduation_work/assets/100830409/daac7195-d3ba-4046-b208-097ca76d5b93" align="center" width = " 500 " height = " 300 "> 
