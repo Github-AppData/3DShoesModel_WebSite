@@ -1,5 +1,3 @@
-<div align=center>
- 
 # 👟3d model을 활용한 신발 쇼핑몰 제작 프로젝트:mans_shoe:
 
 <br/>
