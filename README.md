@@ -15,6 +15,10 @@
 </div>
 
 <br/>
+# <div align=center>
+ 
+# 프로젝트 소개
+- 프로젝트 명 : <b>3D Model Shoes WebSite</b>
 
 ## :star: 프로젝트 설명
 제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
@@ -23,7 +27,6 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
 
 #### API
 <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white">
-<img src="https://github.com/Github-AppData/JavaScript_Study/assets/77886661/55bfdfe1-14ca-42ff-ba7e-9c47f7658e8a">
 
 | 기술스택 | 상세 |
 | --- | --- |
@@ -31,35 +34,19 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
 | 웹 페이지 | <img src="https://img.shields.io/badge/Html5-E34F26?style=for-the-badge&logo=Html5&logoColor=white">                                                                     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">                                                                       <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">                                                            |
 | 웹 애플리케이션 | <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"> |
 | 데이터베이스 | <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> |
-
- 
-# <div align=center>
- 
-# 프로젝트 소개
-
-- 프로젝트 명 : <b>3D Model Shoes WebSite</b>
-
 <br>
 
 ## 홍보영상
 ![시연](https://github.com/Github-AppData/Graduation_work/assets/100830409/d2ef2e7b-48d1-4a7e-814e-9ffd9edd696f)
 
-
-# 프로젝트 설명
-
 <img width="850" alt="login" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/bc90f961-54ef-4a40-b860-3339bfe11869">
-
 <br>
 Login 페이지는 사용자의 아이디와 비밀번호를 통해 로그인 할 수 있는 페이지 입니다.
 
 ### 기능 1 : 해쉬 값을 이용한 비밀번호 암호화
 
 
-
-
-
 ## 팀원 및 참고자료
-
 
 ## :grey_question: 트러블슈팅
 
