@@ -100,7 +100,7 @@ public class PasswordHashingUtil {
 - SketchFab API 뿐만 아니라, Three.js를 이용해서 3D Shoes Model을 띄웠습니다.
 
 
-## 3. 신발 페이지
+## 3. Shoes Page
 
 <img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec">
 
@@ -159,6 +159,30 @@ function loadModels() {
 // 모든 모델을 한꺼번에 로드합니다.
 loadModels();
 ```
+
+### 기능 2 : 좋아요 
+- 자세한 설명은 좋아요 페이지 에서...
+<br><br>
+
+## 4. Shoes Details Page
+
+
+<img width="850" alt="sDetails" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/6d2cac69-add1-4ded-a5b3-fff63132824c">
+
+
+### 기능 1 : 3D Model을 더욱 더 크게 자세히 볼 수 있는 '전체화면' 기능
+![sDetailWholescreen](https://github.com/Github-AppData/Graduation_work/assets/77886661/a5cb28e9-a89c-4014-b0b4-dcfb302ac45e)
+<br>
+
+### 기능 2 : import, KaKaoPay API를 이용한 다양한 결제 방식
+<img width="850" alt="sDetails-cardPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/b0415ec2-c004-4a25-949c-3a4e4c1d54da">
+
+<img width="850" alt="sDetails-kakaoPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/89249fd9-fe1c-4bb8-bccf-46afcc001c83">
+
+<br>
+
+### 기능 3 : '장바구니' 버튼 
+<br>
 
 ## 참고자료
 
