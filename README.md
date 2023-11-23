@@ -29,7 +29,7 @@ Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE)
 | 웹 페이지 | <img src="https://img.shields.io/badge/Html5-E34F26?style=for-the-badge&logo=Html5&logoColor=white">                                                                     <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">                                                                       <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">                                                            |
 | 웹 애플리케이션 | <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white"> |
 | 데이터베이스 | <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> |
-| 웹 호스팅 |  | <br/>
+
  
 ## :eye_speech_bubble: 페이지 구성
 <p align="center">  
