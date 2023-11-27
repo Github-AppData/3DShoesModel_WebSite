@@ -160,6 +160,7 @@ function loadModels() {
 // 모든 모델을 한꺼번에 로드합니다.
 loadModels();
 ```
+SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여 사용자에게 3D Model을 시각적으로 제공!
 
 ### 기능 2 : 좋아요 
 - 자세한 설명은 좋아요 페이지 에서...
