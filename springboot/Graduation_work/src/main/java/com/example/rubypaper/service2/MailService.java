@@ -12,7 +12,6 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class MailService {
 
 	private final JavaMailSender mailSender;

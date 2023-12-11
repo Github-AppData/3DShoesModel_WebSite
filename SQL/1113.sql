@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema Graduation_WorkDB
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Graduation_WorkDB` ;
-USE `Graduation_WorkDB` ;
+CREATE SCHEMA IF NOT EXISTS `Graduation_WorkDB_S` ;
+USE `Graduation_WorkDB_S` ;
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`cart`
+-- Table `Graduation_WorkDB_S`.`cart`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`cart` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`cart` (
   `cart_Id` INT NOT NULL AUTO_INCREMENT,
   `user_Id` VARCHAR(100) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
   `shoes_Id` VARCHAR(1000) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
@@ -33,9 +33,9 @@ AUTO_INCREMENT = 6;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`like_tb`
+-- Table `Graduation_WorkDB_S`.`like_tb`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`like_tb` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`like_tb` (
   `like_Id` INT NOT NULL AUTO_INCREMENT,
   `shoes_id` VARCHAR(100) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
   `shoes_name` VARCHAR(100) COLLATE 'utf8mb3_bin' NULL DEFAULT NULL,
@@ -48,9 +48,9 @@ AUTO_INCREMENT = 146;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`main`
+-- Table `Graduation_WorkDB_S`.`main`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`main` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`main` (
   `idx` VARCHAR(45) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
   `shoes_id` VARCHAR(100) COLLATE 'utf8mb3_bin' NOT NULL,
   `shoes_name` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
@@ -60,9 +60,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`notice_board`
+-- Table `Graduation_WorkDB_S`.`notice_board`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`notice_board` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`notice_board` (
   `idx` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(1000) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
   `content` VARCHAR(2048) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
@@ -77,9 +77,9 @@ AUTO_INCREMENT = 30;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`order_List`
+-- Table `Graduation_WorkDB_S`.`order_List`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`order_List` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`order_List` (
   `order_id` INT NOT NULL AUTO_INCREMENT,
   `shoes_name` VARCHAR(100) COLLATE 'utf8mb3_bin' NULL DEFAULT NULL,
   `quantity` INT NULL DEFAULT '0',
@@ -94,9 +94,9 @@ AUTO_INCREMENT = 6;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`review`
+-- Table `Graduation_WorkDB_S`.`review`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`review` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`review` (
   `review_id` VARCHAR(45) CHARACTER SET 'utf8mb3' NOT NULL,
   `shoes_id` VARCHAR(100) CHARACTER SET 'utf8mb3' NOT NULL,
   `rating` INT NOT NULL DEFAULT '0',
@@ -106,9 +106,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`shoes`
+-- Table `Graduation_WorkDB_S`.`shoes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`shoes` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`shoes` (
   `idx` INT NOT NULL AUTO_INCREMENT,
   `shoes_id` VARCHAR(1000) CHARACTER SET 'utf8mb3' NOT NULL,
   `shoes_name` VARCHAR(100) CHARACTER SET 'utf8mb3' NOT NULL,
@@ -126,9 +126,9 @@ AUTO_INCREMENT = 13;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`test`
+-- Table `Graduation_WorkDB_S`.`test`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`test` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`test` (
   `idx` VARCHAR(45) CHARACTER SET 'utf8mb4' NOT NULL,
   `shoes_id` VARCHAR(1000) CHARACTER SET 'utf8mb4' NOT NULL,
   `name` VARCHAR(45) NULL DEFAULT NULL,
@@ -138,9 +138,9 @@ DEFAULT CHARACTER SET = utf8mb4;
 
 
 -- -----------------------------------------------------
--- Table `Graduation_WorkDB`.`user`
+-- Table `Graduation_WorkDB_S`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Graduation_WorkDB`.`user` (
+CREATE TABLE IF NOT EXISTS `Graduation_WorkDB_S`.`user` (
   `user_id` VARCHAR(1000) CHARACTER SET 'utf8mb3' NOT NULL,
   `idx` INT NOT NULL AUTO_INCREMENT,
   `pw` VARCHAR(400) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
