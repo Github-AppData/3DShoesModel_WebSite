@@ -7,6 +7,8 @@
 
 
 
+
+
 ## 개발환경
 | 기술스택 | 상세 |
 | --- | --- |
@@ -17,13 +19,17 @@
 | API List | <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white"> |
 
 <br>
+<br>
+
+### 테이블 구성
+* [1장] (#ch1)
 
 # Page 구성 및 기능 소개 
 <br>
 
+
+
 ## 1. Login Page
-
-
 <img width="850" alt="login" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/bc90f961-54ef-4a40-b860-3339bfe11869">
 <br>
 <br>
@@ -107,7 +113,10 @@ public class PasswordHashingUtil {
 
 ### 기능 1 : SketchFab API를 이용해서 id 값을 통해 <u>다운로드 없이</u> iframe에 3D Model Display 
 
+###### <a id="ch1"></a>
+
 ```javascript
+
 // 신발의 정보를 담고 있는 imageToModelMapping_real 배열 
 // iframeId로 SketchFab API를 이용
 imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price, shoes_price: object[i].shoes_price, review_stars: object[i].review_stars});
