@@ -1,8 +1,9 @@
 # 목차
 * [1. 프로젝트 소개](#프로젝트-소개)<br>
 * [2. 기능소개](#기능-소개)<br>
-	- [2-1. 비밀번호 암호화 (feat. SHA-256)](#비밀번호-암호화-feat.-SHA-256)<br>
-* [4. 개발환경](#개발환경)<br>
+	- [2-1. 비밀번호 암호화](#비밀번호-암호화)<br>
+	- [2-2. Main Page](#Main-Page)<br>
+* [3. 개발환경](#개발환경)<br>
 
 # 프로젝트 소개
 - 프로젝트 명 : <b>3D Model Shoes WebSite</b>
@@ -10,10 +11,6 @@
 - 제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
 - 개발 일정 : 하단 페이지 구성 상세 <br/>
 - Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) 
-
-
-
-
 
 ## 개발환경
 | 기술스택 | 상세 |
@@ -29,7 +26,7 @@
 
 #  기능 소개 
 
-# 비밀번호 암호화 (feat. SHA-256)
+## 비밀번호 암호화
 
 PasswordHashingUtil 클래스는 사용자의 비밀번호를 해시화하고, 무작위 솔트를 생성하며, 사용자가 입력한 비밀번호를 저장된 해시화된 비밀번호와 비교하는 몇 가지 메서드를 제공합니다.
 
@@ -93,7 +90,7 @@ public class PasswordHashingUtil {
 
 <br>
 
-## 2. Main Page
+## Main Page
 ![main](https://github.com/Github-AppData/Graduation_work/assets/77886661/d3c284b2-e94e-41f9-a907-80aed9bbf1ac)
 
 
