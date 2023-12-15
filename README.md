@@ -5,6 +5,8 @@
 	- [2-2. Main Page](#Main-Page)<br>
 * ![신발](https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141)[3. 개발환경](#개발환경)<br>
 
+<img width="300" alt="sDetails" src="![신발](https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141)">
+
 
 # 프로젝트 소개
 - 프로젝트 명 : <b>3D Model Shoes WebSite</b>
