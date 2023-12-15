@@ -1,11 +1,11 @@
 # 목차
 * [1. 프로젝트 소개](#프로젝트-소개)<br>
 * [2. 기능소개](#기능-소개)<br>
-	- [2-1. 비밀번호 암호화](#비밀번호-암호화)<br>
+	- <img width="30" height="30" alt="sDetails" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141">[2-1. 비밀번호 암호화](#비밀번호-암호화)<br>
 	- [2-2. Main Page](#Main-Page)<br>
 * ![신발](https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141)[3. 개발환경](#개발환경)<br>
 
-<img width="50" height="50" alt="sDetails" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141">
+
 
 
 # 프로젝트 소개
