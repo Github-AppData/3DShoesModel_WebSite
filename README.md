@@ -1,4 +1,10 @@
-# :star: 프로젝트 소개 :star: 
+# 목차
+* [1. 프로젝트 소개](#프로젝트-소개)<br>
+* [2. 기능소개](#기능-소개)<br>
+	- [2-1. 비밀번호 암호화 (feat. SHA-256)](#비밀번호-암호화-feat.-SHA-256)<br>
+* [4. 개발환경](#개발환경)<br>
+
+# 프로젝트 소개
 - 프로젝트 명 : <b>3D Model Shoes WebSite</b>
 - 프로잭트 목적 : 사용자는 신발을 360도로 회전하고 확대하여 더 자세히 살펴볼 수 있어, 온라인 쇼핑의 편의성을 향상시키는 것
 - 제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
@@ -19,22 +25,11 @@
 | API List | <img src="https://img.shields.io/badge/Sketchfab-1CAAD9?style=for-the-badge&logo=Sketchfab&logoColor=white"> |
 
 <br>
-<br>
-
-### 테이블 구성
-[1. 해쉬 값을 이용한 비밀번호 암호화](#1-해쉬-값을-이용한-비밀번호-암호화)<br>
-
-# Page 구성 및 기능 소개 
-<br>
 
 
+#  기능 소개 
 
-## 1. Login Page
-<img width="850" alt="login" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/bc90f961-54ef-4a40-b860-3339bfe11869">
-<br>
-<br>
-
-### 1. 해쉬 값을 이용한 비밀번호 암호화
+# 비밀번호 암호화 (feat. SHA-256)
 
 PasswordHashingUtil 클래스는 사용자의 비밀번호를 해시화하고, 무작위 솔트를 생성하며, 사용자가 입력한 비밀번호를 저장된 해시화된 비밀번호와 비교하는 몇 가지 메서드를 제공합니다.
 
