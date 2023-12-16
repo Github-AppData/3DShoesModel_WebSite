@@ -1,21 +1,23 @@
-# 목차
-* [1. 프로젝트 소개](#프로젝트-소개)<br>
-* [2. 기능소개](#기능-소개)<br>
-	- <img width="30" height="30" alt="sDetails" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141">[2-1. 비밀번호 암호화](#비밀번호-암호화)<br>
-	- [2-2. Main Page](#Main-Page)<br>
-* ![신발](https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141)[3. 개발환경](#개발환경)<br>
+# 📗 **목차**
+* 📝&nbsp; [개요](#📝-포트폴리오-개요)
+* 🛠&nbsp; [기술 및 도구](#🛠-기술-및-도구)
+* 🔗&nbsp; [링크](#🔗-링크)
+* 👨🏻‍💻&nbsp; [기능 구현](#👨🏻‍💻-기능-구현)
+	- 🔐&nbsp; [비밀번호 암호화 SHA-256](#🔐-비밀번호-암호화-sha-256)
+	- ⚡️&nbsp; [3D Model Display](#⚡️-3d-model-display)
+	- 💳&nbsp; [결제 시스템](#💳-결제-시스템)<br>
+	- 💌&nbsp; [SMTP](#💌-smtp)<br>
+* 💥&nbsp; [Trouble Shooting](#💥-trouble-shooting)<br><br>
 
-<img width="1161" alt="image" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/6ef07c05-fa71-412a-8bb8-43f90aa94966">
 
-
-# 프로젝트 소개
+# 📝 **포트폴리오 개요**
 - 프로젝트 명 : <b>3D Model Shoes WebSite</b>
 - 프로잭트 목적 : 사용자는 신발을 360도로 회전하고 확대하여 더 자세히 살펴볼 수 있어, 온라인 쇼핑의 편의성을 향상시키는 것
 - 제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
 - 개발 일정 : 하단 페이지 구성 상세 <br/>
-- Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) 
+- Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br><br>
 
-## 개발환경
+# 🛠 **기술 및 도구**
 | 기술스택 | 상세 |
 | --- | --- |
 | 웹 서버 |  <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white"> |
@@ -26,10 +28,13 @@
 
 <br>
 
+# 🔗 **링크**
+<b>호스팅 할 예정입니다.</b>
+<br><br>
 
-#  기능 소개 
+# 👨🏻‍💻 **기능 구현**
 
-## 비밀번호 암호화
+## 🔐 **비밀번호 암호화 SHA-256**
 
 PasswordHashingUtil 클래스는 사용자의 비밀번호를 해시화하고, 무작위 솔트를 생성하며, 사용자가 입력한 비밀번호를 저장된 해시화된 비밀번호와 비교하는 몇 가지 메서드를 제공합니다.
 
@@ -76,6 +81,8 @@ public class PasswordHashingUtil {
 
 ```
 
+<img width="1161" alt="image" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/6ef07c05-fa71-412a-8bb8-43f90aa94966">
+
 <h3>1. <b>hashPassword</b></h3>
 - 입력으로 사용자의 비밀번호와 솔트를 받아와서 SHA-256 해시 함수를 사용하여 비밀번호를 해시화합니다.
 비밀번호와 솔트를 조합하여 해시 함수에 업데이트하고, 그 결과를 16진수 문자열로 변환하여 반환합니다.
@@ -93,25 +100,20 @@ public class PasswordHashingUtil {
 
 <br>
 
-## Main Page
-![main](https://github.com/Github-AppData/Graduation_work/assets/77886661/d3c284b2-e94e-41f9-a907-80aed9bbf1ac)
+## ⚡️ 3D Model Display
 
-
-### 기능 1 : Three.js를 이용한 3D Model 자동 회전
+### 방법 1 : Three.js를 이용한 3D Model 자동 회전
 
 - SketchFab API 뿐만 아니라, Three.js를 이용해서 3D Shoes Model을 띄웠습니다.
 
+![main](https://github.com/Github-AppData/Graduation_work/assets/77886661/d3c284b2-e94e-41f9-a907-80aed9bbf1ac)
 
-## 3. Shoes Page
+### 방법 2 : SketchFab API를 이용해서 id 값을 통해 <u>다운로드 없이</u> iframe에 3D Model Display 
 
-<img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec">
+<img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec"><br>
 
-### 기능 1 : SketchFab API를 이용해서 id 값을 통해 <u>다운로드 없이</u> iframe에 3D Model Display 
-
-###### <a id="ch1"></a>
 
 ```javascript
-
 // 신발의 정보를 담고 있는 imageToModelMapping_real 배열 
 // iframeId로 SketchFab API를 이용
 imageToModelMapping_real.push({uid: object[i].shoes_id, iframeId: 'api-frame-' + (i + 1), shoes_name: object[i].shoes_name, final_price: object[i].final_price, shoes_price: object[i].shoes_price, review_stars: object[i].review_stars});
@@ -166,33 +168,27 @@ loadModels();
 ```
 SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여 사용자에게 3D Model을 시각적으로 제공!
 
-### 기능 2 : 좋아요 
-- 자세한 설명은 좋아요 페이지 에서...
-<br><br>
 
-## 4. Shoes Details Page
-
+## 💳 **결제 시스템**
 
 <img width="850" alt="sDetails" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/6d2cac69-add1-4ded-a5b3-fff63132824c">
 
 
-### 기능 1 : 3D Model을 더욱 더 크게 자세히 볼 수 있는 '전체화면' 기능
 ![sDetailWholescreen](https://github.com/Github-AppData/Graduation_work/assets/77886661/a5cb28e9-a89c-4014-b0b4-dcfb302ac45e)
 <br>
 
-### 기능 2 : import, KaKaoPay API를 이용한 다양한 결제 방식
+### iamport
 <img width="850" alt="sDetails-cardPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/b0415ec2-c004-4a25-949c-3a4e4c1d54da">
+
+<br>
+
+### Kako Pay
 
 <img width="850" alt="sDetails-kakaoPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/89249fd9-fe1c-4bb8-bccf-46afcc001c83">
 
+## 💌 **SMTP**
 <br>
 
-### 기능 3 : '장바구니' 버튼 
-<br>
-
-## 참고자료
-
-## :grey_question: 트러블슈팅
-
-## :heavy_check_mark: 본 프로젝트 제작을 통하여 배운점
+# 💥 **Trouble Shooting**
+<img width="1162" alt="image" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/2df7d6a3-2ae2-46f8-b662-eb57c9a3a7f1">
 
