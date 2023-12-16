@@ -1,5 +1,6 @@
-<h1 align="center">3D Model Shoes Website</h1>
-	
+<h1 align="center">✨ 3D Model Shoes Website ✨</h1>
+
+
 # 📗 **목차**
 * 📝&nbsp; [개요](#📝-포트폴리오-개요)
 * 🛠&nbsp; [기술 및 도구](#🛠-기술-및-도구)
