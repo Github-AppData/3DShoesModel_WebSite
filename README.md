@@ -185,8 +185,6 @@ SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 
 
 ## 💳 **결제 시스템**
 
-<br>
-
 ### iamport
 <img width="850" alt="sDetails-cardPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/b0415ec2-c004-4a25-949c-3a4e4c1d54da">
 <br>
