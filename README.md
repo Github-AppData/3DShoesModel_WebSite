@@ -118,7 +118,7 @@ public class PasswordHashingUtil {
 
 <video controls width="250" align="center"> 
 	<source src="https://github.com/Github-AppData/Graduation_work/assets/77886661/a5cb28e9-a89c-4014-b0b4-dcfb302ac45e" />
-
+</video>
 
 ```javascript
 // 신발의 정보를 담고 있는 imageToModelMapping_real 배열 
