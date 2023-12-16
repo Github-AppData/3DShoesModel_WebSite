@@ -1,5 +1,5 @@
 <h1 align="center">✨ 3D Model Shoes Website ✨</h1>
-
+<br><br>
 
 # 📗 **목차**
 * 📝&nbsp; [개요](#📝-포트폴리오-개요)
@@ -101,7 +101,7 @@ public class PasswordHashingUtil {
 <h3>4. <b>verifyPassword</b></h3>
 - 사용자가 입력한 비밀번호와 저장된 해시화된 비밀번호를 비교합니다.
 
-<br>
+<br><br>
 
 ## ⚡️ 3D Model Display
 
@@ -113,7 +113,11 @@ public class PasswordHashingUtil {
 
 ### 방법 2 : SketchFab API를 이용해서 id 값을 통해 <u>다운로드 없이</u> iframe에 3D Model Display 
 
-<img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec"><br>
+<img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec">
+<img width="850" alt="sDetails" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/6d2cac69-add1-4ded-a5b3-fff63132824c">
+
+
+![sDetailWholescreen](https://github.com/Github-AppData/Graduation_work/assets/77886661/a5cb28e9-a89c-4014-b0b4-dcfb302ac45e)<br>
 
 
 ```javascript
@@ -170,27 +174,23 @@ function loadModels() {
 loadModels();
 ```
 SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여 사용자에게 3D Model을 시각적으로 제공!
-
+<br><br>
 
 ## 💳 **결제 시스템**
 
-<img width="850" alt="sDetails" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/6d2cac69-add1-4ded-a5b3-fff63132824c">
 
-
-![sDetailWholescreen](https://github.com/Github-AppData/Graduation_work/assets/77886661/a5cb28e9-a89c-4014-b0b4-dcfb302ac45e)
 <br>
 
 ### iamport
 <img width="850" alt="sDetails-cardPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/b0415ec2-c004-4a25-949c-3a4e4c1d54da">
-
 <br>
 
 ### Kako Pay
-
 <img width="850" alt="sDetails-kakaoPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/89249fd9-fe1c-4bb8-bccf-46afcc001c83">
 
 ## 💌 **SMTP**
-<br>
+
+<br><br>
 
 # 💥 **Trouble Shooting**
 <img width="1162" alt="image" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/2df7d6a3-2ae2-46f8-b662-eb57c9a3a7f1">
