@@ -1,7 +1,6 @@
 <center>
 
 # **3D Model Shoes Website**
-
 </center>
 	
 # 📗 **목차**
