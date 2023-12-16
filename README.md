@@ -172,7 +172,7 @@ function loadModels() {
 // 모든 모델을 한꺼번에 로드합니다.
 loadModels();
 ```
-SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 사용자에게 3D Model을 시각적으로 제공!
+SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 사용자에게 3D Model을 시각적으로 제공.
 
 <br>
 
@@ -180,9 +180,7 @@ SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 
 : 사이트의 이미지나 정적 요소들이 <u>CDN 서버에 상당 수 저장, 캐싱</u>이 되어 있다.
 
 <br>쉽게 말해서, 본사의 서비스를 전체가 아닌 일부를 가져와서, 본사로 부터 지리적으로 멀리 떨어져 있는 사람에게 제일 빠른 엣지를 제공하는 것. 
-
 본사는 수 많은 요청들로 부터 과부화가 되지 않을 수 있고, 사용자는 보다 빠르게 서비스를 이용할 수 있다.
-<br><h3>체인점에 없는 요청을 하면, 본사에 요구한다.</h3>
 <br>
 
 ## 💳 **결제 시스템**
