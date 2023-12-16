@@ -115,6 +115,7 @@ public class PasswordHashingUtil {
 
 <img width="850" alt="smain" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/31d35548-75cf-454a-a1dd-2cd6b56e5cec">
 <img width="850" alt="sDetails" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/6d2cac69-add1-4ded-a5b3-fff63132824c">
+
 ![sDetailWholescreen](https://github.com/Github-AppData/Graduation_work/assets/77886661/a5cb28e9-a89c-4014-b0b4-dcfb302ac45e)<br>
 
 
@@ -172,16 +173,20 @@ function loadModels() {
 loadModels();
 ```
 SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 사용자에게 3D Model을 시각적으로 제공.
+
 <br>
 
 ### CDN (Content Delivery Network) 
 : 사이트의 이미지나 정적 요소들이 <u>CDN 서버에 상당 수 저장, 캐싱</u>이 되어 있다.
 
-쉽게 말해서, 본사의 서비스를 전체가 아닌 일부를 가져와서, 본사로 부터 <u>지리적으로 멀리 떨어져 있는 사람에게 제일 빠른 엣지를 제공하는 것</u>
-<br>본사는 수 많은 요청들로 부터 과부화가 되지 않을 수 있고, 사용자는 보다 빠르게 서비스를 이용할 수 있다.
-<br><br>
+쉽게 말해서, 본사의 서비스를 전체가 아닌 일부를 가져와서, 본사로 부터 지리적으로 멀리 떨어져 있는 사람에게 제일 빠른 엣지를 제공하는 것. 
+본사는 수 많은 요청들로 부터 과부화가 되지 않을 수 있고, 사용자는 보다 빠르게 서비스를 이용할 수 있다.
+<br>
 
 ## 💳 **결제 시스템**
+
+
+<br>
 
 ### iamport
 <img width="850" alt="sDetails-cardPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/b0415ec2-c004-4a25-949c-3a4e4c1d54da">
@@ -197,3 +202,4 @@ SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 
 # 💥 **Trouble Shooting**
 <img width="1162" alt="image" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/2df7d6a3-2ae2-46f8-b662-eb57c9a3a7f1">
 
+Code, API, Data 등 여러 과정들을 재 검토하며 하나하나 테스트를 하며 결과를 기록 해 나가며 체크를 하였고, 체크한 리스트를 바탕으로 <b><u>DB 데이터 공백</u></b>이 라는 문제점을 파악할 수 있었습니다.
