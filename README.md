@@ -5,7 +5,7 @@
 	- [2-2. Main Page](#Main-Page)<br>
 * ![신발](https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/e9e98c46-db58-4977-a170-dec327fef141)[3. 개발환경](#개발환경)<br>
 
-
+<img width="1161" alt="image" src="https://github.com/Github-AppData/3DShoesModel_WebSite/assets/77886661/6ef07c05-fa71-412a-8bb8-43f90aa94966">
 
 
 # 프로젝트 소개
