@@ -17,6 +17,7 @@
 - 프로젝트 명 : <b>3D Model Shoes WebSite</b>
 - 프로잭트 목적 : 사용자는 신발을 360도로 회전하고 확대하여 더 자세히 살펴볼 수 있어, 온라인 쇼핑의 편의성을 향상시키는 것
 - 제작 기간 : 2023/03/17 ~ 2023/11/14 <br/>
+- 개발 일정 : 하단 페이지 구성 상세 <br/>
 - Team members : 김태욱(leader/BE), 강준성(FE), 노일환(FE), 박종현(BE), 박형근(BE) <br><br>
 
 # 🛠 **기술 및 도구**
@@ -169,7 +170,7 @@ function loadModels() {
 }
 
 // 모든 모델을 한꺼번에 로드합니다.
-loadModels();
+loadModels();	
 ```
 SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 사용자에게 3D Model을 시각적으로 제공.
 
@@ -184,13 +185,15 @@ SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 
 
 ## 💳 **결제 시스템**
 
+<br>
+
 ### iamport
 <img width="850" alt="sDetails-cardPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/b0415ec2-c004-4a25-949c-3a4e4c1d54da">
 <br>
 
 ### Kako Pay
 <img width="850" alt="sDetails-kakaoPay" src="https://github.com/Github-AppData/Graduation_work/assets/77886661/89249fd9-fe1c-4bb8-bccf-46afcc001c83">
-
+<br><br>
 ## 💌 **SMTP**
 
 <br><br>
