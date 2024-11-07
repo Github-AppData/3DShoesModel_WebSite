@@ -196,7 +196,7 @@ SketchFab 3D Open API와 3D Shoes Model의 id를 매핑하여, CDN 방식으로 
 <br><br>
 
 ## 💌 **SMTP**
-
+https://www.canva.com/design/DAGVGllCP7w/yOwHxbQAbgIntHNuB5674A/view?utm_content=DAGVGllCP7w&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel
 <br><br>
 
 # 💥 **Trouble Shooting**
